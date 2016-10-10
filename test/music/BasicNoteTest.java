@@ -39,6 +39,17 @@ public class BasicNoteTest {
         assertEquals("F=-", new BasicNote('F',C_SH_MINOR,-2).toString());
         assertEquals("G=+", new BasicNote('G',D_FL_MAJOR, 2).toString());
     }
+    
+    @Test
+    public void basicNotePreferredConstructorTest(){
+        assertEquals("C", new BasicNote('C', 0, C_MAJOR).toString());
+        assertEquals("E", new BasicNote('E', 4, C_MAJOR).toString());
+        assertEquals("G", new BasicNote('G', 7, C_MAJOR).toString());
+        assertEquals("B-", new BasicNote('B', 10, C_MAJOR).toString());
+        assertEquals("G", new BasicNote('G', 8, C_SH_MINOR).toString());
+        assertEquals("B+", new BasicNote('B', 0, C_SH_MINOR).toString());
+        assertEquals("D", new BasicNote('D', 3, C_SH_MINOR).toString());
+    }
 
 
 }

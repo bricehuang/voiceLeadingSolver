@@ -32,7 +32,7 @@ public class BasicNote{
     }
 
     /**
-     * Constructs a BasicNote 
+     * Constructs a BasicNote.  Not preferred constructor.   
      * @param c the note's letter value 
      * @param key the key in which this note is played
      * @param accidental number of semitones to shift the note up or down, relative
@@ -46,7 +46,7 @@ public class BasicNote{
     }
 
     /**
-     * Constructs a BasicNote
+     * Constructs a BasicNote.  Not preferred constructor.  
      * @param scaleDegree the scale degree in the key
      * @param key the key in which this note is played
      * @param accidental number of semitones to shift the note up or down, relative
@@ -59,8 +59,22 @@ public class BasicNote{
         checkRep();
     }
 
+    /**
+     * Constructs a BasicNote.  This is the preferred constructor.  
+     * @param c the note's letter value 
+     * @param reducedPitch the note's reduced pitch
+     * @param key the key in which the note is played
+     */
+    public BasicNote(char c, int reducedPitch, Key key){
+        this.reducedPitch = reducedPitch;
+        this.accidental = ((reducedPitch - key.getReducedPitchOfLetterNote(c, 0) 
+                + Key.SEMITONES_IN_OCTAVE + Key.SEMITONES_IN_HALF_OCTAVE) 
+                % key.SEMITONES_IN_OCTAVE) - Key.SEMITONES_IN_HALF_OCTAVE;
+        this.key = key;
+    }
+    
     /*********************
-     * Note Computations *
+     *  Getter Methods   *
      *********************/
     
     /**
@@ -82,6 +96,13 @@ public class BasicNote{
      */
     public int getScaleDegree(){
         return key.reducedPitchToScaleDegree(reducedPitch - accidental);
+    }
+    
+    /**
+     * @return scale degree
+     */
+    public String getWrittenName(){
+        return key.getWrittenNameOfReducedPitch(reducedPitch, accidental);
     }
     
     /*******************
@@ -109,7 +130,7 @@ public class BasicNote{
      * @return the name of this note, as spelled within the key
      */
     @Override public String toString(){
-        return key.getWrittenNameOfReducedPitch(reducedPitch, accidental);
+        return getWrittenName();
     }
 
 }

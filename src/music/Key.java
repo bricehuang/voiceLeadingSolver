@@ -25,8 +25,9 @@ public class Key {
      */
     
     private static final Integer MAX_SHARPS_FLATS = 6;
-    static final Integer SEMITONES_IN_OCTAVE = 12;
-    static final Integer PITCHES_IN_SCALE = 7;
+    public static final Integer SEMITONES_IN_HALF_OCTAVE = 6;
+    public static final Integer SEMITONES_IN_OCTAVE = 12;
+    public static final Integer PITCHES_IN_SCALE = 7;
     private static final List<String> MAJOR_KEY_NAMES = Arrays.asList(
             "Gb", "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#");
     private static final List<String> MINOR_KEY_NAMES = Arrays.asList(
