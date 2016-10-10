@@ -117,7 +117,6 @@ public class Key {
      */
     public int getReducedPitchOfLetterNote(char c, int accidental){
         int scaleDegree = letterNoteToScaleDegree(c);
-        System.err.println(scaleDegree);
         return getReducedPitchOfScaleDegree(scaleDegree, accidental);
     }
     
@@ -133,8 +132,6 @@ public class Key {
             throw new UnsupportedOperationException("Invalid note.");
         }
         char tonic = tonicAbsoluteName.charAt(0);
-        System.err.println(c);
-        System.err.println(tonic);
         return (c - tonic + PITCHES_IN_SCALE) % PITCHES_IN_SCALE + 1;
     }
     
@@ -156,7 +153,7 @@ public class Key {
      * @param reducedPitch a reduced pitch in the key
      * @return the scale degree (1-7) corresponding to this pitch
      */
-    private int reducedPitchToScaleDegree(int reducedPitch){
+    public int reducedPitchToScaleDegree(int reducedPitch){
         if (!isReducedPitchInKey(reducedPitch)){
             throw new UnsupportedOperationException("Note not in key.");
         }

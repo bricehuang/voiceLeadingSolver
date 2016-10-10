@@ -59,6 +59,35 @@ public class BasicNote{
         checkRep();
     }
 
+    /*********************
+     * Note Computations *
+     *********************/
+    
+    /**
+     * @return reduced pitch
+     */
+    public int getReducedPitch(){
+        return reducedPitch;
+    }
+
+    /**
+     * @return key
+     */
+    public Key getKey(){
+        return key;
+    }
+
+    /**
+     * @return scale degree
+     */
+    public int getScaleDegree(){
+        return key.reducedPitchToScaleDegree(reducedPitch - accidental);
+    }
+    
+    /*******************
+     * Object Contract *
+     *******************/
+    
     /**
      * Two basicNotes are equal iff they have the same reduced pitch.  
      * @param object another object
