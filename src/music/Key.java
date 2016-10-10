@@ -21,7 +21,7 @@ public class Key {
      * None. 
      * 
      * Rep Exposure:
-     * TODO
+     * only returns primitives and immutables
      */
     
     private static final Integer MAX_SHARPS_FLATS = 6;

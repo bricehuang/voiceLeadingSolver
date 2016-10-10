@@ -93,12 +93,20 @@ public class KeyTest {
     }
     
     @Test
-    public void basicWrittenNameWithDoubleAccidentals(){
-        assertEquals("F++",C_MAJOR.getWrittenNameOfReducedPitch(7, 2));
-        assertEquals("G++",C_MAJOR.getWrittenNameOfReducedPitch(9, 2));
-        assertEquals("B--",C_MAJOR.getWrittenNameOfReducedPitch(9, -2));
+    public void complexAccidentalsWrittenNameTest(){
         assertEquals("F=-",C_SH_MINOR.getWrittenNameOfReducedPitch(4, -2));
         assertEquals("G=+",D_FL_MAJOR.getWrittenNameOfReducedPitch(8, 2));
     }
 
+    /****************************************
+     *           TESTING toString           *
+     ****************************************/
+    
+    @Test
+    public void toStringTest(){
+        assertEquals("C Major", C_MAJOR.toString());
+        assertEquals("Db Major", D_FL_MAJOR.toString());
+        assertEquals("C# Minor", C_SH_MINOR.toString());
+    }
+    
 }
