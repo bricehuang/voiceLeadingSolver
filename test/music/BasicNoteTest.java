@@ -50,6 +50,14 @@ public class BasicNoteTest {
         assertEquals("B+", new BasicNote('B', 0, C_SH_MINOR).toString());
         assertEquals("D", new BasicNote('D', 3, C_SH_MINOR).toString());
     }
+    
+    @Test
+    public void getScaleDegreeTest(){
+        assertEquals(1, new BasicNote('C',0,C_MAJOR).getScaleDegree());
+        assertEquals(7, new BasicNote('C',0,D_FL_MAJOR).getScaleDegree());
+        assertEquals(1, new BasicNote('C',0,C_SH_MINOR).getScaleDegree());
+        assertEquals(7, new BasicNote('B',0,C_SH_MINOR).getScaleDegree());
+    }
 
 
 }
