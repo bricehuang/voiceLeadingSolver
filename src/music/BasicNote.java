@@ -8,8 +8,6 @@ public class BasicNote{
     private final Integer reducedNote;
     private final Integer reducedPitch;
     
-    private static final Integer[] NATURAL_REDUCED_PITCHES = {0,2,4,5,7,9,11};
-    private static final Character[] PITCH_NAMES = {'C','D','E','F','G','A','B'};
     
     /*
      * Abstraction Function: 
@@ -29,8 +27,8 @@ public class BasicNote{
 
     private void checkRep(){
         assert(reducedNote >= 0);
-        assert(reducedNote < 7);
-        int accidental = reducedPitch - NATURAL_REDUCED_PITCHES[reducedNote];
+        assert(reducedNote < Key.PITCHES_IN_SCALE);
+        int accidental = reducedPitch - Key.MAJOR_SCALE.get(reducedNote);
         assert(-2 <= accidental);
         assert(accidental <= 2);
     }
@@ -46,14 +44,6 @@ public class BasicNote{
         checkRep();
     }
     
-    /**
-     * Gets the string representation of a note as it is written in a given key 
-     * @param key a key
-     * @return ''
-     */
-    public String renderInKey(Key key){
-        throw new RuntimeException("Unimplemented.");
-    }
     
     /*********************
      *  Getter Methods   *
@@ -71,6 +61,40 @@ public class BasicNote{
      */
     public int getReducedPitch(){
         return reducedPitch;
+    }
+
+    /****************
+     * Computations *
+     ****************/
+    
+    public BasicNote transpose(Interval interval, boolean up){
+        int reducedPitch, reducedNote; 
+        if (up){
+            reducedPitch = this.reducedPitch + interval.getSemitones();
+            reducedNote = this.reducedNote + interval.getScaleDegrees();
+            while (reducedNote >= Key.PITCHES_IN_SCALE){
+                reducedNote -= Key.PITCHES_IN_SCALE;
+                reducedPitch -= Key.SEMITONES_IN_OCTAVE;
+            }
+        }
+        else{
+            reducedPitch = this.reducedPitch - interval.getSemitones();
+            reducedNote = this.reducedNote - interval.getScaleDegrees();
+            while (reducedNote < 0){
+                reducedNote += Key.PITCHES_IN_SCALE;
+                reducedPitch += Key.SEMITONES_IN_OCTAVE;
+            }
+        }
+        return new BasicNote(reducedNote, reducedPitch);
+    }
+    
+    /**
+     * Gets the string representation of a note as it is written in a given key 
+     * @param key a key
+     * @return ''
+     */
+    public String renderInKey(Key key){
+        throw new RuntimeException("Unimplemented.");
     }
 
     
@@ -99,8 +123,8 @@ public class BasicNote{
      */
     @Override public String toString(){
         String stringRep = "";
-        stringRep += PITCH_NAMES[reducedNote];
-        int accidental = reducedPitch - NATURAL_REDUCED_PITCHES[reducedNote];
+        stringRep += Key.PITCH_NAMES.get(reducedNote);
+        int accidental = reducedPitch - Key.MAJOR_SCALE.get(reducedNote);
         if (accidental>0){
             for (int i=0; i<accidental; i++){
                 stringRep += '+';
