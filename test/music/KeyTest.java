@@ -12,101 +12,92 @@ public class KeyTest {
     }
     
     private static final Key C_MAJOR = new Key(0,true);
-    private static final Key D_FL_MAJOR = new Key(-5,true);
-    private static final Key C_SH_MINOR = new Key(4,false);
-    
-    /****************************************
-     *      TESTING isReducedPitchInKey     *
-     ****************************************/
+    private static final Key D_MAJOR = new Key(2,true);
+    private static final Key G_MINOR = new Key(-2,false);
     
     @Test
-    public void testIsReducedPitchInKey(){
-        assertEquals(true, C_MAJOR.isReducedPitchInKey(0));
-        assertEquals(false, C_MAJOR.isReducedPitchInKey(1));
-        assertEquals(false, C_MAJOR.isReducedPitchInKey(6));
-        assertEquals(true, C_MAJOR.isReducedPitchInKey(7));
-        assertEquals(true, C_SH_MINOR.isReducedPitchInKey(1));
-        assertEquals(true, C_SH_MINOR.isReducedPitchInKey(4));
-        assertEquals(false, C_SH_MINOR.isReducedPitchInKey(5));
-        assertEquals(true, C_SH_MINOR.isReducedPitchInKey(11));
-        assertEquals(false, C_SH_MINOR.isReducedPitchInKey(0));
-    }
-    
-    /****************************************
-     *         TESTING CONVERSIONS          *
-     ****************************************/
-    
-    @Test
-    public void testGetReducedPitchOfScaleDegree(){
-        assertEquals(0, C_MAJOR.getReducedPitchOfScaleDegree(1, 0));
-        assertEquals(2, C_MAJOR.getReducedPitchOfScaleDegree(2, 0));
-        assertEquals(9, C_MAJOR.getReducedPitchOfScaleDegree(6, 0));
-        assertEquals(11, C_MAJOR.getReducedPitchOfScaleDegree(7, 0));
-        assertEquals(0, C_MAJOR.getReducedPitchOfScaleDegree(7, 1));
-        assertEquals(10, C_MAJOR.getReducedPitchOfScaleDegree(7, -1));
-        assertEquals(1, D_FL_MAJOR.getReducedPitchOfScaleDegree(1, 0));
-        assertEquals(0, D_FL_MAJOR.getReducedPitchOfScaleDegree(7, 0));
-        assertEquals(1, C_SH_MINOR.getReducedPitchOfScaleDegree(1, 0));
-        assertEquals(4, C_SH_MINOR.getReducedPitchOfScaleDegree(3, 0));
-        assertEquals(8, C_SH_MINOR.getReducedPitchOfScaleDegree(5, 0));
-        assertEquals(11, C_SH_MINOR.getReducedPitchOfScaleDegree(7, 0));
-    }
-    
-    @Test
-    public void testGetReducedPitchOfLetterNote(){
+    public void getScaleDegreeTest(){
+        assertEquals(new BasicNote(0,0), C_MAJOR.getScaleDegree(1));
+        assertEquals(new BasicNote(4,7), C_MAJOR.getScaleDegree(5));
+        assertEquals(new BasicNote(6,11), C_MAJOR.getScaleDegree(7));
         
-        assertEquals(0, C_MAJOR.getReducedPitchOfLetterNote('C', 0));
-        assertEquals(2, C_MAJOR.getReducedPitchOfLetterNote('D', 0));
-        assertEquals(9, C_MAJOR.getReducedPitchOfLetterNote('A', 0));
-        assertEquals(11, C_MAJOR.getReducedPitchOfLetterNote('B', 0));
-        assertEquals(0, C_MAJOR.getReducedPitchOfLetterNote('B', 1));
-        assertEquals(10, C_MAJOR.getReducedPitchOfLetterNote('B', -1));
-        assertEquals(1, D_FL_MAJOR.getReducedPitchOfLetterNote('D', 0));
-        assertEquals(0, D_FL_MAJOR.getReducedPitchOfLetterNote('C', 0));
-        assertEquals(1, C_SH_MINOR.getReducedPitchOfLetterNote('C', 0));
-        assertEquals(4, C_SH_MINOR.getReducedPitchOfLetterNote('E', 0));
-        assertEquals(8, C_SH_MINOR.getReducedPitchOfLetterNote('G', 0));
-        assertEquals(11, C_SH_MINOR.getReducedPitchOfLetterNote('B', 0));
+        assertEquals(new BasicNote(1,2), D_MAJOR.getScaleDegree(1));
+        assertEquals(new BasicNote(0,1), D_MAJOR.getScaleDegree(7));
+
+        assertEquals(new BasicNote(4,7), G_MINOR.getScaleDegree(1));
+        assertEquals(new BasicNote(6,10), G_MINOR.getScaleDegree(3));        
     }
     
-    
-    /****************************************
-     * TESTING getWrittenNameOfReducedPitch *
-     ****************************************/
-    
     @Test
-    public void basicWrittenNameTest(){
-        assertEquals("F",C_MAJOR.getWrittenNameOfReducedPitch(5, 0));
-        assertEquals("F+",C_MAJOR.getWrittenNameOfReducedPitch(6, 1));
-        assertEquals("G+",C_MAJOR.getWrittenNameOfReducedPitch(8, 1));
-        assertEquals("B-",C_MAJOR.getWrittenNameOfReducedPitch(10, -1));
-        assertEquals("B+",C_SH_MINOR.getWrittenNameOfReducedPitch(0, 1));
-        assertEquals("F=",C_SH_MINOR.getWrittenNameOfReducedPitch(5, -1));
-        assertEquals("G=",D_FL_MAJOR.getWrittenNameOfReducedPitch(7, 1));
+    public void findScaleDegreeTest(){
+        assertEquals(1, C_MAJOR.findScaleDegree(new BasicNote(0,0)));
+        assertEquals(5, C_MAJOR.findScaleDegree(new BasicNote(4,7)));
+        assertEquals(7, C_MAJOR.findScaleDegree(new BasicNote(6,11)));
+        
+        assertEquals(1, D_MAJOR.findScaleDegree(new BasicNote(1,2)));
+        assertEquals(7, D_MAJOR.findScaleDegree(new BasicNote(0,1)));
+
+        assertEquals(1, G_MINOR.findScaleDegree(new BasicNote(4,7)));
+        assertEquals(3, G_MINOR.findScaleDegree(new BasicNote(6,10)));        
     }
 
     @Test
-    public void doubleAccidentalsWrittenNameTest(){
-        assertEquals("F++",C_MAJOR.getWrittenNameOfReducedPitch(7, 2));
-        assertEquals("G++",C_MAJOR.getWrittenNameOfReducedPitch(9, 2));
-        assertEquals("B--",C_MAJOR.getWrittenNameOfReducedPitch(9, -2));
-    }
-    
-    @Test
-    public void complexAccidentalsWrittenNameTest(){
-        assertEquals("F=-",C_SH_MINOR.getWrittenNameOfReducedPitch(4, -2));
-        assertEquals("G=+",D_FL_MAJOR.getWrittenNameOfReducedPitch(8, 2));
-    }
+    public void renderInKeyTest(){
+        // no accidental, originally natural
+        assertEquals("C", C_MAJOR.renderBasicNote(new BasicNote(0,0)));
+        assertEquals("G", D_MAJOR.renderBasicNote(new BasicNote(4,7)));
+        assertEquals("G", G_MINOR.renderBasicNote(new BasicNote(4,7)));
+        // no accidental, originally sharp
+        assertEquals("F", D_MAJOR.renderBasicNote(new BasicNote(3,6)));
+        assertEquals("C", D_MAJOR.renderBasicNote(new BasicNote(0,1)));
+        // no accidental, originally flat
+        assertEquals("B", G_MINOR.renderBasicNote(new BasicNote(6,10)));
+        assertEquals("E", G_MINOR.renderBasicNote(new BasicNote(2,3)));
 
-    /****************************************
-     *           TESTING toString           *
-     ****************************************/
+        // +1 accidental, originally natural
+        assertEquals("C+", C_MAJOR.renderBasicNote(new BasicNote(0,1)));
+        assertEquals("G+", D_MAJOR.renderBasicNote(new BasicNote(4,8)));
+        assertEquals("G+", G_MINOR.renderBasicNote(new BasicNote(4,8)));
+        // +1 accidental, originally sharp
+        assertEquals("F++", D_MAJOR.renderBasicNote(new BasicNote(3,7)));
+        assertEquals("C++", D_MAJOR.renderBasicNote(new BasicNote(0,2)));
+        // +1 accidental, originally flat
+        assertEquals("B=", G_MINOR.renderBasicNote(new BasicNote(6,11)));
+        assertEquals("E=", G_MINOR.renderBasicNote(new BasicNote(2,4)));
+
+        // -1 accidental, originally natural
+        assertEquals("C-", C_MAJOR.renderBasicNote(new BasicNote(0,-1)));
+        assertEquals("G-", D_MAJOR.renderBasicNote(new BasicNote(4,6)));
+        assertEquals("G-", G_MINOR.renderBasicNote(new BasicNote(4,6)));
+        // -1 accidental, originally sharp
+        assertEquals("F=", D_MAJOR.renderBasicNote(new BasicNote(3,5)));
+        assertEquals("C=", D_MAJOR.renderBasicNote(new BasicNote(0,0)));
+        // -1 accidental, originally flat
+        assertEquals("B--", G_MINOR.renderBasicNote(new BasicNote(6,9)));
+        assertEquals("E--", G_MINOR.renderBasicNote(new BasicNote(2,2)));      
+        
+        // +2 accidental, originally natural
+        assertEquals("C++", C_MAJOR.renderBasicNote(new BasicNote(0,2)));
+        assertEquals("G++", D_MAJOR.renderBasicNote(new BasicNote(4,9)));
+        assertEquals("G++", G_MINOR.renderBasicNote(new BasicNote(4,9)));
+        // +2 accidental, originally flat
+        assertEquals("B=+", G_MINOR.renderBasicNote(new BasicNote(6,12)));
+        assertEquals("E=+", G_MINOR.renderBasicNote(new BasicNote(2,5)));
+        
+        // -2 accidental, originally natural
+        assertEquals("C--", C_MAJOR.renderBasicNote(new BasicNote(0,-2)));
+        assertEquals("G--", D_MAJOR.renderBasicNote(new BasicNote(4,5)));
+        assertEquals("G--", G_MINOR.renderBasicNote(new BasicNote(4,5)));
+        // -2 accidental, originally sharp
+        assertEquals("F=-", D_MAJOR.renderBasicNote(new BasicNote(3,4)));
+        assertEquals("C=-", D_MAJOR.renderBasicNote(new BasicNote(0,-1)));
+    }
     
     @Test
     public void toStringTest(){
         assertEquals("C Major", C_MAJOR.toString());
-        assertEquals("Db Major", D_FL_MAJOR.toString());
-        assertEquals("C# Minor", C_SH_MINOR.toString());
+        assertEquals("D Major", D_MAJOR.toString());
+        assertEquals("G Minor", G_MINOR.toString());
     }
     
 }

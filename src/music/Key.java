@@ -9,10 +9,10 @@ import java.util.List;
 public class Key {
     
     private final Integer sharps;
-    private final Integer tonicReducedPitch;
-    private final String tonicAbsoluteName;
     private final Boolean isMajor;
-
+    
+    private final BasicNote tonic;
+    
     /*
      * Abstraction Function:
      * represents the key with sharps sharps.  Tonality is major if isMajor = true, else minor.  
@@ -24,24 +24,55 @@ public class Key {
      * only returns primitives and immutables
      */
     
-    private static final Integer MAX_SHARPS_FLATS = 6;
+    public static final Integer MAX_SHARPS_FLATS = 6;
     public static final Integer SEMITONES_IN_HALF_OCTAVE = 6;
     public static final Integer SEMITONES_IN_OCTAVE = 12;
     public static final Integer PITCHES_IN_SCALE = 7;
-    private static final List<String> MAJOR_KEY_NAMES = Arrays.asList(
+    
+    public static final List<String> MAJOR_KEY_NAMES = Arrays.asList(
             "Gb", "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#");
-    private static final List<String> MINOR_KEY_NAMES = Arrays.asList(
+    public static final List<String> MINOR_KEY_NAMES = Arrays.asList(
             "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "D#");
     
-    private static final List<Integer> MAJOR_SCALE = Arrays.asList(
+    public static final List<Integer> MAJOR_SCALE = Arrays.asList(
             0, 2, 4, 5, 7, 9, 11);
-    private static final List<Integer> MAJOR_KEY_PITCHES = Arrays.asList(
-            6, 1, 8, 3, 10, 5, 0, 7, 2, 9, 4, 11, 6);
-    private static final List<Integer> MINOR_SCALE = Arrays.asList(
+    public static final List<Integer> MINOR_SCALE = Arrays.asList(
             0, 2, 3, 5, 7, 8, 10);
-    private static final List<Integer> MINOR_KEY_PITCHES = Arrays.asList(
-            3, 10, 5, 0, 7, 2, 9, 4, 11, 6, 1, 8, 3);
     
+    public static final List<Character> PITCH_NAMES = Arrays.asList(
+            'C','D','E','F','G','A','B');
+
+
+    private static final List<BasicNote> MAJOR_KEY_TONICS = Arrays.asList(
+            new BasicNote(4,6),  // Gb 
+            new BasicNote(1,1),  // Db 
+            new BasicNote(5,8),  // Ab
+            new BasicNote(2,3),  // Eb
+            new BasicNote(6,10), // Bb
+            new BasicNote(3,5),  // F
+            new BasicNote(0,0),  // C
+            new BasicNote(4,7),  // G 
+            new BasicNote(1,2),  // D
+            new BasicNote(5,9),  // A
+            new BasicNote(2,4),  // E
+            new BasicNote(6,11), // B
+            new BasicNote(3,6)   // F#
+            );
+    private static final List<BasicNote> MINOR_KEY_TONICS = Arrays.asList(
+            new BasicNote(2,3),  // Eb
+            new BasicNote(6,10), // Bb
+            new BasicNote(3,5),  // F
+            new BasicNote(0,0),  // C
+            new BasicNote(4,7),  // G 
+            new BasicNote(1,2),  // D
+            new BasicNote(5,9),  // A
+            new BasicNote(2,4),  // E
+            new BasicNote(6,11), // B
+            new BasicNote(3,6),  // F#
+            new BasicNote(0,1),  // C# 
+            new BasicNote(4,8),  // G#
+            new BasicNote(1,3)   // D#
+            );
     
     private static final Key C_MAJOR = new Key(0,true); 
             
@@ -58,137 +89,45 @@ public class Key {
         this.sharps = sharps;
         this.isMajor = isMajor;
         if (isMajor){
-            this.tonicAbsoluteName = MAJOR_KEY_NAMES.get(sharps + MAX_SHARPS_FLATS);
-            this.tonicReducedPitch = MAJOR_KEY_PITCHES.get(sharps + MAX_SHARPS_FLATS);
+            this.tonic = MAJOR_KEY_TONICS.get(sharps+MAX_SHARPS_FLATS);
         }
         else{
-            this.tonicAbsoluteName = MINOR_KEY_NAMES.get(sharps + MAX_SHARPS_FLATS);
-            this.tonicReducedPitch = MINOR_KEY_PITCHES.get(sharps + MAX_SHARPS_FLATS);
+            this.tonic = MINOR_KEY_TONICS.get(sharps+MAX_SHARPS_FLATS);
         }
     }
 
     
     /******************
-     * BASIC CHECKING *
+     *  COMPUTATIONS  *
      ******************/
-    
+
     /**
-     * @param reducedPitch a pitch in (0...11)
-     * @return whether reducedPitch is in this key
+     * Returns a BasicNote corresponding to an (unaltered) scale degree of this note
+     * @param scaleDegree a number in 1-7
+     * @return ditto
      */
-    public boolean isReducedPitchInKey(int reducedPitch){
-        int reducedPitchRelativeToTonic = (reducedPitch - tonicReducedPitch + SEMITONES_IN_OCTAVE) % SEMITONES_IN_OCTAVE;
+    public BasicNote getScaleDegree(int scaleDegree){
+        if (scaleDegree<1 || scaleDegree > PITCHES_IN_SCALE){
+            throw new UnsupportedOperationException("scaleDegree has to be between 1 and 7");
+        }
+        int notes = scaleDegree-1;
+        int semitones;
         if (isMajor){
-            return MAJOR_SCALE.contains(reducedPitchRelativeToTonic);
+            semitones = MAJOR_SCALE.get(notes);
         }
         else{
-            return MINOR_SCALE.contains(reducedPitchRelativeToTonic);
+            semitones=  MINOR_SCALE.get(notes);
         }
-    }
-    
-    /***************
-     * CONVERSIONS *
-     ***************/
-    
-    /**
-     * Gets the reduced pitch of a scale degree
-     * @param scaleDegree an integer in 1,...,7
-     * @param accidental number of semitones to raise/lower
-     * @return the reduced (0-11) pitch of a scale degree
-     */
-    public int getReducedPitchOfScaleDegree(int scaleDegree, int accidental){
-        if (scaleDegree<0 || scaleDegree>7){
-            throw new UnsupportedOperationException("Bad scale degree.");
-        }
-        if (isMajor){
-            return (MAJOR_SCALE.get(scaleDegree-1)+ tonicReducedPitch + accidental)
-                    % SEMITONES_IN_OCTAVE;
-        }
-        else{
-            return (MINOR_SCALE.get(scaleDegree-1)+ tonicReducedPitch + accidental)
-                    % SEMITONES_IN_OCTAVE;
-        }
+        return tonic.transpose(new Interval(notes, semitones), true);
     }
     
     /**
-     * Gets the reduced pitch of a letter note
-     * @param letter note A-G
-     * @param accidental number of semitones to raise/lower from the default in scale
-     * @return the resulting reduced (0-11) pitch 
+     * Return the scale degree of an inputted note
+     * @param note 
+     * @return note's scale degree 
      */
-    public int getReducedPitchOfLetterNote(char c, int accidental){
-        int scaleDegree = letterNoteToScaleDegree(c);
-        return getReducedPitchOfScaleDegree(scaleDegree, accidental);
-    }
-    
-    /**
-     * Converts a letter note to a scale degree
-     * @param c an uppercase character in 'A'...'G'. Represents the corresponding
-     * note in the key, where the key signature is implied.  
-     * @return the scale degree (1-7) pitch of the note with the inputted letter
-     * name in this key
-     */
-    private int letterNoteToScaleDegree(char c){
-        if ((c - 'A' < 0) || (c - 'G' > 0)){
-            throw new UnsupportedOperationException("Invalid note.");
-        }
-        char tonic = tonicAbsoluteName.charAt(0);
-        return (c - tonic + PITCHES_IN_SCALE) % PITCHES_IN_SCALE + 1;
-    }
-    
-    /**
-     * Converts a scale degree to a letter note
-     * @param A scale degree in 1,...,7
-     * @return the letter note (minus accidentals, which are implied) corresponding
-     * to the inputted scale degree of the key.  
-     */
-    private char scaleDegreeToLetterNote(int scaleDegree){
-        char tonicLetter = tonicAbsoluteName.charAt(0);
-        int tonicLetterIndex = tonicLetter - 'A';
-        int ansLetterIndex = (tonicLetterIndex + scaleDegree - 1)%PITCHES_IN_SCALE;
-        return (char) ('A' + ansLetterIndex);
-    }
-    
-    /**
-     * Converts a reduced pitch in the key to a scale degree
-     * @param reducedPitch a reduced pitch in the key
-     * @return the scale degree (1-7) corresponding to this pitch
-     */
-    public int reducedPitchToScaleDegree(int reducedPitch){
-        if (!isReducedPitchInKey(reducedPitch)){
-            throw new UnsupportedOperationException("Note not in key.");
-        }
-        
-        int reducedPitchRelativeToTonic = (reducedPitch - tonicReducedPitch + SEMITONES_IN_OCTAVE) 
-                % SEMITONES_IN_OCTAVE;
-        int index = 0;
-        if (isMajor){
-            while(MAJOR_SCALE.get(index) != reducedPitchRelativeToTonic){
-                index++;
-                if (index == 7){
-                    throw new RuntimeException("Should not get here.");
-                }
-            }
-        }
-        else{
-            while(MINOR_SCALE.get(index) != reducedPitchRelativeToTonic){
-                index++;
-                if (index == 7){
-                    throw new RuntimeException("Should not get here.");
-                }
-            }
-        }
-        return index+1;
-    }
-    
-    /**
-     * Converts a reduced pitch to a letter note
-     * @param reducedPitch a reduced pitch in the key
-     * @return the letter note (A-G, key signature omitted) corresponding
-     * to this reduced pitch)
-     */
-    private char reducedPitchToLetterNote(int reducedPitch){
-        return scaleDegreeToLetterNote(reducedPitchToScaleDegree(reducedPitch));
+    public int findScaleDegree(BasicNote note){
+        return Interval.intervalBetween(tonic, note).getScaleDegrees()+1;
     }
     
     /*******************
@@ -196,85 +135,69 @@ public class Key {
      *******************/
     
     /**
-     * Detects if a note in a key would require an accidental if the key signature
-     * weren't there.      
-     * @param reducedPitch, a pitch which must be in the key.  
-     * @return -1 if the key signature flatted the note, +1 if it sharped the note, 
-     * and 0 otherwise.   
+     * Returns a string representation of a note as it would appear in this key.  
+     * Sharps are designated +, flats -.  
+     * @param note
+     * @return a note as it would be written in this key
      */
-    private int getKeySigSharpsFlats(int reducedPitch){
-        int scaleDegree = reducedPitchToScaleDegree(reducedPitch); 
+    public String renderBasicNote(BasicNote note){
+        Interval intervalFromTonic = Interval.intervalBetween(tonic, note);
+        int deviationFromKeySignature;
+        if (isMajor){
+            deviationFromKeySignature = intervalFromTonic.getSemitones() 
+                    - MAJOR_SCALE.get(intervalFromTonic.getScaleDegrees());
+        }
+        else{
+            deviationFromKeySignature = intervalFromTonic.getSemitones() 
+                    - MINOR_SCALE.get(intervalFromTonic.getScaleDegrees());
+        }
+        int deviationFromNatural = note.getReducedPitch() - MAJOR_SCALE.get(note.getReducedNote());
+        int sharpFlatsFromKeySignature = deviationFromNatural - deviationFromKeySignature;
         
-        char letterOfPitch = scaleDegreeToLetterNote(scaleDegree);
-        
-        int reducedPitchOfLetterWithoutKeySig = 
-                C_MAJOR.getReducedPitchOfLetterNote(letterOfPitch, 0);
-        
-        int diff = (reducedPitch - reducedPitchOfLetterWithoutKeySig + SEMITONES_IN_OCTAVE) 
-                % SEMITONES_IN_OCTAVE;
-        
-        if (diff == 11)
-            return -1;
-        return diff;
+        String stringRepOfNote = String.valueOf(PITCH_NAMES.get(note.getReducedNote()));
+        if (sharpFlatsFromKeySignature == 0){
+            if (deviationFromKeySignature > 0){
+                for (int i=0; i<deviationFromKeySignature; i++){
+                    stringRepOfNote += "+";
+                }
+            }
+            else if (deviationFromKeySignature < 0){
+                for (int i=0; i<-deviationFromKeySignature; i++){
+                    stringRepOfNote += "-";
+                }
+            }
+        }
+        else if (sharpFlatsFromKeySignature == 1){
+            if (deviationFromKeySignature>0){
+                for (int i=0; i<deviationFromKeySignature+1; i++){
+                    stringRepOfNote += "+";
+                }
+            }
+            else if (deviationFromKeySignature<0){
+                stringRepOfNote += "=";
+                for (int i=0; i<-deviationFromKeySignature-1; i++){
+                    stringRepOfNote += "-";
+                }
+            }
+        }
+        else if (sharpFlatsFromKeySignature == -1){
+            if (deviationFromKeySignature>0){
+                stringRepOfNote += "=";
+                for (int i=0; i<deviationFromKeySignature-1; i++){
+                    stringRepOfNote += "+";
+                }
+            }
+            else if (deviationFromKeySignature<0){
+                for (int i=0; i<-deviationFromKeySignature+1; i++){
+                    stringRepOfNote += "-";
+                }
+            }
+        }
+        else{
+            throw new RuntimeException("Should not get here.");
+        }
+        return stringRepOfNote;
     }
-    
-    /**
-     * Computes the way a note should be written according to music conventions
-     * @param reducedPitch 
-     * @param accidental
-     * @return
-     */
-    public String getWrittenNameOfReducedPitch(int reducedPitch, int accidental){
-        int reducedPitchBasePitch = (reducedPitch-accidental+ Key.SEMITONES_IN_OCTAVE) 
-                % Key.SEMITONES_IN_OCTAVE;
-        
-        int sharpsFlats = getKeySigSharpsFlats(reducedPitchBasePitch);
-        
-        char baseLetterNote = reducedPitchToLetterNote(reducedPitchBasePitch);
-        
-        String ans = String.valueOf(baseLetterNote);
-        
-        if (sharpsFlats == 0){
-            if (accidental > 0){
-                for (int i=0; i<accidental; i++){
-                    ans += "+";
-                }
-            }
-            else if (accidental < 0){
-                for (int i=0; i<-accidental; i++){
-                    ans += "-";
-                }
-            }
-        }
-        else if (sharpsFlats == 1){
-            if (accidental>0){
-                for (int i=0; i<accidental; i++){
-                    ans += "+";
-                }
-            }
-            else if (accidental<0){
-                ans += "=";
-                for (int i=0; i<-accidental-1; i++){
-                    ans += "-";
-                }
-            }
-        }
-        else if (sharpsFlats == -1){
-            if (accidental>0){
-                ans += "=";
-                for (int i=0; i<accidental-1; i++){
-                    ans += "+";
-                }
-            }
-            else if (accidental<0){
-                for (int i=0; i<-accidental; i++){
-                    ans += "-";
-                }
-            }
-        }
-        return ans;
-    }
-    
 
 
     /*******************
@@ -307,10 +230,10 @@ public class Key {
      */
     @Override public String toString(){
         if (isMajor){
-            return tonicAbsoluteName + " Major";
+            return MAJOR_KEY_NAMES.get(sharps+MAX_SHARPS_FLATS) + " Major";
         }
         else{
-            return tonicAbsoluteName + " Minor";
+            return MINOR_KEY_NAMES.get(sharps+MAX_SHARPS_FLATS) + " Minor";
         }
     }
     
