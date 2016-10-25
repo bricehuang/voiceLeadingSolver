@@ -11,10 +11,6 @@ public class BasicNoteTest {
         assert false;
     }
     
-    private static final Key C_MAJOR = new Key(0,true);
-    private static final Key D_MAJOR = new Key(2,true);
-    private static final Key G_MINOR = new Key(-2,false);
-    
     @Test
     public void toStringTest(){
         // naturals

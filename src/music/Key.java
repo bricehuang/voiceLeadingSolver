@@ -25,7 +25,6 @@ public class Key {
      */
     
     public static final Integer MAX_SHARPS_FLATS = 6;
-    public static final Integer SEMITONES_IN_HALF_OCTAVE = 6;
     public static final Integer SEMITONES_IN_OCTAVE = 12;
     public static final Integer PITCHES_IN_SCALE = 7;
     
@@ -72,10 +71,7 @@ public class Key {
             new BasicNote(0,1),  // C# 
             new BasicNote(4,8),  // G#
             new BasicNote(1,3)   // D#
-            );
-    
-    private static final Key C_MAJOR = new Key(0,true); 
-            
+            );            
     
     /**
      * Constructs a key with given key signature and tonality

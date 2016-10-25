@@ -1,8 +1,5 @@
 package music;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * An immutable class representing an interval
  */
