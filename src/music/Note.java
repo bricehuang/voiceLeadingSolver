@@ -5,19 +5,33 @@ package music;
  */
 public class Note {
 
+    private final BasicNote basicNote;
+    private final int octave;
+    private final int pitchID; 
+    private final int noteID;
+    
     /*
      * Abstraction Function: 
-     * TODO
+     * basicNote is this note modulo octaves
+     * octave is the traditional octave number e.g.  C4-B4 has octave number 4.    
      * 
      * Rep Invariant: 
-     * TODO
+     * pitchID and basicNote's reducedPitch are same note
+     * noteID and basicNote's pitch are same note
+     * noteID and octave check out
+     * pitchID and octave check out
      * 
      * Rep Exposure:
-     * TODO
+     * only returns primitives and immutables
      */
     
     private void checkRep(){
-        throw new RuntimeException("Unimplemented.");
+        assert((pitchID - basicNote.getReducedPitch())%
+                Key.SEMITONES_IN_OCTAVE == 0);
+        assert((noteID - basicNote.getReducedNote())%
+                Key.PITCHES_IN_SCALE == 0);
+        assert((pitchID - basicNote.getReducedPitch())/Key.SEMITONES_IN_OCTAVE == octave);
+        assert((noteID - basicNote.getReducedNote())/Key.PITCHES_IN_SCALE == octave);
     }
     
     /**
@@ -28,26 +42,62 @@ public class Note {
      * scientific pitch notation.       
      */
     public Note(BasicNote note, int octave){
-        throw new RuntimeException("Unimplemented.");
+        this.basicNote = note;
+        this.octave = octave;
+        this.noteID = note.getReducedNote() + octave*Key.PITCHES_IN_SCALE;
+        this.pitchID = note.getReducedPitch() + octave*Key.SEMITONES_IN_OCTAVE;
+        checkRep();
     }
+    
+    /******************
+     * Getter Methods *
+     ******************/
     
     /**
      * Gets the pitch (in semitones above/below C4) associated
      * with this note.  
      * @return pitch
      */
-    public int getPitch(){
-        throw new RuntimeException("Unimplemented");
+    public int getPitchID(){
+        return this.pitchID;
     }
     
     /**
-     * Computes the interval between two notes
-     * @param otherNote another note
-     * @return the interval (in half-steps) from this to otherNote
+     * Gets the note (in notes above/below C4) associated
+     * with this note.  
+     * @return note
      */
-    public Interval interval(Note otherNote){
-        throw new RuntimeException("Unimplemented.");
+    public int getNoteID(){
+        return this.noteID;
     }
+
+    /**
+     * Gets the octave associated with this note.  
+     * @return octave
+     */
+    public int getOctave(){
+        return this.octave;
+    }
+    
+    /**
+     * Get the BasicNote associated with this note
+     * @return basicNote
+     */
+    public BasicNote getBasicNote(){
+        return this.basicNote;
+    }
+    
+    /****************
+     * Computations *
+     ****************/
+    
+    public String renderInKey(Key key){
+        return basicNote.renderInKey(key) + octave;
+    }
+
+    /*******************
+     * Object contract *
+     *******************/
     
     /**
      * Plays this note
@@ -57,16 +107,21 @@ public class Note {
     }
     
     /**
-     * Two notes are equal iff they have the same pitch.  
+     * Two notes are equal iff they have the same pitch and
+     * writing.  
      * @param object another object
      * @return whether this and object are equal.   
      */
     @Override public boolean equals(Object object){
-        throw new RuntimeException("Unimplemented.");
+        if (!(object instanceof Note)){ return false;}
+        Note that = (Note) object;
+        return (this.basicNote.equals(that.basicNote) &&
+                this.octave == that.octave);
+                
     }
 
     @Override public int hashCode(){
-        throw new RuntimeException("Unimplemented.");
+        return this.basicNote.hashCode() + 163 * octave;
     }
 
     /**
@@ -74,7 +129,7 @@ public class Note {
      * notation
      */
     @Override public String toString(){
-        throw new RuntimeException("Unimplemented.");
+        return this.basicNote.toString() + octave;
     }
 
 }
