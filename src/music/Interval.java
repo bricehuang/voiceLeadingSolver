@@ -33,8 +33,8 @@ public class Interval {
     
     /**
      * Constructor for intervals
-     * @param semitones number of semitones
      * @param scaleDegrees number of scale degrees
+     * @param semitones number of semitones
      */
     public Interval(int scaleDegrees, int semitones){
         this.scaleDegrees = scaleDegrees;
