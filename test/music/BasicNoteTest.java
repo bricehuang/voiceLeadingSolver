@@ -91,6 +91,14 @@ public class BasicNoteTest {
         assertEquals("C=-", new BasicNote(0,-1).renderInKey(D_MAJOR));
     }
     
+    @Test 
+    public void transposeTest(){
+        assertEquals(new BasicNote(4,7), new BasicNote(3,5).transpose(
+                new Interval(1,2), true));
+        assertEquals(new BasicNote(0,0), new BasicNote(3,5).transpose(
+                new Interval(4,7), true));
+        assertEquals(new BasicNote(3,5), new BasicNote(0,0).transpose(
+                new Interval(4,7), false));    }
 
 
 }
