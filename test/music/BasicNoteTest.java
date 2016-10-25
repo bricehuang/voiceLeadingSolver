@@ -39,57 +39,6 @@ public class BasicNoteTest {
         assertEquals("C--", new BasicNote(0,-2).toString());
     }
     
-    @Test
-    public void renderInKeyTest(){
-        // no accidental, originally natural
-        assertEquals("C", new BasicNote(0,0).renderInKey(C_MAJOR));
-        assertEquals("G", new BasicNote(4,7).renderInKey(D_MAJOR));
-        assertEquals("G", new BasicNote(4,7).renderInKey(G_MINOR));
-        // no accidental, originally sharp
-        assertEquals("F", new BasicNote(3,6).renderInKey(D_MAJOR));
-        assertEquals("C", new BasicNote(0,1).renderInKey(D_MAJOR));
-        // no accidental, originally flat
-        assertEquals("B", new BasicNote(6,10).renderInKey(G_MINOR));
-        assertEquals("E", new BasicNote(2,3).renderInKey(G_MINOR));
-
-        // +1 accidental, originally natural
-        assertEquals("C+", new BasicNote(0,1).renderInKey(C_MAJOR));
-        assertEquals("G+", new BasicNote(4,8).renderInKey(D_MAJOR));
-        assertEquals("G+", new BasicNote(4,8).renderInKey(G_MINOR));
-        // +1 accidental, originally sharp
-        assertEquals("F++", new BasicNote(3,7).renderInKey(D_MAJOR));
-        assertEquals("C++", new BasicNote(0,2).renderInKey(D_MAJOR));
-        // +1 accidental, originally flat
-        assertEquals("B=", new BasicNote(6,11).renderInKey(G_MINOR));
-        assertEquals("E=", new BasicNote(2,4).renderInKey(G_MINOR));
-
-        // -1 accidental, originally natural
-        assertEquals("C-", new BasicNote(0,-1).renderInKey(C_MAJOR));
-        assertEquals("G-", new BasicNote(4,6).renderInKey(D_MAJOR));
-        assertEquals("G-", new BasicNote(4,6).renderInKey(G_MINOR));
-        // -1 accidental, originally sharp
-        assertEquals("F=", new BasicNote(3,5).renderInKey(D_MAJOR));
-        assertEquals("C=", new BasicNote(0,0).renderInKey(D_MAJOR));
-        // -1 accidental, originally flat
-        assertEquals("B--", new BasicNote(6,9).renderInKey(G_MINOR));
-        assertEquals("E--", new BasicNote(2,2).renderInKey(G_MINOR));      
-        
-        // +2 accidental, originally natural
-        assertEquals("C++", new BasicNote(0,2).renderInKey(C_MAJOR));
-        assertEquals("G++", new BasicNote(4,9).renderInKey(D_MAJOR));
-        assertEquals("G++", new BasicNote(4,9).renderInKey(G_MINOR));
-        // +2 accidental, originally flat
-        assertEquals("B=+", new BasicNote(6,12).renderInKey(G_MINOR));
-        assertEquals("E=+", new BasicNote(2,5).renderInKey(G_MINOR));
-
-        // -2 accidental, originally natural
-        assertEquals("C--", new BasicNote(0,-2).renderInKey(C_MAJOR));
-        assertEquals("G--", new BasicNote(4,5).renderInKey(D_MAJOR));
-        assertEquals("G--", new BasicNote(4,5).renderInKey(G_MINOR));
-        // -2 accidental, originally sharp
-        assertEquals("F=-", new BasicNote(3,4).renderInKey(D_MAJOR));
-        assertEquals("C=-", new BasicNote(0,-1).renderInKey(D_MAJOR));
-    }
     
     @Test 
     public void transposeTest(){
@@ -100,5 +49,6 @@ public class BasicNoteTest {
         assertEquals(new BasicNote(3,5), new BasicNote(0,0).transpose(
                 new Interval(4,7), false));    }
 
+    // renderInKey tested in KeyTest
 
 }

@@ -94,7 +94,7 @@ public class BasicNote{
      * @return ''
      */
     public String renderInKey(Key key){
-        throw new RuntimeException("Unimplemented.");
+        return key.renderBasicNote(this);
     }
 
     
