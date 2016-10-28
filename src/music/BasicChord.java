@@ -1,10 +1,10 @@
 package music;
 
 /**
- * An immutable class representing a chord sung by four voices.  
+ * An immutable class representing a chord sung by four voices, modulo octaves  
  */
-public class Chord {
-    // TODO methods not complete
+public class BasicChord {
+    // TODO methods not complete 
     
     /*
      * Voice ranges:
@@ -32,21 +32,13 @@ public class Chord {
      * @param tenor tenor note
      * @param bass bass note
      */
-    public Chord(Note soprano, Note alto, Note tenor, Note bass){
+    public BasicChord(BasicNote soprano, BasicNote alto, BasicNote tenor, BasicNote bass){
         throw new RuntimeException("Unimplemented");
     }
     
     private void checkRep(){
         throw new RuntimeException("Unimplemented");
     }
-    
-    /**
-     * Plays this chord
-     */
-    public void play(/*params here*/){
-        throw new RuntimeException("Unimplemented.");
-    }
-    
     
     /******************
      * Getter methods *
@@ -55,28 +47,28 @@ public class Chord {
     /**
      * @return the soprano note
      */
-    public Note getSoprano(){
+    public BasicNote getSoprano(){
         throw new RuntimeException("Unimplemented");
     }
 
     /**
      * @return the alto note
      */
-    public Note getAlto(){
+    public BasicNote getAlto(){
         throw new RuntimeException("Unimplemented");
     }
     
     /**
      * @return the tenor note
      */
-    public Note getTenor(){
+    public BasicNote getTenor(){
         throw new RuntimeException("Unimplemented");
     }
     
     /**
      * @return the bass note
      */
-    public Note getBass(){
+    public BasicNote getBass(){
         throw new RuntimeException("Unimplemented");
     }
     
@@ -85,7 +77,7 @@ public class Chord {
      *******************/
     
     /**
-     * Two chords are equal iff all corresponding notes are equal.    
+     * Two BasicChords are equal iff all corresponding notes are equal.    
      * @param object another object
      * @return whether this and object are equal.   
      */
@@ -104,4 +96,5 @@ public class Chord {
     @Override public String toString(){
         throw new RuntimeException("Unimplemented.");
     }
+
 }
