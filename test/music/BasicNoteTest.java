@@ -39,11 +39,11 @@ public class BasicNoteTest {
     @Test 
     public void transposeTest(){
         assertEquals(new BasicNote(4,7), new BasicNote(3,5).transpose(
-                new Interval(1,2), true));
+                new BasicInterval(1,2), true));
         assertEquals(new BasicNote(0,0), new BasicNote(3,5).transpose(
-                new Interval(4,7), true));
+                new BasicInterval(4,7), true));
         assertEquals(new BasicNote(3,5), new BasicNote(0,0).transpose(
-                new Interval(4,7), false));    }
+                new BasicInterval(4,7), false));    }
 
     // renderInKey tested in KeyTest
 

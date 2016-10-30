@@ -1,9 +1,9 @@
 package music;
 
 /**
- * An immutable class representing an interval
+ * An immutable class representing an interval modulo octaves
  */
-public class Interval {
+public class BasicInterval {
 
     private final int semitones;
     private final int scaleDegrees;
@@ -16,40 +16,28 @@ public class Interval {
      * a 2nd is 1, and so on)
      * 
      * Rep Invariant:
-     * All intervals should be dim, min, maj, or aug
+     * TODO: All intervals should be dim, min, maj, or aug
      * 
      * Rep Exposure:
      * Only returns primitives and immutables
      */
-    
-    //TODO fix this
-//    private static final List<Integer> lowerBoundSemitones = 
-//            Arrays.asList(0,1,2,4,6,7,9);
-//    private static final List<Integer> upperBoundSemitones = 
-//            Arrays.asList(1,3,5,6,8,10,12);
-    
+        
     /**
      * Constructor for intervals
      * @param scaleDegrees number of scale degrees
      * @param semitones number of semitones
      */
-    public Interval(int scaleDegrees, int semitones){
+    public BasicInterval(int scaleDegrees, int semitones){
         this.scaleDegrees = scaleDegrees;
         this.semitones = semitones;
         checkRep();
     }
     
     private void checkRep(){
-//        assert(this.semitones >= 0);
-//        assert(this.scaleDegrees >= 0);
-//        int reducedSemitones = this.semitones;
-//        int reducedScaleDegrees =  this.scaleDegrees;
-//        while (reducedScaleDegrees >= Key.PITCHES_IN_SCALE){
-//            reducedSemitones -= Key.SEMITONES_IN_OCTAVE;
-//            reducedScaleDegrees -= Key.PITCHES_IN_SCALE;
-//        }
-//        assert(reducedSemitones >= lowerBoundSemitones.get(reducedScaleDegrees));
-//        assert(reducedSemitones <= upperBoundSemitones.get(reducedScaleDegrees));
+        assert(0<= semitones);
+        assert(0<= scaleDegrees);
+        assert(scaleDegrees < Key.PITCHES_IN_SCALE);
+        // TODO more robust checkrep
     }
     
     /****************
@@ -63,15 +51,15 @@ public class Interval {
      * @return the interval between these two notes, where second is assumed to be 
      * in the octave above first (including first and not including first + octave) 
      */
-    public static Interval intervalBetween(BasicNote first, BasicNote second){
+    public static BasicInterval intervalBetween(BasicNote first, BasicNote second){
         if (second.getReducedNote() >= first.getReducedNote()){
-            return new Interval(
+            return new BasicInterval(
                     second.getReducedNote() - first.getReducedNote(),
                     second.getReducedPitch() - first.getReducedPitch()
                     );
         }
         else{
-            return new Interval(
+            return new BasicInterval(
                     second.getReducedNote() - first.getReducedNote() + Key.PITCHES_IN_SCALE,
                     second.getReducedPitch() - first.getReducedPitch() + Key.SEMITONES_IN_OCTAVE
                     );
@@ -105,8 +93,8 @@ public class Interval {
     
     @Override
     public boolean equals(Object other){
-        if (!(other instanceof Interval)){ return false;}
-        Interval that = (Interval) other;
+        if (!(other instanceof BasicInterval)){ return false;}
+        BasicInterval that = (BasicInterval) other;
         return (this.scaleDegrees == that.scaleDegrees &&
                 this.semitones == that.semitones);
     }

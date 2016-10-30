@@ -114,7 +114,7 @@ public class Key {
         else{
             semitones=  MINOR_SCALE.get(notes);
         }
-        return tonic.transpose(new Interval(notes, semitones), true);
+        return tonic.transpose(new BasicInterval(notes, semitones), true);
     }
     
     /**
@@ -123,7 +123,7 @@ public class Key {
      * @return note's scale degree 
      */
     public int findScaleDegree(BasicNote note){
-        return Interval.intervalBetween(tonic, note).getScaleDegrees()+1;
+        return BasicInterval.intervalBetween(tonic, note).getScaleDegrees()+1;
     }
     
     /*******************
@@ -137,7 +137,7 @@ public class Key {
      * @return a note as it would be written in this key
      */
     public String renderBasicNote(BasicNote note){
-        Interval intervalFromTonic = Interval.intervalBetween(tonic, note);
+        BasicInterval intervalFromTonic = BasicInterval.intervalBetween(tonic, note);
         int deviationFromKeySignature;
         if (isMajor){
             deviationFromKeySignature = intervalFromTonic.getSemitones() 

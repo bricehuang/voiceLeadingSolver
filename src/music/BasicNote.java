@@ -67,7 +67,7 @@ public class BasicNote{
      * Computations *
      ****************/
     
-    public BasicNote transpose(Interval interval, boolean up){
+    public BasicNote transpose(BasicInterval interval, boolean up){
         int reducedPitch, reducedNote; 
         if (up){
             reducedPitch = this.reducedPitch + interval.getSemitones();
