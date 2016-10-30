@@ -34,7 +34,6 @@ public class BasicInterval {
     }
     
     private void checkRep(){
-        assert(0<= semitones);
         assert(0<= scaleDegrees);
         assert(scaleDegrees < Key.PITCHES_IN_SCALE);
         // TODO more robust checkrep

@@ -15,7 +15,6 @@ public class BasicIntervalTest {
         assertEquals("(5,7)", new BasicInterval(5,7).toString());
         assertEquals("(4,5)", new BasicInterval(4,5).toString());
         assertEquals("(0,0)", new BasicInterval(0,0).toString());
-        assertEquals("(7,12)", new BasicInterval(7,12).toString());
     }
     
     @Test
