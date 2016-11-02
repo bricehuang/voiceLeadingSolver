@@ -10,6 +10,16 @@ public class ChordTypeTest {
     }
     
     @Test
+    public void numberDistinctNotesTest(){
+        assertEquals(3, ChordType.MAJ.numberDistinctNotes());
+        assertEquals(3, ChordType.MIN.numberDistinctNotes());
+        assertEquals(4, ChordType.DOM7.numberDistinctNotes());
+        assertEquals(4, ChordType.MAJ7.numberDistinctNotes());
+        assertEquals(4, ChordType.MIN7.numberDistinctNotes());
+        assertEquals(4, ChordType.DIM7.numberDistinctNotes());
+    }
+
+    @Test
     public void toStringTest(){
         assertEquals("MAJOR", ChordType.MAJ.toString());
         assertEquals("MINOR", ChordType.MIN.toString());
