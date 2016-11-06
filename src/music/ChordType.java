@@ -1,7 +1,10 @@
 package music;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -10,23 +13,53 @@ import java.util.Set;
 public enum ChordType {
     MAJ, MIN, 
     DOM7, MAJ7, MIN7, DIM7;
-    
-    public static final Set<ChordType> THREE_NOTE_TYPES = new HashSet<>(
-            Arrays.asList(MAJ, MIN));
+        
+    public static final Map<ChordType, List<BasicInterval>> CHORD_OFFSETS = new HashMap<>();
+    static{
+        CHORD_OFFSETS.put(MAJ, Arrays.asList(
+                new BasicInterval(0,0), 
+                new BasicInterval(2,4), 
+                new BasicInterval(4,7)
+                ));
+        CHORD_OFFSETS.put(MIN, Arrays.asList(
+                new BasicInterval(0,0), 
+                new BasicInterval(2,3), 
+                new BasicInterval(4,7)
+                ));
+        CHORD_OFFSETS.put(DOM7, Arrays.asList(
+                new BasicInterval(0,0), 
+                new BasicInterval(2,4), 
+                new BasicInterval(4,7),
+                new BasicInterval(6,10)
+                ));
+        CHORD_OFFSETS.put(MAJ7, Arrays.asList(
+                new BasicInterval(0,0), 
+                new BasicInterval(2,4), 
+                new BasicInterval(4,7),
+                new BasicInterval(6,11)
+                ));
+        CHORD_OFFSETS.put(MIN7, Arrays.asList(
+                new BasicInterval(0,0), 
+                new BasicInterval(2,3), 
+                new BasicInterval(4,7),
+                new BasicInterval(6,10)
+                ));
+        CHORD_OFFSETS.put(DIM7, Arrays.asList(
+                new BasicInterval(0,0), 
+                new BasicInterval(2,3), 
+                new BasicInterval(4,6),
+                new BasicInterval(6,9)
+                ));
+    }
     
     public int numberDistinctNotes(){
-        if (THREE_NOTE_TYPES.contains(this)){
-            return 3;
-        }
-        else{
-            return 4;            
-        }
+        return CHORD_OFFSETS.get(this).size();
     }
     
     /*******************
      * Object Contract *
      *******************/
-        
+       
     @Override
     public String toString(){
         if (this.equals(MAJ)){
