@@ -1,28 +1,32 @@
 package music;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * An immutable class representing a chord sung by four voices, modulo octaves  
  */
 public class BasicChord {
-    // TODO methods not complete 
-    
-    /*
-     * Voice ranges:
-     * Soprano: D4-G5
-     * Alto: A3-D5
-     * Tenor: D3-F4
-     * Bass: F2-C4
-     */
+    private final BasicNote soprano;
+    private final BasicNote alto;
+    private final BasicNote tenor;
+    private final BasicNote bass;
+    private final PrimitiveChord primitiveChord; 
     
     /*
      * Abstraction Function:
-     * TODO
+     * soprano, alto, tenor, bass sing BasicNotes soprano, alto, tenor, bass
+     * primitiveChord stores the primitive chord class this chord belongs to
      * 
      * Rep Invariant:
-     * TODO
+     * soprano, alto, tenor, bass are notes in primitiveChord's noteset
+     * major, minor chords must have root, 3rd, can be missing 5th
+     * seventh chords should have all notes
      * 
      * Rep Exposure:
-     * TODO
+     * returns primitives and immutables
      */
     
     /**
@@ -31,13 +35,38 @@ public class BasicChord {
      * @param alto alto note
      * @param tenor tenor note
      * @param bass bass note
+     * @param primitiveChord the primitiveChord type of this note
      */
-    public BasicChord(BasicNote soprano, BasicNote alto, BasicNote tenor, BasicNote bass){
-        throw new RuntimeException("Unimplemented");
+    public BasicChord(BasicNote soprano, BasicNote alto, BasicNote tenor, BasicNote bass,
+            PrimitiveChord primitiveChord){
+        this.soprano = soprano;
+        this.alto = alto;
+        this.tenor = tenor;
+        this.bass = bass;
+        this.primitiveChord = primitiveChord;
+        checkRep();
     }
     
     private void checkRep(){
-        throw new RuntimeException("Unimplemented");
+        List<BasicNote> noteList = primitiveChord.noteList();
+        assert(bass.equals(noteList.get(primitiveChord.getInversion())));
+        
+        Set<BasicNote> notesInChord = new HashSet<>(Arrays.asList(
+                soprano, alto, tenor, bass));
+        
+        // MAGIC NUMBER: 3 note chords vs 4 note chords
+        if (primitiveChord.numberDistinctNotes() == 4){
+            // all notes required
+            assert(noteList.containsAll(notesInChord));
+            assert(notesInChord.containsAll(noteList));
+        }
+        else{
+            // 5th not strictly required
+            Set<BasicNote> requiredNotes = new HashSet<>(Arrays.asList(
+                    noteList.get(0), noteList.get(1)));
+            assert(noteList.containsAll(notesInChord));
+            assert(notesInChord.containsAll(requiredNotes));
+        }
     }
     
     /******************
@@ -48,29 +77,57 @@ public class BasicChord {
      * @return the soprano note
      */
     public BasicNote getSoprano(){
-        throw new RuntimeException("Unimplemented");
+        return soprano;
     }
 
     /**
      * @return the alto note
      */
     public BasicNote getAlto(){
-        throw new RuntimeException("Unimplemented");
+        return alto;
     }
     
     /**
      * @return the tenor note
      */
     public BasicNote getTenor(){
-        throw new RuntimeException("Unimplemented");
+        return tenor;
     }
     
     /**
      * @return the bass note
      */
     public BasicNote getBass(){
-        throw new RuntimeException("Unimplemented");
+        return bass;
     }
+        
+    /**
+     * @return the chord's primitive chord 
+     */
+    public PrimitiveChord getPrimitiveChord(){
+        return primitiveChord;
+    }
+
+    /**
+     * @return the chord type
+     */
+    public ChordType getType(){
+        return primitiveChord.getType();
+    }
+
+    /****************
+     * Computations *
+     ****************/
+    
+    /**
+     * @param key 
+     * @return the notes of this chord, rendered in given key 
+     */
+    public String renderInKey(Key key){
+        return "["+soprano.renderInKey(key)+"|"+alto.renderInKey(key)+
+                "|"+tenor.renderInKey(key)+"|"+bass.renderInKey(key)+"]";
+    }
+
     
     /*******************
      * Object Contract *
@@ -82,19 +139,27 @@ public class BasicChord {
      * @return whether this and object are equal.   
      */
     @Override public boolean equals(Object object){
-        throw new RuntimeException("Unimplemented.");
+        if (!(object instanceof BasicChord)){return false;}
+        BasicChord that = (BasicChord) object;
+        return (this.soprano.equals(that.soprano) &&
+                this.alto.equals(that.alto) &&
+                this.tenor.equals(that.tenor) &&
+                this.bass.equals(that.bass) &&
+                this.primitiveChord.equals(that.primitiveChord));
     }
 
     @Override public int hashCode(){
-        throw new RuntimeException("Unimplemented.");
+        return soprano.hashCode() + alto.hashCode() + 
+                tenor.hashCode() + bass.hashCode() + 
+                primitiveChord.hashCode();
     }
 
     /**
-     * @return the notes of this chord in scientific pitch
-     * notation
+     * @return the notes of this chord 
      */
     @Override public String toString(){
-        throw new RuntimeException("Unimplemented.");
+        return "["+soprano.toString()+"|"+alto.toString()+
+                "|"+tenor.toString()+"|"+bass.toString()+"]";
     }
 
 }
