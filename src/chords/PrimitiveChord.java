@@ -1,8 +1,8 @@
-package music;
+package chords;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import music.*;
 /**
  * An immutable type representing a chord 
  */

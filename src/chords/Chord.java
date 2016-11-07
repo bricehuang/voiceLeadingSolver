@@ -1,4 +1,5 @@
-package music;
+package chords;
+import music.*;
 
 /**
  * An immutable class representing a chord sung by four voices.  
