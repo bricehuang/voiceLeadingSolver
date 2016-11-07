@@ -1,5 +1,8 @@
 package music;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * An immutable type representing a chord 
  */
@@ -38,6 +41,29 @@ public class PrimitiveChord {
         assert(inversion < type.numberDistinctNotes());
     }
     
+    /***************
+     * Computation *
+     ***************/
+    
+    /**
+     * Computes the notes in this chord
+     * @return the list of BasicNotes in this chord, spelled from bottom up
+     */
+    public List<BasicNote> noteList(){
+        List<BasicNote> notesInChord = new ArrayList<>();
+        for (BasicInterval interval : ChordType.CHORD_OFFSETS.get(type)){
+            notesInChord.add(root.transpose(interval, true));
+        }
+        return notesInChord;
+    }
+    
+    /**
+     * @return number of distinct notes in this chord
+     */
+    public int numberDistinctNotes(){
+        return type.numberDistinctNotes();
+    }
+
     /******************
      * Getter methods *
      ******************/
