@@ -3,11 +3,12 @@ package chords;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 import org.junit.Test;
-import music.*;
+
+import music.BasicNote;
+
 
 public class PrimitiveChordTest {
     @Test(expected=AssertionError.class)

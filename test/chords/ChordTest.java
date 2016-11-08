@@ -3,7 +3,11 @@ package chords;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import music.*;
+
+import music.BasicNote;
+import music.Key;
+import music.Note;
+
 
 public class ChordTest {
     @Test(expected=AssertionError.class)

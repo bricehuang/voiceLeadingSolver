@@ -1,7 +1,5 @@
 package chords;
 
-import javax.print.attribute.standard.MediaSize.Other;
-
 /**
  * An immutable type representing a nonempty chord progression
  */

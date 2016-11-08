@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import music.BasicNote;
-import music.Key;
 import music.Note;
 
 public class ChordProgressionTest {
@@ -17,8 +16,6 @@ public class ChordProgressionTest {
     private static final BasicNote C = new BasicNote(0,0);
     private static final BasicNote D = new BasicNote(1,2);
     private static final BasicNote E = new BasicNote(2,4);
-    private static final BasicNote Eb = new BasicNote(2,3);
-    private static final BasicNote F = new BasicNote(3,5);
     private static final BasicNote G = new BasicNote(4,7);
     private static final BasicNote B = new BasicNote(6,11);
     

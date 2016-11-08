@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import music.*;
+
+import music.BasicNote;
+import music.Key;
+
 
 /**
  * An immutable class representing a chord sung by four voices, modulo octaves  

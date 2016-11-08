@@ -2,7 +2,6 @@ package chords;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import music.*;
 
 public class ChordTypeTest {
     @Test(expected=AssertionError.class)

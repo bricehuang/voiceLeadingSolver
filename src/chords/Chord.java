@@ -1,5 +1,8 @@
 package chords;
-import music.*;
+
+import music.BasicNote;
+import music.Key;
+import music.Note;
 
 /**
  * An immutable class representing a chord sung by four voices.  

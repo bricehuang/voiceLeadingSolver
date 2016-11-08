@@ -2,7 +2,9 @@ package chords;
 
 import java.util.ArrayList;
 import java.util.List;
-import music.*;
+import music.BasicInterval;
+import music.BasicNote;
+
 /**
  * An immutable type representing a chord 
  */
