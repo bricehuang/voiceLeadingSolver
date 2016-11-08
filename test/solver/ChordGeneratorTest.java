@@ -28,4 +28,15 @@ public class ChordGeneratorTest {
             System.out.println(chord.toString());
         }
     }
+    @Test
+    public void testDbDomSevenRoot(){
+        Set<Chord> dbDomSevenChords = ChordGenerator.generateChords(
+                Arrays.asList(new PrimitiveChord(
+                        new BasicNote(5,8), ChordType.DOM7, 0)
+                        )
+                ).get(0);  
+        for (Chord chord : dbDomSevenChords){
+            System.out.println(chord.toString());
+        }
+    }
 }
