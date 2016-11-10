@@ -56,7 +56,7 @@ public class Sequencer {
      * @return a SortedFiniteProgList of the best chords from bestList
      */
     private static SortedFiniteProgList findBestProgs(BestList bestList){
-        throw new RuntimeException("Unimplemented")
+        throw new RuntimeException("Unimplemented");
     }
     
     /**
