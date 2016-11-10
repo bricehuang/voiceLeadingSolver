@@ -125,11 +125,26 @@ public class Chord {
     }
     
     /**
-     * @return the bass note
+     * @return the chord's basic chord
      */
     public BasicChord getBasicChord(){
         return basicChord;
     }
+    
+    /**
+     * @return the chord's primitive chord
+     */
+    public PrimitiveChord getPrimitiveChord(){
+        return basicChord.getPrimitiveChord();
+    }
+
+    /**
+     * @return the chord's type
+     */
+    public ChordType getType(){
+        return basicChord.getPrimitiveChord().getType();
+    }
+
     
     /***************
      * Computation *
