@@ -51,6 +51,8 @@ public class BestListTest {
     public void testAssertionsEnabled() {
         assert false;
     }
+    
+    //NOTE: THESE TESTS DEPEND ON SortedFiniteProgList.PROGRESSIONS_TO_TRACK = 3
 
     @Test
     public void testBasic(){
@@ -89,13 +91,16 @@ public class BestListTest {
     public void testIndependence(){
         BestList bestList = new BestList();
         bestList.addProgression(TEST4);
+        bestList.addProgression(TEST2);
         bestList.addProgression(TEST3);
+        bestList.addProgression(TEST1);
         bestList.addProgression(TEST2_PC);
         bestList.addProgression(TEST4_PC);
-        assertEquals(2,bestList.getProgressions(G_DOM_SEVEN_REALIZED).size());
+        assertEquals(3,bestList.getProgressions(G_DOM_SEVEN_REALIZED).size());
         assertEquals(2,bestList.getProgressions(C_MAJ_REALIZED).size());
-        assertEquals(TEST3,bestList.getProgressions(G_DOM_SEVEN_REALIZED).get(0));
-        assertEquals(TEST4,bestList.getProgressions(G_DOM_SEVEN_REALIZED).get(1));
+        assertEquals(TEST1,bestList.getProgressions(G_DOM_SEVEN_REALIZED).get(0));
+        assertEquals(TEST2,bestList.getProgressions(G_DOM_SEVEN_REALIZED).get(1));
+        assertEquals(TEST3,bestList.getProgressions(G_DOM_SEVEN_REALIZED).get(2));
         assertEquals(TEST2_PC,bestList.getProgressions(C_MAJ_REALIZED).get(0));
         assertEquals(TEST4_PC,bestList.getProgressions(C_MAJ_REALIZED).get(1));
     }

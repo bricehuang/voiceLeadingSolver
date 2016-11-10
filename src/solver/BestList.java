@@ -1,7 +1,6 @@
 package solver;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +14,7 @@ import chords.ChordProgression;
  */
 public class BestList{
     
-    public static final int PROGRESSIONS_TO_TRACK = 3;
-    
-    private final Map<Chord, List<ChordProgWithScore>> content;
+    private final Map<Chord, SortedFiniteProgList> content;
     
     /*
      * Abstraction Function:
@@ -26,9 +23,11 @@ public class BestList{
      * order of badness score.  
      * 
      * Rep invariant:
-     * content.get(chord) has between 1 and PROGRESSIONS_TO_TRACK progressions
+     * content.get(chord) has at least 1 progression (Enforced by SortedFiniteProgList 
+     * at most SortedFiniteProgList.PROGRESSIONS_TO_TRACK progressions)
      * all progressions in content.get(chord) end with chord
-     * progressions in content.get(chord) decrease in score
+     * (Enforced by SortedFiniteList: progressions in content.get(chord) 
+     * decrease in score)
      * 
      * Rep exposure:
      * Returns immutables and unmodifiable views of lists only
@@ -44,14 +43,10 @@ public class BestList{
     
     private void checkRep(){
         for (Chord chord : content.keySet()){
-            assert(content.get(chord).size() <= PROGRESSIONS_TO_TRACK);
             assert(content.get(chord).size() > 0);
-            List<ChordProgWithScore> progs = content.get(chord);
+            List<ChordProgWithScore> progs = content.get(chord).getProgressions();
             for (ChordProgWithScore prog : progs){
                 assert(prog.getChordProg().getLast().equals(chord));
-            }
-            for (int i=1; i<progs.size(); i++){
-                assert(progs.get(i-1).getScore() <= progs.get(i).getScore());
             }
         }
     }
@@ -68,43 +63,24 @@ public class BestList{
             return new ArrayList<>();
         }
         else{
-            return Collections.unmodifiableList(content.get(chord));
+            return content.get(chord).getProgressions();
         }
     }
     
     /**
      * Mutator.  Inserts a progression if its score is better than 
-     * the PROGRESSIONS_TO_TRACKth progression ending with the same 
-     * chord
+     * the SortedFiniteProgList.PROGRESSIONS_TO_TRACKth progression 
+     * ending with the same chord
      * @param prog a ChordProgressionWithScore
      */
     public void addProgression(ChordProgWithScore progWithScore){
         ChordProgression prog = progWithScore.getChordProg();
         Chord last = prog.getLast();
-        Integer score = progWithScore.getScore();
         
-        if (content.keySet().contains(last)){
-            List<ChordProgWithScore> progList = content.get(last);
-            int listSize = progList.size();
-            if (progList.get(listSize-1).getScore() <= score){
-                progList.add(progWithScore);
-            }
-            else{
-                int position = 0;
-                while (progList.get(position).getScore() <= score){
-                    position++;
-                }
-                progList.add(position, progWithScore);
-
-            }
-            if (progList.size() > PROGRESSIONS_TO_TRACK){
-                progList.remove(progList.size()-1);
-            }
+        if (!content.keySet().contains(last)){
+            content.put(last, new SortedFiniteProgList());
         }
-        else{
-            content.put(last, new ArrayList<>());
-            content.get(last).add(progWithScore);
-        }
+        content.get(last).addProgression(progWithScore);
         checkRep();
     }
     
