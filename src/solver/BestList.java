@@ -1,9 +1,12 @@
 package solver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import chords.Chord;
 import chords.ChordProgression;
@@ -49,6 +52,19 @@ public class BestList{
                 assert(prog.getChordProg().getLast().equals(chord));
             }
         }
+    }
+    
+    
+    /**
+     * Returns the set of ending chords
+     * @return ditto
+     */
+    public Set<Chord> getEndingChords(){
+        Set<Chord> endingChords = new HashSet<>();
+        for (Chord chord : content.keySet()){
+            endingChords.add(chord);
+        }
+        return Collections.unmodifiableSet(endingChords);
     }
     
     /**
