@@ -45,6 +45,11 @@ public class ConsChordProgression implements ChordProgression {
         return length;
     }
 
+    @Override
+    public ChordProgression append(Chord chord) {
+        return new ConsChordProgression(this, chord);
+    }
+    
     /*******************
      * Object Contract *
      *******************/
@@ -65,6 +70,7 @@ public class ConsChordProgression implements ChordProgression {
     public String toString(){
         return start.toString() + "\n" + last.toString();
     }
+
 
     
 

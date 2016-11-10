@@ -37,6 +37,12 @@ public class EmptyChordProgression implements ChordProgression {
     public int length() {
         return 0;
     }
+
+    @Override
+    public ChordProgression append(Chord chord) {
+        return new ConsChordProgression(this, chord);
+    }
+
     
     /*******************
      * Object Contract *

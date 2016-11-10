@@ -48,7 +48,7 @@ public class ChordProgressionTest {
     public void oneChordTest(){
         ChordProgression empty = ChordProgression.empty();
         ChordProgression oneChord = 
-                ChordProgression.append(empty, C_MAJ_REALIZED);
+                empty.append(C_MAJ_REALIZED);
         assertEquals(1, oneChord.length());
         assertEquals("\n[C5|E4|G3|C3]", oneChord.toString());
     }
@@ -56,13 +56,8 @@ public class ChordProgressionTest {
     @Test
     public void progsTest(){
         ChordProgression empty = ChordProgression.empty();
-        ChordProgression prog = 
-                ChordProgression.append(
-                        ChordProgression.append(
-                                ChordProgression.append(empty,
-                                        C_MAJ_64_REALIZED),
-                                G_MAJ_REALIZED),
-                        C_MAJ_REALIZED);
+        ChordProgression prog = empty.append(
+                C_MAJ_64_REALIZED).append(G_MAJ_REALIZED).append(C_MAJ_REALIZED); 
         assertEquals(3, prog.length());
         assertEquals("\n[C5|E4|G3|G2]\n[B4|D4|G3|G2]\n[C5|E4|G3|C3]", 
                 prog.toString());
