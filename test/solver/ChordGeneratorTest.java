@@ -17,6 +17,8 @@ public class ChordGeneratorTest {
         assert false;
     }
     
+    private static final boolean PRINT_TESTS = false;
+    
     @Test
     public void testCMajorRootTriad(){
         Set<Chord> cMajorRootChords = ChordGenerator.generateChords(
@@ -24,8 +26,10 @@ public class ChordGeneratorTest {
                         new BasicNote(0,0), ChordType.MAJ, 0)
                         )
                 ).get(0);  
-        for (Chord chord : cMajorRootChords){
-            System.out.println(chord.toString());
+        if(PRINT_TESTS){
+            for (Chord chord : cMajorRootChords){
+                System.out.println(chord.toString());
+            }            
         }
     }
     @Test
@@ -35,8 +39,10 @@ public class ChordGeneratorTest {
                         new BasicNote(5,8), ChordType.DOM7, 0)
                         )
                 ).get(0);  
-        for (Chord chord : dbDomSevenChords){
-            System.out.println(chord.toString());
+        if(PRINT_TESTS){
+            for (Chord chord : dbDomSevenChords){
+                System.out.println(chord.toString());
+            }            
         }
     }
 }
