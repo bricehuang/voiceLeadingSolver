@@ -16,14 +16,14 @@ public class Sequencer {
     /**
      * Sequences the first chord
      * @param chordSet ways to sing the first chord
-     * @param key key in which to analyze the first chord
+     * @param scorer scorer in the desired key
      * @return a BestList of ways to sing the first chord, with scores
      */
-    private static BestList sequenceFirst(Set<Chord> chordSet, Key key){
+    private static BestList sequenceFirst(Set<Chord> chordSet, Scorer scorer){
         BestList best = new BestList();
         for (Chord chord : chordSet){
             ChordProgression prog = ChordProgression.empty().append(chord);
-            Integer score = Scorer.scoreChord(chord, key);
+            Integer score = scorer.scoreChord(chord);
             best.addProgression(new ChordProgWithScore(prog, score));
         }
         return best;
@@ -34,20 +34,20 @@ public class Sequencer {
      * @param previousBest BestList of ways to sing the chords up to, but 
      * excluding, this one, with scores
      * @param chordSet ways to sing this chord
-     * @param key key in which to analyze this transition
+     * @param scorer scorer in the desired key
      * @return a BestList of ways to sing the chords up to, and including,
      * this one, with scores
      */
     private static BestList sequenceRest(BestList previousBest, 
-            Set<Chord> chordSet, Key key, boolean isLast){
+            Set<Chord> chordSet, Scorer scorer, boolean isLast){
         BestList best = new BestList();
         for (Chord currentChord : chordSet){
-            Integer currentChordScore = Scorer.scoreChord(currentChord, key);
+            Integer currentChordScore = scorer.scoreChord(currentChord);
             
             for (Chord previousChord : previousBest.getEndingChords()){
-                int transitionScore = Scorer.scoreTransition(previousChord, currentChord, key);
+                int transitionScore = scorer.scoreTransition(previousChord, currentChord);
                 if (isLast){
-                    transitionScore += Scorer.scoreTransition(previousChord, currentChord, key); 
+                    transitionScore += scorer.scoreTransition(previousChord, currentChord); 
                 }
                 
                 for (ChordProgWithScore previous : best.getProgressions(previousChord)){
@@ -94,10 +94,11 @@ public class Sequencer {
         assert(waysToSingChords.size() == keys.size());
         assert(waysToSingChords.size() > 0);
         
-        BestList currentBest = sequenceFirst(waysToSingChords.get(0), keys.get(0));
+        BestList currentBest = sequenceFirst(waysToSingChords.get(0), new Scorer(keys.get(0), false));
+        // TODO we don't need to make a new Scorer every time.  Maybe want better input rep here? 
         for (int i=1; i<waysToSingChords.size(); i++){
             currentBest = sequenceRest(currentBest, waysToSingChords.get(i), 
-                    keys.get(i), (i== waysToSingChords.size()-1));
+                    new Scorer(keys.get(i), false), (i== waysToSingChords.size()-1));
         }
         return findBestProgs(currentBest);
     }
