@@ -15,6 +15,32 @@ import music.Note;
  */
 public class Scorer {
     
+    
+    private final Key key;
+    private final boolean debug;
+
+    
+    /*
+     * Abstraction Function:
+     * Represents a scorer in key key.  
+     * Prints debugging output if debug is on.  
+     * 
+     * Rep Invariant:
+     * N/A
+     * 
+     * Rep Exposure:
+     * Returns only immutables
+     */
+    
+    /**
+     * Constructs a 
+     * @param key
+     */
+    public Scorer(Key key, boolean debug){
+        this.key = key;
+        this.debug = debug;
+    }
+    
     /*
      * Heuristics:
      * 
@@ -46,7 +72,6 @@ public class Scorer {
     public static final int BAD_TRIPLING_PENALTY = 50;
     public static final int OMITTED_FIFTH_PENALTY = 50;
     
-    private static final boolean debug = true;
     
     /**
      * Returns a list spelling the notes of a chord
@@ -69,10 +94,12 @@ public class Scorer {
      * @param key key in which this chord should be analyzed
      * @return score
      */
-    private static Integer scoreDoubling(Chord chord, Key key){
+    private Integer scoreDoubling(Chord chord){
         Set<BasicNote> goodToDouble = new HashSet<>(
                 Arrays.asList(key.getScaleDegree(1), key.getScaleDegree(4), 
                         key.getScaleDegree(5)));
+        // TODO: this gets things wrong when we do off-key substitutions
+        // e.g. borrow from minor
 
         if (chord.getType().numberDistinctNotes() == 4){
             return 0;
@@ -162,7 +189,7 @@ public class Scorer {
      * @param key key in which this chord should be analyzed
      * @return score
      */
-    private static Integer scoreVoiceOverlap(Chord chord, Key key){
+    private Integer scoreVoiceOverlap(Chord chord){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -173,8 +200,14 @@ public class Scorer {
      * @param key key in which this chord should be analyzed
      * @return a score representing this chord's badness
      */
-    public static Integer scoreChord(Chord chord, Key key){
-        throw new RuntimeException("Unimplemented.");
+    public Integer scoreChord(Chord chord){
+        if (debug){
+            System.err.println("Scoring "+chord.toString()+" in key "+key.toString());
+        }
+        int score = 0;
+        score += scoreDoubling(chord);
+        //score += scoreVoiceOverlap(chord);
+        return score;
     }
     
     /**************************************
@@ -188,7 +221,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scoreSmallMovement(Chord previous, Chord current, Key key){
+    private Integer scoreSmallMovement(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -199,7 +232,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scoreParallels(Chord previous, Chord current, Key key){
+    private Integer scoreParallels(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -210,7 +243,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scoreDirects(Chord previous, Chord current, Key key){
+    private Integer scoreDirects(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -221,7 +254,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scoreMelodicIntervals(Chord previous, Chord current, Key key){
+    private Integer scoreMelodicIntervals(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -232,7 +265,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scoreVoiceCrossing(Chord previous, Chord current, Key key){
+    private Integer scoreVoiceCrossing(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -243,7 +276,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scoreSevenChordResolutions(Chord previous, Chord current, Key key){
+    private Integer scoreSevenChordResolutions(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -254,7 +287,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return a score representing this transition's badness
      */
-    public static Integer scoreTransition(Chord previous, Chord current, Key key){
+    public Integer scoreTransition(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
     
@@ -269,7 +302,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scoreEverythingStepwise(Chord previous, Chord current, Key key){
+    private Integer scoreEverythingStepwise(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -280,7 +313,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private static Integer scorePAC(Chord previous, Chord current, Key key){
+    private Integer scorePAC(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -292,7 +325,7 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return a score representing this transition's additional badness
      */
-    public static Integer scoreLastTransitionAdditional(Chord previous, Chord current, Key key){
+    public Integer scoreLastTransitionAdditional(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
