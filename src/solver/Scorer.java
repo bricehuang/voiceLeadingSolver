@@ -49,7 +49,7 @@ public class Scorer {
      * 
      * Doubling rules
      * No voice overlapping 
-     * 
+     * i64 in cadential 64 should double 5 TODO
      * 
      * Transitions:
      * 
@@ -190,9 +190,18 @@ public class Scorer {
      * @return score
      */
     private Integer scoreVoiceOverlap(Chord chord){
-        throw new RuntimeException("Unimplemented.");
+        int score = 0;
+        List<Note> chordSpelled = spellChord(chord);
+        for (int i=0; i<3; i++){
+            if (chordSpelled.get(i).equals(chordSpelled.get(i+1))){
+                score += VOICE_OVERLAP_PENALTY;
+                if (debug){
+                    System.err.println("Voice Overlap Penalty: "+VOICE_OVERLAP_PENALTY); 
+                }
+            }
+        }
+        return score;
     }
-
     
     /**
      * Scores the badness of a chord 
@@ -206,7 +215,7 @@ public class Scorer {
         }
         int score = 0;
         score += scoreDoubling(chord);
-        //score += scoreVoiceOverlap(chord);
+        score += scoreVoiceOverlap(chord);
         return score;
     }
     

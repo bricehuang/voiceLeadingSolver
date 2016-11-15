@@ -52,6 +52,12 @@ public class ScorerTest {
             new BasicChord(A, F, D, F, new PrimitiveChord(D, ChordType.MIN, 1))
             );
 
+    private static final Chord C_MAJOR_VOICE_OVERLAP_DOUBLE_THIRD = new Chord(
+            new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
+            new BasicChord(C, E, E, G, new PrimitiveChord(C, ChordType.MAJ, 2))
+            );
+
+    
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -88,4 +94,10 @@ public class ScorerTest {
     public void testGoodDoublingSD4(){
         C_MAJOR_SCORER.scoreChord(D_MINOR_DOUBLE_THIRD);
     }
+    
+    @Test
+    public void testBadDoublingSD3VoiceOverlap(){
+        C_MAJOR_SCORER.scoreChord(C_MAJOR_VOICE_OVERLAP_DOUBLE_THIRD);
+    }
+    
 }
