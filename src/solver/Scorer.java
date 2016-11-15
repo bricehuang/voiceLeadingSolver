@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import chords.Chord;
+import music.BasicInterval;
 import music.BasicNote;
 import music.Key;
 import music.Note;
@@ -36,6 +37,7 @@ public class Scorer {
     /**
      * Constructs a 
      * @param key
+     * @param debug prints debugging output if true
      */
     public Scorer(Key key, boolean debug){
         this.key = key;
@@ -68,6 +70,7 @@ public class Scorer {
      * 
      */
     
+    // doubling
     public static final int BAD_DOUBLING_PENALTY = 100;
     public static final int DOUBLE_DOUBLING_PENALTY = 200;
     public static final int BAD_TRIPLING_PENALTY = 100;
@@ -75,8 +78,15 @@ public class Scorer {
     public static final Set<Integer> GOOD_NOTES_TO_DOUBLE = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(1, 4, 5)));
 
-    
+    // voice overlap
     public static final int VOICE_OVERLAP_PENALTY = 25;
+    
+    // parallels
+    public static final BasicInterval UNISON = new BasicInterval(0,0);
+    public static final BasicInterval PERFECT_FIFTH = new BasicInterval(4,7);
+    public static final Set<BasicInterval> PERFECT_INTERVALS = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(UNISON, PERFECT_FIFTH)));
+    public static final int PARALLEL_INTERVAL_PENALTY = 1000000;
     
     /**
      * Returns a list spelling the notes of a chord
@@ -242,7 +252,30 @@ public class Scorer {
      * @return score
      */
     private Integer scoreParallels(Chord previous, Chord current){
-        throw new RuntimeException("Unimplemented.");
+        int score = 0;
+        List<Note> previousSpelled = spellChord(previous);
+        List<Note> currentSpelled = spellChord(current);
+        
+        for (int upper=1; upper<4; upper++){
+            for (int lower=0; lower<upper; lower++){
+                BasicInterval previousInterval = BasicInterval.intervalBetween(
+                        previousSpelled.get(lower).getBasicNote(), 
+                        previousSpelled.get(upper).getBasicNote()
+                        );
+                BasicInterval currentInterval = BasicInterval.intervalBetween(
+                        currentSpelled.get(lower).getBasicNote(), 
+                        currentSpelled.get(upper).getBasicNote()
+                        );
+                if (previousInterval.equals(currentInterval) && 
+                        PERFECT_INTERVALS.contains(currentInterval)){
+                    score += PARALLEL_INTERVAL_PENALTY;
+                    if (debug){
+                        System.err.println("Parallel Interval Penalty: "+PARALLEL_INTERVAL_PENALTY); 
+                    }
+                }
+            }
+        }
+        return score;
     }
 
     /**
