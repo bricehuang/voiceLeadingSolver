@@ -12,6 +12,8 @@ import music.Note;
 
 public class ScorerTest {
     
+    private static final boolean debug = true;
+    
     private static final BasicNote C = new BasicNote(0,0);
     private static final BasicNote D = new BasicNote(1,2);
     private static final BasicNote E = new BasicNote(2,4);
@@ -19,44 +21,8 @@ public class ScorerTest {
     private static final BasicNote G = new BasicNote(4,7);
     private static final BasicNote A = new BasicNote(5,9);
 
-    private static final Key C_MAJOR = new Key(0,true);
+    private static final Key C_MAJOR = new Key(0,debug);
     private static final Scorer C_MAJOR_SCORER = new Scorer(C_MAJOR, true);
-    
-    private static final Chord C_MAJOR_DOUBLE_ROOT = new Chord(
-            new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-            new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
-            );
-    
-    private static final Chord C_MAJOR_DOUBLE_THIRD= new Chord(
-            new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-            new BasicChord(E, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
-            );
-     
-    private static final Chord C_MAJOR_DOUBLE_ROOT_THIRD= new Chord(
-            new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
-            new BasicChord(E, E, C, C, new PrimitiveChord(C, ChordType.MAJ, 0))
-            );
-
-    private static final Chord C_MAJOR_TRIPLE_ROOT_INCOMPLETE = new Chord(
-            new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
-            new BasicChord(C, C, E, C, new PrimitiveChord(C, ChordType.MAJ, 0))
-            );
-
-    private static final Chord D_MINOR_DOUBLE_ROOT = new Chord(
-            new Note(D, 5), new Note(F, 4), new Note(A, 3), new Note(D, 3), 
-            new BasicChord(D, F, A, D, new PrimitiveChord(D, ChordType.MIN, 0))
-            );
-
-    private static final Chord D_MINOR_DOUBLE_THIRD = new Chord(
-            new Note(A, 4), new Note(F, 4), new Note(D, 4), new Note(F, 3), 
-            new BasicChord(A, F, D, F, new PrimitiveChord(D, ChordType.MIN, 1))
-            );
-
-    private static final Chord C_MAJOR_VOICE_OVERLAP_DOUBLE_THIRD = new Chord(
-            new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
-            new BasicChord(C, E, E, G, new PrimitiveChord(C, ChordType.MAJ, 2))
-            );
-
     
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -66,38 +32,69 @@ public class ScorerTest {
     
     @Test
     public void testGoodDoublingSD1(){
-        C_MAJOR_SCORER.scoreChord(C_MAJOR_DOUBLE_ROOT);
+        Chord cMajorDoubleRoot = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                );
+
+        C_MAJOR_SCORER.scoreChord(cMajorDoubleRoot);
     }
 
     @Test
     public void testBadDoublingSD3(){
-        C_MAJOR_SCORER.scoreChord(C_MAJOR_DOUBLE_THIRD);
+        Chord cMajorDoubleThird = new Chord(
+                new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new BasicChord(E, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                );
+
+        C_MAJOR_SCORER.scoreChord(cMajorDoubleThird);
     }
 
     @Test
     public void testBadDoubleDouble(){
-        C_MAJOR_SCORER.scoreChord(C_MAJOR_DOUBLE_ROOT_THIRD);
+        Chord cMajorDoubleRootThirdIncomplete = new Chord(
+                new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
+                new BasicChord(E, E, C, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                );
+
+        C_MAJOR_SCORER.scoreChord(cMajorDoubleRootThirdIncomplete);
     }
 
     
     @Test
     public void testTripledSD1(){
-        C_MAJOR_SCORER.scoreChord(C_MAJOR_TRIPLE_ROOT_INCOMPLETE);
+        Chord cMajorTripleRootIncomplete= new Chord(
+                new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
+                new BasicChord(C, C, E, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                );
+        C_MAJOR_SCORER.scoreChord(cMajorTripleRootIncomplete);
     }
 
     @Test
     public void testBadDoublingSD2(){
-        C_MAJOR_SCORER.scoreChord(D_MINOR_DOUBLE_ROOT);
+        Chord dMinorDoubleRoot = new Chord(
+                new Note(D, 5), new Note(F, 4), new Note(A, 3), new Note(D, 3), 
+                new BasicChord(D, F, A, D, new PrimitiveChord(D, ChordType.MIN, 0))
+                );
+        C_MAJOR_SCORER.scoreChord(dMinorDoubleRoot);
     }
 
     @Test
     public void testGoodDoublingSD4(){
-        C_MAJOR_SCORER.scoreChord(D_MINOR_DOUBLE_THIRD);
+        Chord dMinorDoubleThird = new Chord(
+                new Note(A, 4), new Note(F, 4), new Note(D, 4), new Note(F, 3), 
+                new BasicChord(A, F, D, F, new PrimitiveChord(D, ChordType.MIN, 1))
+                );
+        C_MAJOR_SCORER.scoreChord(dMinorDoubleThird);
     }
     
     @Test
     public void testBadDoublingSD3VoiceOverlap(){
-        C_MAJOR_SCORER.scoreChord(C_MAJOR_VOICE_OVERLAP_DOUBLE_THIRD);
+        Chord cMajorVoiceOverlapDoubleThird = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
+                new BasicChord(C, E, E, G, new PrimitiveChord(C, ChordType.MAJ, 2))
+                );
+        C_MAJOR_SCORER.scoreChord(cMajorVoiceOverlapDoubleThird);
     }
     
 }
