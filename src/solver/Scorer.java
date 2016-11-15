@@ -56,7 +56,7 @@ public class Scorer {
      * Transitions:
      * 
      * Small voice movement
-     * No Parallels
+     * No Parallels // TODO except resolution of Ger6+? 
      * No Directs
      * No melodic aug/dim intervals
      * No voice crossing
@@ -71,22 +71,22 @@ public class Scorer {
      */
     
     // doubling
-    public static final int BAD_DOUBLING_PENALTY = 100;
-    public static final int DOUBLE_DOUBLING_PENALTY = 200;
-    public static final int BAD_TRIPLING_PENALTY = 100;
-    public static final int OMITTED_FIFTH_PENALTY = 100;
-    public static final Set<Integer> GOOD_NOTES_TO_DOUBLE = Collections.unmodifiableSet(
+    private static final int BAD_DOUBLING_PENALTY = 100;
+    private static final int DOUBLE_DOUBLING_PENALTY = 200;
+    private static final int BAD_TRIPLING_PENALTY = 100;
+    private static final int OMITTED_FIFTH_PENALTY = 100;
+    private static final Set<Integer> GOOD_NOTES_TO_DOUBLE = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(1, 4, 5)));
 
     // voice overlap
-    public static final int VOICE_OVERLAP_PENALTY = 25;
+    private static final int VOICE_OVERLAP_PENALTY = 25;
     
     // parallels
-    public static final BasicInterval UNISON = new BasicInterval(0,0);
-    public static final BasicInterval PERFECT_FIFTH = new BasicInterval(4,7);
-    public static final Set<BasicInterval> PERFECT_INTERVALS = Collections.unmodifiableSet(
+    private static final BasicInterval UNISON = new BasicInterval(0,0);
+    private static final BasicInterval PERFECT_FIFTH = new BasicInterval(4,7);
+    private static final Set<BasicInterval> PERFECT_INTERVALS = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(UNISON, PERFECT_FIFTH)));
-    public static final int PARALLEL_INTERVAL_PENALTY = 1000000;
+    private static final int PARALLEL_INTERVAL_PENALTY = 1000000;
     
     /**
      * Returns a list spelling the notes of a chord
@@ -221,11 +221,14 @@ public class Scorer {
      */
     public Integer scoreChord(Chord chord){
         if (debug){
-            System.err.println("Scoring "+chord.toString()+" in key "+key.toString());
+            System.err.println("Scoring Chord "+chord.toString()+" in key "+key.toString());
         }
         int score = 0;
         score += scoreDoubling(chord);
         score += scoreVoiceOverlap(chord);
+        if (debug){
+            System.err.println("Total Penalty: "+score+"\n");
+        }
         return score;
     }
     
