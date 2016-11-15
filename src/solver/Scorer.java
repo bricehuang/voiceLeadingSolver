@@ -35,7 +35,7 @@ public class Scorer {
      */
     
     /**
-     * Constructs a 
+     * Constructs a scorer
      * @param key
      * @param debug prints debugging output if true
      */
