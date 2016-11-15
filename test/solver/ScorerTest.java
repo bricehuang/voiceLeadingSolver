@@ -32,6 +32,11 @@ public class ScorerTest {
             new BasicChord(E, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
             );
      
+    private static final Chord C_MAJOR_DOUBLE_ROOT_THIRD= new Chord(
+            new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
+            new BasicChord(E, E, C, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+            );
+
     private static final Chord C_MAJOR_TRIPLE_ROOT_INCOMPLETE = new Chord(
             new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
             new BasicChord(C, C, E, C, new PrimitiveChord(C, ChordType.MAJ, 0))
@@ -63,6 +68,12 @@ public class ScorerTest {
         C_MAJOR_SCORER.scoreChord(C_MAJOR_DOUBLE_THIRD);
     }
 
+    @Test
+    public void testBadDoubleDouble(){
+        C_MAJOR_SCORER.scoreChord(C_MAJOR_DOUBLE_ROOT_THIRD);
+    }
+
+    
     @Test
     public void testTripledSD1(){
         C_MAJOR_SCORER.scoreChord(C_MAJOR_TRIPLE_ROOT_INCOMPLETE);
