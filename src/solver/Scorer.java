@@ -333,7 +333,21 @@ public class Scorer {
      * @return a score representing this transition's badness
      */
     public Integer scoreTransition(Chord previous, Chord current){
-        throw new RuntimeException("Unimplemented.");
+        if (debug){
+            System.err.println("Scoring Transition " + previous.toString() 
+            + " --> " + current.toString() + " in key "+key.toString());
+        }
+        int score = 0;
+        //score += scoreSmallMovement(previous, current);
+        score += scoreParallels(previous, current);
+        //score += scoreDirects(previous, current);
+        //score += scoreMelodicIntervals(previous, current);
+        //score += scoreVoiceCrossing(previous, current);
+        //score += scoreSevenChordResolutions(previous, current);
+        if (debug){
+            System.err.println("Total Penalty: "+score+"\n");
+        }
+        return score;
     }
     
     /****************************************************
