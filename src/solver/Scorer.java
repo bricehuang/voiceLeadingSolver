@@ -1,6 +1,7 @@
 package solver;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,11 +68,15 @@ public class Scorer {
      * 
      */
     
-    public static final int BAD_DOUBLING_PENALTY = 50;
-    public static final int DOUBLE_DOUBLING_PENALTY = 50;
-    public static final int BAD_TRIPLING_PENALTY = 50;
-    public static final int OMITTED_FIFTH_PENALTY = 50;
+    public static final int BAD_DOUBLING_PENALTY = 100;
+    public static final int DOUBLE_DOUBLING_PENALTY = 200;
+    public static final int BAD_TRIPLING_PENALTY = 100;
+    public static final int OMITTED_FIFTH_PENALTY = 100;
+    public static final Set<Integer> GOOD_NOTES_TO_DOUBLE = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(1, 4, 5)));
+
     
+    public static final int VOICE_OVERLAP_PENALTY = 25;
     
     /**
      * Returns a list spelling the notes of a chord
@@ -95,11 +100,6 @@ public class Scorer {
      * @return score
      */
     private Integer scoreDoubling(Chord chord){
-        Set<BasicNote> goodToDouble = new HashSet<>(
-                Arrays.asList(key.getScaleDegree(1), key.getScaleDegree(4), 
-                        key.getScaleDegree(5)));
-        // TODO: this gets things wrong when we do off-key substitutions
-        // e.g. borrow from minor
 
         if (chord.getType().numberDistinctNotes() == 4){
             return 0;
@@ -133,7 +133,7 @@ public class Scorer {
                 System.err.println("Missing fifth penalty: "+OMITTED_FIFTH_PENALTY);
             }
             if (root == 3 && third == 1){
-                if (!goodToDouble.contains(triad.get(0))){
+                if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(0)))){
                     score += BAD_TRIPLING_PENALTY;
                     if (debug){
                         System.err.println("Bad Tripling Penalty: "+BAD_TRIPLING_PENALTY);                        
@@ -143,11 +143,11 @@ public class Scorer {
             else if (root == 2 && third == 2){
                 score += DOUBLE_DOUBLING_PENALTY;
                 if (debug){
-                    System.err.println("Double Doubling Penalty: "+BAD_TRIPLING_PENALTY);                        
+                    System.err.println("Double Doubling Penalty: "+DOUBLE_DOUBLING_PENALTY);                        
                 }
             }
             else if (root == 1 && third == 3){
-                if (!goodToDouble.contains(triad.get(2))){
+                if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(2)))){
                     score += BAD_TRIPLING_PENALTY;
                     if (debug){
                         System.err.println("Bad Tripling Penalty: "+BAD_TRIPLING_PENALTY);                        
@@ -170,7 +170,7 @@ public class Scorer {
             else{
                 throw new RuntimeException("Should not get here.");
             }
-            if (!goodToDouble.contains(doubled)){
+            if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(doubled))){
                 score += BAD_DOUBLING_PENALTY;
                 if (debug){
                     System.err.println("Doubling Penalty: "+BAD_DOUBLING_PENALTY);                    
