@@ -20,6 +20,7 @@ public class ScorerTest {
     private static final BasicNote F = new BasicNote(3,5);
     private static final BasicNote G = new BasicNote(4,7);
     private static final BasicNote A = new BasicNote(5,9);
+    private static final BasicNote B = new BasicNote(6,11);
 
     private static final Key C_MAJOR = new Key(0,debug);
     private static final Scorer C_MAJOR_SCORER = new Scorer(C_MAJOR, true);
@@ -30,13 +31,16 @@ public class ScorerTest {
         
     }
     
+    /************************
+     * Tests for scoreChord *
+     ************************/
+    
     @Test
     public void testGoodDoublingSD1(){
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
                 );
-
         C_MAJOR_SCORER.scoreChord(cMajorDoubleRoot);
     }
 
@@ -46,7 +50,6 @@ public class ScorerTest {
                 new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new BasicChord(E, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
                 );
-
         C_MAJOR_SCORER.scoreChord(cMajorDoubleThird);
     }
 
@@ -56,10 +59,8 @@ public class ScorerTest {
                 new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
                 new BasicChord(E, E, C, C, new PrimitiveChord(C, ChordType.MAJ, 0))
                 );
-
         C_MAJOR_SCORER.scoreChord(cMajorDoubleRootThirdIncomplete);
     }
-
     
     @Test
     public void testTripledSD1(){
@@ -97,4 +98,34 @@ public class ScorerTest {
         C_MAJOR_SCORER.scoreChord(cMajorVoiceOverlapDoubleThird);
     }
     
+    /*****************************
+     * Tests for scoreTransition *
+     *****************************/
+
+    @Test
+    public void testParallels(){
+        Chord dMinorDoubleThird = new Chord(
+                new Note(F, 5), new Note(A, 4), new Note(D, 4), new Note(F, 3), 
+                new BasicChord(F, A, D, F, new PrimitiveChord(D, ChordType.MIN, 1))
+                );
+        Chord cMajorDoubleRoot = new Chord(
+                new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
+                new BasicChord(E, G, C, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                );
+        C_MAJOR_SCORER.scoreTransition(dMinorDoubleThird, cMajorDoubleRoot);
+    }
+    
+    @Test
+    public void testNotParallel(){
+        Chord cMajor64 = new Chord(
+                new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
+                new BasicChord(C, G, E, G, new PrimitiveChord(C, ChordType.MAJ, 2))
+                );
+        Chord gDominantSeven = new Chord(
+                new Note(B, 4), new Note(F, 4), new Note(D, 4), new Note(G, 3), 
+                new BasicChord(B, F, D, G, new PrimitiveChord(G, ChordType.DOM7, 0))
+                );
+        C_MAJOR_SCORER.scoreTransition(cMajor64, gDominantSeven);
+    }
+
 }
