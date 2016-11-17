@@ -127,5 +127,30 @@ public class ScorerTest {
                 );
         C_MAJOR_SCORER.scoreTransition(cMajor64, gDominantSeven);
     }
+    
+    @Test
+    public void testDirect(){
+        Chord gMajorDoubleRoot = new Chord(
+                new Note(G, 4), new Note(D, 4), new Note(G, 3), new Note(B, 2), 
+                new BasicChord(G, D, G, B, new PrimitiveChord(G, ChordType.MAJ, 1))
+                );
+        Chord cMajorDoubleRoot = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                );
+        C_MAJOR_SCORER.scoreTransition(gMajorDoubleRoot, cMajorDoubleRoot);
+    }
 
+    @Test
+    public void testNotDirect(){
+        Chord gMajorDoubleRoot = new Chord(
+                new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
+                new BasicChord(B, D, G, G, new PrimitiveChord(G, ChordType.MAJ, 0))
+                );
+        Chord cMajorDoubleRoot = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                );
+        C_MAJOR_SCORER.scoreTransition(gMajorDoubleRoot, cMajorDoubleRoot);
+    }
 }
