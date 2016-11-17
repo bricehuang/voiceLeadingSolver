@@ -22,8 +22,8 @@ public class ScorerTest {
     private static final BasicNote A = new BasicNote(5,9);
     private static final BasicNote B = new BasicNote(6,11);
 
-    private static final Key C_MAJOR = new Key(0,debug);
-    private static final Scorer C_MAJOR_SCORER = new Scorer(C_MAJOR, true);
+    private static final Key C_MAJOR = new Key(0,true);
+    private static final Scorer C_MAJOR_SCORER = new Scorer(C_MAJOR,debug);
     
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
