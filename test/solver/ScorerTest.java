@@ -19,12 +19,16 @@ public class ScorerTest {
     private static final BasicNote E = new BasicNote(2,4);
     private static final BasicNote F = new BasicNote(3,5);
     private static final BasicNote G = new BasicNote(4,7);
+    private static final BasicNote Gs = new BasicNote(4,8);
     private static final BasicNote A = new BasicNote(5,9);
     private static final BasicNote B = new BasicNote(6,11);
 
     private static final Key C_MAJOR = new Key(0,true);
     private static final Scorer C_MAJOR_SCORER = new Scorer(C_MAJOR,debug);
     
+    private static final Key A_MINOR = new Key(0,false);
+    private static final Scorer A_MINOR_SCORER = new Scorer(A_MINOR,debug);
+
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -153,4 +157,123 @@ public class ScorerTest {
                 );
         C_MAJOR_SCORER.scoreTransition(gMajorDoubleRoot, cMajorDoubleRoot);
     }
+    
+    @Test
+    public void testDomSevenRootGood(){
+        Chord eDomSevenRoot = new Chord(
+                new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
+                new BasicChord(D, Gs, B, E, new PrimitiveChord(E, ChordType.DOM7, 0))
+                );
+        Chord aMinor = new Chord(
+                new Note(C, 5), new Note(A, 4), new Note(A, 3), new Note(A, 2), 
+                new BasicChord(C, A, A, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSevenRoot, aMinor);
+    }
+
+    @Test
+    public void testDomSevenRootBad(){
+        Chord eDomSevenRoot = new Chord(
+                new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
+                new BasicChord(D, Gs, B, E, new PrimitiveChord(E, ChordType.DOM7, 0))
+                );
+        Chord aMinor = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(A, 3), new Note(A, 2), 
+                new BasicChord(C, E, A, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSevenRoot, aMinor);
+    }
+
+    @Test
+    public void testDomSevenInv1Good(){
+        Chord eDomSeven = new Chord(
+                new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
+                new BasicChord(D, B, E, Gs, new PrimitiveChord(E, ChordType.DOM7, 1))
+                );
+        Chord aMinor = new Chord(
+                new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(A, 3), 
+                new BasicChord(C, A, E, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+    }
+
+    @Test
+    public void testDomSevenInv1Bad(){
+        Chord eDomSeven = new Chord(
+                new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
+                new BasicChord(D, B, E, Gs, new PrimitiveChord(E, ChordType.DOM7, 1))
+                );
+        Chord aMinor = new Chord(
+                new Note(E, 5), new Note(C, 5), new Note(E, 4), new Note(A, 3), 
+                new BasicChord(E, C, E, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+    }
+
+    @Test
+    public void testDomSevenInv2Good(){
+        Chord eDomSeven = new Chord(
+                new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
+                new BasicChord(E, Gs, D, B, new PrimitiveChord(E, ChordType.DOM7, 2))
+                );
+        Chord aMinor = new Chord(
+                new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(A, 2), 
+                new BasicChord(E, A, C, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+    }
+
+    @Test
+    public void testDomSevenInv2GoodAlt(){
+        Chord eDomSeven = new Chord(
+                new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
+                new BasicChord(E, Gs, D, B, new PrimitiveChord(E, ChordType.DOM7, 2))
+                );
+        Chord aMinor = new Chord(
+                new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(C, 3), 
+                new BasicChord(E, A, C, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+    }
+
+    @Test
+    public void testDomSevenInv2Bad(){
+        Chord eDomSeven = new Chord(
+                new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
+                new BasicChord(E, Gs, D, B, new PrimitiveChord(E, ChordType.DOM7, 2))
+                );
+        Chord aMinor = new Chord(
+                new Note(E, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
+                new BasicChord(E, A, E, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+    }
+
+    @Test
+    public void testDomSevenInv3Good(){
+        Chord eDomSeven = new Chord(
+                new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
+                new BasicChord(B, Gs, E, D, new PrimitiveChord(E, ChordType.DOM7, 3))
+                );
+        Chord aMinor = new Chord(
+                new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
+                new BasicChord(C, A, E, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+    }
+
+    @Test
+    public void testDomSevenInv3Bad(){
+        Chord eDomSeven = new Chord(
+                new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
+                new BasicChord(B, Gs, E, D, new PrimitiveChord(E, ChordType.DOM7, 3))
+                );
+        Chord aMinor = new Chord(
+                new Note(A, 4), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
+                new BasicChord(A, A, E, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                );
+        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+    }
+
+    
 }
