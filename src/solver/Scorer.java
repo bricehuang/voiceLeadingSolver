@@ -61,7 +61,10 @@ public class Scorer {
      * No Directs
      * No melodic aug/dim intervals
      * No voice crossing
-     * Dom7, Dim7, proper resolutions
+     * Dom7 proper resolution
+     * Dim7 proper resolution
+     * neopolitan 6 proper resolution // TODO
+     * aug6 proper resolutions // TODO implement these chords
      * ii65 hold tonic TODO
      * 
      * Last Transition:
@@ -350,13 +353,24 @@ public class Scorer {
     }
 
     /**
-     * Scores for 7th chord resolutions
+     * Scores for dominant 7th resolutions
      * @param previous previous chord 
      * @param current current chord
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    private Integer scoreSevenChordResolutions(Chord previous, Chord current){
+    private Integer scoreDomSevenResolutions(Chord previous, Chord current){
+        throw new RuntimeException("Unimplemented.");
+    }
+
+    /**
+     * Scores for diminished 7th resolutions
+     * @param previous previous chord 
+     * @param current current chord
+     * @param key key in which this transition should be analyzed
+     * @return score
+     */
+    private Integer scoreDimSevenResolutions(Chord previous, Chord current){
         throw new RuntimeException("Unimplemented.");
     }
 
@@ -378,7 +392,8 @@ public class Scorer {
         score += scoreDirects(previous, current);
         //score += scoreMelodicIntervals(previous, current);
         //score += scoreVoiceCrossing(previous, current);
-        //score += scoreSevenChordResolutions(previous, current);
+        //score += scoreDomSevenResolutions(previous, current);
+        //score += scoreDimSevenResolutions(previous, current);
         if (debug){
             System.err.println("Total Penalty: "+score+"\n");
         }
