@@ -61,7 +61,7 @@ public class Scorer {
      * No Directs
      * No melodic aug/dim intervals
      * No voice crossing
-     * Dom7 proper resolution
+     * Dom7 proper resolution // TODO: differentiate between irregular and bad?
      * Dim7 proper resolution
      * neopolitan 6 proper resolution // TODO
      * aug6 proper resolutions // TODO implement these chords
