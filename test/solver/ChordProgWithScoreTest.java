@@ -20,20 +20,20 @@ public class ChordProgWithScoreTest {
     private static final BasicNote G = new BasicNote(4,7);
     private static final BasicNote B = new BasicNote(6,11);
     
-    private static final BasicChord C_MAJ_64 = new BasicChord(
-            C, E, G, G, new PrimitiveChord(C, ChordType.MAJ, 2));
+    private static final PrimitiveChord C_MAJ_64 = 
+            new PrimitiveChord(C, ChordType.MAJ, 2);
     private static final Chord C_MAJ_64_REALIZED = new Chord(
             new Note(C, 5), new Note(E, 4), new Note(G, 3), 
             new Note(G, 2),  C_MAJ_64);
     
-    private static final BasicChord G_MAJ = new BasicChord(
-            B, D, G, G, new PrimitiveChord(G,ChordType.MAJ, 0));
+    private static final PrimitiveChord G_MAJ = 
+            new PrimitiveChord(G,ChordType.MAJ, 0);
     private static final Chord G_MAJ_REALIZED = new Chord(
             new Note(B,4), new Note(D, 4), new Note(G, 3), 
             new Note(G, 2),  G_MAJ);
             
-    private static final BasicChord C_MAJ = new BasicChord(
-            C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0));
+    private static final PrimitiveChord C_MAJ = 
+            new PrimitiveChord(C, ChordType.MAJ, 0);
     private static final Chord C_MAJ_REALIZED = new Chord(
             new Note(C, 5), new Note(E, 4), new Note(G, 3), 
             new Note(C, 3),  C_MAJ);

@@ -2,7 +2,6 @@ package solver;
 
 import org.junit.Test;
 
-import chords.BasicChord;
 import chords.Chord;
 import chords.ChordType;
 import chords.PrimitiveChord;
@@ -43,7 +42,7 @@ public class ScorerTest {
     public void testGoodDoublingSD1(){
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         C_MAJOR_SCORER.scoreChord(cMajorDoubleRoot);
     }
@@ -52,7 +51,7 @@ public class ScorerTest {
     public void testBadDoublingSD3(){
         Chord cMajorDoubleThird = new Chord(
                 new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new BasicChord(E, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         C_MAJOR_SCORER.scoreChord(cMajorDoubleThird);
     }
@@ -61,7 +60,7 @@ public class ScorerTest {
     public void testBadDoubleDouble(){
         Chord cMajorDoubleRootThirdIncomplete = new Chord(
                 new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
-                new BasicChord(E, E, C, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         C_MAJOR_SCORER.scoreChord(cMajorDoubleRootThirdIncomplete);
     }
@@ -70,7 +69,7 @@ public class ScorerTest {
     public void testTripledSD1(){
         Chord cMajorTripleRootIncomplete= new Chord(
                 new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
-                new BasicChord(C, C, E, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         C_MAJOR_SCORER.scoreChord(cMajorTripleRootIncomplete);
     }
@@ -79,7 +78,7 @@ public class ScorerTest {
     public void testBadDoublingSD2(){
         Chord dMinorDoubleRoot = new Chord(
                 new Note(D, 5), new Note(F, 4), new Note(A, 3), new Note(D, 3), 
-                new BasicChord(D, F, A, D, new PrimitiveChord(D, ChordType.MIN, 0))
+                new PrimitiveChord(D, ChordType.MIN, 0)
                 );
         C_MAJOR_SCORER.scoreChord(dMinorDoubleRoot);
     }
@@ -88,7 +87,7 @@ public class ScorerTest {
     public void testGoodDoublingSD4(){
         Chord dMinorDoubleThird = new Chord(
                 new Note(A, 4), new Note(F, 4), new Note(D, 4), new Note(F, 3), 
-                new BasicChord(A, F, D, F, new PrimitiveChord(D, ChordType.MIN, 1))
+                new PrimitiveChord(D, ChordType.MIN, 1)
                 );
         C_MAJOR_SCORER.scoreChord(dMinorDoubleThird);
     }
@@ -97,7 +96,7 @@ public class ScorerTest {
     public void testBadDoublingSD3VoiceOverlap(){
         Chord cMajorVoiceOverlapDoubleThird = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
-                new BasicChord(C, E, E, G, new PrimitiveChord(C, ChordType.MAJ, 2))
+                new PrimitiveChord(C, ChordType.MAJ, 2)
                 );
         C_MAJOR_SCORER.scoreChord(cMajorVoiceOverlapDoubleThird);
     }
@@ -110,11 +109,11 @@ public class ScorerTest {
     public void testParallels(){
         Chord dMinorDoubleThird = new Chord(
                 new Note(F, 5), new Note(A, 4), new Note(D, 4), new Note(F, 3), 
-                new BasicChord(F, A, D, F, new PrimitiveChord(D, ChordType.MIN, 1))
+                new PrimitiveChord(D, ChordType.MIN, 1)
                 );
         Chord cMajorDoubleRoot = new Chord(
                 new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
-                new BasicChord(E, G, C, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         C_MAJOR_SCORER.scoreTransition(dMinorDoubleThird, cMajorDoubleRoot);
     }
@@ -123,11 +122,11 @@ public class ScorerTest {
     public void testNotParallel(){
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
-                new BasicChord(C, G, E, G, new PrimitiveChord(C, ChordType.MAJ, 2))
+                new PrimitiveChord(C, ChordType.MAJ, 2)
                 );
         Chord gDominantSeven = new Chord(
                 new Note(B, 4), new Note(F, 4), new Note(D, 4), new Note(G, 3), 
-                new BasicChord(B, F, D, G, new PrimitiveChord(G, ChordType.DOM7, 0))
+                new PrimitiveChord(G, ChordType.DOM7, 0)
                 );
         C_MAJOR_SCORER.scoreTransition(cMajor64, gDominantSeven);
     }
@@ -136,11 +135,11 @@ public class ScorerTest {
     public void testDirect(){
         Chord gMajorDoubleRoot = new Chord(
                 new Note(G, 4), new Note(D, 4), new Note(G, 3), new Note(B, 2), 
-                new BasicChord(G, D, G, B, new PrimitiveChord(G, ChordType.MAJ, 1))
+                new PrimitiveChord(G, ChordType.MAJ, 1)
                 );
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         C_MAJOR_SCORER.scoreTransition(gMajorDoubleRoot, cMajorDoubleRoot);
     }
@@ -149,11 +148,11 @@ public class ScorerTest {
     public void testNotDirect(){
         Chord gMajorDoubleRoot = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
-                new BasicChord(B, D, G, G, new PrimitiveChord(G, ChordType.MAJ, 0))
+                new PrimitiveChord(G, ChordType.MAJ, 0)
                 );
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new BasicChord(C, E, G, C, new PrimitiveChord(C, ChordType.MAJ, 0))
+                new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         C_MAJOR_SCORER.scoreTransition(gMajorDoubleRoot, cMajorDoubleRoot);
     }
@@ -162,11 +161,11 @@ public class ScorerTest {
     public void testDomSevenRootGood(){
         Chord eDomSevenRoot = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
-                new BasicChord(D, Gs, B, E, new PrimitiveChord(E, ChordType.DOM7, 0))
+                new PrimitiveChord(E, ChordType.DOM7, 0)
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(A, 4), new Note(A, 3), new Note(A, 2), 
-                new BasicChord(C, A, A, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                new PrimitiveChord(A, ChordType.MIN, 0)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSevenRoot, aMinor);
     }
@@ -175,11 +174,11 @@ public class ScorerTest {
     public void testDomSevenRootBad(){
         Chord eDomSevenRoot = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
-                new BasicChord(D, Gs, B, E, new PrimitiveChord(E, ChordType.DOM7, 0))
+                new PrimitiveChord(E, ChordType.DOM7, 0)
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(A, 3), new Note(A, 2), 
-                new BasicChord(C, E, A, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                new PrimitiveChord(A, ChordType.MIN, 0)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSevenRoot, aMinor);
     }
@@ -188,11 +187,11 @@ public class ScorerTest {
     public void testDomSevenInv1Good(){
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
-                new BasicChord(D, B, E, Gs, new PrimitiveChord(E, ChordType.DOM7, 1))
+                new PrimitiveChord(E, ChordType.DOM7, 1)
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(A, 3), 
-                new BasicChord(C, A, E, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                new PrimitiveChord(A, ChordType.MIN, 0)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
     }
@@ -201,11 +200,11 @@ public class ScorerTest {
     public void testDomSevenInv1Bad(){
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
-                new BasicChord(D, B, E, Gs, new PrimitiveChord(E, ChordType.DOM7, 1))
+                new PrimitiveChord(E, ChordType.DOM7, 1)
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(C, 5), new Note(E, 4), new Note(A, 3), 
-                new BasicChord(E, C, E, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                new PrimitiveChord(A, ChordType.MIN, 0)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
     }
@@ -214,11 +213,11 @@ public class ScorerTest {
     public void testDomSevenInv2Good(){
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
-                new BasicChord(E, Gs, D, B, new PrimitiveChord(E, ChordType.DOM7, 2))
+                new PrimitiveChord(E, ChordType.DOM7, 2)
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(A, 2), 
-                new BasicChord(E, A, C, A, new PrimitiveChord(A, ChordType.MIN, 0))
+                new PrimitiveChord(A, ChordType.MIN, 0)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
     }
@@ -227,11 +226,11 @@ public class ScorerTest {
     public void testDomSevenInv2GoodAlt(){
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
-                new BasicChord(E, Gs, D, B, new PrimitiveChord(E, ChordType.DOM7, 2))
+                new PrimitiveChord(E, ChordType.DOM7, 2)
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(C, 3), 
-                new BasicChord(E, A, C, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                new PrimitiveChord(A, ChordType.MIN, 1)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
     }
@@ -240,11 +239,11 @@ public class ScorerTest {
     public void testDomSevenInv2Bad(){
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
-                new BasicChord(E, Gs, D, B, new PrimitiveChord(E, ChordType.DOM7, 2))
+                new PrimitiveChord(E, ChordType.DOM7, 2)
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
-                new BasicChord(E, A, E, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                new PrimitiveChord(A, ChordType.MIN, 1)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
     }
@@ -253,11 +252,11 @@ public class ScorerTest {
     public void testDomSevenInv3Good(){
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
-                new BasicChord(B, Gs, E, D, new PrimitiveChord(E, ChordType.DOM7, 3))
+                new PrimitiveChord(E, ChordType.DOM7, 3)
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
-                new BasicChord(C, A, E, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                new PrimitiveChord(A, ChordType.MIN, 1)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
     }
@@ -266,11 +265,11 @@ public class ScorerTest {
     public void testDomSevenInv3Bad(){
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
-                new BasicChord(B, Gs, E, D, new PrimitiveChord(E, ChordType.DOM7, 3))
+                new PrimitiveChord(E, ChordType.DOM7, 3)
                 );
         Chord aMinor = new Chord(
                 new Note(A, 4), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
-                new BasicChord(A, A, E, C, new PrimitiveChord(A, ChordType.MIN, 1))
+                new PrimitiveChord(A, ChordType.MIN, 1)
                 );
         A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
     }

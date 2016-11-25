@@ -22,14 +22,14 @@ public class BestListTest {
     private static final BasicNote B = new BasicNote(6,11);
 
     
-    private static final BasicChord G_DOM_SEVEN = new BasicChord(
-            B, D, F, G, new PrimitiveChord(G,ChordType.DOM7, 0));
+    private static final PrimitiveChord G_DOM_SEVEN = 
+            new PrimitiveChord(G,ChordType.DOM7, 0);
     private static final Chord G_DOM_SEVEN_REALIZED = new Chord(
             new Note(B,4), new Note(D, 4), new Note(F, 3), 
             new Note(G, 2),  G_DOM_SEVEN);
     
-    private static final BasicChord C_MAJ = new BasicChord(
-            C, C, E, C, new PrimitiveChord(C, ChordType.MAJ, 0));
+    private static final PrimitiveChord C_MAJ = 
+            new PrimitiveChord(C, ChordType.MAJ, 0);
     private static final Chord C_MAJ_REALIZED = new Chord(
             new Note(C, 5), new Note(C, 4), new Note(E, 3), 
             new Note(C, 3),  C_MAJ);

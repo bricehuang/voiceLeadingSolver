@@ -148,7 +148,8 @@ public class ChordGenerator {
                         Note bass = new Note(basic.getBass(), bassOctave);
                         if (isValidVoicing(soprano, alto, tenor, bass)){
                             validWaysToSing.add(new Chord(
-                                    soprano, alto, tenor, bass, basic));
+                                    soprano, alto, tenor, bass, 
+                                    basic.getPrimitiveChord()));
                         }
                     }            
                 }            

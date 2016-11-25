@@ -53,12 +53,18 @@ public class Chord {
      * @param tenor tenor note
      * @param bass bass note
      */
-    public Chord(Note soprano, Note alto, Note tenor, Note bass, BasicChord basicChord){
+    public Chord(Note soprano, Note alto, Note tenor, Note bass, PrimitiveChord primitiveChord){
         this.soprano = soprano;
         this.alto = alto;
         this.tenor = tenor; 
         this.bass = bass;
-        this.basicChord = basicChord;
+        this.basicChord = new BasicChord(
+                soprano.getBasicNote(), 
+                alto.getBasicNote(), 
+                tenor.getBasicNote(),
+                bass.getBasicNote(),
+                primitiveChord);
+        checkRep();
     }
     
     private void checkRep(){
