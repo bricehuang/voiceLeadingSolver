@@ -6,6 +6,7 @@ import java.util.Set;
 import chords.Chord;
 import chords.ChordProgression;
 import music.Key;
+import scorer.Scorer;
 
 /**
  * A module that finds the best way to sing a chord progression given 

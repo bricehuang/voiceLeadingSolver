@@ -1,4 +1,4 @@
-package solver;
+package scorer;
 
 import org.junit.Test;
 
@@ -8,6 +8,7 @@ import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
+import scorer.Scorer;
 
 public class ScorerTest {
     

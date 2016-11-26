@@ -1,4 +1,4 @@
-package solver;
+package scorer;
 
 import java.util.Arrays;
 import java.util.Collections;
