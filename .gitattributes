@@ -1,0 +1,4 @@
+*.java text eol=crlf
+*.gitignore text eol=crlf
+*.md text eol=crlf
+
