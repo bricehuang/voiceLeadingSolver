@@ -9,7 +9,7 @@ import music.Note;
 /**
  * A module that scores voice overlapping
  */
-public class VoiceOverlap {
+class VoiceOverlap {
     
     private static final int VOICE_OVERLAP_PENALTY = 25;
     

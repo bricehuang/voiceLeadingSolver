@@ -6,7 +6,7 @@ import music.Key;
 /**
  * A module for scoring dominant seven resolutions
  */
-public class DominantSevenResolution {
+class DominantSevenResolution {
     
     /**
      * Scores for dominant 7th resolutions

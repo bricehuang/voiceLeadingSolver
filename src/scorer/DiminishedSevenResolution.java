@@ -6,7 +6,7 @@ import music.Key;
 /**
  * A module for scoring diminished seven resolutions
  */
-public class DiminishedSevenResolution {
+class DiminishedSevenResolution {
     
     /**
      * Scores for diminished 7th resolutions

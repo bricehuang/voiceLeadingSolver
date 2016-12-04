@@ -15,7 +15,7 @@ import music.Note;
 /**
  * A module that scores parallel and direct intervals
  */
-public class ParallelsDirects {
+class ParallelsDirects {
 
     private static final int PARALLEL_INTERVAL_PENALTY = 1000000;
     private static final int DIRECT_INTERVAL_PENALTY = 1000000;

@@ -3,7 +3,7 @@ package scorer;
 import chords.Chord;
 import music.Key;
 
-public class VoiceCrossing {
+class VoiceCrossing {
 
     /**
      * Scores for voice crossing

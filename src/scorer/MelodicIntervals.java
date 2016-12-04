@@ -6,8 +6,8 @@ import music.Key;
 /**
  * A module that scores for good melodic intervals
  */
-public class MelodicIntervals {
-    
+class MelodicIntervals {
+    // TODO make Interval have major, minor, perfect, aug, dim type?
     /**
      * Scores for bad melodic intervals
      * @param previous previous chord 

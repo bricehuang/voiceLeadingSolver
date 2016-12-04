@@ -14,7 +14,7 @@ import music.Note;
 /**
  * A module that scores note doubling
  */
-public class Doubling {
+class Doubling {
     
     private static final int BAD_DOUBLING_PENALTY = 100;
     private static final int DOUBLE_DOUBLING_PENALTY = 200;

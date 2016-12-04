@@ -6,7 +6,7 @@ import music.Key;
 /**
  * A module that scores for small movements
  */
-public class SmallMovement {
+class SmallMovement {
     
     /**
      * Scores for small movements
