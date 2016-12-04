@@ -12,7 +12,13 @@ public class Score {
     
     /*
      * Abstraction function:
-     * penaltyCount counts each 
+     * penaltyCount counts the number of each penalty
+     * 
+     * Rep invariant:
+     * counts are nonzero.  
+     * 
+     * Rep exposure:
+     * returns only immutables
      */
     
     public Score(){
