@@ -69,7 +69,7 @@ public class Score {
         int totalScore = 0;
         for (PenaltyType penalty: penaltyCount.keySet()){
             totalScore += penaltyCount.get(penalty) 
-                    * PenaltyType.PENALTIES.get(penaltyCount);
+                    * PenaltyType.PENALTIES.get(penalty);
         }
         return totalScore;
     }
@@ -85,11 +85,11 @@ public class Score {
             String penaltyDescription = penalty.toString() + ": " 
                     + penaltyCount.get(penalty)
                     + ".  Score: "
-                    + penaltyCount.get(penalty) * PenaltyType.PENALTIES.get(penaltyCount)
-                    + "/n";
+                    + penaltyCount.get(penalty) * PenaltyType.PENALTIES.get(penalty)
+                    + "\n";
             stringRep += penaltyDescription;
         }
-        stringRep += "Total: "+ totalScore();
+        stringRep += "Total Penalty: "+ totalScore() + "\n";
         return stringRep;
     }
 }
