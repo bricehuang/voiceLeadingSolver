@@ -65,12 +65,6 @@ public enum ChordType {
        
     @Override
     public String toString(){
-        CHORD_OFFSETS.put(MIN7, Arrays.asList(
-                new BasicInterval(0,0), 
-                new BasicInterval(2,3), 
-                new BasicInterval(4,6),
-                new BasicInterval(6,9)
-                ));
         if (this.equals(MAJ)){
             return "MAJOR";
         }
