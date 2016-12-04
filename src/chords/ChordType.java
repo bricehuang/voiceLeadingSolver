@@ -1,6 +1,7 @@
 package chords;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,42 +15,44 @@ public enum ChordType {
     MAJ, MIN, 
     DOM7, MAJ7, MIN7, DIM7;
         
-    public static final Map<ChordType, List<BasicInterval>> CHORD_OFFSETS = new HashMap<>();
+    public static final Map<ChordType, List<BasicInterval>> CHORD_OFFSETS;
     static{
-        CHORD_OFFSETS.put(MAJ, Arrays.asList(
+        Map<ChordType, List<BasicInterval>> tmpChordOffsets = new HashMap<>();
+        tmpChordOffsets.put(MAJ, Arrays.asList(
                 new BasicInterval(0,0), 
                 new BasicInterval(2,4), 
                 new BasicInterval(4,7)
                 ));
-        CHORD_OFFSETS.put(MIN, Arrays.asList(
+        tmpChordOffsets.put(MIN, Arrays.asList(
                 new BasicInterval(0,0), 
                 new BasicInterval(2,3), 
                 new BasicInterval(4,7)
                 ));
-        CHORD_OFFSETS.put(DOM7, Arrays.asList(
+        tmpChordOffsets.put(DOM7, Arrays.asList(
                 new BasicInterval(0,0), 
                 new BasicInterval(2,4), 
                 new BasicInterval(4,7),
                 new BasicInterval(6,10)
                 ));
-        CHORD_OFFSETS.put(MAJ7, Arrays.asList(
+        tmpChordOffsets.put(MAJ7, Arrays.asList(
                 new BasicInterval(0,0), 
                 new BasicInterval(2,4), 
                 new BasicInterval(4,7),
                 new BasicInterval(6,11)
                 ));
-        CHORD_OFFSETS.put(MIN7, Arrays.asList(
+        tmpChordOffsets.put(MIN7, Arrays.asList(
                 new BasicInterval(0,0), 
                 new BasicInterval(2,3), 
                 new BasicInterval(4,7),
                 new BasicInterval(6,10)
                 ));
-        CHORD_OFFSETS.put(DIM7, Arrays.asList(
+        tmpChordOffsets.put(DIM7, Arrays.asList(
                 new BasicInterval(0,0), 
                 new BasicInterval(2,3), 
                 new BasicInterval(4,6),
                 new BasicInterval(6,9)
                 ));
+        CHORD_OFFSETS = Collections.unmodifiableMap(tmpChordOffsets);
     }
     
     public int numberDistinctNotes(){
@@ -62,6 +65,12 @@ public enum ChordType {
        
     @Override
     public String toString(){
+        CHORD_OFFSETS.put(MIN7, Arrays.asList(
+                new BasicInterval(0,0), 
+                new BasicInterval(2,3), 
+                new BasicInterval(4,6),
+                new BasicInterval(6,9)
+                ));
         if (this.equals(MAJ)){
             return "MAJOR";
         }
