@@ -55,6 +55,18 @@ public enum ChordType {
         CHORD_OFFSETS = Collections.unmodifiableMap(tmpChordOffsets);
     }
     
+    private static final Map<ChordType, String> STRING_REPS;
+    static{
+        Map<ChordType, String> tmpStringReps = new HashMap<>();
+        tmpStringReps.put(MAJ, "MAJOR");
+        tmpStringReps.put(MIN, "MINOR");
+        tmpStringReps.put(DOM7, "DOMINANT 7TH");
+        tmpStringReps.put(MAJ7, "MAJOR 7TH");
+        tmpStringReps.put(MIN7, "MINOR 7TH");
+        tmpStringReps.put(DIM7, "DIMINISHED 7TH");
+        STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
+    }
+    
     public int numberDistinctNotes(){
         return CHORD_OFFSETS.get(this).size();
     }
@@ -65,26 +77,6 @@ public enum ChordType {
        
     @Override
     public String toString(){
-        if (this.equals(MAJ)){
-            return "MAJOR";
-        }
-        else if (this.equals(MIN)){
-            return "MINOR";
-        }
-        else if (this.equals(DOM7)){
-            return "DOMINANT 7TH";
-        }
-        else if (this.equals(MAJ7)){
-            return "MAJOR 7TH";
-        }
-        else if (this.equals(MIN7)){
-            return "MINOR 7TH";
-        }
-        else if (this.equals(DIM7)){
-            return "DIMINISHED 7TH";
-        }
-        else{
-            throw new RuntimeException("Should not get here");
-        }
+        return STRING_REPS.get(this);
     }
 }
