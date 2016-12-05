@@ -5,7 +5,7 @@ import chords.ChordProgression;
 /**
  * Immmutable class representing a chord progression with a score
  */
-public class ChordProgWithScore{
+class ChordProgWithScore{
     private final ChordProgression chordProg;
     private final Integer score; 
     

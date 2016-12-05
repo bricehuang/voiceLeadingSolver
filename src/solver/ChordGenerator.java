@@ -18,7 +18,7 @@ import music.Note;
  * A module that takes a list of primitive chords and outputs 
  * ways each chord can be sung   
  */
-public class ChordGenerator {
+class ChordGenerator {
     
     /**
      * Returns whether four notes are a valid BasicChord

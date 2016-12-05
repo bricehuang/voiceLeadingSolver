@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Represents a list of chords, sorted by score
  **/
-public class SortedFiniteProgList {
+class SortedFiniteProgList {
     
     public static final int PROGRESSIONS_TO_TRACK = 3;
     private final List<ChordProgWithScore> content;

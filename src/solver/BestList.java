@@ -15,7 +15,7 @@ import chords.ChordProgression;
  * Mutable class; represents the best chord progressions 
  * ending with a particular chord
  */
-public class BestList{
+class BestList{
     
     private final Map<Chord, SortedFiniteProgList> content;
     
