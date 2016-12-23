@@ -2,10 +2,12 @@ package scorer;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import chords.Chord;
 import music.Key;
 import music.Note;
+import solver.ContextTag;
 
 /**
  * A module that scores individual chords and transitions between chords  
@@ -13,32 +15,9 @@ import music.Note;
 public class Scorer {
     
     // TODO refactoring:
+    // update method signatures 
     // refactor individual methods
-    // decide how to architecture key/debug; right now will be passed as params everywhere
-    
-    private final Key key;
-    
-    /*
-     * Abstraction Function:
-     * Represents a scorer in key key.  
-     * Prints debugging output if debug is on.  
-     * 
-     * Rep Invariant:
-     * N/A
-     * 
-     * Rep Exposure:
-     * Returns only immutables
-     */
-    
-    /**
-     * Constructs a scorer
-     * @param key
-     * @param debug prints debugging output if true
-     */
-    public Scorer(Key key, boolean debug){
-        this.key = key;
-    }
-    
+     
     /*
      * Heuristics:
      * 
@@ -80,16 +59,16 @@ public class Scorer {
     }
         
     /**
-     * Scores the badness of a chord 
+     * Scores the badness of a chord by mutating an input Score  
      * @param chord current chord
      * @param key key in which this chord should be analyzed
+     * @param contextTags set of context tags for this chord
+     * @param score a Score that gets mutated
      * @return a score representing this chord's badness
      */
-    public Integer scoreChord(Chord chord){
-        int score = 0;
-        score += Doubling.scoreDoubling(chord, key);
-        score += VoiceOverlap.scoreVoiceOverlap(chord, key);
-        return score;
+    public static void scoreChord(Chord chord, Key key, Set<ContextTag> contextTags, Score score){
+        Doubling.scoreDoubling(chord, key, contextTags, score);
+        VoiceOverlap.scoreVoiceOverlap(chord, key, contextTags, score);
     }
     
     /**
@@ -99,32 +78,16 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return a score representing this transition's badness
      */
-    public Integer scoreTransition(Chord previous, Chord current){
-        int score = 0;
-        //score += SmallMovement.scoreSmallMovement(previous, current, key, debug);
-        score += ParallelsDirects.scoreParallels(previous, current, key);
-        score += ParallelsDirects.scoreDirects(previous, current, key);
-        //score += MelodicIntervals.scoreMelodicIntervals(previous, current, key, debug);
-        //score += VoiceCrossing.scoreVoiceCrossing(previous, current, key, debug);
-        //score += DominantSevenResolution.scoreDomSevenResolutions(previous, current, key, debug);
-        //score += DiminishedSevenResolution.scoreDimSevenResolutions(previous, current, key, debug);
-        return score;
+    public static void scoreTransition(Chord previous, Chord current, Key key, Set<ContextTag> contextTags,
+            Score score){
+        //SmallMovement.scoreSmallMovement(previous, current, key, contextTags, score);
+        ParallelsDirects.scoreParallels(previous, current, key, contextTags, score);
+        ParallelsDirects.scoreDirects(previous, current, key, contextTags, score);
+        //MelodicIntervals.scoreMelodicIntervals(previous, current, key, contextTags, score);
+        //VoiceCrossing.scoreVoiceCrossing(previous, current, key, contextTags, score);
+        //DominantSevenResolution.scoreDomSevenResolutions(previous, current, key, contextTags, score);
+        //DiminishedSevenResolution.scoreDimSevenResolutions(previous, current, key, contextTags, score);
     }
     
-    /****************************************************
-     * scoreLastTransitionAdditional and helper methods *
-     ****************************************************/
-    
-    /**
-     * Additional score for last transition 
-     * @param previous previous chord 
-     * @param current current chord
-     * @param key key in which this transition should be analyzed
-     * @return a score representing this transition's additional badness
-     */
-    public Integer scoreLastTransitionAdditional(Chord previous, Chord current){
-        throw new RuntimeException("Unimplemented.");
-    }
-
     
 }
