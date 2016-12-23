@@ -8,7 +8,8 @@ import java.util.Map;
  */
 public class Score {
 
-    private Map<PenaltyType, Integer> penaltyCount = new HashMap<>();
+    private final Map<PenaltyType, Integer> penaltyCount = new HashMap<>();
+    private final boolean debug;
     
     /*
      * Abstraction function:
@@ -21,7 +22,22 @@ public class Score {
      * returns only immutables
      */
     
+    /**
+     * Constructs a scorer. Debug flag is default off.  
+     * If debug flag is on, prints a summary of penalties when total penalty
+     * is requested. 
+     */
     public Score(){
+        this.debug = false;
+        checkRep();
+    }
+    
+    /**
+     * Constructs a scorer with user inputted debug flag
+     * @param debug if true, 
+     */
+    public Score(boolean debug){
+        this.debug = debug;
         checkRep();
     }
     
@@ -70,6 +86,9 @@ public class Score {
         for (PenaltyType penalty: penaltyCount.keySet()){
             totalScore += penaltyCount.get(penalty) 
                     * PenaltyType.PENALTIES.get(penalty);
+        }
+        if(debug){
+            System.err.println(this.toString());
         }
         return totalScore;
     }
