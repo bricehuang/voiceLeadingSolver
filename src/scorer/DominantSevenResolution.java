@@ -1,7 +1,10 @@
 package scorer;
 
+import java.util.Set;
+
 import chords.Chord;
 import music.Key;
+import solver.ContextTag;
 
 /**
  * A module for scoring dominant seven resolutions
@@ -9,13 +12,15 @@ import music.Key;
 class DominantSevenResolution {
     
     /**
-     * Scores for dominant 7th resolutions
+     * Scores for diminished 7th resolutions by mutating an input score
      * @param previous previous chord 
      * @param current current chord
      * @param key key in which this transition should be analyzed
-     * @return score
+     * @param contextTags any relevant context tags
+     * @param score a Score that gets mutated
      */
-    static Integer scoreDomSevenResolutions(Chord previous, Chord current, Key key){
+    static void scoreDomSevenResolutions(Chord previous, Chord current, Key key,
+            Set<ContextTag> contextTags, Score score){
         throw new RuntimeException("Unimplemented.");
     }
 

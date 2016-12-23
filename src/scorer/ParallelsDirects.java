@@ -11,12 +11,14 @@ import music.BasicInterval;
 import music.Interval;
 import music.Key;
 import music.Note;
+import solver.ContextTag;
 
 /**
  * A module that scores parallel and direct intervals
  */
 class ParallelsDirects {
-
+    // TODO THIS IS BROKEN
+    
     private static final int PARALLEL_INTERVAL_PENALTY = 1000000;
     private static final int DIRECT_INTERVAL_PENALTY = 1000000;
 
@@ -26,14 +28,16 @@ class ParallelsDirects {
             new HashSet<>(Arrays.asList(UNISON, PERFECT_FIFTH)));
     
     /**
-     * Scores for parallel perfect intervals
+     * Scores for parallel intervals by mutating an input score
      * @param previous previous chord 
      * @param current current chord
      * @param key key in which this transition should be analyzed
-     * @return score
+     * @param contextTags any relevant context tags
+     * @param score a Score that gets mutated
      */
-    static Integer scoreParallels(Chord previous, Chord current, Key key){
-        int score = 0;
+    static void scoreParallels(Chord previous, Chord current, Key key, 
+            Set<ContextTag> contextTags, Score score){
+        int tmpScore = 0;
         List<Note> previousSpelled = Scorer.spellChord(previous);
         List<Note> currentSpelled = Scorer.spellChord(current);
         
@@ -55,21 +59,23 @@ class ParallelsDirects {
                         !(lowerPrevNote.equals(lowerCurrNote) && 
                                 upperPrevNote.equals(upperCurrNote)) &&
                         PERFECT_INTERVALS.contains(currentInterval)){
-                    score += PARALLEL_INTERVAL_PENALTY;
+                    tmpScore += PARALLEL_INTERVAL_PENALTY;
                 }
             }
         }
-        return score;
+        return;
     }
 
     /**
-     * Scores for direct perfect intervals
+     * Scores for direct intervals by mutating an input score
      * @param previous previous chord 
      * @param current current chord
      * @param key key in which this transition should be analyzed
-     * @return score
+     * @param contextTags any relevant context tags
+     * @param score a Score that gets mutated
      */
-    static Integer scoreDirects(Chord previous, Chord current, Key key){
+    static void scoreDirects(Chord previous, Chord current, Key key, 
+            Set<ContextTag> contextTags, Score score){
         Note prevSoprano = previous.getSoprano();
         Note prevBass = previous.getBass();
         Note currSoprano = current.getSoprano();
@@ -80,7 +86,7 @@ class ParallelsDirects {
                 currSoprano.getBasicNote()
                 );         
         if (!PERFECT_INTERVALS.contains(bassSopranoInterval)){
-            return 0;
+            return;
         }
         Interval sopranoMove = Interval.melodicIntervalBetween(prevSoprano, currSoprano);
         Integer sopranoNotesMoved = sopranoMove.getIncreasing() ? 
@@ -89,12 +95,12 @@ class ParallelsDirects {
         Integer bassNotesMoved = bassMove.getIncreasing() ? 
                 bassMove.getScaleDegrees() : - bassMove.getScaleDegrees();  
         if (sopranoNotesMoved * bassNotesMoved <= 0){
-            return 0;
+            return;
         }
         if (Math.abs(sopranoNotesMoved) == 1){
-            return 0;
+            return;
         }
-        return DIRECT_INTERVAL_PENALTY;        
+        return;        
     }
     
     
