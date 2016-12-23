@@ -12,7 +12,7 @@ class VoiceCrossing {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    static Integer scoreVoiceCrossing(Chord previous, Chord current, Key key, boolean debug){
+    static Integer scoreVoiceCrossing(Chord previous, Chord current, Key key){
         throw new RuntimeException("Unimplemented.");
     }
 

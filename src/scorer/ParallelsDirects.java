@@ -32,7 +32,7 @@ class ParallelsDirects {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    static Integer scoreParallels(Chord previous, Chord current, Key key, boolean debug){
+    static Integer scoreParallels(Chord previous, Chord current, Key key){
         int score = 0;
         List<Note> previousSpelled = Scorer.spellChord(previous);
         List<Note> currentSpelled = Scorer.spellChord(current);
@@ -56,9 +56,6 @@ class ParallelsDirects {
                                 upperPrevNote.equals(upperCurrNote)) &&
                         PERFECT_INTERVALS.contains(currentInterval)){
                     score += PARALLEL_INTERVAL_PENALTY;
-                    if (debug){
-                        System.err.println("Parallel Interval Penalty: "+PARALLEL_INTERVAL_PENALTY); 
-                    }
                 }
             }
         }
@@ -72,7 +69,7 @@ class ParallelsDirects {
      * @param key key in which this transition should be analyzed
      * @return score
      */
-    static Integer scoreDirects(Chord previous, Chord current, Key key, boolean debug){
+    static Integer scoreDirects(Chord previous, Chord current, Key key){
         Note prevSoprano = previous.getSoprano();
         Note prevBass = previous.getBass();
         Note currSoprano = current.getSoprano();
@@ -96,9 +93,6 @@ class ParallelsDirects {
         }
         if (Math.abs(sopranoNotesMoved) == 1){
             return 0;
-        }
-        if (debug){
-            System.err.println("Direct Interval Penalty: "+DIRECT_INTERVAL_PENALTY);
         }
         return DIRECT_INTERVAL_PENALTY;        
     }

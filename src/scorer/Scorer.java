@@ -15,11 +15,8 @@ public class Scorer {
     // TODO refactoring:
     // refactor individual methods
     // decide how to architecture key/debug; right now will be passed as params everywhere
-    // make a Penalty datatype? Or, centralize penalties? 
     
     private final Key key;
-    private final boolean debug;
-
     
     /*
      * Abstraction Function:
@@ -40,7 +37,6 @@ public class Scorer {
      */
     public Scorer(Key key, boolean debug){
         this.key = key;
-        this.debug = debug;
     }
     
     /*
@@ -90,15 +86,9 @@ public class Scorer {
      * @return a score representing this chord's badness
      */
     public Integer scoreChord(Chord chord){
-        if (debug){
-            System.err.println("Scoring Chord "+chord.toString()+" in key "+key.toString());
-        }
         int score = 0;
-        score += Doubling.scoreDoubling(chord, key, debug);
-        score += VoiceOverlap.scoreVoiceOverlap(chord, key, debug);
-        if (debug){
-            System.err.println("Total Penalty: "+score+"\n");
-        }
+        score += Doubling.scoreDoubling(chord, key);
+        score += VoiceOverlap.scoreVoiceOverlap(chord, key);
         return score;
     }
     
@@ -110,21 +100,14 @@ public class Scorer {
      * @return a score representing this transition's badness
      */
     public Integer scoreTransition(Chord previous, Chord current){
-        if (debug){
-            System.err.println("Scoring Transition " + previous.toString() 
-            + " --> " + current.toString() + " in key "+key.toString());
-        }
         int score = 0;
         //score += SmallMovement.scoreSmallMovement(previous, current, key, debug);
-        score += ParallelsDirects.scoreParallels(previous, current, key, debug);
-        score += ParallelsDirects.scoreDirects(previous, current, key, debug);
+        score += ParallelsDirects.scoreParallels(previous, current, key);
+        score += ParallelsDirects.scoreDirects(previous, current, key);
         //score += MelodicIntervals.scoreMelodicIntervals(previous, current, key, debug);
         //score += VoiceCrossing.scoreVoiceCrossing(previous, current, key, debug);
         //score += DominantSevenResolution.scoreDomSevenResolutions(previous, current, key, debug);
         //score += DiminishedSevenResolution.scoreDimSevenResolutions(previous, current, key, debug);
-        if (debug){
-            System.err.println("Total Penalty: "+score+"\n");
-        }
         return score;
     }
     

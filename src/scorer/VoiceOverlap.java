@@ -19,15 +19,12 @@ class VoiceOverlap {
      * @param key key in which this chord should be analyzed
      * @return score
      */
-    static Integer scoreVoiceOverlap(Chord chord, Key key, boolean debug){
+    static Integer scoreVoiceOverlap(Chord chord, Key key){
         int score = 0;
         List<Note> chordSpelled = Scorer.spellChord(chord);
         for (int i=0; i<3; i++){
             if (chordSpelled.get(i).equals(chordSpelled.get(i+1))){
                 score += VOICE_OVERLAP_PENALTY;
-                if (debug){
-                    System.err.println("Voice Overlap Penalty: "+VOICE_OVERLAP_PENALTY); 
-                }
             }
         }
         return score;

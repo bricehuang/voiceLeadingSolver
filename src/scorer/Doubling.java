@@ -30,7 +30,7 @@ class Doubling {
      * @param key key in which this chord should be analyzed
      * @return score
      */
-    static Integer scoreDoubling(Chord chord, Key key, boolean debug){
+    static Integer scoreDoubling(Chord chord, Key key){
 
         if (chord.getType().numberDistinctNotes() == 4){
             return 0;
@@ -60,29 +60,17 @@ class Doubling {
         }
         if (fifth == 0){
             score += OMITTED_FIFTH_PENALTY;
-            if (debug){
-                System.err.println("Missing fifth penalty: "+OMITTED_FIFTH_PENALTY);
-            }
             if (root == 3 && third == 1){
                 if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(0)))){
                     score += BAD_TRIPLING_PENALTY;
-                    if (debug){
-                        System.err.println("Bad Tripling Penalty: "+BAD_TRIPLING_PENALTY);                        
-                    }
                 }
             }
             else if (root == 2 && third == 2){
                 score += DOUBLE_DOUBLING_PENALTY;
-                if (debug){
-                    System.err.println("Double Doubling Penalty: "+DOUBLE_DOUBLING_PENALTY);                        
-                }
             }
             else if (root == 1 && third == 3){
                 if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(2)))){
                     score += BAD_TRIPLING_PENALTY;
-                    if (debug){
-                        System.err.println("Bad Tripling Penalty: "+BAD_TRIPLING_PENALTY);                        
-                    }
                 }
             }
             
@@ -103,9 +91,6 @@ class Doubling {
             }
             if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(doubled))){
                 score += BAD_DOUBLING_PENALTY;
-                if (debug){
-                    System.err.println("Doubling Penalty: "+BAD_DOUBLING_PENALTY);                    
-                }
             }
         }
         else{
