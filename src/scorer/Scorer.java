@@ -66,9 +66,11 @@ public class Scorer {
      * @param score a Score that gets mutated
      * @return a score representing this chord's badness
      */
-    public static void scoreChord(Chord chord, Key key, Set<ContextTag> contextTags, Score score){
+    public static Score scoreChord(Chord chord, Key key, Set<ContextTag> contextTags){
+        Score score = new Score();
         Doubling.scoreDoubling(chord, key, contextTags, score);
         VoiceOverlap.scoreVoiceOverlap(chord, key, contextTags, score);
+        return score;
     }
     
     /**
@@ -78,8 +80,8 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return a score representing this transition's badness
      */
-    public static void scoreTransition(Chord previous, Chord current, Key key, Set<ContextTag> contextTags,
-            Score score){
+    public static Score scoreTransition(Chord previous, Chord current, Key key, Set<ContextTag> contextTags){
+        Score score = new Score();
         //SmallMovement.scoreSmallMovement(previous, current, key, contextTags, score);
         ParallelsDirects.scoreParallels(previous, current, key, contextTags, score);
         ParallelsDirects.scoreDirects(previous, current, key, contextTags, score);
@@ -87,6 +89,7 @@ public class Scorer {
         //VoiceCrossing.scoreVoiceCrossing(previous, current, key, contextTags, score);
         //DominantSevenResolution.scoreDomSevenResolutions(previous, current, key, contextTags, score);
         //DiminishedSevenResolution.scoreDimSevenResolutions(previous, current, key, contextTags, score);
+        return score;
     }
     
     
