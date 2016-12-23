@@ -17,15 +17,27 @@ import solver.ContextTag;
  * A module that scores parallel and direct intervals
  */
 class ParallelsDirects {
-    // TODO THIS IS BROKEN
     
-    private static final int PARALLEL_INTERVAL_PENALTY = 1000000;
-    private static final int DIRECT_INTERVAL_PENALTY = 1000000;
-
     private static final BasicInterval UNISON = new BasicInterval(0,0);
     private static final BasicInterval PERFECT_FIFTH = new BasicInterval(4,7);
     private static final Set<BasicInterval> PERFECT_INTERVALS = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(UNISON, PERFECT_FIFTH)));
+    
+    private static boolean isParallelPerfectInterval(Note previousLower, Note previousUpper, 
+            Note currentLower, Note currentUpper){
+        BasicInterval previousInterval = BasicInterval.intervalBetween(
+                previousLower.getBasicNote(), previousUpper.getBasicNote());
+        BasicInterval currentInterval = BasicInterval.intervalBetween(
+                currentLower.getBasicNote(), currentUpper.getBasicNote());
+        if (previousInterval.equals(currentInterval) && 
+                !(previousLower.equals(currentLower) && previousUpper.equals(currentUpper)) &&
+                PERFECT_INTERVALS.contains(currentInterval)){
+            return true;
+        }
+        else{
+            return false;            
+        }
+    }
     
     /**
      * Scores for parallel intervals by mutating an input score
@@ -37,33 +49,19 @@ class ParallelsDirects {
      */
     static void scoreParallels(Chord previous, Chord current, Key key, 
             Set<ContextTag> contextTags, Score score){
-        int tmpScore = 0;
         List<Note> previousSpelled = Scorer.spellChord(previous);
         List<Note> currentSpelled = Scorer.spellChord(current);
         
         for (int upper=1; upper<4; upper++){
             for (int lower=0; lower<upper; lower++){
-                Note lowerPrevNote = previousSpelled.get(lower);
-                Note upperPrevNote = previousSpelled.get(upper); 
-                Note lowerCurrNote = currentSpelled.get(lower);
-                Note upperCurrNote = currentSpelled.get(upper); 
-                BasicInterval previousInterval = BasicInterval.intervalBetween(
-                        lowerPrevNote.getBasicNote(), 
-                        upperPrevNote.getBasicNote()
-                        );
-                BasicInterval currentInterval = BasicInterval.intervalBetween(
-                        lowerCurrNote.getBasicNote(), 
-                        upperCurrNote.getBasicNote()
-                        );
-                if (previousInterval.equals(currentInterval) && 
-                        !(lowerPrevNote.equals(lowerCurrNote) && 
-                                upperPrevNote.equals(upperCurrNote)) &&
-                        PERFECT_INTERVALS.contains(currentInterval)){
-                    tmpScore += PARALLEL_INTERVAL_PENALTY;
+                if (isParallelPerfectInterval(previousSpelled.get(lower),
+                        previousSpelled.get(upper),
+                        currentSpelled.get(lower),
+                        currentSpelled.get(upper))){
+                    score.addPenalty(PenaltyType.PARALLEL);
                 }
             }
         }
-        return;
     }
 
     /**
@@ -85,22 +83,19 @@ class ParallelsDirects {
                 currBass.getBasicNote(), 
                 currSoprano.getBasicNote()
                 );         
-        if (!PERFECT_INTERVALS.contains(bassSopranoInterval)){
-            return;
+        if (PERFECT_INTERVALS.contains(bassSopranoInterval)){
+            Interval sopranoMove = Interval.melodicIntervalBetween(prevSoprano, currSoprano);
+            Interval bassMove = Interval.melodicIntervalBetween(prevBass, currBass);
+
+            Integer sopranoNotesMoved = sopranoMove.getIncreasing() ? 
+                    sopranoMove.getScaleDegrees() : - sopranoMove.getScaleDegrees();  
+            Integer bassNotesMoved = bassMove.getIncreasing() ? 
+                    bassMove.getScaleDegrees() : - bassMove.getScaleDegrees();  
+            // soprano and bass move same direction, soprano leaps
+            if (sopranoNotesMoved * bassNotesMoved > 0 && Math.abs(sopranoNotesMoved) > 1){
+                score.addPenalty(PenaltyType.DIRECT);
+            }
         }
-        Interval sopranoMove = Interval.melodicIntervalBetween(prevSoprano, currSoprano);
-        Integer sopranoNotesMoved = sopranoMove.getIncreasing() ? 
-                sopranoMove.getScaleDegrees() : - sopranoMove.getScaleDegrees();  
-        Interval bassMove = Interval.melodicIntervalBetween(prevBass, currBass);
-        Integer bassNotesMoved = bassMove.getIncreasing() ? 
-                bassMove.getScaleDegrees() : - bassMove.getScaleDegrees();  
-        if (sopranoNotesMoved * bassNotesMoved <= 0){
-            return;
-        }
-        if (Math.abs(sopranoNotesMoved) == 1){
-            return;
-        }
-        return;        
     }
     
     
