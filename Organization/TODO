@@ -1,0 +1,16 @@
+music:
+* Implement quality of Intervals (for melodicInterval scorer)
+
+scorer: 
+* Make separate classes for Chord Score and Transition Score, Chord Type and Penalty Type
+* Update implementation of broken methods 
+* Update tests 
+* Test and implement unimplemented methods
+* Specify, test, and implement more functionality 
+
+solver: 
+* Implement parser
+* Implement main 
+
+player:
+* DO EVERYTHING
