@@ -12,9 +12,6 @@ import solver.ContextTag;
  * A module that scores voice overlapping
  */
 class VoiceOverlap {
-    // TODO THIS IS BROKEN
-    
-    private static final int VOICE_OVERLAP_PENALTY = 25;
     
     /**
      * Scores for voice overlapping by mutating an input score 
@@ -25,11 +22,10 @@ class VoiceOverlap {
      */
     static void scoreVoiceOverlap(Chord chord, Key key, 
             Set<ContextTag> contextTags, Score score){
-        int tmpScore = 0;
         List<Note> chordSpelled = Scorer.spellChord(chord);
         for (int i=0; i<3; i++){
             if (chordSpelled.get(i).equals(chordSpelled.get(i+1))){
-                tmpScore += VOICE_OVERLAP_PENALTY;
+                score.addPenalty(PenaltyType.VOICE_OVERLAP);
             }
         }
         return;
