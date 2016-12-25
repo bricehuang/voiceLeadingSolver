@@ -207,7 +207,7 @@ public class ScorerTest {
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
         ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
-        assertEquals(PenaltyType.DIRECT, score.totalScore());
+        assertEquals(PenaltyType.DIRECT.value(), score.totalScore());
         printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
 
