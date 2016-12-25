@@ -10,6 +10,7 @@ public class Score {
 
     private final Map<PenaltyType, Integer> penaltyCount = new HashMap<>();
     private final boolean debug;
+    private int totalPenalty;
     
     /*
      * Abstraction function:
@@ -19,7 +20,7 @@ public class Score {
      * counts are nonzero.  
      * 
      * Rep exposure:
-     * returns only immutables
+     * returns only immutables, primitives
      */
     
     /**
@@ -42,9 +43,12 @@ public class Score {
     }
     
     private void checkRep(){
+        int computedTotalPenalty = 0;
         for (PenaltyType penalty : penaltyCount.keySet()){
             assert(penaltyCount.get(penalty) != 0);
+            computedTotalPenalty += penaltyCount.get(penalty) * penalty.value();
         }
+        assert(computedTotalPenalty == totalPenalty);
     }
     
     /**
@@ -56,6 +60,7 @@ public class Score {
             penaltyCount.put(penalty, 0);
         }
         penaltyCount.put(penalty, penaltyCount.get(penalty)+1);
+        totalPenalty += penalty.value();
         if (penaltyCount.get(penalty)==0){
             penaltyCount.remove(penalty);
         }
@@ -71,6 +76,7 @@ public class Score {
             penaltyCount.put(penalty, 0);
         }
         penaltyCount.put(penalty, penaltyCount.get(penalty)-1);
+        totalPenalty -= penalty.value();
         if (penaltyCount.get(penalty)==0){
             penaltyCount.remove(penalty);
         }
@@ -82,15 +88,10 @@ public class Score {
      * @return total penalty of this transition
      */
     public int totalScore(){
-        int totalScore = 0;
-        for (PenaltyType penalty: penaltyCount.keySet()){
-            totalScore += penaltyCount.get(penalty) 
-                    * penalty.value();
-        }
-        if(debug){
+        if (debug){
             System.err.println(this.toString());
         }
-        return totalScore;
+        return totalPenalty;
     }
     
     /*******************
@@ -108,7 +109,7 @@ public class Score {
                     + "\n";
             stringRep += penaltyDescription;
         }
-        stringRep += "Total Penalty: "+ totalScore() + "\n";
+        stringRep += "Total Penalty: "+ totalPenalty + "\n";
         return stringRep;
     }
 }
