@@ -291,7 +291,7 @@ public class ScorerTest {
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
         DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
-        assertEquals(PenaltyType.DOM_SEVEN_RES, score.totalScore());
+        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
@@ -339,7 +339,7 @@ public class ScorerTest {
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
         DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
-        assertEquals(PenaltyType.DOM_SEVEN_RES, score.totalScore());
+        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
@@ -371,7 +371,7 @@ public class ScorerTest {
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
         DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
-        assertEquals(PenaltyType.DOM_SEVEN_RES, score.totalScore());
+        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
