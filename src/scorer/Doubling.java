@@ -69,16 +69,19 @@ class Doubling {
         }
         else if (root == 2 && third == 1 && fifth == 1){
             if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(0)))){
+                score.addPenalty(PenaltyType.OMITTED_FIFTH); 
                 score.addPenalty(PenaltyType.BAD_DOUBLING);
             }
         }
         else if (root == 1 && third == 2 && fifth == 1){
             if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(1)))){
+                score.addPenalty(PenaltyType.OMITTED_FIFTH);
                 score.addPenalty(PenaltyType.BAD_DOUBLING);
             }
         }
         else if (root == 1 && third == 1 && fifth == 2){
             if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(2)))){
+                score.addPenalty(PenaltyType.OMITTED_FIFTH);
                 score.addPenalty(PenaltyType.BAD_DOUBLING);
             }
         }
