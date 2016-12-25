@@ -1,5 +1,9 @@
 package scorer;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.HashSet;
+
 import org.junit.Test;
 
 import chords.Chord;
@@ -8,7 +12,6 @@ import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
-import scorer.Scorer;
 
 public class ScorerTest {
     
@@ -24,10 +27,8 @@ public class ScorerTest {
     private static final BasicNote B = new BasicNote(6,11);
 
     private static final Key C_MAJOR = new Key(0,true);
-    private static final Scorer C_MAJOR_SCORER = new Scorer(C_MAJOR,debug);
     
     private static final Key A_MINOR = new Key(0,false);
-    private static final Scorer A_MINOR_SCORER = new Scorer(A_MINOR,debug);
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -35,79 +36,136 @@ public class ScorerTest {
         
     }
     
-    /************************
-     * Tests for scoreChord *
-     ************************/
+    private void printPenaltyChord(Chord chord, Key key, Score score){
+        if(debug){
+            System.err.println("Scoring chord: " + chord.toString() + "\n" + score.toString());
+        }
+    }
+    
+    private void printPenaltyTransition(Chord previous, Chord current, Key key, Score score){
+        if(debug){
+            System.err.println("Scoring transition: " + previous.toString() + "-->" + current.toString() 
+                + "\n" + score.toString());
+        }
+    }
+
+    
+    /**********************
+     * Tests for Doubling *
+     **********************/
     
     @Test
     public void testGoodDoublingSD1(){
+        Score score = new Score();
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        C_MAJOR_SCORER.scoreChord(cMajorDoubleRoot);
-    }
-
-    @Test
-    public void testBadDoublingSD3(){
-        Chord cMajorDoubleThird = new Chord(
-                new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
-                );
-        C_MAJOR_SCORER.scoreChord(cMajorDoubleThird);
-    }
-
-    @Test
-    public void testBadDoubleDouble(){
-        Chord cMajorDoubleRootThirdIncomplete = new Chord(
-                new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
-                );
-        C_MAJOR_SCORER.scoreChord(cMajorDoubleRootThirdIncomplete);
-    }
-    
-    @Test
-    public void testTripledSD1(){
-        Chord cMajorTripleRootIncomplete= new Chord(
-                new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
-                new PrimitiveChord(C, ChordType.MAJ, 0)
-                );
-        C_MAJOR_SCORER.scoreChord(cMajorTripleRootIncomplete);
+        Doubling.scoreDoubling(cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        
+        assertEquals(0, score.totalScore());
+        printPenaltyChord(cMajorDoubleRoot, C_MAJOR, score);
     }
 
     @Test
     public void testBadDoublingSD2(){
+        Score score = new Score();
         Chord dMinorDoubleRoot = new Chord(
                 new Note(D, 5), new Note(F, 4), new Note(A, 3), new Note(D, 3), 
                 new PrimitiveChord(D, ChordType.MIN, 0)
                 );
-        C_MAJOR_SCORER.scoreChord(dMinorDoubleRoot);
+        Doubling.scoreDoubling(dMinorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        
+        assertEquals(PenaltyType.BAD_DOUBLING.value(), score.totalScore());
+        printPenaltyChord(dMinorDoubleRoot, C_MAJOR, score);
+    }
+
+    @Test
+    public void testBadDoublingSD3(){
+        Score score = new Score();
+        Chord cMajorDoubleThird = new Chord(
+                new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        Doubling.scoreDoubling(cMajorDoubleThird, C_MAJOR, new HashSet<>(), score);
+        
+        assertEquals(PenaltyType.BAD_DOUBLING.value(), score.totalScore());
+        printPenaltyChord(cMajorDoubleThird, C_MAJOR, score);
     }
 
     @Test
     public void testGoodDoublingSD4(){
+        Score score = new Score();
         Chord dMinorDoubleThird = new Chord(
                 new Note(A, 4), new Note(F, 4), new Note(D, 4), new Note(F, 3), 
                 new PrimitiveChord(D, ChordType.MIN, 1)
                 );
-        C_MAJOR_SCORER.scoreChord(dMinorDoubleThird);
+        Doubling.scoreDoubling(dMinorDoubleThird, C_MAJOR, new HashSet<>(), score);
+        
+        assertEquals(0, score.totalScore());
+        printPenaltyChord(dMinorDoubleThird, C_MAJOR, score);
     }
     
+    @Test
+    public void testTripledSD1(){
+        Score score = new Score();
+        Chord cMajorTripleRootIncomplete= new Chord(
+                new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        Doubling.scoreDoubling(cMajorTripleRootIncomplete, C_MAJOR, new HashSet<>(), score);
+        
+        assertEquals(PenaltyType.OMITTED_FIFTH.value(), score.totalScore());
+        printPenaltyChord(cMajorTripleRootIncomplete, C_MAJOR, score);
+    }
+
+    @Test
+    public void testBadDoubleDouble(){
+        Score score = new Score();
+        Chord cMajorDoubleRootThirdIncomplete = new Chord(
+                new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        Doubling.scoreDoubling(cMajorDoubleRootThirdIncomplete, C_MAJOR, new HashSet<>(), score);
+        
+        assertEquals(PenaltyType.DOUBLE_DOUBLING.value() + PenaltyType.OMITTED_FIFTH.value(), score.totalScore());
+        printPenaltyChord(cMajorDoubleRootThirdIncomplete, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testVoiceOverlap(){
+        Score score = new Score();
+        Chord cMajorVoiceOverlap = new Chord(
+                new Note(C, 5), new Note(C, 5), new Note(E, 4), new Note(G, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 2)
+                );
+        VoiceOverlap.scoreVoiceOverlap(cMajorVoiceOverlap, C_MAJOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.VOICE_OVERLAP.value(), score.totalScore());
+        printPenaltyChord(cMajorVoiceOverlap, C_MAJOR, score);
+    }
+
+    /******************************
+     * Composite ScoreChord tests *
+     ******************************/
+        
     @Test
     public void testBadDoublingSD3VoiceOverlap(){
         Chord cMajorVoiceOverlapDoubleThird = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 2)
                 );
-        C_MAJOR_SCORER.scoreChord(cMajorVoiceOverlapDoubleThird);
+        Score score = Scorer.scoreChord(cMajorVoiceOverlapDoubleThird, C_MAJOR, new HashSet<>());
+        assertEquals(PenaltyType.VOICE_OVERLAP.value() + PenaltyType.BAD_DOUBLING.value(), score.totalScore());
+        printPenaltyChord(cMajorVoiceOverlapDoubleThird, C_MAJOR, score);
     }
     
-    /*****************************
-     * Tests for scoreTransition *
-     *****************************/
+    /*******************************
+     * Tests for ParallelsDirects  *
+     *******************************/
 
     @Test
     public void testParallels(){
+        Score score = new Score();
         Chord dMinorDoubleThird = new Chord(
                 new Note(F, 5), new Note(A, 4), new Note(D, 4), new Note(F, 3), 
                 new PrimitiveChord(D, ChordType.MIN, 1)
@@ -116,11 +174,14 @@ public class ScorerTest {
                 new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        C_MAJOR_SCORER.scoreTransition(dMinorDoubleThird, cMajorDoubleRoot);
+        ParallelsDirects.scoreParallels(dMinorDoubleThird, cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.PARALLEL.value(), score.totalScore());
+        printPenaltyTransition(dMinorDoubleThird, cMajorDoubleRoot, C_MAJOR, score);
     }
     
     @Test
     public void testNotParallel(){
+        Score score = new Score();
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 2)
@@ -129,11 +190,14 @@ public class ScorerTest {
                 new Note(B, 4), new Note(F, 4), new Note(D, 4), new Note(G, 3), 
                 new PrimitiveChord(G, ChordType.DOM7, 0)
                 );
-        C_MAJOR_SCORER.scoreTransition(cMajor64, gDominantSeven);
+        ParallelsDirects.scoreParallels(cMajor64, gDominantSeven, C_MAJOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(cMajor64, gDominantSeven, C_MAJOR, score);
     }
     
     @Test
     public void testDirect(){
+        Score score = new Score();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(G, 4), new Note(D, 4), new Note(G, 3), new Note(B, 2), 
                 new PrimitiveChord(G, ChordType.MAJ, 1)
@@ -142,11 +206,14 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        C_MAJOR_SCORER.scoreTransition(gMajorDoubleRoot, cMajorDoubleRoot);
+        ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.DIRECT, score.totalScore());
+        printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
 
     @Test
     public void testNotDirect(){
+        Score score = new Score();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
                 new PrimitiveChord(G, ChordType.MAJ, 0)
@@ -155,12 +222,19 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        C_MAJOR_SCORER.scoreTransition(gMajorDoubleRoot, cMajorDoubleRoot);
+        ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
+    
+    /*************************************
+     * Tests for DominantSevenResolution *
+     *************************************/
     
     @Test
     public void testDomSevenRootGood(){
-        Chord eDomSevenRoot = new Chord(
+        Score score = new Score();
+        Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
                 new PrimitiveChord(E, ChordType.DOM7, 0)
                 );
@@ -168,12 +242,15 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(A, 3), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSevenRoot, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenRootBad(){
-        Chord eDomSevenRoot = new Chord(
+        Score score = new Score();
+        Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
                 new PrimitiveChord(E, ChordType.DOM7, 0)
                 );
@@ -181,11 +258,14 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(A, 3), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSevenRoot, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenInv1Good(){
+        Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
                 new PrimitiveChord(E, ChordType.DOM7, 1)
@@ -194,11 +274,14 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(A, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenInv1Bad(){
+        Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
                 new PrimitiveChord(E, ChordType.DOM7, 1)
@@ -207,11 +290,14 @@ public class ScorerTest {
                 new Note(E, 5), new Note(C, 5), new Note(E, 4), new Note(A, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.DOM_SEVEN_RES, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenInv2Good(){
+        Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
                 new PrimitiveChord(E, ChordType.DOM7, 2)
@@ -220,11 +306,14 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenInv2GoodAlt(){
+        Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
                 new PrimitiveChord(E, ChordType.DOM7, 2)
@@ -233,11 +322,14 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenInv2Bad(){
+        Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
                 new PrimitiveChord(E, ChordType.DOM7, 2)
@@ -246,11 +338,14 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.DOM_SEVEN_RES, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenInv3Good(){
+        Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
                 new PrimitiveChord(E, ChordType.DOM7, 3)
@@ -259,11 +354,14 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     @Test
     public void testDomSevenInv3Bad(){
+        Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
                 new PrimitiveChord(E, ChordType.DOM7, 3)
@@ -272,7 +370,9 @@ public class ScorerTest {
                 new Note(A, 4), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        A_MINOR_SCORER.scoreTransition(eDomSeven, aMinor);
+        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.DOM_SEVEN_RES, score.totalScore());
+        printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
     
