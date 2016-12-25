@@ -2,8 +2,10 @@ package scorer;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import chords.Chord;
@@ -15,8 +17,7 @@ import solver.ContextTag;
 /**
  * A module that scores note doubling
  */
-class Doubling {
-    // TODO REFACTOR THIS 
+class Doubling { 
     
     private static final Set<Integer> GOOD_NOTES_TO_DOUBLE = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(1, 4, 5)));
@@ -35,59 +36,36 @@ class Doubling {
             return;
         }
                 
+        List<Note> chordSpelled = Scorer.spellChord(chord);
+
+        // this Map counts the number of times each note appears
         List<BasicNote> triad = chord.getPrimitiveChord().noteList();
-        List<Note> chordSpelled = Scorer.spellChord(chord);       
-        // counts of each note
-        int root = 0;
-        int third = 0;
-        int fifth = 0;
+        Map<BasicNote, Integer> noteCounts = new HashMap<>();
+        noteCounts.put(triad.get(0), 0);
+        noteCounts.put(triad.get(1), 0);
+        noteCounts.put(triad.get(2), 0);
+        
         for (Note note: chordSpelled){
-            if (note.getBasicNote().equals(triad.get(0))){
-                root++;
-            }
-            else if (note.getBasicNote().equals(triad.get(1))){
-                third++;
-            }
-            else if (note.getBasicNote().equals(triad.get(2))){
-                fifth++;
-            }
-            else{
-                throw new RuntimeException("Should not get here.");
-            }
+            noteCounts.put(note.getBasicNote(), noteCounts.get(note.getBasicNote())+1);
         }
-        if (fifth == 0){
+        if (noteCounts.get(triad.get(2)) == 0){
             score.addPenalty(PenaltyType.OMITTED_FIFTH);
-        }
-        if (root == 3 && third == 1 && fifth == 0){
-            if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(0)))){
+            for (BasicNote note : triad){
+                if (noteCounts.get(note) == 3 && !GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(note))){
                     score.addPenalty(PenaltyType.BAD_TRIPLING);
+                }
             }
-        }
-        else if (root == 2 && third == 2 && fifth == 0){
-            score.addPenalty(PenaltyType.DOUBLE_DOUBLING);
-        }
-        else if (root == 1 && third == 3 && fifth == 0){
-            if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(2)))){
-                score.addPenalty(PenaltyType.BAD_TRIPLING);             }
-        }
-        else if (root == 2 && third == 1 && fifth == 1){
-            if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(0)))){
-                score.addPenalty(PenaltyType.BAD_DOUBLING);
-            }
-        }
-        else if (root == 1 && third == 2 && fifth == 1){
-            if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(1)))){
-                score.addPenalty(PenaltyType.BAD_DOUBLING);
-            }
-        }
-        else if (root == 1 && third == 1 && fifth == 2){
-            if (!GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(triad.get(2)))){
-                score.addPenalty(PenaltyType.BAD_DOUBLING);
+            if (noteCounts.get(triad.get(0)) == 2 && noteCounts.get(triad.get(1)) == 2){
+                score.addPenalty(PenaltyType.DOUBLE_DOUBLING);
             }
         }
         else{
-            throw new RuntimeException("Should not get here.");
-        }        
+            for (BasicNote note : triad){
+                if (noteCounts.get(note) == 2 && !GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(note))){
+                    score.addPenalty(PenaltyType.BAD_DOUBLING);
+                }
+            }            
+        }
     }
     
     

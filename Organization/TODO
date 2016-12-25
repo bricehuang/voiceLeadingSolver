@@ -3,8 +3,6 @@ music:
 
 scorer: 
 * Make separate classes for Chord Score and Transition Score, Chord Type and Penalty Type
-* Refactor old methods
-* Update tests 
 * Test and implement unimplemented methods
 * Specify, test, and implement more functionality 
 
