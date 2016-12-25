@@ -1,14 +1,17 @@
 package scorer;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import chords.Chord;
 import chords.ChordType;
 import music.BasicInterval;
+import music.BasicNote;
 import music.Interval;
 import music.Key;
 import music.Note;
@@ -34,7 +37,9 @@ class DominantSevenResolution {
     private static final Interval DOWN_P5 = new Interval(P5, 0, false); 
     
     
-    private static final List<Set<List<Interval>>> DOM_MAJOR_RESOLUTION_MOVEMENTS = Arrays.asList(
+    private static final Map<ChordType, List<Set<List<Interval>>>> RESOLUTIONS; 
+    static{
+        final List<Set<List<Interval>>> domMajorResolutionMovements = Arrays.asList(
                 new HashSet<>(Arrays.asList(
                     Arrays.asList(UP_P4, UP_m2, DOWN_M2, DOWN_m2),
                     Arrays.asList(DOWN_P5, UP_m2, DOWN_M2, DOWN_m2)
@@ -51,7 +56,7 @@ class DominantSevenResolution {
                 ))
             );
 
-    private static final List<Set<List<Interval>>> DOM_MINOR_RESOLUTION_MOVEMENTS = Arrays.asList(
+        final List<Set<List<Interval>>> domMinorResolutionMovements = Arrays.asList(
             new HashSet<>(Arrays.asList(
                 Arrays.asList(UP_P4, UP_m2, DOWN_M2, DOWN_M2),
                 Arrays.asList(DOWN_P5, UP_m2, DOWN_M2, DOWN_M2)
@@ -67,22 +72,70 @@ class DominantSevenResolution {
                 Arrays.asList(UNIS, UP_m2, UP_m2, DOWN_M2)
             ))
         );
-
+        Map<ChordType, List<Set<List<Interval>>>> resolutionsTmp = new HashMap<>();
+        resolutionsTmp.put(ChordType.MAJ, domMajorResolutionMovements);
+        resolutionsTmp.put(ChordType.MIN, domMinorResolutionMovements);
+        RESOLUTIONS = Collections.unmodifiableMap(resolutionsTmp);
+    }
 
     
     
-    private static boolean matchesMovements(List<Note> previousSpelled, 
-            List<Note> currentSpelled, List<Interval> movements){
+    
+    /**
+     * Helper function. Returns the index of a note, when spelled in a dominant chord,
+     * from the bottom up. 
+     * @param note a note. Must be in a dominant 7 chord.  
+     * @param domRoot root of the dominant 7 chord. 
+     * @return ''
+     */
+    private static int getIndexOfDomNote(Note note, BasicNote domRoot){
+        return BasicInterval.intervalBetween(domRoot, note.getBasicNote()).getScaleDegrees()/2;
+    }
+    
+    /**
+     * Checks if in the transition from previousSpelled to currentSpelled, 
+     * the voices move by four specified intervals 
+     * @param previous previous chord. Must be dominant 7. 
+     * @param current current chord. Must be major or minor. 
+     * @param movements expected movements for root, 3rd, 5th, and 7th of dom chord
+     * @return true if previous --> current followed movements
+     */
+    private static boolean matchesMovements(Chord previous, 
+            Chord current, List<Interval> movements){
+        List<Note> previousSpelled = Scorer.spellChord(previous);
+        List<Note> currentSpelled = Scorer.spellChord(current);
+        BasicNote domRoot = previous.getPrimitiveChord().getRoot();
+        
         // magic number: 4 = size of chord
         for (int i=0; i<4; i++){
-            if (! Interval.melodicIntervalBetween(
-                    previousSpelled.get(i), currentSpelled.get(i)
-                    ).equals(movements.get(i))){
+            Interval actualInterval = Interval.melodicIntervalBetween(
+                    previousSpelled.get(i), currentSpelled.get(i));
+            Interval expectedInterval = movements.get(
+                    getIndexOfDomNote(previousSpelled.get(i), domRoot)); 
+            if (!actualInterval.equals(expectedInterval)){
                 return false;
             }
         }
         return true;
     }
+    
+    /**
+     * Checks if transition from previousSpelled to currenTSpelled is valid
+     * @param previous previous chord. Must be dominant 7. 
+     * @param current current chord. Must be major or minor. 
+     * @return true if this transition is valid. 
+     */
+    private static boolean isValidResolution(Chord previous, Chord current){
+        Set<List<Interval>> properResolutions = RESOLUTIONS.get(current.getType()).get(
+                previous.getPrimitiveChord().getInversion());
+        for (List<Interval> movements : properResolutions){
+            if (matchesMovements(previous, current, movements)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
     /**
      * Scores for dominant 7th resolutions by mutating an input score
@@ -111,7 +164,9 @@ class DominantSevenResolution {
             assert(previous.getPrimitiveChord().getRoot().equals(key.getScaleDegree(5)));
             assert(current.getPrimitiveChord().getRoot().equals(key.getScaleDegree(1)));
         }
-        throw new RuntimeException("Unimplemented.");
+        if (! isValidResolution(previous,current)){
+            score.addPenalty(PenaltyType.DOM_SEVEN_RES);
+        }
     }
 
 }
