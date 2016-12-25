@@ -9,7 +9,6 @@ import java.util.Map;
 public class Score {
 
     private final Map<PenaltyType, Integer> penaltyCount = new HashMap<>();
-    private final boolean debug;
     private int totalPenalty;
     
     /*
@@ -29,16 +28,6 @@ public class Score {
      * is requested. 
      */
     public Score(){
-        this.debug = false;
-        checkRep();
-    }
-    
-    /**
-     * Constructs a scorer with user inputted debug flag
-     * @param debug if true, 
-     */
-    public Score(boolean debug){
-        this.debug = debug;
         checkRep();
     }
     
@@ -88,9 +77,6 @@ public class Score {
      * @return total penalty of this transition
      */
     public int totalScore(){
-        if (debug){
-            System.err.println(this.toString());
-        }
         return totalPenalty;
     }
     
