@@ -33,7 +33,7 @@ public enum PenaltyType {
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     
-    public static final Map<PenaltyType, Integer> PENALTIES;
+    private static final Map<PenaltyType, Integer> PENALTIES;
     static{
         Map<PenaltyType, Integer> tmpPenalties = new HashMap<>();
         //tmpPenalties.put(MOVEMENT, TODO);
@@ -49,6 +49,10 @@ public enum PenaltyType {
         //tmpPenalties.put(DOM_SEVEN_RES, TODO); 
         //tmpPenalties.put(DIM_SEVEN_RES, TODO); 
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
+    }
+    
+    public int value(){
+        return PENALTIES.get(this);
     }
     
     @Override
