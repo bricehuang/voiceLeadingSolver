@@ -47,7 +47,7 @@ public enum PenaltyType {
         //tmpPenalties.put(MELODIC_INTERVAL, TODO);
         //tmpPenalties.put(VOICE_CROSSING, TODO);
         tmpPenalties.put(DOM_SEVEN_RES, 1000); 
-        //tmpPenalties.put(DIM_SEVEN_RES, TODO); 
+        tmpPenalties.put(DIM_SEVEN_RES, 1000); 
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
     }
     

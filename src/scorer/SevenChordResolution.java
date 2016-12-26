@@ -22,11 +22,17 @@ import solver.ContextTag;
  */
 class SevenChordResolution {
     
+    // TODO: refactor code duplication for scoring dom and dim methods
+    // TODO: alternative dim 7 resolutions? if dim7 has options like dom7, 
+    // refactoring may be easier
+    
     private static final BasicInterval P1 = new BasicInterval(0, 0);
     private static final BasicInterval m2 = new BasicInterval(1, 1);
     private static final BasicInterval M2 = new BasicInterval(1, 2);
     private static final BasicInterval P4 = new BasicInterval(3, 5);
     private static final BasicInterval P5 = new BasicInterval(4, 7);
+    private static final BasicInterval M7 = new BasicInterval(6, 11);
+
     
     private static final Interval UNIS = new Interval(P1, 0, true);
     private static final Interval UP_M2 = new Interval(M2, 0, true); 
@@ -37,7 +43,7 @@ class SevenChordResolution {
     private static final Interval DOWN_P5 = new Interval(P5, 0, false); 
     
     
-    private static final Map<ChordType, List<Set<List<Interval>>>> RESOLUTIONS; 
+    private static final Map<ChordType, List<Set<List<Interval>>>> DOM_RESOLUTIONS; 
     static{
         final List<Set<List<Interval>>> domMajorResolutionMovements = Arrays.asList(
                 new HashSet<>(Arrays.asList(
@@ -75,10 +81,20 @@ class SevenChordResolution {
         Map<ChordType, List<Set<List<Interval>>>> resolutionsTmp = new HashMap<>();
         resolutionsTmp.put(ChordType.MAJ, domMajorResolutionMovements);
         resolutionsTmp.put(ChordType.MIN, domMinorResolutionMovements);
-        RESOLUTIONS = Collections.unmodifiableMap(resolutionsTmp);
+        DOM_RESOLUTIONS = Collections.unmodifiableMap(resolutionsTmp);
     }
 
-    
+    private static final Map<ChordType, List<Interval>> DIM_RESOLUTIONS;
+    static{
+        final List<Interval> dimMajorResolutionMovement = Arrays.asList(
+                UP_m2, UP_M2, DOWN_m2, DOWN_m2);
+        final List<Interval> dimMinorResolutionMovement = Arrays.asList(
+                UP_m2, UP_m2, DOWN_M2, DOWN_m2);
+        Map<ChordType, List<Interval>> resolutionsTmp = new HashMap<>();
+        resolutionsTmp.put(ChordType.MAJ, dimMajorResolutionMovement);
+        resolutionsTmp.put(ChordType.MIN, dimMinorResolutionMovement);
+        DIM_RESOLUTIONS = Collections.unmodifiableMap(resolutionsTmp);
+    }
     
     
     /**
@@ -88,7 +104,7 @@ class SevenChordResolution {
      * @param domRoot root of the dominant 7 chord. 
      * @return ''
      */
-    private static int getIndexOfDomNote(Note note, BasicNote domRoot){
+    private static int getIndexOfSevChordNote(Note note, BasicNote domRoot){
         return BasicInterval.intervalBetween(domRoot, note.getBasicNote()).getScaleDegrees()/2;
     }
     
@@ -111,7 +127,7 @@ class SevenChordResolution {
             Interval actualInterval = Interval.melodicIntervalBetween(
                     previousSpelled.get(i), currentSpelled.get(i));
             Interval expectedInterval = movements.get(
-                    getIndexOfDomNote(previousSpelled.get(i), domRoot)); 
+                    getIndexOfSevChordNote(previousSpelled.get(i), domRoot)); 
             if (!actualInterval.equals(expectedInterval)){
                 return false;
             }
@@ -120,13 +136,13 @@ class SevenChordResolution {
     }
     
     /**
-     * Checks if transition from previousSpelled to currenTSpelled is valid
+     * Checks if transition from previous to current is valid dom7 resolution
      * @param previous previous chord. Must be dominant 7. 
      * @param current current chord. Must be major or minor. 
      * @return true if this transition is valid. 
      */
-    private static boolean isValidResolution(Chord previous, Chord current){
-        Set<List<Interval>> properResolutions = RESOLUTIONS.get(current.getType()).get(
+    private static boolean isValidDominantResolution(Chord previous, Chord current){
+        Set<List<Interval>> properResolutions = DOM_RESOLUTIONS.get(current.getType()).get(
                 previous.getPrimitiveChord().getInversion());
         for (List<Interval> movements : properResolutions){
             if (matchesMovements(previous, current, movements)){
@@ -164,11 +180,24 @@ class SevenChordResolution {
             assert(previous.getPrimitiveChord().getRoot().equals(key.getScaleDegree(5)));
             assert(current.getPrimitiveChord().getRoot().equals(key.getScaleDegree(1)));
         }
-        if (! isValidResolution(previous,current)){
+        if (! isValidDominantResolution(previous, current)){
             score.addPenalty(PenaltyType.DOM_SEVEN_RES);
         }
     }
     
+    /**
+     * Checks if transition from previous to current is valid dim resolution
+     * @param previous previous chord. Must be diminished 7. 
+     * @param current current chord. Must be major or minor. 
+     * @return true if this transition is valid. 
+     */
+    private static boolean isValidDiminishedResolution(Chord previous, Chord current){
+        List<Interval> movements = DIM_RESOLUTIONS.get(current.getType());
+        if (matchesMovements(previous, current, movements)){
+            return true;
+        }
+        return false;
+    }
     
     /**
      * Scores for diminished 7th resolutions by mutating an input score
@@ -180,7 +209,25 @@ class SevenChordResolution {
      */
     static void scoreDimSevenResolutions(Chord previous, Chord current, Key key,
             Set<ContextTag> contextTags, Score score){
-        throw new RuntimeException("Unimplemented.");
+        // if previous isn't dim7, don't do anything
+        if (previous.getType() != ChordType.DIM7){
+            return;
+        }
+        // sanity checks
+        assert(current.getType().equals(ChordType.MAJ) || current.getType().equals(ChordType.MIN));
+        if (contextTags.contains(ContextTag.APPLIED_DOMINANT)){
+            assert(previous.getPrimitiveChord().getRoot().equals(
+                    current.getPrimitiveChord().getRoot().transpose(M7, true))
+                    );
+        }
+        else{
+            // magic numbers: 7 is leading tone, 1 is tonic
+            assert(previous.getPrimitiveChord().getRoot().equals(key.getScaleDegree(7)));
+            assert(current.getPrimitiveChord().getRoot().equals(key.getScaleDegree(1)));
+        }        
+        if (! isValidDiminishedResolution(previous, current)){
+            score.addPenalty(PenaltyType.DIM_SEVEN_RES);
+        }
     }
 
 }
