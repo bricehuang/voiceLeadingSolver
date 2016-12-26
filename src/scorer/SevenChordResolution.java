@@ -20,7 +20,7 @@ import solver.ContextTag;
 /**
  * A module for scoring dominant seven resolutions
  */
-class DominantSevenResolution {
+class SevenChordResolution {
     
     private static final BasicInterval P1 = new BasicInterval(0, 0);
     private static final BasicInterval m2 = new BasicInterval(1, 1);
@@ -167,6 +167,20 @@ class DominantSevenResolution {
         if (! isValidResolution(previous,current)){
             score.addPenalty(PenaltyType.DOM_SEVEN_RES);
         }
+    }
+    
+    
+    /**
+     * Scores for diminished 7th resolutions by mutating an input score
+     * @param previous previous chord 
+     * @param current current chord
+     * @param key key in which this transition should be analyzed
+     * @param contextTags any relevant context tags
+     * @param score a Score that gets mutated
+     */
+    static void scoreDimSevenResolutions(Chord previous, Chord current, Key key,
+            Set<ContextTag> contextTags, Score score){
+        throw new RuntimeException("Unimplemented.");
     }
 
 }

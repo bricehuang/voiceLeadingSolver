@@ -227,9 +227,9 @@ public class ScorerTest {
         printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
     
-    /*************************************
-     * Tests for DominantSevenResolution *
-     *************************************/
+    /**********************************
+     * Tests for SevenChordResolution *
+     **********************************/
     
     @Test
     public void testDomSevenRootGood(){
@@ -242,7 +242,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(A, 3), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -258,7 +258,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(A, 3), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -274,7 +274,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(A, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -290,7 +290,7 @@ public class ScorerTest {
                 new Note(E, 5), new Note(C, 5), new Note(E, 4), new Note(A, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -306,7 +306,7 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -322,7 +322,7 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -338,7 +338,7 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -354,7 +354,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -370,7 +370,7 @@ public class ScorerTest {
                 new Note(A, 4), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        DominantSevenResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
