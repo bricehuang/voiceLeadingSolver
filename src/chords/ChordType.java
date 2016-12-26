@@ -15,7 +15,7 @@ public enum ChordType {
     MAJ, MIN, 
     DOM7, MAJ7, MIN7, DIM7;
         
-    public static final Map<ChordType, List<BasicInterval>> CHORD_OFFSETS;
+    private static final Map<ChordType, List<BasicInterval>> CHORD_OFFSETS;
     static{
         Map<ChordType, List<BasicInterval>> tmpChordOffsets = new HashMap<>();
         tmpChordOffsets.put(MAJ, Collections.unmodifiableList(Arrays.asList(
@@ -65,6 +65,10 @@ public enum ChordType {
         tmpStringReps.put(MIN7, "MINOR 7TH");
         tmpStringReps.put(DIM7, "DIMINISHED 7TH");
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
+    }
+    
+    public List<BasicInterval> getChordOffset(){
+        return CHORD_OFFSETS.get(this);
     }
     
     public int numberDistinctNotes(){

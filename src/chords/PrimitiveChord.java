@@ -53,7 +53,7 @@ public class PrimitiveChord {
      */
     public List<BasicNote> noteList(){
         List<BasicNote> notesInChord = new ArrayList<>();
-        for (BasicInterval interval : ChordType.CHORD_OFFSETS.get(type)){
+        for (BasicInterval interval : type.getChordOffset()){
             notesInChord.add(root.transpose(interval, true));
         }
         return notesInChord;
