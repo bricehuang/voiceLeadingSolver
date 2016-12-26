@@ -24,6 +24,7 @@ public enum PenaltyType {
         tmpStringReps.put(DOUBLE_DOUBLING, "Double Doubling Penalty");
         tmpStringReps.put(BAD_TRIPLING, "Bad Tripling Penalty");
         tmpStringReps.put(OMITTED_FIFTH, "Omitted Fifth Penalty");
+        tmpStringReps.put(VOICE_OVERLAP, "Voice Overlap Penalty");
         tmpStringReps.put(PARALLEL, "Parallel Interval Penalty");
         tmpStringReps.put(DIRECT, "Direct Interval Penalty");
         tmpStringReps.put(MELODIC_INTERVAL, "Melodic Interval Penalty");
