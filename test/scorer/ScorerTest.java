@@ -135,6 +135,23 @@ public class ScorerTest {
     }
     
     @Test
+    public void testDoubleLeadingTone(){
+        Score score = new Score();
+        Chord gMajorDoubleThird = new Chord(
+                new Note(B, 4), new Note(D, 4), new Note(B, 3), new Note(G, 3), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        Doubling.scoreDoubling(gMajorDoubleThird, C_MAJOR, new HashSet<>(), score);
+        
+        assertEquals(PenaltyType.BAD_DOUBLING.value() + PenaltyType.DOUBLED_LEADING_TONE.value(), score.totalScore());
+        printPenaltyChord(gMajorDoubleThird, C_MAJOR, score);
+    }
+    
+    /***************************
+     * Tests for Voice Overlap *
+     ***************************/
+    
+    @Test
     public void testVoiceOverlap(){
         Score score = new Score();
         Chord cMajorVoiceOverlap = new Chord(

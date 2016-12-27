@@ -10,7 +10,7 @@ import java.util.Map;
 public enum PenaltyType {
     MOVEMENT,
     
-    BAD_DOUBLING, DOUBLE_DOUBLING, BAD_TRIPLING, OMITTED_FIFTH, 
+    BAD_DOUBLING, DOUBLE_DOUBLING, BAD_TRIPLING, OMITTED_FIFTH, DOUBLED_LEADING_TONE,
     VOICE_OVERLAP,
     PARALLEL, DIRECT, 
     MELODIC_INTERVAL, VOICE_CROSSING,
@@ -24,6 +24,7 @@ public enum PenaltyType {
         tmpStringReps.put(DOUBLE_DOUBLING, "Double Doubling Penalty");
         tmpStringReps.put(BAD_TRIPLING, "Bad Tripling Penalty");
         tmpStringReps.put(OMITTED_FIFTH, "Omitted Fifth Penalty");
+        tmpStringReps.put(DOUBLED_LEADING_TONE, "Doubled Leading Tone Penalty");
         tmpStringReps.put(VOICE_OVERLAP, "Voice Overlap Penalty");
         tmpStringReps.put(PARALLEL, "Parallel Interval Penalty");
         tmpStringReps.put(DIRECT, "Direct Interval Penalty");
@@ -42,6 +43,7 @@ public enum PenaltyType {
         tmpPenalties.put(DOUBLE_DOUBLING, 200);
         tmpPenalties.put(BAD_TRIPLING, 100);
         tmpPenalties.put(OMITTED_FIFTH, 100);
+        tmpPenalties.put(DOUBLED_LEADING_TONE, 100000);
         tmpPenalties.put(VOICE_OVERLAP, 50);
         tmpPenalties.put(PARALLEL, 1000000);
         tmpPenalties.put(DIRECT, 1000000);

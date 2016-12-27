@@ -21,6 +21,7 @@ class Doubling {
     
     private static final Set<Integer> GOOD_NOTES_TO_DOUBLE = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(1, 4, 5)));
+    private static final Integer LEADING_TONE = 7;
     
     /**
      * Scores for bad doubling by mutating an input score 
@@ -53,6 +54,9 @@ class Doubling {
             for (BasicNote note : triad){
                 if (noteCounts.get(note) == 3 && !GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(note))){
                     score.addPenalty(PenaltyType.BAD_TRIPLING);
+                    if (key.findScaleDegree(note) == LEADING_TONE){
+                        score.addPenalty(PenaltyType.DOUBLED_LEADING_TONE);
+                    }
                 }
             }
             if (noteCounts.get(triad.get(0)) == 2 && noteCounts.get(triad.get(1)) == 2){
@@ -63,6 +67,9 @@ class Doubling {
             for (BasicNote note : triad){
                 if (noteCounts.get(note) == 2 && !GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(note))){
                     score.addPenalty(PenaltyType.BAD_DOUBLING);
+                }
+                if (key.findScaleDegree(note) == LEADING_TONE){
+                    score.addPenalty(PenaltyType.DOUBLED_LEADING_TONE);
                 }
             }            
         }
