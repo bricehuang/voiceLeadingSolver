@@ -23,6 +23,7 @@ public class ScorerTest {
     private static final BasicNote F = new BasicNote(3,5);
     private static final BasicNote G = new BasicNote(4,7);
     private static final BasicNote Gs = new BasicNote(4,8);
+    private static final BasicNote Ab = new BasicNote(5,8);
     private static final BasicNote A = new BasicNote(5,9);
     private static final BasicNote B = new BasicNote(6,11);
 
@@ -227,9 +228,9 @@ public class ScorerTest {
         printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
     
-    /**********************************
-     * Tests for SevenChordResolution *
-     **********************************/
+    /**************************************
+     * Tests for scoreDomSevenResolutions *
+     **************************************/
     
     @Test
     public void testDomSevenRootGood(){
@@ -374,6 +375,73 @@ public class ScorerTest {
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
+    
+    /**************************************
+     * Tests for scoreDimSevenResolutions *
+     **************************************/
+
+    @Test
+    public void testDimSevenGood1(){
+        Score score = new Score();
+        Chord bDimSeven = new Chord(
+                new Note(Ab, 4), new Note(F, 4), new Note(B, 3), new Note(D, 3), 
+                new PrimitiveChord(B, ChordType.DIM7, 1)
+                );
+        Chord cMajor = new Chord(
+                new Note(G, 4), new Note(E, 4), new Note(C, 4), new Note(E, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 1)
+                );
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testDimSevenGood2(){
+        Score score = new Score();
+        Chord bDimSeven = new Chord(
+                new Note(F, 4), new Note(D, 4), new Note(B, 3), new Note(Ab, 2), 
+                new PrimitiveChord(B, ChordType.DIM7, 3)
+                );
+        Chord cMajor = new Chord(
+                new Note(E, 4), new Note(E, 4), new Note(C, 4), new Note(G, 2), 
+                new PrimitiveChord(C, ChordType.MAJ, 2)
+                );
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
+    }
 
     
+    @Test
+    public void testDimSevenBad1(){
+        Score score = new Score();
+        Chord bDimSeven = new Chord(
+                new Note(Ab, 4), new Note(F, 4), new Note(B, 3), new Note(D, 3), 
+                new PrimitiveChord(B, ChordType.DIM7, 1)
+                );
+        Chord cMajor = new Chord(
+                new Note(G, 4), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.DIM_SEVEN_RES.value(), score.totalScore());
+        printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testDimSevenBad2(){
+        Score score = new Score();
+        Chord bDimSeven = new Chord(
+                new Note(D, 5), new Note(Ab, 4), new Note(B, 3), new Note(F, 3), 
+                new PrimitiveChord(B, ChordType.DIM7, 2)
+                );
+        Chord cMajor = new Chord(
+                new Note(C, 5), new Note(G, 4), new Note(C, 4), new Note(E, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 1)
+                );
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.DIM_SEVEN_RES.value(), score.totalScore());
+        printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
+    }
 }
