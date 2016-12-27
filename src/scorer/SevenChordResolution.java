@@ -45,38 +45,48 @@ class SevenChordResolution {
     
     private static final Map<ChordType, List<Set<List<Interval>>>> DOM_RESOLUTIONS; 
     static{
+        List<Interval> rootMajorResolution1 = Arrays.asList(UP_P4, UP_m2, DOWN_M2, DOWN_m2); 
+        List<Interval> rootMajorResolution2 = Arrays.asList(DOWN_P5, UP_m2, DOWN_M2, DOWN_m2);
+        List<Interval> inv1MajorResolution = Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_m2);
+        List<Interval> inv2MajorResolution1 = Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_m2);
+        List<Interval> inv2MajorResolution2 = Arrays.asList(UNIS, UP_m2, UP_M2, DOWN_m2);
+        List<Interval> inv3MajorResolution = Arrays.asList(UNIS, UP_m2, UP_M2, DOWN_m2);
+        
         final List<Set<List<Interval>>> domMajorResolutionMovements = Arrays.asList(
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UP_P4, UP_m2, DOWN_M2, DOWN_m2)),
-                        Collections.unmodifiableList(Arrays.asList(DOWN_P5, UP_m2, DOWN_M2, DOWN_m2))
-                ))),
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_m2))
-                ))),
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_m2)),
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, UP_M2, DOWN_m2))
-                ))),                
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, UP_M2, DOWN_m2))
-                )))
+                new HashSet<>(Arrays.asList(
+                        rootMajorResolution1, rootMajorResolution2
+                )),
+                new HashSet<>(Arrays.asList(
+                        inv1MajorResolution
+                )),
+                new HashSet<>(Arrays.asList(
+                        inv2MajorResolution1, inv2MajorResolution2
+                )),
+                new HashSet<>(Arrays.asList(
+                        inv3MajorResolution
+                ))
             );
+        
+        List<Interval> rootMinorResolution1 = Arrays.asList(UP_P4, UP_m2, DOWN_M2, DOWN_M2); 
+        List<Interval> rootMinorResolution2 = Arrays.asList(DOWN_P5, UP_m2, DOWN_M2, DOWN_M2);
+        List<Interval> inv1MinorResolution = Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_M2);
+        List<Interval> inv2MinorResolution1 = Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_M2);
+        List<Interval> inv2MinorResolution2 = Arrays.asList(UNIS, UP_m2, UP_m2, DOWN_M2);
+        List<Interval> inv3MinorResolution = Arrays.asList(UNIS, UP_m2, UP_m2, DOWN_M2);
 
         final List<Set<List<Interval>>> domMinorResolutionMovements = Arrays.asList(
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UP_P4, UP_m2, DOWN_M2, DOWN_M2)),
-                        Collections.unmodifiableList(Arrays.asList(DOWN_P5, UP_m2, DOWN_M2, DOWN_M2))
-                ))),
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_M2))
-                ))),
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, DOWN_M2, DOWN_M2)),
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, UP_m2, DOWN_M2))
-                ))),                
-                Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                        Collections.unmodifiableList(Arrays.asList(UNIS, UP_m2, UP_m2, DOWN_M2))
-                )))
+                new HashSet<>(Arrays.asList(
+                        rootMinorResolution1, rootMinorResolution2
+                )),
+                new HashSet<>(Arrays.asList(
+                        inv1MinorResolution
+                )),
+                new HashSet<>(Arrays.asList(
+                        inv2MinorResolution1, inv2MinorResolution2
+                )),
+                new HashSet<>(Arrays.asList(
+                        inv3MinorResolution
+                ))
             );
         Map<ChordType, List<Set<List<Interval>>>> resolutionsTmp = new HashMap<>();
         resolutionsTmp.put(ChordType.MAJ, domMajorResolutionMovements);
