@@ -28,8 +28,9 @@ public class ScorerTest {
     private static final BasicNote B = new BasicNote(6,11);
 
     private static final Key C_MAJOR = new Key(0,true);
-    
     private static final Key A_MINOR = new Key(0,false);
+    
+    private static final Key C_MINOR = new Key(-3,false);
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -444,4 +445,41 @@ public class ScorerTest {
         assertEquals(PenaltyType.DIM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
     }
+    
+    /******************************
+     * Tests for MelodicIntervals *
+     ******************************/
+    
+    @Test
+    public void testMelodicIntervalGood(){
+        Score score = new Score();
+        Chord fMinor = new Chord(
+                new Note(Ab, 4), new Note(F, 4), new Note(C, 4), new Note(F, 2), 
+                new PrimitiveChord(F, ChordType.MIN, 0)
+                );
+        Chord gMajor = new Chord(
+                new Note(G, 4), new Note(D, 4), new Note(B, 3), new Note(G, 2), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, C_MINOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
+    }    
+    
+    @Test
+    public void testMelodicIntervalBad(){
+        Score score = new Score();
+        Chord fMinor = new Chord(
+                new Note(Ab, 4), new Note(F, 4), new Note(C, 4), new Note(F, 2), 
+                new PrimitiveChord(F, ChordType.MIN, 0)
+                );
+        Chord gMajor = new Chord(
+                new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, C_MINOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.MELODIC_INTERVAL.value(), score.totalScore());
+        printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
+    }
+
 }
