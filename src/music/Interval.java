@@ -138,6 +138,14 @@ public class Interval {
         int absoluteScaleDegrees = basicInterval.getScaleDegrees() + octaves * Key.PITCHES_IN_SCALE;
         return (increasing ? absoluteScaleDegrees : -absoluteScaleDegrees);
     }
+    
+    /**
+     * Simple getter method
+     * @return the quality of ths interval
+     */
+    public IntervalQuality getQuality(){
+        return basicInterval.getQuality();
+    }
 
     /*******************
      * Object Contract *

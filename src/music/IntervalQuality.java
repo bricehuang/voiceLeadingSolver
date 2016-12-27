@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.Set;
 
 public enum IntervalQuality {
-    // TODO we don't want this to throw exception
     // TODO test
     MAJ, MIN, PFT,
-    AUG, DIM;
+    AUG, DIM,
+    ERR;
     
     private static final Map<IntervalQuality, String> STRING_REPS;
     static{
@@ -22,6 +22,7 @@ public enum IntervalQuality {
         stringRepTmp.put(PFT, "Perfect");
         stringRepTmp.put(AUG, "Augmented");
         stringRepTmp.put(DIM, "Diminished");
+        stringRepTmp.put(ERR, "ERROR");
         STRING_REPS = Collections.unmodifiableMap(stringRepTmp);
     }
 
@@ -34,10 +35,9 @@ public enum IntervalQuality {
      * Computations *
      ****************/
     
-    static IntervalQuality qualityOf(BasicInterval interval){
-        int scaleDegrees = interval.getScaleDegrees();
+    static IntervalQuality qualityOf(int scaleDegrees, int semitones) {
         if (PERFECT_INTERVALS.contains(scaleDegrees)){
-            int diffFromPerfect = interval.getSemitones() - PERFECT_AND_MAJOR_SEMITONES.get(scaleDegrees);
+            int diffFromPerfect = semitones- PERFECT_AND_MAJOR_SEMITONES.get(scaleDegrees);
             if (diffFromPerfect == -1){
                 return DIM;
             }
@@ -48,11 +48,11 @@ public enum IntervalQuality {
                 return AUG;
             }
             else{
-                throw new RuntimeException("Bad interval");
+                return ERR;
             }
         }
         else{
-            int diffFromMajor = interval.getSemitones() - PERFECT_AND_MAJOR_SEMITONES.get(scaleDegrees);
+            int diffFromMajor = semitones - PERFECT_AND_MAJOR_SEMITONES.get(scaleDegrees);
             if (diffFromMajor == -2){
                 return DIM;
             }
@@ -66,7 +66,7 @@ public enum IntervalQuality {
                 return AUG;
             }
             else{
-                throw new RuntimeException("Bad interval");
+                return ERR;
             }
         }
     }

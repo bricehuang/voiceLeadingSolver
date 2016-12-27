@@ -7,6 +7,7 @@ public class BasicInterval {
 
     private final int semitones;
     private final int scaleDegrees;
+    private final IntervalQuality quality; 
     
     /*
      * Abstraction Function:
@@ -16,7 +17,7 @@ public class BasicInterval {
      * a 2nd is 1, and so on)
      * 
      * Rep Invariant:
-     * TODO: All intervals should be dim, min, maj, or aug
+     * scale degrees >= 0
      * 
      * Rep Exposure:
      * Only returns primitives and immutables
@@ -30,13 +31,13 @@ public class BasicInterval {
     public BasicInterval(int scaleDegrees, int semitones){
         this.scaleDegrees = scaleDegrees;
         this.semitones = semitones;
+        this.quality  = IntervalQuality.qualityOf(scaleDegrees, semitones);
         checkRep();
     }
     
     private void checkRep(){
         assert(0<= scaleDegrees);
         assert(scaleDegrees < Key.PITCHES_IN_SCALE);
-        // TODO more robust checkrep
     }
     
     /****************
@@ -83,6 +84,14 @@ public class BasicInterval {
      */
     public int getScaleDegrees(){
         return scaleDegrees;
+    }
+    
+    /**
+     * Simple getter method
+     * @return the quality of ths interval
+     */
+    public IntervalQuality getQuality(){
+        return quality;
     }
 
     /*******************
