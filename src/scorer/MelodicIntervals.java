@@ -1,16 +1,33 @@
 package scorer;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import chords.Chord;
+import music.BasicInterval;
+import music.Interval;
+import music.IntervalQuality;
 import music.Key;
+import music.Note;
 import solver.ContextTag;
 
 /**
  * A module that scores for good melodic intervals
  */
 class MelodicIntervals {
-    // TODO make Interval have major, minor, perfect, aug, dim type?
+    
+    private static final BasicInterval SEMITONE = new BasicInterval(0,1);
+    private static final Interval SEMITONE_UP = new Interval(SEMITONE, 0, true);
+    private static final Interval SEMITONE_DOWN = new Interval(SEMITONE, 0, false);
+    
+    
+    private static final Set<Interval> SEMITONE_STEPS = new HashSet<>(
+            Arrays.asList(SEMITONE_UP, SEMITONE_DOWN));
+    private static final Set<IntervalQuality> ACCEPTABLE_QUALITIES = new HashSet<>(
+            Arrays.asList(IntervalQuality.MAJ, IntervalQuality.MIN, IntervalQuality.PFT)
+            );
     
     /**
      * Scores for bad melodic intervals by mutating an input score
@@ -22,7 +39,16 @@ class MelodicIntervals {
      */
     static void scoreMelodicIntervals(Chord previous, Chord current, Key key,
             Set<ContextTag> contextTags, Score score){
-        throw new RuntimeException("Unimplemented.");
+        List<Note> previousSpelled = Scorer.spellChord(previous);
+        List<Note> currentSpelled = Scorer.spellChord(current);
+        for (int i=0; i<4; i++){
+            Interval interval = Interval.melodicIntervalBetween(
+                    previousSpelled.get(i), currentSpelled.get(i));
+            if (!ACCEPTABLE_QUALITIES.contains(interval.getQuality()) && 
+                    !SEMITONE_STEPS.contains(interval)){
+                score.addPenalty(PenaltyType.MELODIC_INTERVAL);
+            }
+        }
     }
 
 }

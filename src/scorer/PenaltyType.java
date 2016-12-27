@@ -45,7 +45,7 @@ public enum PenaltyType {
         tmpPenalties.put(VOICE_OVERLAP, 50);
         tmpPenalties.put(PARALLEL, 1000000);
         tmpPenalties.put(DIRECT, 1000000);
-        //tmpPenalties.put(MELODIC_INTERVAL, TODO);
+        tmpPenalties.put(MELODIC_INTERVAL, 1000000);
         //tmpPenalties.put(VOICE_CROSSING, TODO);
         tmpPenalties.put(DOM_SEVEN_RES, 1000); 
         tmpPenalties.put(DIM_SEVEN_RES, 1000); 
