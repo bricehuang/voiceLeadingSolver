@@ -50,7 +50,7 @@ class Sequencer {
             for (Chord previousChord : previousBest.getEndingChords()){
                 Score transitionScore = Scorer.scoreTransition(previousChord, currentChord, key, contextTags);
                 
-                for (ChordProgWithScore previous : best.getProgressions(previousChord)){
+                for (ChordProgWithScore previous : previousBest.getProgressions(previousChord)){
                     int totalScore = previous.getScore() + currentChordScore.totalScore() + transitionScore.totalScore();
                     
                     ChordProgression previousProg = previous.getChordProg();
@@ -101,6 +101,7 @@ class Sequencer {
             currentBest = sequenceRest(currentBest, waysToSingChords.get(i), 
                     keys.get(i), contextTagsList.get(i));
         }
+
         return findBestProgs(currentBest);
     }
 }
