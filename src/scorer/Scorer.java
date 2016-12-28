@@ -122,6 +122,7 @@ public class Scorer {
         }
         
         String ans = "";
+        ans += "Evaluating Chord Progression: " + progression.toString() + "\n";
         for (int i=0; i<length; i++){
             if (i!=0){
                 ans += evaluateTransition(chordsInProgression.get(i-1), 
