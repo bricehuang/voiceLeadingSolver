@@ -1,12 +1,6 @@
-music:
-* Implement quality of Intervals (for melodicInterval scorer)
-
 scorer: 
 * Make separate classes for Chord Score and Transition Score, Chord Type and Penalty Type
-* Test and implement unimplemented methods
 * Specify, test, and implement more functionality 
-* Refactor dom and dim 7 resolution methods
-* alternative dim7 resolutions
 
 solver: 
 * Implement parser

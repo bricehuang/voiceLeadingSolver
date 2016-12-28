@@ -511,5 +511,61 @@ public class ScorerTest {
         assertEquals(PenaltyType.MELODIC_INTERVAL.value(), score.totalScore());
         printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
     }
+    
+    /***************************
+     * Tests for VoiceCrossing *
+     ***************************/
+
+    @Test
+    public void testVoiceCrossing(){
+        Score score = new Score();
+        Chord gMajor = new Chord(
+                new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 2), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        Chord fMajor = new Chord(
+                new Note(F, 4), new Note(F, 4), new Note(C, 4), new Note(A, 2), 
+                new PrimitiveChord(F, ChordType.MAJ, 1)
+                );
+        VoiceCrossing.scoreVoiceCrossing(gMajor, fMajor, C_MAJOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.VOICE_CROSSING.value(), score.totalScore());
+        printPenaltyTransition(gMajor, fMajor, C_MINOR, score);
+    }
+    
+    @Test
+    public void testNotVoiceCrossing(){
+        Score score = new Score();
+        Chord gMajor = new Chord(
+                new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        Chord cMajor = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        VoiceCrossing.scoreVoiceCrossing(gMajor, cMajor, C_MAJOR, new HashSet<>(), score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(gMajor, cMajor, C_MINOR, score);
+    }
+    
+    /***************************
+     * Tests for smallMovement *
+     ***************************/
+    
+    @Test
+    public void testMovement(){
+        Score score = new Score();
+        Chord gMajor = new Chord(
+                new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 2), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        Chord fMajor = new Chord(
+                new Note(F, 4), new Note(C, 4), new Note(C, 4), new Note(A, 2), 
+                new PrimitiveChord(F, ChordType.MAJ, 1)
+                );
+        SmallMovement.scoreSmallMovement(gMajor, fMajor, C_MAJOR, new HashSet<>(), score);
+        assertEquals(PenaltyType.MOVE_FOURTH.value()+PenaltyType.MOVE_FIFTH.value(), score.totalScore());
+        printPenaltyTransition(gMajor, fMajor, C_MINOR, score);
+    }
 
 }
