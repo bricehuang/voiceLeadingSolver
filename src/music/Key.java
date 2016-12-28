@@ -1,6 +1,7 @@
 package music;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -8,9 +9,8 @@ import java.util.List;
  */
 public class Key {
     
-    private final Boolean isMajor;
-    
     private final BasicNote tonic;
+    private final Boolean isMajor;
     
     /*
      * Abstraction Function:
@@ -23,21 +23,15 @@ public class Key {
      * only returns primitives and immutables
      */
     
-    public static final Integer MAX_SHARPS_FLATS = 6;
     public static final Integer SEMITONES_IN_OCTAVE = 12;
     public static final Integer PITCHES_IN_SCALE = 7;
     
-    public static final List<String> MAJOR_KEY_NAMES = Arrays.asList(
-            "Gb", "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#");
-    public static final List<String> MINOR_KEY_NAMES = Arrays.asList(
-            "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "D#");
+    static final List<Integer> MAJOR_SCALE = Collections.unmodifiableList(
+            Arrays.asList(0, 2, 4, 5, 7, 9, 11));
+    static final List<Integer> MINOR_SCALE = Collections.unmodifiableList(
+            Arrays.asList(0, 2, 3, 5, 7, 8, 10));
     
-    public static final List<Integer> MAJOR_SCALE = Arrays.asList(
-            0, 2, 4, 5, 7, 9, 11);
-    public static final List<Integer> MINOR_SCALE = Arrays.asList(
-            0, 2, 3, 5, 7, 8, 10);
-    
-    public static final List<Character> PITCH_NAMES = Arrays.asList(
+    static final List<Character> PITCH_NAMES = Arrays.asList(
             'C','D','E','F','G','A','B');
     
     /**
