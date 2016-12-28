@@ -10,9 +10,9 @@ import music.Key;
 /**
  * A module that solves voice leading, post-parsing
  */
-public class Solver {
+class Solver {
     
-    public static List<ChordProgWithScore> solve(List<PrimitiveChord> primitiveChords, 
+    static List<ChordProgWithScore> solve(List<PrimitiveChord> primitiveChords, 
             List<Key> keys, List<Set<ContextTag>> contextTagsList){
         List<Set<Chord>> waysToSingChords = ChordGenerator.generateChords(primitiveChords);
         SortedFiniteProgList bestProgressions = Sequencer.findBestChordProgressions(waysToSingChords, keys, contextTagsList);
