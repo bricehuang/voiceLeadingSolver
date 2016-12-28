@@ -1,13 +1,16 @@
 package solver;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicInterval;
 import music.BasicNote;
+import music.Key;
 
 /**
  * A module that takes a string input and returns a list of primitive chords
@@ -15,6 +18,13 @@ import music.BasicNote;
 class Parser {
     private static final String CHORD_REGEX = "[A-G][+|-]?"
             + "(((MajT|MinT)[0-2])|((DomS|DimS|MajS|MinS)[0-3]))";
+    private static final String TAG_REGEX = "App|Cad";
+    private static final String KEY_REGEX = "KEY:[A-G][+|-]?(Maj|Min)";
+    
+    private static final String CHORD_OPTIONAL_TAG_REGEX = CHORD_REGEX 
+            + "(" + TAG_REGEX + ")?";
+    private static final String MASTER_REGEX = 
+            "(" + CHORD_OPTIONAL_TAG_REGEX + ")|(" + KEY_REGEX + ")";  
     
     private static final Map<Character, BasicNote> NOTES;
     static{
@@ -63,7 +73,7 @@ class Parser {
         String root;
         String spec;
         if (strChord.substring(1,2).matches("[+|-]")){
-            root = strChord.substring(0, 1);
+            root = strChord.substring(0, 2);
             spec = strChord.substring(2);
         }
         else{
@@ -78,7 +88,35 @@ class Parser {
         Integer inversion = Integer.valueOf(specInversion);
         return new PrimitiveChord(rootType, chordType, inversion);
     }
-    
-    // TODO
-            
+
+    private static Key parseKey(String strKey){
+        assert(strKey.matches(KEY_REGEX));
+        String tonic;
+        String tonality;
+        if (strKey.substring(5,6).matches("[+|-]")){
+            tonic = strKey.substring(4,6);
+            tonality = strKey.substring(6);
+        }
+        else{
+            tonic = strKey.substring(4,5);
+            tonality = strKey.substring(5);    
+        }
+        assert(tonality.length() == 3);
+        BasicNote tonicNote = parseNote(tonic);
+        if (tonality.equals("MAJ")){
+            return new Key(tonicNote, true);
+        }
+        else if (tonality.equals("MIN")){
+                return new Key(tonicNote, false);
+        }
+        else{
+            throw new RuntimeException("Should not get here");
+        }
+    }
+}
+
+class ParseResult{
+    private List<PrimitiveChord> primitiveChords;
+    private List<Key> keys;
+    private List<ContextTag> contextTags;
 }
