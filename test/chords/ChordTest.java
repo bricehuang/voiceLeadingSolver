@@ -40,7 +40,7 @@ public class ChordTest {
     private static final Chord C_MIN_REALIZED = new Chord(
             new Note(C, 5), new Note(C, 4), new Note(Eb, 3), 
             new Note(C, 3),  C_MIN);
-    private static final Key C_MINOR = new Key(-3, false);
+    private static final Key C_MINOR = new Key(C, false);
 
     @Test
     public void toStringTest(){

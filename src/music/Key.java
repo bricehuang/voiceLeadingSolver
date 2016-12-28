@@ -8,14 +8,13 @@ import java.util.List;
  */
 public class Key {
     
-    private final Integer sharps;
     private final Boolean isMajor;
     
     private final BasicNote tonic;
     
     /*
      * Abstraction Function:
-     * represents the key with sharps sharps.  Tonality is major if isMajor = true, else minor.  
+     * represents the key with tonic tonic.  Tonality is major if isMajor = true, else minor.  
      * 
      * Rep Invariant:
      * None. 
@@ -40,56 +39,15 @@ public class Key {
     
     public static final List<Character> PITCH_NAMES = Arrays.asList(
             'C','D','E','F','G','A','B');
-
-
-    private static final List<BasicNote> MAJOR_KEY_TONICS = Arrays.asList(
-            new BasicNote(4,6),  // Gb 
-            new BasicNote(1,1),  // Db 
-            new BasicNote(5,8),  // Ab
-            new BasicNote(2,3),  // Eb
-            new BasicNote(6,10), // Bb
-            new BasicNote(3,5),  // F
-            new BasicNote(0,0),  // C
-            new BasicNote(4,7),  // G 
-            new BasicNote(1,2),  // D
-            new BasicNote(5,9),  // A
-            new BasicNote(2,4),  // E
-            new BasicNote(6,11), // B
-            new BasicNote(3,6)   // F#
-            );
-    private static final List<BasicNote> MINOR_KEY_TONICS = Arrays.asList(
-            new BasicNote(2,3),  // Eb
-            new BasicNote(6,10), // Bb
-            new BasicNote(3,5),  // F
-            new BasicNote(0,0),  // C
-            new BasicNote(4,7),  // G 
-            new BasicNote(1,2),  // D
-            new BasicNote(5,9),  // A
-            new BasicNote(2,4),  // E
-            new BasicNote(6,11), // B
-            new BasicNote(3,6),  // F#
-            new BasicNote(0,1),  // C# 
-            new BasicNote(4,8),  // G#
-            new BasicNote(1,3)   // D#
-            );            
     
     /**
      * Constructs a key with given key signature and tonality
      * @param sharps number of sharps/flats in key signature, in -6,...,6
      * @param isMajor if true, then major; else minor
      */
-    public Key(int sharps, boolean isMajor){
-        if (sharps < -6 || sharps > 6){
-            throw new UnsupportedOperationException("sharps should be in -6,...,6.");
-        }
-        this.sharps = sharps;
+    public Key(BasicNote tonic, boolean isMajor){
+        this.tonic = tonic;
         this.isMajor = isMajor;
-        if (isMajor){
-            this.tonic = MAJOR_KEY_TONICS.get(sharps+MAX_SHARPS_FLATS);
-        }
-        else{
-            this.tonic = MINOR_KEY_TONICS.get(sharps+MAX_SHARPS_FLATS);
-        }
     }
 
     
@@ -209,15 +167,15 @@ public class Key {
     @Override public boolean equals(Object object){
         if (!(object instanceof Key)){return false;}
         Key that = (Key) object;
-        return (this.sharps == that.sharps && this.isMajor == that.isMajor);
+        return (this.tonic.equals(that.tonic) && this.isMajor == that.isMajor);
     }
 
     @Override public int hashCode(){
         if (isMajor){
-            return sharps;
+            return tonic.hashCode();
         }
         else{
-            return sharps + 7*MAX_SHARPS_FLATS;
+            return -tonic.hashCode();
         }
     }
 
@@ -226,10 +184,10 @@ public class Key {
      */
     @Override public String toString(){
         if (isMajor){
-            return MAJOR_KEY_NAMES.get(sharps+MAX_SHARPS_FLATS) + " Major";
+            return tonic.toString() + " Major";
         }
         else{
-            return MINOR_KEY_NAMES.get(sharps+MAX_SHARPS_FLATS) + " Minor";
+            return tonic.toString() + " Minor";
         }
     }
     

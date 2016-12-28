@@ -27,10 +27,10 @@ public class ScorerTest {
     private static final BasicNote A = new BasicNote(5,9);
     private static final BasicNote B = new BasicNote(6,11);
 
-    private static final Key C_MAJOR = new Key(0,true);
-    private static final Key A_MINOR = new Key(0,false);
+    private static final Key C_MAJOR = new Key(C,true);
+    private static final Key A_MINOR = new Key(A,false);
     
-    private static final Key C_MINOR = new Key(-3,false);
+    private static final Key C_MINOR = new Key(C,false);
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {

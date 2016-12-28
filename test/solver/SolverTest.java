@@ -24,10 +24,10 @@ public class SolverTest {
     private static final BasicNote A = new BasicNote(5,9);
     private static final BasicNote Bb = new BasicNote(6,10);
 
-    Key C_MAJOR = new Key(0,true);
-    Key G_MAJOR = new Key(1,true);
-    Key C_MINOR = new Key(-3,false);
-    Key Bb_MAJOR = new Key(-2, true);
+    Key C_MAJOR = new Key(C,true);
+    Key G_MAJOR = new Key(G,true);
+    Key C_MINOR = new Key(C,false);
+    Key Bb_MAJOR = new Key(Bb, true);
     
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {

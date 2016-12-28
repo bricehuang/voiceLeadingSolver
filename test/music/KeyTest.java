@@ -11,9 +11,13 @@ public class KeyTest {
         assert false;
     }
     
-    private static final Key C_MAJOR = new Key(0,true);
-    private static final Key D_MAJOR = new Key(2,true);
-    private static final Key G_MINOR = new Key(-2,false);
+    private static final BasicNote C = new BasicNote(0,0);
+    private static final BasicNote D = new BasicNote(1,2);
+    private static final BasicNote G = new BasicNote(4,7);
+    
+    private static final Key C_MAJOR = new Key(C,true);
+    private static final Key D_MAJOR = new Key(D,true);
+    private static final Key G_MINOR = new Key(G,false);
     
     @Test
     public void getScaleDegreeTest(){

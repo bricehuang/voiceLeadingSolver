@@ -27,7 +27,7 @@ public class BasicChordTest {
             C, C, E, C, new PrimitiveChord(C, ChordType.MAJ, 0));
     private static final BasicChord C_MIN = new BasicChord(
             C, C, Eb, C, new PrimitiveChord(C, ChordType.MIN, 0));
-    private static final Key C_MINOR = new Key(-3, false);
+    private static final Key C_MINOR = new Key(C, false);
     
     @Test
     public void toStringTest(){
