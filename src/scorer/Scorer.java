@@ -85,8 +85,8 @@ public class Scorer {
         //SmallMovement.scoreSmallMovement(previous, current, key, contextTags, score);
         ParallelsDirects.scoreParallels(previous, current, key, contextTags, score);
         ParallelsDirects.scoreDirects(previous, current, key, contextTags, score);
-        //MelodicIntervals.scoreMelodicIntervals(previous, current, key, contextTags, score);
-        //VoiceCrossing.scoreVoiceCrossing(previous, current, key, contextTags, score);
+        MelodicIntervals.scoreMelodicIntervals(previous, current, key, contextTags, score);
+        VoiceCrossing.scoreVoiceCrossing(previous, current, key, contextTags, score);
         SevenChordResolution.scoreDomSevenResolutions(previous, current, key, contextTags, score);
         SevenChordResolution.scoreDimSevenResolutions(previous, current, key, contextTags, score);
         return score;
