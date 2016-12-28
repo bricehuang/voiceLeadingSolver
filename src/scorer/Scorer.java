@@ -1,10 +1,12 @@
 package scorer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import chords.Chord;
+import chords.ChordProgression;
 import music.Key;
 import music.Note;
 import solver.ContextTag;
@@ -92,5 +94,44 @@ public class Scorer {
         return score;
     }
     
+    private static String evaluateChord(Chord chord, Key key, Set<ContextTag> contextTags){
+        String ans = "";
+        ans += "Scoring chord " + chord.toString() + " in " + key.toString() + "\n";
+        ans += scoreChord(chord, key, contextTags).toString();
+        return ans;
+    }
+    
+    private static String evaluateTransition(Chord previous, Chord current, Key key, Set<ContextTag> contextTags){
+        String ans = "";
+        ans += "Scoring transition " + previous.toString() + " --> " + current.toString() +
+                " in " + key.toString() + "\n";
+        ans += scoreTransition(previous, current, key, contextTags).toString();
+        return ans;
+    }
+    
+    public static String evaluateChordProgression(ChordProgression progression, 
+            List<Key> keys, List<Set<ContextTag>> contextTagList){
+        assert(progression.length() == keys.size() && 
+                progression.length() == contextTagList.size());
+        ChordProgression workingProgression = progression;
+        final int length = progression.length();
+        List<Chord> chordsInProgression = new ArrayList<>(length);
+        for (int i=0; i<length; i++){
+            chordsInProgression.set(length - 1 - i, workingProgression.getLast());
+            workingProgression = workingProgression.getStart();
+        }
+        
+        String ans = "";
+        for (int i=0; i<length; i++){
+            if (i!=0){
+                ans += evaluateTransition(chordsInProgression.get(i-1), 
+                        chordsInProgression.get(i), 
+                        keys.get(i), contextTagList.get(i)) + "\n";
+            }
+            ans += evaluateChord(chordsInProgression.get(i), 
+                    keys.get(i), contextTagList.get(i)) + "\n";
+        }
+        return ans;
+    }
     
 }
