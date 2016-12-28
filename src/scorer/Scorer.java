@@ -9,6 +9,7 @@ import chords.Chord;
 import chords.ChordProgression;
 import music.Key;
 import music.Note;
+import solver.ChordProgWithScoreTest;
 import solver.ContextTag;
 
 /**
@@ -94,44 +95,79 @@ public class Scorer {
         return score;
     }
     
-    private static String evaluateChord(Chord chord, Key key, Set<ContextTag> contextTags){
+    /**
+     * Returns string representation of chord scoring, with itemized penalties
+     * @param chord 
+     * @param key
+     * @param score, must be the scoring of this chord
+     * @return ditto
+     */
+    private static String evaluateChord(Chord chord, Key key, Score score){
         String ans = "";
         ans += "Scoring chord " + chord.toString() + " in " + key.toString() + "\n";
-        ans += scoreChord(chord, key, contextTags).toString();
+        ans += score.toString();
         return ans;
     }
     
-    private static String evaluateTransition(Chord previous, Chord current, Key key, Set<ContextTag> contextTags){
+    /**
+     * Returns string representation of transition scoring, with itemized penalties
+     * @param previous
+     * @param current
+     * @param key
+     * @param score, must be the scoring of this transition
+     * @return ditto
+     */
+    private static String evaluateTransition(Chord previous, Chord current, Key key, Score score){
         String ans = "";
         ans += "Scoring transition " + previous.toString() + " --> " + current.toString() +
                 " in " + key.toString() + "\n";
-        ans += scoreTransition(previous, current, key, contextTags).toString();
+        ans += score.toString();
         return ans;
     }
     
+    /**
+     * Returns a string reporting the scoring of a chord progression, with itemized 
+     * penalties for each chord and transition
+     * @param progression
+     * @param keys
+     * @param contextTagsList
+     * @return ditto
+     */
     public static String evaluateChordProgression(ChordProgression progression, 
-            List<Key> keys, List<Set<ContextTag>> contextTagList){
+            List<Key> keys, List<Set<ContextTag>> contextTagsList){
         assert(progression.length() == keys.size() && 
-                progression.length() == contextTagList.size());
+                progression.length() == contextTagsList.size());
         ChordProgression workingProgression = progression;
         final int length = progression.length();
-        List<Chord> chordsInProgression = new ArrayList<>(length);
+        List<Chord> chordsInProgression = new ArrayList<>();
+        // TODO this is a bit janky
+        for (int i=0; i<length; i++){
+            chordsInProgression.add(null);
+        }
         for (int i=0; i<length; i++){
             chordsInProgression.set(length - 1 - i, workingProgression.getLast());
             workingProgression = workingProgression.getStart();
         }
         
+        int totalScore = 0;
         String ans = "";
         ans += "Evaluating Chord Progression: " + progression.toString() + "\n";
+        String report = "";
         for (int i=0; i<length; i++){
+            Chord chord = chordsInProgression.get(i);
+            Key key = keys.get(i);
+            Set<ContextTag> contextTags = contextTagsList.get(i);
             if (i!=0){
-                ans += evaluateTransition(chordsInProgression.get(i-1), 
-                        chordsInProgression.get(i), 
-                        keys.get(i), contextTagList.get(i)) + "\n";
+                Chord previous = chordsInProgression.get(i-1);
+                Score transitionScore = scoreTransition(previous, chord, key, contextTags);
+                totalScore += transitionScore.totalScore();
+                report += evaluateTransition(previous, chord, key, transitionScore) + "\n";
             }
-            ans += evaluateChord(chordsInProgression.get(i), 
-                    keys.get(i), contextTagList.get(i)) + "\n";
+            Score chordScore = scoreChord(chord, key, contextTags);
+            totalScore += chordScore.totalScore();
+            report += evaluateChord(chord, key, chordScore) + "\n";
         }
+        ans += "Total Score: " + totalScore + "\n\n" + report + "\n\n";
         return ans;
     }
     
