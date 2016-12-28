@@ -20,11 +20,15 @@ public class SolverTest {
     private static final BasicNote D = new BasicNote(1,2);
     private static final BasicNote F = new BasicNote(3,5);
     private static final BasicNote G = new BasicNote(4,7);
+    private static final BasicNote Ab = new BasicNote(5,8);
     private static final BasicNote A = new BasicNote(5,9);
+    private static final BasicNote Bb = new BasicNote(6,10);
 
     Key C_MAJOR = new Key(0,true);
     Key G_MAJOR = new Key(1,true);
-
+    Key C_MINOR = new Key(-3,false);
+    Key Bb_MAJOR = new Key(-2, true);
+    
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -69,7 +73,7 @@ public class SolverTest {
     }
     
     @Test
-    public void ExampleRealization(){
+    public void ExampleRealization1(){
         List<PrimitiveChord> primitiveChords = Arrays.asList(
                 new PrimitiveChord(G, ChordType.MAJ, 0),
                 new PrimitiveChord(D, ChordType.DOM7, 0),
@@ -106,6 +110,48 @@ public class SolverTest {
                 new HashSet<>(),
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_PREDOMINANT)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_I64)), 
+                new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
+                new HashSet<>(Arrays.asList(ContextTag.CADENCE))
+                );
+        List<ChordProgWithScore> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        System.err.print(Scorer.evaluateChordProgression(bestProgressions.get(0).getChordProg(), keys, contextTagsList));
+    }
+    
+    @Test
+    public void ExampleRealization2(){
+        List<PrimitiveChord> primitiveChords = Arrays.asList(
+                new PrimitiveChord(C, ChordType.MIN, 0),
+                new PrimitiveChord(Ab, ChordType.MAJ, 0),
+                new PrimitiveChord(F, ChordType.MIN, 0),
+                new PrimitiveChord(G, ChordType.DOM7, 2),
+                new PrimitiveChord(C, ChordType.MIN, 1),
+                new PrimitiveChord(F, ChordType.MAJ, 0),
+                new PrimitiveChord(Bb, ChordType.MAJ, 1),
+                new PrimitiveChord(C, ChordType.MIN7, 1),
+                new PrimitiveChord(F, ChordType.MAJ, 0),
+                new PrimitiveChord(Bb, ChordType.MAJ, 0)
+                );
+        List<Key> keys = Arrays.asList(
+                C_MINOR,
+                C_MINOR,
+                C_MINOR,
+                C_MINOR,
+                Bb_MAJOR,
+                Bb_MAJOR,
+                Bb_MAJOR,
+                Bb_MAJOR,
+                Bb_MAJOR,
+                Bb_MAJOR
+                );
+        List<Set<ContextTag>> contextTagsList = Arrays.asList(
+                new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(Arrays.asList(ContextTag.APPLIED_DOMINANT)),
+                new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_PREDOMINANT)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
