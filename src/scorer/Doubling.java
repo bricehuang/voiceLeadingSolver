@@ -67,9 +67,9 @@ class Doubling {
             for (BasicNote note : triad){
                 if (noteCounts.get(note) == 2 && !GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(note))){
                     score.addPenalty(PenaltyType.BAD_DOUBLING);
-                }
-                if (key.findScaleDegree(note) == LEADING_TONE){
-                    score.addPenalty(PenaltyType.DOUBLED_LEADING_TONE);
+                    if (key.findScaleDegree(note) == LEADING_TONE){
+                        score.addPenalty(PenaltyType.DOUBLED_LEADING_TONE);
+                    }
                 }
             }            
         }
