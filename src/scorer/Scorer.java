@@ -82,7 +82,7 @@ public class Scorer {
      */
     public static Score scoreTransition(Chord previous, Chord current, Key key, Set<ContextTag> contextTags){
         Score score = new Score();
-        //SmallMovement.scoreSmallMovement(previous, current, key, contextTags, score);
+        SmallMovement.scoreSmallMovement(previous, current, key, contextTags, score);
         ParallelsDirects.scoreParallels(previous, current, key, contextTags, score);
         ParallelsDirects.scoreDirects(previous, current, key, contextTags, score);
         MelodicIntervals.scoreMelodicIntervals(previous, current, key, contextTags, score);

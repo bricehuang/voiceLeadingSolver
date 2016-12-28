@@ -8,8 +8,7 @@ import java.util.Map;
  * A class representing all possible penalties
  */
 public enum PenaltyType {
-    MOVEMENT,
-    
+    MOVE_THIRD, MOVE_FOURTH, MOVE_FIFTH, MOVE_BIG, MOVE_BIG_BASS,
     BAD_DOUBLING, DOUBLE_DOUBLING, BAD_TRIPLING, OMITTED_FIFTH, DOUBLED_LEADING_TONE,
     VOICE_OVERLAP,
     PARALLEL, DIRECT, 
@@ -19,7 +18,11 @@ public enum PenaltyType {
     private static final Map<PenaltyType, String> STRING_REPS;
     static{
         Map<PenaltyType, String> tmpStringReps = new HashMap<>();
-        tmpStringReps.put(MOVEMENT, "Movement Penalty");
+        tmpStringReps.put(MOVE_THIRD, "Non-Bass 3rd Move Penalty");
+        tmpStringReps.put(MOVE_FOURTH, "Non-Bass 4th Move Penalty");
+        tmpStringReps.put(MOVE_FIFTH, "Non-Bass 5th Move Penalty");
+        tmpStringReps.put(MOVE_BIG, "Non-Bass Move Larger than 5th Penalty");
+        tmpStringReps.put(MOVE_BIG_BASS, "Bass Move Larger than Octave Penalty");
         tmpStringReps.put(BAD_DOUBLING, "Bad Doubling Penalty");
         tmpStringReps.put(DOUBLE_DOUBLING, "Double Doubling Penalty");
         tmpStringReps.put(BAD_TRIPLING, "Bad Tripling Penalty");
@@ -38,7 +41,11 @@ public enum PenaltyType {
     private static final Map<PenaltyType, Integer> PENALTIES;
     static{
         Map<PenaltyType, Integer> tmpPenalties = new HashMap<>();
-        //tmpPenalties.put(MOVEMENT, TODO);
+        tmpPenalties.put(MOVE_THIRD, 5);
+        tmpPenalties.put(MOVE_FOURTH, 25);
+        tmpPenalties.put(MOVE_FIFTH, 50);
+        tmpPenalties.put(MOVE_BIG, 10000);
+        tmpPenalties.put(MOVE_BIG_BASS, 10000);
         tmpPenalties.put(BAD_DOUBLING, 100);
         tmpPenalties.put(DOUBLE_DOUBLING, 200);
         tmpPenalties.put(BAD_TRIPLING, 100);
