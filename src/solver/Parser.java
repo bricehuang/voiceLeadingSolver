@@ -52,6 +52,14 @@ class Parser {
         CHORD_TYPES = Collections.unmodifiableMap(tmpChordTypes);
     }
     
+    private static final Map<String, ContextTag> CONTEXT_TAGS;
+    static{
+        Map<String, ContextTag> tmpContextTags = new HashMap<>();
+        tmpContextTags.put("App", ContextTag.APPLIED_DOMINANT);
+        tmpContextTags.put("Cad", ContextTag.CADENCE);
+        CONTEXT_TAGS = Collections.unmodifiableMap(tmpContextTags);
+    }
+    
     private static BasicNote parseNote(String strNote){
         BasicNote baseNote = NOTES.get(strNote.charAt(0));
         if (strNote.length() == 2){
@@ -113,10 +121,63 @@ class Parser {
             throw new RuntimeException("Should not get here");
         }
     }
+    
+    private static ParseResult parseTokens(List<String> tokens){
+        List<PrimitiveChord> primitiveChords = new ArrayList<>();
+        List<Key> keys = new ArrayList<>();
+        List<ContextTag> contextTags = new ArrayList<>();
+        
+        assert(tokens.get(0).matches(KEY_REGEX)); 
+        Key currentKey = null; // this is ok because first token will set key
+        
+        for (String token : tokens){
+            if (token.matches(KEY_REGEX)){
+                currentKey = parseKey(token);
+            }
+            else{
+                // TODO
+            }
+        }
+        throw new RuntimeException("Unimplemented");
+    }
+    
+    public static ParseResult parse(String input){
+        String[] inputTokenized = input.split(" ");
+        List<String> tokens = new ArrayList<>();
+        for (String token : inputTokenized){
+            if (!input.matches(MASTER_REGEX)){
+                continue;
+            }
+            tokens.add(token);
+        }
+        assert(tokens.get(0).matches(KEY_REGEX));
+        return parseTokens(tokens);
+    }
+
 }
 
 class ParseResult{
-    private List<PrimitiveChord> primitiveChords;
-    private List<Key> keys;
-    private List<ContextTag> contextTags;
+    private final List<PrimitiveChord> primitiveChords;
+    private final List<Key> keys;
+    private final List<ContextTag> contextTags;
+    
+    public ParseResult(List<PrimitiveChord> primitiveChords, 
+            List<Key> keys,
+            List<ContextTag> contextTags){
+        this.primitiveChords = primitiveChords;
+        this.keys = keys;
+        this.contextTags = contextTags;
+    }
+    
+    public List<PrimitiveChord> getPrimitiveChords(){
+        return Collections.unmodifiableList(primitiveChords);
+    }
+    
+    public List<Key> getKeys(){
+        return Collections.unmodifiableList(keys);
+    }
+    
+    public List<ContextTag> getContextTags(){
+        return Collections.unmodifiableList(contextTags);
+    }
 }
