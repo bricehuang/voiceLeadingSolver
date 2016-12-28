@@ -11,6 +11,7 @@ import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Key;
+import scorer.Scorer;
 import solver.ContextTag;
 
 public class SolverTest {
@@ -40,7 +41,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
         List<ChordProgWithScore> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
-        System.err.print(bestProgressions.get(0).toString());
+        System.err.print(Scorer.evaluateChordProgression(bestProgressions.get(0).getChordProg(), keys, contextTagsList));
     }
     
     @Test
@@ -61,6 +62,6 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
         List<ChordProgWithScore> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
-        System.err.print(bestProgressions.get(0).toString());
+        System.err.print(Scorer.evaluateChordProgression(bestProgressions.get(0).getChordProg(), keys, contextTagsList));
     }
 }
