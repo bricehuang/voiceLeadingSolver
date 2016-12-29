@@ -15,7 +15,7 @@ import music.Note;
 
 public class ScorerTest {
     
-    private static final boolean debug = true;
+    private static final boolean DEBUG = false;
     
     private static final BasicNote C = new BasicNote(0,0);
     private static final BasicNote D = new BasicNote(1,2);
@@ -39,13 +39,13 @@ public class ScorerTest {
     }
     
     private void printPenaltyChord(Chord chord, Key key, Score score){
-        if(debug){
+        if(DEBUG){
             System.err.println("Scoring chord: " + chord.toString() + "\n" + score.toString());
         }
     }
     
     private void printPenaltyTransition(Chord previous, Chord current, Key key, Score score){
-        if(debug){
+        if(DEBUG){
             System.err.println("Scoring transition: " + previous.toString() + "-->" + current.toString() 
                 + "\n" + score.toString());
         }
