@@ -3,8 +3,10 @@ package solver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import chords.ChordType;
 import chords.PrimitiveChord;
@@ -21,10 +23,10 @@ class Parser {
     private static final String TAG_REGEX = "App|Cad";
     private static final String KEY_REGEX = "KEY:[A-G][+|-]?(Maj|Min)";
     
-    private static final String CHORD_OPTIONAL_TAG_REGEX = CHORD_REGEX 
-            + "(" + TAG_REGEX + ")?";
+    private static final String CHORD_TAGS_REGEX = CHORD_REGEX 
+            + "(" + TAG_REGEX + ")*";
     private static final String MASTER_REGEX = 
-            "(" + CHORD_OPTIONAL_TAG_REGEX + ")|(" + KEY_REGEX + ")";  
+            "(" + CHORD_TAGS_REGEX + ")|(" + KEY_REGEX + ")";  
     
     private static final Map<Character, BasicNote> NOTES;
     static{
@@ -52,6 +54,7 @@ class Parser {
         CHORD_TYPES = Collections.unmodifiableMap(tmpChordTypes);
     }
     
+    // all tags should be 3 characters long
     private static final Map<String, ContextTag> CONTEXT_TAGS;
     static{
         Map<String, ContextTag> tmpContextTags = new HashMap<>();
@@ -125,7 +128,7 @@ class Parser {
     private static ParseResult parseTokens(List<String> tokens){
         List<PrimitiveChord> primitiveChords = new ArrayList<>();
         List<Key> keys = new ArrayList<>();
-        List<ContextTag> contextTags = new ArrayList<>();
+        List<Set<ContextTag>> contextTags = new ArrayList<>();
         
         assert(tokens.get(0).matches(KEY_REGEX)); 
         Key currentKey = null; // this is ok because first token will set key
@@ -135,20 +138,31 @@ class Parser {
                 currentKey = parseKey(token);
             }
             else{
-                // TODO
+                Set<ContextTag> tags = new HashSet<>();
+                String tmpToken = new String(token);
+                while(!tmpToken.matches(CHORD_REGEX)){
+                    String tag = tmpToken.substring(tmpToken.length()-3);
+                    assert(tag.matches(TAG_REGEX));
+                    tags.add(CONTEXT_TAGS.get(tag));
+                    tmpToken = tmpToken.substring(0, tmpToken.length()-3);
+                }
+                PrimitiveChord primitiveChord = parseChord(tmpToken);
+                primitiveChords.add(primitiveChord);
+                keys.add(currentKey);
+                contextTags.add(tags);
             }
         }
-        throw new RuntimeException("Unimplemented");
+        // TODO: post-processing context tags
+        return new ParseResult(primitiveChords, keys, contextTags);
     }
     
     public static ParseResult parse(String input){
         String[] inputTokenized = input.split(" ");
         List<String> tokens = new ArrayList<>();
         for (String token : inputTokenized){
-            if (!input.matches(MASTER_REGEX)){
-                continue;
+            if (token.matches(MASTER_REGEX)){
+                tokens.add(token);
             }
-            tokens.add(token);
         }
         assert(tokens.get(0).matches(KEY_REGEX));
         return parseTokens(tokens);
@@ -159,11 +173,11 @@ class Parser {
 class ParseResult{
     private final List<PrimitiveChord> primitiveChords;
     private final List<Key> keys;
-    private final List<ContextTag> contextTags;
+    private final List<Set<ContextTag>> contextTags;
     
     public ParseResult(List<PrimitiveChord> primitiveChords, 
             List<Key> keys,
-            List<ContextTag> contextTags){
+            List<Set<ContextTag>> contextTags){
         this.primitiveChords = primitiveChords;
         this.keys = keys;
         this.contextTags = contextTags;
@@ -177,7 +191,7 @@ class ParseResult{
         return Collections.unmodifiableList(keys);
     }
     
-    public List<ContextTag> getContextTags(){
+    public List<Set<ContextTag>> getContextTags(){
         return Collections.unmodifiableList(contextTags);
     }
 }
