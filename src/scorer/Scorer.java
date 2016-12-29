@@ -17,7 +17,6 @@ import solver.ContextTag;
 public class Scorer {
     
     // TODO refactoring:
-    // update method signatures 
     // refactor individual methods
      
     /*
@@ -27,25 +26,23 @@ public class Scorer {
      * 
      * Doubling rules
      * No voice overlapping 
-     * i64 in cadential 64 should double 5 TODO
      * 
      * Transitions:
-     * 
      * Small voice movement
      * No Parallels // TODO except resolution of Ger6+? 
      * No Directs
      * No melodic aug/dim intervals
      * No voice crossing
-     * Dom7 proper resolution // TODO: differentiate between irregular and bad?
-     * Dim7 proper resolution
+     * Dom7 proper resolution 
+     * Dim7 proper resolution 
      * neopolitan 6 proper resolution // TODO
      * aug6 proper resolutions // TODO implement these chords
      * ii65 hold tonic TODO
      * 
-     * Last Transition:
-     * 
+     * Cadences:
+     * Cadence doubling
+     * PAC
      * Everything moves stepwise except bass //TODO
-     * PAC // TODO
      * 
      */
     

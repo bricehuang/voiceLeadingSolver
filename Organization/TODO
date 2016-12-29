@@ -1,10 +1,9 @@
 scorer: 
+* Specify, test, and implement more functionality:
+    - Stepwise movement in cadences
+    - Neopolitan
+    - aug6 
 * Make separate classes for Chord Score and Transition Score, Chord Type and Penalty Type
-* Specify, test, and implement more functionality 
-
-solver: 
-* Implement parser
-* Implement main 
 
 player:
 * DO EVERYTHING
