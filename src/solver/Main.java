@@ -17,13 +17,16 @@ public class Main {
                 parsedInput.getPrimitiveChords(), 
                 parsedInput.getKeys(), 
                 parsedInput.getContextTags());
-        for (int i=0; i<Math.min(maxReport, bestProgressions.size()); i++){
-            System.out.println("Progression " + (i+1) + ":\n" 
-                    + bestProgressions.get(i).toString() 
-                    + Scorer.evaluateChordProgression(
-                            bestProgressions.get(i), 
-                            parsedInput.getKeys(), 
-                            parsedInput.getContextTags()));
+        if (report){
+            System.out.println("Results report on input: \n" + in + "\n");
+            for (int i=0; i<Math.min(maxReport, bestProgressions.size()); i++){
+                System.out.println("Progression " + (i+1) + ":\n" 
+                        + bestProgressions.get(i).toString() + "\n\n"
+                        + Scorer.evaluateChordProgression(
+                                bestProgressions.get(i), 
+                                parsedInput.getKeys(), 
+                                parsedInput.getContextTags()));
+            }
         }
         return bestProgressions;
     }
