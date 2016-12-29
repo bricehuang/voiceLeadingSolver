@@ -3,6 +3,7 @@ package solver;
 import java.util.List;
 
 import chords.ChordProgression;
+import scorer.Scorer;
 
 /**
  * Main module, which parses an input and finds the best chord progressions
@@ -10,12 +11,21 @@ import chords.ChordProgression;
  */
 public class Main {
     
-    public static List<ChordProgression> solve(String in){
+    public static List<ChordProgression> solve(String in, boolean report, int maxReport){
         ParseResult parsedInput = Parser.parse(in);
-        return Solver.solve(
+        List<ChordProgression> bestProgressions = Solver.solve(
                 parsedInput.getPrimitiveChords(), 
                 parsedInput.getKeys(), 
                 parsedInput.getContextTags());
+        for (int i=0; i<Math.min(maxReport, bestProgressions.size()); i++){
+            System.out.println("Progression " + (i+1) + ":\n" 
+                    + bestProgressions.get(i).toString() 
+                    + Scorer.evaluateChordProgression(
+                            bestProgressions.get(i), 
+                            parsedInput.getKeys(), 
+                            parsedInput.getContextTags()));
+        }
+        return bestProgressions;
     }
     
     // TODO: solve and play
