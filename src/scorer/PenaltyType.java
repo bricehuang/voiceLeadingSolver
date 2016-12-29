@@ -14,7 +14,8 @@ public enum PenaltyType {
     PARALLEL, DIRECT, 
     MELODIC_INTERVAL, VOICE_CROSSING,
     DOM_SEVEN_RES, DIM_SEVEN_RES,
-    CADENCE_DOUBLING;
+    CADENCE_DOUBLING,
+    NOT_PAC;
     
     private static final Map<PenaltyType, String> STRING_REPS;
     static{
@@ -37,6 +38,7 @@ public enum PenaltyType {
         tmpStringReps.put(DOM_SEVEN_RES, "Bad Dominant Seven Resolution Penalty"); 
         tmpStringReps.put(DIM_SEVEN_RES, "Bad Diminished Seven Resolution Penalty"); 
         tmpStringReps.put(CADENCE_DOUBLING, "Bad Doubling in Cadence Penalty"); 
+        tmpStringReps.put(NOT_PAC, "Not Perfect Authentic Cadence Penalty"); 
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     
@@ -61,6 +63,7 @@ public enum PenaltyType {
         tmpPenalties.put(DOM_SEVEN_RES, 1000); 
         tmpPenalties.put(DIM_SEVEN_RES, 1000); 
         tmpPenalties.put(CADENCE_DOUBLING, 1000); 
+        tmpPenalties.put(NOT_PAC, 100); 
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
     }
     

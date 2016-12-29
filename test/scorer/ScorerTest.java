@@ -266,6 +266,38 @@ public class ScorerTest {
         printPenaltyChord(cMajor64, C_MAJOR, score);
     }
     
+    /*****************
+     * Tests for PAC *
+     *****************/
+    
+    @Test
+    public void testPacGood(){
+        Score score = new Score();
+        Chord cMajor = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENCE);
+        Pac.scorePAC(cMajor, tags, C_MAJOR,  score);
+        assertEquals(0, score.totalScore());
+        printPenaltyChord(cMajor, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testPacBad(){
+        Score score = new Score();
+        Chord cMajor = new Chord(
+                new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENCE);
+        Pac.scorePAC(cMajor, tags, C_MAJOR,  score);
+        assertEquals(PenaltyType.NOT_PAC.value(), score.totalScore());
+        printPenaltyChord(cMajor, C_MAJOR, score);
+    }
+    
     /******************************
      * Composite ScoreChord tests *
      ******************************/
