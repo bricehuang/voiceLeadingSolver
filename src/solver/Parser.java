@@ -152,7 +152,33 @@ class Parser {
                 contextTags.add(tags);
             }
         }
-        // TODO: post-processing context tags
+        // TODO this is jank
+        for (int i=0; i<primitiveChords.size(); i++){
+            if (contextTags.get(i).contains(ContextTag.CADENCE)){
+                Key key = keys.get(i);
+                if (primitiveChords.get(i).getRoot().equals(key.getTonic())
+                        && primitiveChords.get(i).getInversion() == 0){
+                    if (i>=1 && primitiveChords.get(i-1).getRoot().equals(key.getScaleDegree(5))
+                            && primitiveChords.get(i-1).getInversion() == 0 
+                            && keys.get(i-1).equals(key)){
+                        contextTags.get(i-1).add(ContextTag.CADENTIAL_V);
+                        if (i>=2 && primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(4))
+                                && keys.get(i-2).equals(key)){
+                            contextTags.get(i-2).add(ContextTag.CADENTIAL_PREDOMINANT);
+                        }
+                        else if (i>=2 && primitiveChords.get(i-2).getRoot().equals(key.getTonic())
+                                && primitiveChords.get(i-2).getInversion() == 2
+                                && keys.get(i-2).equals(key)){
+                            contextTags.get(i-2).add(ContextTag.CADENTIAL_I64);
+                            if (i>=3 && primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(4))
+                                    && keys.get(i-3).equals(key)){
+                                contextTags.get(i-3).add(ContextTag.CADENTIAL_PREDOMINANT);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return new ParseResult(primitiveChords, keys, contextTags);
     }
     
