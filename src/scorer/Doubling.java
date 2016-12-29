@@ -26,12 +26,12 @@ class Doubling {
     /**
      * Scores for bad doubling by mutating an input score 
      * @param chord current chord
-     * @param key key in which this transition should be analyzed
      * @param contextTags any relevant context tags
+     * @param key key in which this transition should be analyzed
      * @param score a Score that gets mutated
      */
-    static void scoreDoubling(Chord chord, Key key, 
-            Set<ContextTag> contextTags, Score score){
+    static void scoreDoubling(Chord chord, Set<ContextTag> contextTags, 
+            Key key, Score score){
 
         if (chord.getType().numberDistinctNotes() == 4){
             return;

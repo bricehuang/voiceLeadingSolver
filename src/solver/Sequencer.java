@@ -26,7 +26,7 @@ class Sequencer {
         for (Chord chord : chordSet){
             ChordProgression prog = ChordProgression.empty().append(chord);
             
-            Score chordScore = Scorer.scoreChord(chord, key, contextTags);
+            Score chordScore = Scorer.scoreChord(chord, contextTags, key);
             best.addProgression(new ChordProgWithScore(prog, chordScore.totalScore()));
         }
         return best;
@@ -46,7 +46,7 @@ class Sequencer {
             Key key){
         BestList best = new BestList();
         for (Chord currentChord : chordSet){
-            Score currentChordScore = Scorer.scoreChord(currentChord, key, contextTagsCurrent);
+            Score currentChordScore = Scorer.scoreChord(currentChord, contextTagsCurrent, key);
             
             for (Chord previousChord : previousBest.getEndingChords()){
                 Score transitionScore = Scorer.scoreTransition(previousChord, currentChord, 

@@ -63,7 +63,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        Doubling.scoreDoubling(cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(cMajorDoubleRoot, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(0, score.totalScore());
         printPenaltyChord(cMajorDoubleRoot, C_MAJOR, score);
@@ -76,7 +76,7 @@ public class ScorerTest {
                 new Note(D, 5), new Note(F, 4), new Note(A, 3), new Note(D, 3), 
                 new PrimitiveChord(D, ChordType.MIN, 0)
                 );
-        Doubling.scoreDoubling(dMinorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(dMinorDoubleRoot, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(PenaltyType.BAD_DOUBLING.value(), score.totalScore());
         printPenaltyChord(dMinorDoubleRoot, C_MAJOR, score);
@@ -89,7 +89,7 @@ public class ScorerTest {
                 new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        Doubling.scoreDoubling(cMajorDoubleThird, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(cMajorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(PenaltyType.BAD_DOUBLING.value(), score.totalScore());
         printPenaltyChord(cMajorDoubleThird, C_MAJOR, score);
@@ -102,7 +102,7 @@ public class ScorerTest {
                 new Note(A, 4), new Note(F, 4), new Note(D, 4), new Note(F, 3), 
                 new PrimitiveChord(D, ChordType.MIN, 1)
                 );
-        Doubling.scoreDoubling(dMinorDoubleThird, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(dMinorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(0, score.totalScore());
         printPenaltyChord(dMinorDoubleThird, C_MAJOR, score);
@@ -115,7 +115,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        Doubling.scoreDoubling(cMajorTripleRootIncomplete, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(cMajorTripleRootIncomplete, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(PenaltyType.OMITTED_FIFTH.value(), score.totalScore());
         printPenaltyChord(cMajorTripleRootIncomplete, C_MAJOR, score);
@@ -128,7 +128,7 @@ public class ScorerTest {
                 new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        Doubling.scoreDoubling(cMajorDoubleRootThirdIncomplete, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(cMajorDoubleRootThirdIncomplete, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(PenaltyType.DOUBLE_DOUBLING.value() + PenaltyType.OMITTED_FIFTH.value(), score.totalScore());
         printPenaltyChord(cMajorDoubleRootThirdIncomplete, C_MAJOR, score);
@@ -141,7 +141,7 @@ public class ScorerTest {
                 new Note(B, 4), new Note(D, 4), new Note(B, 3), new Note(G, 3), 
                 new PrimitiveChord(G, ChordType.MAJ, 0)
                 );
-        Doubling.scoreDoubling(gMajorDoubleThird, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(gMajorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(PenaltyType.BAD_DOUBLING.value() + PenaltyType.DOUBLED_LEADING_TONE.value(), score.totalScore());
         printPenaltyChord(gMajorDoubleThird, C_MAJOR, score);
@@ -154,7 +154,7 @@ public class ScorerTest {
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
                 new PrimitiveChord(G, ChordType.MAJ, 0)
                 );
-        Doubling.scoreDoubling(gMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        Doubling.scoreDoubling(gMajorDoubleRoot, new HashSet<>(), C_MAJOR,  score);
         
         assertEquals(0, score.totalScore());
         printPenaltyChord(gMajorDoubleRoot, C_MAJOR, score);
@@ -171,7 +171,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(C, 5), new Note(E, 4), new Note(G, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 2)
                 );
-        VoiceOverlap.scoreVoiceOverlap(cMajorVoiceOverlap, C_MAJOR, new HashSet<>(), score);
+        VoiceOverlap.scoreVoiceOverlap(cMajorVoiceOverlap, new HashSet<>(), C_MAJOR,  score);
         assertEquals(PenaltyType.VOICE_OVERLAP.value(), score.totalScore());
         printPenaltyChord(cMajorVoiceOverlap, C_MAJOR, score);
     }
@@ -186,7 +186,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 2)
                 );
-        Score score = Scorer.scoreChord(cMajorVoiceOverlapDoubleThird, C_MAJOR, new HashSet<>());
+        Score score = Scorer.scoreChord(cMajorVoiceOverlapDoubleThird, new HashSet<>(), C_MAJOR);
         assertEquals(PenaltyType.VOICE_OVERLAP.value() + PenaltyType.BAD_DOUBLING.value(), score.totalScore());
         printPenaltyChord(cMajorVoiceOverlapDoubleThird, C_MAJOR, score);
     }

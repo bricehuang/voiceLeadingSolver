@@ -68,10 +68,10 @@ public class Scorer {
      * @param contextTags set of context tags for this chord
      * @return a score representing this chord's badness
      */
-    public static Score scoreChord(Chord chord, Key key, Set<ContextTag> contextTags){
+    public static Score scoreChord(Chord chord, Set<ContextTag> contextTags, Key key){
         Score score = new Score();
-        Doubling.scoreDoubling(chord, key, contextTags, score);
-        VoiceOverlap.scoreVoiceOverlap(chord, key, contextTags, score);
+        Doubling.scoreDoubling(chord, contextTags, key, score);
+        VoiceOverlap.scoreVoiceOverlap(chord, contextTags, key, score);
         return score;
     }
     
@@ -175,7 +175,7 @@ public class Scorer {
                 totalScore += transitionScore.totalScore();
                 report += evaluateTransition(previous, chord, key, transitionScore) + "\n";
             }
-            Score chordScore = scoreChord(chord, key, contextTags);
+            Score chordScore = scoreChord(chord, contextTags, key);
             totalScore += chordScore.totalScore();
             report += evaluateChord(chord, key, chordScore) + "\n";
         }
