@@ -184,7 +184,7 @@ class Parser {
     }
     
     public static ParseResult parse(String input){
-        String[] inputTokenized = input.split(" ");
+        String[] inputTokenized = input.split("[ |\n|\r|\t]");
         List<String> tokens = new ArrayList<>();
         for (String token : inputTokenized){
             if (token.matches(MASTER_REGEX)){
