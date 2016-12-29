@@ -80,6 +80,7 @@ class Parser {
     }
     
     private static PrimitiveChord parseChord(String strChord){
+        System.out.println(strChord);
         assert(strChord.matches(CHORD_REGEX));
         String root;
         String spec;
@@ -91,8 +92,8 @@ class Parser {
             root = strChord.substring(0, 1);
             spec = strChord.substring(1);
         }
-        assert(spec.length()==4);
-        String specType = spec.substring(0, 3);
+        assert(spec.length()==5);
+        String specType = spec.substring(0, 4);
         String specInversion = spec.substring(4);
         BasicNote rootType = parseNote(root);
         ChordType chordType = CHORD_TYPES.get(specType);
@@ -114,11 +115,11 @@ class Parser {
         }
         assert(tonality.length() == 3);
         BasicNote tonicNote = parseNote(tonic);
-        if (tonality.equals("MAJ")){
+        if (tonality.equals("Maj")){
             return new Key(tonicNote, true);
         }
-        else if (tonality.equals("MIN")){
-                return new Key(tonicNote, false);
+        else if (tonality.equals("Min")){
+            return new Key(tonicNote, false);
         }
         else{
             throw new RuntimeException("Should not get here");
