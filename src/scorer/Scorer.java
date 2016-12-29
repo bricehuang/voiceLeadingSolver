@@ -66,7 +66,6 @@ public class Scorer {
      * @param chord current chord
      * @param key key in which this chord should be analyzed
      * @param contextTags set of context tags for this chord
-     * @param score a Score that gets mutated
      * @return a score representing this chord's badness
      */
     public static Score scoreChord(Chord chord, Key key, Set<ContextTag> contextTags){
@@ -80,18 +79,29 @@ public class Scorer {
      * Scores the badness of a transition 
      * @param previous previous chord 
      * @param current current chord
+     * @param contextTagsPrevious context tags associated with Previous
+     * @param contextTagsCurrent context tags associated with current
      * @param key key in which this transition should be analyzed
      * @return a score representing this transition's badness
      */
-    public static Score scoreTransition(Chord previous, Chord current, Key key, Set<ContextTag> contextTags){
+    public static Score scoreTransition(Chord previous, Chord current, 
+            Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
+            Key key){
         Score score = new Score();
-        SmallMovement.scoreSmallMovement(previous, current, key, contextTags, score);
-        ParallelsDirects.scoreParallels(previous, current, key, contextTags, score);
-        ParallelsDirects.scoreDirects(previous, current, key, contextTags, score);
-        MelodicIntervals.scoreMelodicIntervals(previous, current, key, contextTags, score);
-        VoiceCrossing.scoreVoiceCrossing(previous, current, key, contextTags, score);
-        SevenChordResolution.scoreDomSevenResolutions(previous, current, key, contextTags, score);
-        SevenChordResolution.scoreDimSevenResolutions(previous, current, key, contextTags, score);
+        SmallMovement.scoreSmallMovement(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
+        ParallelsDirects.scoreParallels(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
+        ParallelsDirects.scoreDirects(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
+        MelodicIntervals.scoreMelodicIntervals(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
+        VoiceCrossing.scoreVoiceCrossing(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
+        SevenChordResolution.scoreDomSevenResolutions(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
+        SevenChordResolution.scoreDimSevenResolutions(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
         return score;
     }
     
@@ -159,7 +169,9 @@ public class Scorer {
             Set<ContextTag> contextTags = contextTagsList.get(i);
             if (i!=0){
                 Chord previous = chordsInProgression.get(i-1);
-                Score transitionScore = scoreTransition(previous, chord, key, contextTags);
+                Set<ContextTag> contextTagsPrevious = contextTagsList.get(i-1);
+                Score transitionScore = scoreTransition(previous, chord, 
+                        contextTagsPrevious, contextTags, key);
                 totalScore += transitionScore.totalScore();
                 report += evaluateTransition(previous, chord, key, transitionScore) + "\n";
             }

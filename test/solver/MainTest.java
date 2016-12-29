@@ -20,15 +20,15 @@ public class MainTest {
     
     @Test
     public void testRealization1(){
-        String input = "KEY:GMaj GMajT0 DDomS0 GMajT0 GDomS1\n"
-                + "CMajT0App DMajT1 GMajT0 AMinS0 GMajT2 DMajT0 GMajT0Cad";
+        String input = "KEY:GMaj GMajT0 DDomS0 GMajT0 GDomS1App\n"
+                + "CMajT0 DMajT1 GMajT0 AMinS0 GMajT2 DMajT0 GMajT0Cad";
         Main.solve(input, REPORT, MAX_REPORT);
     }
     
     @Test
     public void testRealization2(){
-        String input = "KEY:CMin CMinT0 A-MajT0 FMinT0 GDomS2\n"
-                + "KEY:B-Maj CMinT1App FMajT0 B-MajT1 CMinS1 FMajT0 B-MajT0Cad";
+        String input = "KEY:CMin CMinT0 A-MajT0 FMinT0 GDomS2App\n"
+                + "KEY:B-Maj CMinT1 FMajT0 B-MajT1 CMinS1 FMajT0 B-MajT0Cad";
         Main.solve(input, REPORT, MAX_REPORT);
     }
 

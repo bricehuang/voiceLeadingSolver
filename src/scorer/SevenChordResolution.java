@@ -169,12 +169,14 @@ class SevenChordResolution {
      * Scores for dominant 7th resolutions by mutating an input score
      * @param previous previous chord 
      * @param current current chord
+     * @param contextTagsPrevious context tags associated with Previous
+     * @param contextTagsCurrent context tags associated with current
      * @param key key in which this transition should be analyzed
-     * @param contextTags any relevant context tags
      * @param score a Score that gets mutated
      */
-    static void scoreDomSevenResolutions(Chord previous, Chord current, Key key,
-            Set<ContextTag> contextTags, Score score){
+    static void scoreDomSevenResolutions(Chord previous, Chord current,
+            Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
+            Key key, Score score){
         // if previous isn't dom7, don't do anything
         if (previous.getType() != ChordType.DOM7){
             return;
@@ -182,7 +184,7 @@ class SevenChordResolution {
         
         // some sanity checks
         assert(current.getType().equals(ChordType.MAJ) || current.getType().equals(ChordType.MIN));
-        if (contextTags.contains(ContextTag.APPLIED_DOMINANT)){
+        if (contextTagsPrevious.contains(ContextTag.APPLIED_DOMINANT)){
             assert(previous.getPrimitiveChord().getRoot().equals(
                     current.getPrimitiveChord().getRoot().transpose(P5, true))
                     );
@@ -215,19 +217,21 @@ class SevenChordResolution {
      * Scores for diminished 7th resolutions by mutating an input score
      * @param previous previous chord 
      * @param current current chord
+     * @param contextTagsPrevious context tags associated with Previous
+     * @param contextTagsCurrent context tags associated with current
      * @param key key in which this transition should be analyzed
-     * @param contextTags any relevant context tags
      * @param score a Score that gets mutated
      */
-    static void scoreDimSevenResolutions(Chord previous, Chord current, Key key,
-            Set<ContextTag> contextTags, Score score){
+    static void scoreDimSevenResolutions(Chord previous, Chord current,
+            Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
+            Key key, Score score){
         // if previous isn't dim7, don't do anything
         if (previous.getType() != ChordType.DIM7){
             return;
         }
         // sanity checks
         assert(current.getType().equals(ChordType.MAJ) || current.getType().equals(ChordType.MIN));
-        if (contextTags.contains(ContextTag.APPLIED_DOMINANT)){
+        if (contextTagsPrevious.contains(ContextTag.APPLIED_DOMINANT)){
             assert(previous.getPrimitiveChord().getRoot().equals(
                     current.getPrimitiveChord().getRoot().transpose(M7, true))
                     );

@@ -17,12 +17,14 @@ class SmallMovement {
      * Scores for small movements by mutating an input score
      * @param previous previous chord 
      * @param current current chord
+     * @param contextTagsPrevious context tags associated with Previous
+     * @param contextTagsCurrent context tags associated with current
      * @param key key in which this transition should be analyzed
-     * @param contextTags any relevant context tags
      * @param score a Score that gets mutated
      */
-    static void scoreSmallMovement(Chord previous, Chord current, Key key, 
-            Set<ContextTag> contextTags, Score score){
+    static void scoreSmallMovement(Chord previous, Chord current,
+            Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
+            Key key, Score score){
         List<Note> previousSpelled = Scorer.spellChord(previous);
         List<Note> currentSpelled = Scorer.spellChord(current);
         for (int i=0; i<4; i++){

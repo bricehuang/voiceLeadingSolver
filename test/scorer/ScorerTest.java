@@ -206,7 +206,8 @@ public class ScorerTest {
                 new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        ParallelsDirects.scoreParallels(dMinorDoubleThird, cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        ParallelsDirects.scoreParallels(dMinorDoubleThird, cMajorDoubleRoot, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.PARALLEL.value(), score.totalScore());
         printPenaltyTransition(dMinorDoubleThird, cMajorDoubleRoot, C_MAJOR, score);
     }
@@ -222,7 +223,8 @@ public class ScorerTest {
                 new Note(B, 4), new Note(F, 4), new Note(D, 4), new Note(G, 3), 
                 new PrimitiveChord(G, ChordType.DOM7, 0)
                 );
-        ParallelsDirects.scoreParallels(cMajor64, gDominantSeven, C_MAJOR, new HashSet<>(), score);
+        ParallelsDirects.scoreParallels(cMajor64, gDominantSeven, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(cMajor64, gDominantSeven, C_MAJOR, score);
     }
@@ -238,7 +240,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.DIRECT.value(), score.totalScore());
         printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
@@ -254,7 +257,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, new HashSet<>(), score);
+        ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
@@ -274,7 +278,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(A, 3), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -290,7 +295,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(A, 3), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -306,7 +312,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(A, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -322,7 +329,8 @@ public class ScorerTest {
                 new Note(E, 5), new Note(C, 5), new Note(E, 4), new Note(A, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -338,7 +346,8 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(A, 2), 
                 new PrimitiveChord(A, ChordType.MIN, 0)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -354,7 +363,8 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -370,7 +380,8 @@ public class ScorerTest {
                 new Note(E, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -386,7 +397,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -402,7 +414,8 @@ public class ScorerTest {
                 new Note(A, 4), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
                 new PrimitiveChord(A, ChordType.MIN, 1)
                 );
-        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, A_MINOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
+                new HashSet<>(), new HashSet<>(), A_MINOR, score);
         assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
@@ -422,7 +435,8 @@ public class ScorerTest {
                 new Note(G, 4), new Note(E, 4), new Note(C, 4), new Note(E, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 1)
                 );
-        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
     }
@@ -438,7 +452,8 @@ public class ScorerTest {
                 new Note(E, 4), new Note(E, 4), new Note(C, 4), new Note(G, 2), 
                 new PrimitiveChord(C, ChordType.MAJ, 2)
                 );
-        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
     }
@@ -455,7 +470,8 @@ public class ScorerTest {
                 new Note(G, 4), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.DIM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
     }
@@ -471,7 +487,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(G, 4), new Note(C, 4), new Note(E, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 1)
                 );
-        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, C_MAJOR, new HashSet<>(), score);
+        SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.DIM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
     }
@@ -491,7 +508,8 @@ public class ScorerTest {
                 new Note(G, 4), new Note(D, 4), new Note(B, 3), new Note(G, 2), 
                 new PrimitiveChord(G, ChordType.MAJ, 0)
                 );
-        MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, C_MINOR, new HashSet<>(), score);
+        MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
     }    
@@ -507,7 +525,8 @@ public class ScorerTest {
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
                 new PrimitiveChord(G, ChordType.MAJ, 0)
                 );
-        MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, C_MINOR, new HashSet<>(), score);
+        MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.MELODIC_INTERVAL.value(), score.totalScore());
         printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
     }
@@ -527,7 +546,8 @@ public class ScorerTest {
                 new Note(F, 4), new Note(F, 4), new Note(C, 4), new Note(A, 2), 
                 new PrimitiveChord(F, ChordType.MAJ, 1)
                 );
-        VoiceCrossing.scoreVoiceCrossing(gMajor, fMajor, C_MAJOR, new HashSet<>(), score);
+        VoiceCrossing.scoreVoiceCrossing(gMajor, fMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.VOICE_CROSSING.value(), score.totalScore());
         printPenaltyTransition(gMajor, fMajor, C_MINOR, score);
     }
@@ -543,7 +563,8 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 new PrimitiveChord(C, ChordType.MAJ, 0)
                 );
-        VoiceCrossing.scoreVoiceCrossing(gMajor, cMajor, C_MAJOR, new HashSet<>(), score);
+        VoiceCrossing.scoreVoiceCrossing(gMajor, cMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(0, score.totalScore());
         printPenaltyTransition(gMajor, cMajor, C_MINOR, score);
     }
@@ -563,7 +584,8 @@ public class ScorerTest {
                 new Note(F, 4), new Note(C, 4), new Note(C, 4), new Note(A, 2), 
                 new PrimitiveChord(F, ChordType.MAJ, 1)
                 );
-        SmallMovement.scoreSmallMovement(gMajor, fMajor, C_MAJOR, new HashSet<>(), score);
+        SmallMovement.scoreSmallMovement(gMajor, fMajor, 
+                new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.MOVE_FOURTH.value()+PenaltyType.MOVE_FIFTH.value(), score.totalScore());
         printPenaltyTransition(gMajor, fMajor, C_MINOR, score);
     }

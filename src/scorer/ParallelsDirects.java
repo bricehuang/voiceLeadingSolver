@@ -43,12 +43,14 @@ class ParallelsDirects {
      * Scores for parallel intervals by mutating an input score
      * @param previous previous chord 
      * @param current current chord
+     * @param contextTagsPrevious context tags associated with Previous
+     * @param contextTagsCurrent context tags associated with current
      * @param key key in which this transition should be analyzed
-     * @param contextTags any relevant context tags
      * @param score a Score that gets mutated
      */
-    static void scoreParallels(Chord previous, Chord current, Key key, 
-            Set<ContextTag> contextTags, Score score){
+    static void scoreParallels(Chord previous, Chord current,
+            Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
+            Key key, Score score){
         List<Note> previousSpelled = Scorer.spellChord(previous);
         List<Note> currentSpelled = Scorer.spellChord(current);
         
@@ -68,12 +70,14 @@ class ParallelsDirects {
      * Scores for direct intervals by mutating an input score
      * @param previous previous chord 
      * @param current current chord
+     * @param contextTagsPrevious context tags associated with Previous
+     * @param contextTagsCurrent context tags associated with current
      * @param key key in which this transition should be analyzed
-     * @param contextTags any relevant context tags
      * @param score a Score that gets mutated
      */
-    static void scoreDirects(Chord previous, Chord current, Key key, 
-            Set<ContextTag> contextTags, Score score){
+    static void scoreDirects(Chord previous, Chord current,
+            Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
+            Key key, Score score){
         Note prevSoprano = previous.getSoprano();
         Note prevBass = previous.getBass();
         Note currSoprano = current.getSoprano();

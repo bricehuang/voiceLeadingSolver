@@ -41,14 +41,16 @@ class Sequencer {
      * @return a BestList of ways to sing the chords up to, and including,
      * this one, with scores
      */
-    private static BestList sequenceRest(BestList previousBest, 
-            Set<Chord> chordSet, Key key, Set<ContextTag> contextTags){
+    private static BestList sequenceRest(BestList previousBest, Set<Chord> chordSet, 
+            Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
+            Key key){
         BestList best = new BestList();
         for (Chord currentChord : chordSet){
-            Score currentChordScore = Scorer.scoreChord(currentChord, key, contextTags);
+            Score currentChordScore = Scorer.scoreChord(currentChord, key, contextTagsCurrent);
             
             for (Chord previousChord : previousBest.getEndingChords()){
-                Score transitionScore = Scorer.scoreTransition(previousChord, currentChord, key, contextTags);
+                Score transitionScore = Scorer.scoreTransition(previousChord, currentChord, 
+                        contextTagsPrevious, contextTagsCurrent, key);
                 
                 for (ChordProgWithScore previous : previousBest.getProgressions(previousChord)){
                     int totalScore = previous.getScore() + currentChordScore.totalScore() + transitionScore.totalScore();
@@ -99,7 +101,7 @@ class Sequencer {
 
         for (int i=1; i<waysToSingChords.size(); i++){
             currentBest = sequenceRest(currentBest, waysToSingChords.get(i), 
-                    keys.get(i), contextTagsList.get(i));
+                    contextTagsList.get(i-1), contextTagsList.get(i), keys.get(i));
         }
 
         return findBestProgs(currentBest);
