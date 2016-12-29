@@ -34,6 +34,51 @@ public class ScorerTest {
     
     private static final Key C_MINOR = new Key(C,false);
 
+    private static final PrimitiveChord C_MAJ_ROOT = 
+            new PrimitiveChord(C, ChordType.MAJ, 0);
+    private static final PrimitiveChord C_MAJ_INV1 = 
+            new PrimitiveChord(C, ChordType.MAJ, 1);
+    private static final PrimitiveChord C_MAJ_INV2 = 
+            new PrimitiveChord(C, ChordType.MAJ, 2);
+    
+    private static final PrimitiveChord D_MIN_ROOT = 
+            new PrimitiveChord(D, ChordType.MIN, 0);
+    private static final PrimitiveChord D_MIN_INV1 =
+            new PrimitiveChord(D, ChordType.MIN, 1);
+
+    private static final PrimitiveChord E_DOM7_ROOT = 
+            new PrimitiveChord(E, ChordType.DOM7, 0);
+    private static final PrimitiveChord E_DOM7_INV1 = 
+            new PrimitiveChord(E, ChordType.DOM7, 1);
+    private static final PrimitiveChord E_DOM7_INV2 = 
+            new PrimitiveChord(E, ChordType.DOM7, 2);
+    private static final PrimitiveChord E_DOM7_INV3 = 
+            new PrimitiveChord(E, ChordType.DOM7, 3);
+    
+    private static final PrimitiveChord F_MAJ_INV1 = 
+            new PrimitiveChord(F, ChordType.MAJ, 1);
+    private static final PrimitiveChord F_MIN_ROOT = 
+            new PrimitiveChord(F, ChordType.MIN, 0);
+
+    private static final PrimitiveChord G_MAJ_ROOT = 
+            new PrimitiveChord(G, ChordType.MAJ, 0);
+    private static final PrimitiveChord G_MAJ_INV1 = 
+            new PrimitiveChord(G, ChordType.MAJ, 1);
+    private static final PrimitiveChord G_DOM7_ROOT = 
+            new PrimitiveChord(G, ChordType.DOM7, 0);
+  
+    private static final PrimitiveChord A_MIN_ROOT = 
+            new PrimitiveChord(A, ChordType.MIN, 0);
+    private static final PrimitiveChord A_MIN_INV1 =
+            new PrimitiveChord(A, ChordType.MIN, 1);
+    
+    private static final PrimitiveChord B_DIM7_INV1 = 
+            new PrimitiveChord(B, ChordType.DIM7, 1);
+    private static final PrimitiveChord B_DIM7_INV2 = 
+            new PrimitiveChord(B, ChordType.DIM7, 2);
+    private static final PrimitiveChord B_DIM7_INV3 = 
+            new PrimitiveChord(B, ChordType.DIM7, 3);
+    
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -63,7 +108,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Doubling.scoreDoubling(cMajorDoubleRoot, new HashSet<>(), C_MAJOR,  score);
         
@@ -76,7 +121,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord dMinorDoubleRoot = new Chord(
                 new Note(D, 5), new Note(F, 4), new Note(A, 3), new Note(D, 3), 
-                new PrimitiveChord(D, ChordType.MIN, 0)
+                D_MIN_ROOT
                 );
         Doubling.scoreDoubling(dMinorDoubleRoot, new HashSet<>(), C_MAJOR,  score);
         
@@ -89,7 +134,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajorDoubleThird = new Chord(
                 new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Doubling.scoreDoubling(cMajorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
@@ -102,7 +147,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord dMinorDoubleThird = new Chord(
                 new Note(A, 4), new Note(F, 4), new Note(D, 4), new Note(F, 3), 
-                new PrimitiveChord(D, ChordType.MIN, 1)
+                D_MIN_INV1
                 );
         Doubling.scoreDoubling(dMinorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
@@ -115,7 +160,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajorTripleRootIncomplete= new Chord(
                 new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Doubling.scoreDoubling(cMajorTripleRootIncomplete, new HashSet<>(), C_MAJOR,  score);
         
@@ -128,7 +173,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajorDoubleRootThirdIncomplete = new Chord(
                 new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Doubling.scoreDoubling(cMajorDoubleRootThirdIncomplete, new HashSet<>(), C_MAJOR,  score);
         
@@ -141,7 +186,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajorDoubleThird = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(B, 3), new Note(G, 3), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Doubling.scoreDoubling(gMajorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
@@ -154,7 +199,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Doubling.scoreDoubling(gMajorDoubleRoot, new HashSet<>(), C_MAJOR,  score);
         
@@ -171,7 +216,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajorVoiceOverlap = new Chord(
                 new Note(C, 5), new Note(C, 5), new Note(E, 4), new Note(G, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 2)
+                C_MAJ_INV2
                 );
         VoiceOverlap.scoreVoiceOverlap(cMajorVoiceOverlap, new HashSet<>(), C_MAJOR,  score);
         assertEquals(PenaltyType.VOICE_OVERLAP.value(), score.totalScore());
@@ -187,7 +232,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajor = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
@@ -201,7 +246,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajor = new Chord(
                 new Note(G, 4), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
@@ -215,7 +260,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 3), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENTIAL_V);
@@ -229,7 +274,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajor = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(D, 4), new Note(G, 3), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENTIAL_V);
@@ -243,7 +288,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 2)
+                C_MAJ_INV2
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENTIAL_I64);
@@ -257,7 +302,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(C, 4), new Note(G, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 2)
+                C_MAJ_INV2
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENTIAL_I64);
@@ -275,7 +320,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajor = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
@@ -289,7 +334,7 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajor = new Chord(
                 new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
@@ -306,7 +351,7 @@ public class ScorerTest {
     public void testBadDoublingSD3VoiceOverlap(){
         Chord cMajorVoiceOverlapDoubleThird = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 2)
+                C_MAJ_INV2
                 );
         Score score = Scorer.scoreChord(cMajorVoiceOverlapDoubleThird, new HashSet<>(), C_MAJOR);
         assertEquals(PenaltyType.VOICE_OVERLAP.value() + PenaltyType.BAD_DOUBLING.value(), score.totalScore());
@@ -322,11 +367,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord dMinorDoubleThird = new Chord(
                 new Note(F, 5), new Note(A, 4), new Note(D, 4), new Note(F, 3), 
-                new PrimitiveChord(D, ChordType.MIN, 1)
+                D_MIN_INV1
                 );
         Chord cMajorDoubleRoot = new Chord(
                 new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         ParallelsDirects.scoreParallels(dMinorDoubleThird, cMajorDoubleRoot, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -339,11 +384,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 2)
+                C_MAJ_INV2
                 );
         Chord gDominantSeven = new Chord(
                 new Note(B, 4), new Note(F, 4), new Note(D, 4), new Note(G, 3), 
-                new PrimitiveChord(G, ChordType.DOM7, 0)
+                G_DOM7_ROOT
                 );
         ParallelsDirects.scoreParallels(cMajor64, gDominantSeven, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -356,11 +401,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(G, 4), new Note(D, 4), new Note(G, 3), new Note(B, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 1)
+                G_MAJ_INV1
                 );
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -373,11 +418,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -394,11 +439,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
-                new PrimitiveChord(E, ChordType.DOM7, 0)
+                E_DOM7_ROOT
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(A, 4), new Note(A, 3), new Note(A, 2), 
-                new PrimitiveChord(A, ChordType.MIN, 0)
+                A_MIN_ROOT
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -411,11 +456,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
-                new PrimitiveChord(E, ChordType.DOM7, 0)
+                E_DOM7_ROOT
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(A, 3), new Note(A, 2), 
-                new PrimitiveChord(A, ChordType.MIN, 0)
+                A_MIN_ROOT
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -428,11 +473,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
-                new PrimitiveChord(E, ChordType.DOM7, 1)
+                E_DOM7_INV1
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(A, 3), 
-                new PrimitiveChord(A, ChordType.MIN, 0)
+                A_MIN_ROOT
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -445,11 +490,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
-                new PrimitiveChord(E, ChordType.DOM7, 1)
+                E_DOM7_INV1
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(C, 5), new Note(E, 4), new Note(A, 3), 
-                new PrimitiveChord(A, ChordType.MIN, 0)
+                A_MIN_ROOT
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -462,11 +507,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
-                new PrimitiveChord(E, ChordType.DOM7, 2)
+                E_DOM7_INV2
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(A, 2), 
-                new PrimitiveChord(A, ChordType.MIN, 0)
+                A_MIN_ROOT
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -479,11 +524,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
-                new PrimitiveChord(E, ChordType.DOM7, 2)
+                E_DOM7_INV2
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(A, 4), new Note(C, 4), new Note(C, 3), 
-                new PrimitiveChord(A, ChordType.MIN, 1)
+                A_MIN_INV1
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -496,11 +541,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
-                new PrimitiveChord(E, ChordType.DOM7, 2)
+                E_DOM7_INV2
                 );
         Chord aMinor = new Chord(
                 new Note(E, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
-                new PrimitiveChord(A, ChordType.MIN, 1)
+                A_MIN_INV1
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -513,11 +558,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
-                new PrimitiveChord(E, ChordType.DOM7, 3)
+                E_DOM7_INV3
                 );
         Chord aMinor = new Chord(
                 new Note(C, 5), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
-                new PrimitiveChord(A, ChordType.MIN, 1)
+                A_MIN_INV1
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -530,11 +575,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
-                new PrimitiveChord(E, ChordType.DOM7, 3)
+                E_DOM7_INV3
                 );
         Chord aMinor = new Chord(
                 new Note(A, 4), new Note(A, 4), new Note(E, 4), new Note(C, 3), 
-                new PrimitiveChord(A, ChordType.MIN, 1)
+                A_MIN_INV1
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
@@ -551,11 +596,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord bDimSeven = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(B, 3), new Note(D, 3), 
-                new PrimitiveChord(B, ChordType.DIM7, 1)
+                B_DIM7_INV1
                 );
         Chord cMajor = new Chord(
                 new Note(G, 4), new Note(E, 4), new Note(C, 4), new Note(E, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 1)
+                C_MAJ_INV1
                 );
         SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -568,11 +613,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord bDimSeven = new Chord(
                 new Note(F, 4), new Note(D, 4), new Note(B, 3), new Note(Ab, 2), 
-                new PrimitiveChord(B, ChordType.DIM7, 3)
+                B_DIM7_INV3
                 );
         Chord cMajor = new Chord(
                 new Note(E, 4), new Note(E, 4), new Note(C, 4), new Note(G, 2), 
-                new PrimitiveChord(C, ChordType.MAJ, 2)
+                C_MAJ_INV2
                 );
         SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -586,11 +631,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord bDimSeven = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(B, 3), new Note(D, 3), 
-                new PrimitiveChord(B, ChordType.DIM7, 1)
+                B_DIM7_INV1
                 );
         Chord cMajor = new Chord(
                 new Note(G, 4), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -603,11 +648,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord bDimSeven = new Chord(
                 new Note(D, 5), new Note(Ab, 4), new Note(B, 3), new Note(F, 3), 
-                new PrimitiveChord(B, ChordType.DIM7, 2)
+                B_DIM7_INV2
                 );
         Chord cMajor = new Chord(
                 new Note(C, 5), new Note(G, 4), new Note(C, 4), new Note(E, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 1)
+                C_MAJ_INV1
                 );
         SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -624,11 +669,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord fMinor = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(C, 4), new Note(F, 2), 
-                new PrimitiveChord(F, ChordType.MIN, 0)
+                F_MIN_ROOT
                 );
         Chord gMajor = new Chord(
                 new Note(G, 4), new Note(D, 4), new Note(B, 3), new Note(G, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -641,11 +686,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord fMinor = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(C, 4), new Note(F, 2), 
-                new PrimitiveChord(F, ChordType.MIN, 0)
+                F_MIN_ROOT
                 );
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -662,11 +707,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Chord fMajor = new Chord(
                 new Note(F, 4), new Note(F, 4), new Note(C, 4), new Note(A, 2), 
-                new PrimitiveChord(F, ChordType.MAJ, 1)
+                F_MAJ_INV1
                 );
         VoiceCrossing.scoreVoiceCrossing(gMajor, fMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -679,11 +724,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Chord cMajor = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
-                new PrimitiveChord(C, ChordType.MAJ, 0)
+                C_MAJ_ROOT
                 );
         VoiceCrossing.scoreVoiceCrossing(gMajor, cMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
@@ -700,11 +745,11 @@ public class ScorerTest {
         Score score = new Score();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 2), 
-                new PrimitiveChord(G, ChordType.MAJ, 0)
+                G_MAJ_ROOT
                 );
         Chord fMajor = new Chord(
                 new Note(F, 4), new Note(C, 4), new Note(C, 4), new Note(A, 2), 
-                new PrimitiveChord(F, ChordType.MAJ, 1)
+                F_MAJ_INV1
                 );
         SmallMovement.scoreSmallMovement(gMajor, fMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
