@@ -9,7 +9,6 @@ import chords.Chord;
 import chords.ChordProgression;
 import music.Key;
 import music.Note;
-import solver.ChordProgWithScoreTest;
 import solver.ContextTag;
 
 /**
@@ -72,6 +71,7 @@ public class Scorer {
         Score score = new Score();
         Doubling.scoreDoubling(chord, contextTags, key, score);
         VoiceOverlap.scoreVoiceOverlap(chord, contextTags, key, score);
+        DoublingInCadence.scoreDoubling(chord, contextTags, key, score);
         return score;
     }
     

@@ -3,6 +3,7 @@ package scorer;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -12,6 +13,7 @@ import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
+import solver.ContextTag;
 
 public class ScorerTest {
     
@@ -175,7 +177,95 @@ public class ScorerTest {
         assertEquals(PenaltyType.VOICE_OVERLAP.value(), score.totalScore());
         printPenaltyChord(cMajorVoiceOverlap, C_MAJOR, score);
     }
+    
+    /*******************************
+     * Tests for DoublingInCadence *
+     *******************************/
+    
+    @Test
+    public void testCadenceDoublingIGood(){
+        Score score = new Score();
+        Chord cMajor = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENCE);
+        DoublingInCadence.scoreDoubling(cMajor, tags, C_MAJOR,  score);
+        assertEquals(0, score.totalScore());
+        printPenaltyChord(cMajor, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testCadenceDoublingIBad(){
+        Score score = new Score();
+        Chord cMajor = new Chord(
+                new Note(G, 4), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 0)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENCE);
+        DoublingInCadence.scoreDoubling(cMajor, tags, C_MAJOR,  score);
+        assertEquals(PenaltyType.CADENCE_DOUBLING.value(), score.totalScore());
+        printPenaltyChord(cMajor, C_MAJOR, score);
+    }
 
+    @Test
+    public void testCadenceDoublingVGood(){
+        Score score = new Score();
+        Chord gMajor = new Chord(
+                new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 3), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENTIAL_V);
+        DoublingInCadence.scoreDoubling(gMajor, tags, C_MAJOR,  score);
+        assertEquals(0, score.totalScore());
+        printPenaltyChord(gMajor, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testCadenceDoublingVBad(){
+        Score score = new Score();
+        Chord gMajor = new Chord(
+                new Note(D, 5), new Note(B, 4), new Note(D, 4), new Note(G, 3), 
+                new PrimitiveChord(G, ChordType.MAJ, 0)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENTIAL_V);
+        DoublingInCadence.scoreDoubling(gMajor, tags, C_MAJOR,  score);
+        assertEquals(PenaltyType.CADENCE_DOUBLING.value(), score.totalScore());
+        printPenaltyChord(gMajor, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testCadenceDoublingI64Good(){
+        Score score = new Score();
+        Chord cMajor64 = new Chord(
+                new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 2)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENTIAL_I64);
+        DoublingInCadence.scoreDoubling(cMajor64, tags, C_MAJOR,  score);
+        assertEquals(0, score.totalScore());
+        printPenaltyChord(cMajor64, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testCadenceDoublingI64Bad(){
+        Score score = new Score();
+        Chord cMajor64 = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(C, 4), new Note(G, 3), 
+                new PrimitiveChord(C, ChordType.MAJ, 2)
+                );
+        Set<ContextTag> tags = new HashSet<>();
+        tags.add(ContextTag.CADENTIAL_I64);
+        DoublingInCadence.scoreDoubling(cMajor64, tags, C_MAJOR,  score);
+        assertEquals(PenaltyType.CADENCE_DOUBLING.value(), score.totalScore());
+        printPenaltyChord(cMajor64, C_MAJOR, score);
+    }
+    
     /******************************
      * Composite ScoreChord tests *
      ******************************/
