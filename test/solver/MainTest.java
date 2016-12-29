@@ -17,6 +17,13 @@ public class MainTest {
         Main.solve(input, REPORT, 1);
     }
 
+    
+    @Test
+    public void testRealization1(){
+        String input = "KEY:GMaj GMajT0 DDomS0 GMajT0 GDomS1\n"
+                + "CMajT0App DMajT1 GMajT0 AMinS0 GMajT2 DMajT0 GMajT0Cad";
+        Main.solve(input, REPORT, 1);
+    }
     @Test
     public void testRealization2(){
         String input = "KEY:CMin CMinT0 A-MajT0 FMinT0 GDomS2\n"
