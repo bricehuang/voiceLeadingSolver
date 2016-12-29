@@ -57,8 +57,8 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgWithScore> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
-        outputEvaluation(bestProgressions.get(0).getChordProg(), keys, contextTagsList);
+        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
     @Test
@@ -78,8 +78,8 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgWithScore> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
-        outputEvaluation(bestProgressions.get(0).getChordProg(), keys, contextTagsList);
+        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
     @Test
@@ -123,8 +123,8 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgWithScore> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
-        outputEvaluation(bestProgressions.get(0).getChordProg(), keys, contextTagsList);
+        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
     @Test
@@ -165,7 +165,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgWithScore> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
-        outputEvaluation(bestProgressions.get(0).getChordProg(), keys, contextTagsList);
+        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
 }

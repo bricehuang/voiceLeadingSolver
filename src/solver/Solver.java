@@ -1,9 +1,11 @@
 package solver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import chords.Chord;
+import chords.ChordProgression;
 import chords.PrimitiveChord;
 import music.Key;
 
@@ -12,10 +14,14 @@ import music.Key;
  */
 class Solver {
     
-    static List<ChordProgWithScore> solve(List<PrimitiveChord> primitiveChords, 
+    static List<ChordProgression> solve(List<PrimitiveChord> primitiveChords, 
             List<Key> keys, List<Set<ContextTag>> contextTagsList){
         List<Set<Chord>> waysToSingChords = ChordGenerator.generateChords(primitiveChords);
-        SortedFiniteProgList bestProgressions = Sequencer.findBestChordProgressions(waysToSingChords, keys, contextTagsList);
-        return bestProgressions.getProgressions();
+        SortedFiniteProgList bestProgressionsAndScores = Sequencer.findBestChordProgressions(waysToSingChords, keys, contextTagsList);
+        List<ChordProgression> bestProgressions = new ArrayList<>();
+        for (ChordProgWithScore progressionAndScore : bestProgressionsAndScores.getProgressions()){
+            bestProgressions.add(progressionAndScore.getChordProg());
+        }
+        return bestProgressions;
     }
 }

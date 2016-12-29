@@ -11,8 +11,12 @@ import chords.ChordProgression;
 public class Main {
     
     public static List<ChordProgression> solve(String in){
-        // TODO
-        // pass to parser, then to chord generator, then to sequencer
-        throw new RuntimeException("Unimplemented.");
+        ParseResult parsedInput = Parser.parse(in);
+        return Solver.solve(
+                parsedInput.getPrimitiveChords(), 
+                parsedInput.getKeys(), 
+                parsedInput.getContextTags());
     }
+    
+    // TODO: solve and play
 }
