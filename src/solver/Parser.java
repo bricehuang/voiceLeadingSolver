@@ -80,7 +80,6 @@ class Parser {
     }
     
     private static PrimitiveChord parseChord(String strChord){
-        System.out.println(strChord);
         assert(strChord.matches(CHORD_REGEX));
         String root;
         String spec;
