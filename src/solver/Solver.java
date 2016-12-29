@@ -1,6 +1,7 @@
 package solver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +23,6 @@ class Solver {
         for (ChordProgWithScore progressionAndScore : bestProgressionsAndScores.getProgressions()){
             bestProgressions.add(progressionAndScore.getChordProg());
         }
-        return bestProgressions;
+        return Collections.unmodifiableList(bestProgressions);
     }
 }
