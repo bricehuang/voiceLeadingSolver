@@ -44,6 +44,25 @@ public class Key {
         this.isMajor = isMajor;
     }
 
+    /***********
+     * GETTERS *
+     ***********/
+    
+    /**
+     * Simple getter 
+     * @return tonic
+     */
+    public BasicNote getTonic(){
+        return tonic;
+    }
+    
+    /**
+     * Simple getter 
+     * @return true if major, else false
+     */
+    public boolean getIsMajor(){
+        return isMajor;
+    }
     
     /******************
      *  COMPUTATIONS  *
