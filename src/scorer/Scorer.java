@@ -100,6 +100,8 @@ public class Scorer {
                 contextTagsPrevious, contextTagsCurrent, key, score);
         SevenChordResolution.scoreDimSevenResolutions(previous, current, 
                 contextTagsPrevious, contextTagsCurrent, key, score);
+        CadenceSmallMovement.scoreSmallMovementCadence(previous, current, 
+                contextTagsPrevious, contextTagsCurrent, key, score);
         return score;
     }
     
