@@ -37,12 +37,12 @@ public class Scorer {
      * Dim7 proper resolution 
      * neopolitan 6 proper resolution // TODO
      * aug6 proper resolutions // TODO implement these chords
-     * ii65 hold tonic TODO
+     * ii65 hold tonic 
      * 
      * Cadences:
      * Cadence doubling
      * PAC
-     * Everything moves stepwise except bass //TODO
+     * Everything moves stepwise except bass 
      * 
      */
     
