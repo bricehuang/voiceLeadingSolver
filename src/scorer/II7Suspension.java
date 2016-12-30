@@ -39,8 +39,8 @@ public class II7Suspension {
             List<Note> previousSpelled = Scorer.spellChord(previous);
             List<Note> currentSpelled = Scorer.spellChord(current);
             for (int i=0; i<4; i++){
-                if (previousSpelled.get(i).equals(key.getTonic()) 
-                        && !currentSpelled.get(i).equals(key.getTonic())){
+                if (previousSpelled.get(i).getBasicNote().equals(key.getTonic()) 
+                        && !currentSpelled.get(i).getBasicNote().equals(key.getTonic())){
                     score.addPenalty(PenaltyType.CADENTIAL_II7_SUSPEND);
                 }
             }
