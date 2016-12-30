@@ -171,7 +171,10 @@ class Parser {
                             && primitiveChords.get(i-1).getInversion() == 0 
                             && keys.get(i-1).equals(key)){
                         contextTags.get(i-1).add(ContextTag.CADENTIAL_V);
-                        if (i>=2 && primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(4))
+                        if (i>=2 && 
+                                // TODO Neopolitan will break this
+                                (primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(4))
+                                        || primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(2)))
                                 && keys.get(i-2).equals(key)){
                             contextTags.get(i-2).add(ContextTag.CADENTIAL_PREDOMINANT);
                         }
@@ -179,7 +182,10 @@ class Parser {
                                 && primitiveChords.get(i-2).getInversion() == 2
                                 && keys.get(i-2).equals(key)){
                             contextTags.get(i-2).add(ContextTag.CADENTIAL_I64);
-                            if (i>=3 && primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(4))
+                            if (i>=3 && 
+                                    // TODO Neopolitan will break this
+                                    (primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(4))
+                                            || primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(2)))
                                     && keys.get(i-3).equals(key)){
                                 contextTags.get(i-3).add(ContextTag.CADENTIAL_PREDOMINANT);
                             }
