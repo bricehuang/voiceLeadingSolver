@@ -125,7 +125,7 @@ class Parser {
         }
     }
     
-    private static ParseResult parseTokens(List<String> tokens){
+    private static ParseResult parseTokensPrelim(List<String> tokens){
         List<PrimitiveChord> primitiveChords = new ArrayList<>();
         List<Key> keys = new ArrayList<>();
         List<Set<ContextTag>> contextTags = new ArrayList<>();
@@ -152,7 +152,16 @@ class Parser {
                 contextTags.add(tags);
             }
         }
+        return new ParseResult(primitiveChords, keys, contextTags);
+    }
+    
+    private static ParseResult parseTokensPostprocess(ParseResult prelim){
+        List<PrimitiveChord> primitiveChords = prelim.getPrimitiveChords();
+        List<Key> keys = prelim.getKeys();
+        List<Set<ContextTag>> contextTags = prelim.getContextTags();
+        
         // TODO this is jank
+        // TODO 4 should be 4 or 2
         for (int i=0; i<primitiveChords.size(); i++){
             if (contextTags.get(i).contains(ContextTag.CADENCE)){
                 Key key = keys.get(i);
@@ -180,6 +189,11 @@ class Parser {
             }
         }
         return new ParseResult(primitiveChords, keys, contextTags);
+    }
+    
+    private static ParseResult parseTokens(List<String> tokens){
+        ParseResult prelim = parseTokensPrelim(tokens);
+        return parseTokensPostprocess(prelim);
     }
     
     public static ParseResult parse(String input){
