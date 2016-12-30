@@ -45,6 +45,8 @@ public class ScorerTest {
             new PrimitiveChord(D, ChordType.MIN, 0);
     private static final PrimitiveChord D_MIN_INV1 =
             new PrimitiveChord(D, ChordType.MIN, 1);
+    private static final PrimitiveChord D_MIN7_INV1 = 
+            new PrimitiveChord(D, ChordType.MIN7, 1);
 
     private static final PrimitiveChord E_DOM7_ROOT = 
             new PrimitiveChord(E, ChordType.DOM7, 0);
@@ -754,7 +756,77 @@ public class ScorerTest {
         SmallMovement.scoreSmallMovement(gMajor, fMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
         assertEquals(PenaltyType.MOVE_FOURTH.value()+PenaltyType.MOVE_FIFTH.value(), score.totalScore());
-        printPenaltyTransition(gMajor, fMajor, C_MINOR, score);
+        printPenaltyTransition(gMajor, fMajor, C_MAJOR, score);
+    }
+    
+    /**********************************
+     * Tests for CadenceSmallMovement *
+     **********************************/
+    
+    @Test
+    public void testCadenceMovement(){
+        Score score = new Score();
+        Chord fMinor = new Chord(
+                new Note(F, 5), new Note(Ab, 4), new Note(C, 4), new Note(F, 2), 
+                F_MIN_ROOT
+                );
+        Chord gMajor = new Chord(
+                new Note(D, 5), new Note(G, 4), new Note(B, 3), new Note(G, 2), 
+                G_MAJ_ROOT
+                );
+        Set<ContextTag> prevContext = new HashSet<>();
+        prevContext.add(ContextTag.CADENTIAL_PREDOMINANT);
+        Set<ContextTag> currContext = new HashSet<>();
+        currContext.add(ContextTag.CADENTIAL_V);
+        CadenceSmallMovement.scoreSmallMovementCadence(fMinor, gMajor, 
+                prevContext, currContext, C_MINOR, score);
+        assertEquals(PenaltyType.MOVE_BIG_CADENCE.value(), score.totalScore());
+        printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
     }
 
+    /**********************************
+     * Tests for II7Suspension *
+     **********************************/
+    
+    @Test
+    public void testII7SuspensionGood(){
+        Score score = new Score();
+        Chord dMin7 = new Chord(
+                new Note(C, 5), new Note(D, 4), new Note(A, 3), new Note(F, 2), 
+                D_MIN7_INV1
+                );
+        Chord c64 = new Chord(
+                new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(G, 2), 
+                C_MAJ_INV2
+                );
+        Set<ContextTag> prevContext = new HashSet<>();
+        prevContext.add(ContextTag.CADENTIAL_PREDOMINANT);
+        Set<ContextTag> currContext = new HashSet<>();
+        currContext.add(ContextTag.CADENTIAL_I64);
+        II7Suspension.scoreII7Suspension(dMin7, c64, 
+                prevContext, currContext, C_MAJOR, score);
+        assertEquals(0, score.totalScore());
+        printPenaltyTransition(dMin7, c64, C_MAJOR, score);
+    }
+    
+    @Test
+    public void testII7SuspensionBad(){
+        Score score = new Score();
+        Chord dMin7 = new Chord(
+                new Note(D, 5), new Note(A, 4), new Note(C, 4), new Note(F, 2), 
+                D_MIN7_INV1
+                );
+        Chord c64 = new Chord(
+                new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 2), 
+                C_MAJ_INV2
+                );
+        Set<ContextTag> prevContext = new HashSet<>();
+        prevContext.add(ContextTag.CADENTIAL_PREDOMINANT);
+        Set<ContextTag> currContext = new HashSet<>();
+        currContext.add(ContextTag.CADENTIAL_I64);
+        II7Suspension.scoreII7Suspension(dMin7, c64, 
+                prevContext, currContext, C_MAJOR, score);
+        assertEquals(PenaltyType.CADENTIAL_II7_SUSPEND.value(), score.totalScore());
+        printPenaltyTransition(dMin7, c64, C_MAJOR, score);
+    }
 }
