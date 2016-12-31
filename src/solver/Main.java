@@ -69,5 +69,19 @@ public class Main {
         reader.close();
         solveAndPlay(in);
     }
+    
+    /**
+     * Main method
+     * @param args
+     * @throws IOException 
+     */
+    public static void main(String[] args) throws IOException{
+        if (args.length != 1) {
+            System.out.println("usage: java satb.player.Main mysatbfile.satb [--debug]");
+        }
+        else{
+            solveAndPlayFile(args[0]);
+        }
+    }
 
 }
