@@ -87,6 +87,10 @@ public class Note {
         return this.basicNote;
     }
     
+    public int getMidiNote(){
+        return pitchID+12;
+    }
+    
     /****************
      * Computations *
      ****************/
