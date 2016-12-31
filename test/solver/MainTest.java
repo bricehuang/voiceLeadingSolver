@@ -46,5 +46,16 @@ public class MainTest {
             e.printStackTrace();
         }
     }
+    
+    @Test
+    public void realization3Test(){
+        playSampleSATB("realization3.satb");
+        try{
+            Thread.sleep(20000);
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
 
 }
