@@ -7,7 +7,7 @@ import org.junit.Test;
 import chords.ChordProgression;
 import player.ProgressionPlayer;
 
-public class MainTest {
+public class MainSolverTest {
     
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
