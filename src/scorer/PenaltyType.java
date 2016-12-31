@@ -66,7 +66,7 @@ public enum PenaltyType {
         tmpPenalties.put(DOM_SEVEN_RES, 1000); 
         tmpPenalties.put(DIM_SEVEN_RES, 1000); 
         tmpPenalties.put(CADENCE_DOUBLING, 1000); 
-        tmpPenalties.put(NOT_PAC, 100); 
+        tmpPenalties.put(NOT_PAC, 10); 
         tmpPenalties.put(MOVE_BIG_CADENCE, 1000);
         tmpPenalties.put(CADENTIAL_II7_SUSPEND, 1000);
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
