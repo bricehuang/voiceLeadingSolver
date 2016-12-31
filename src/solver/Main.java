@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiUnavailableException;
+
 import chords.ChordProgression;
 import player.ProgressionPlayer;
 import scorer.Scorer;
@@ -49,8 +52,11 @@ public class Main {
     /**
      * Finds the best chord progression on a given input and plays it
      * @param in the input
+     * @throws MidiUnavailableException 
+     * @throws InvalidMidiDataException 
      */
-    public static void solveAndPlay(String in){
+    public static void solveAndPlay(String in) 
+            throws InvalidMidiDataException, MidiUnavailableException{
         ChordProgression best = solve(in, DEFAULT_REPORT, DEFAULT_MAXREPORT).get(0);  
         ProgressionPlayer.playProgression(best); 
     }
@@ -59,8 +65,11 @@ public class Main {
      * Finds the best chord progression on a given input and plays it
      * @param filename the file containing the input
      * @throws IOException 
+     * @throws MidiUnavailableException 
+     * @throws InvalidMidiDataException 
      */
-    public static void solveAndPlayFile(String filename) throws IOException{
+    public static void solveAndPlayFile(String filename) 
+            throws IOException, InvalidMidiDataException, MidiUnavailableException{
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         String in = "";
         for(String line = reader.readLine(); line != null; line = reader.readLine()){
@@ -73,14 +82,21 @@ public class Main {
     /**
      * Main method
      * @param args
-     * @throws IOException 
      */
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("usage: java satb.player.Main mysatbfile.satb [--debug]");
         }
         else{
-            solveAndPlayFile(args[0]);
+            try {
+                solveAndPlayFile(args[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InvalidMidiDataException e) {
+                e.printStackTrace();
+            } catch (MidiUnavailableException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -56,25 +56,22 @@ public class ProgressionPlayer {
         sequencer.start();
     }
     
-    private static void addChord(Track track, Chord chord, int tick) {
+    private static void addChord(Track track, Chord chord, int tick) 
+            throws InvalidMidiDataException {
         List<Note> chordSpelled = Arrays.asList(
                 chord.getBass(), chord.getTenor(), chord.getAlto(), chord.getSoprano());
         for (Note note: chordSpelled){
-            try{
                 track.add(new MidiEvent(new ShortMessage(
                         ShortMessage.NOTE_ON, CHANNEL, note.getMidiNote(), VOLUME
                         ), tick));
                 track.add(new MidiEvent(new ShortMessage(
                         ShortMessage.NOTE_OFF, CHANNEL, note.getMidiNote(), VOLUME
                         ), tick + NOTE_LENGTH));
-            }
-            catch(InvalidMidiDataException e){
-                throw new RuntimeException(e);
-            }
         }
     }
     
-    private static void addProgression(Track track, ChordProgression progression) {
+    private static void addProgression(Track track, ChordProgression progression) 
+            throws InvalidMidiDataException {
         if (progression.length() == 0){
             return;
         }
@@ -88,22 +85,17 @@ public class ProgressionPlayer {
      * @throws MidiUnavailableException 
      * @throws InvalidMidiDataException 
      */
-    public static void playProgression(ChordProgression progression) {
+    public static void playProgression(ChordProgression progression) 
+            throws InvalidMidiDataException, MidiUnavailableException {
         Sequence sequence;
-        try {
-            sequence = new Sequence(Sequence.PPQ, TICKS_PER_BEAT);
-            Sequencer sequencer = MidiSystem.getSequencer();
-            sequencer.setSequence(sequence);
-            Track track = sequence.createTrack();
-            
-            addProgression(track, progression);
-            
-            play(sequencer);
-        } catch (InvalidMidiDataException e) {
-            throw new RuntimeException(e);
-        } catch (MidiUnavailableException e) {
-            throw new RuntimeException(e);
-        }   
+        sequence = new Sequence(Sequence.PPQ, TICKS_PER_BEAT);
+        Sequencer sequencer = MidiSystem.getSequencer();
+        sequencer.setSequence(sequence);
+        Track track = sequence.createTrack();
+        
+        addProgression(track, progression);
+        
+        play(sequencer);
     }
     
 }
