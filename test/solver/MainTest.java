@@ -25,4 +25,26 @@ public class MainTest {
         }
     }
 
+    @Test
+    public void realization1Test(){
+        playSampleSATB("realization1.satb");
+        try{
+            Thread.sleep(22000);
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void realization2Test(){
+        playSampleSATB("realization2.satb");
+        try{
+            Thread.sleep(20000);
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
 }
