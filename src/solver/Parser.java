@@ -209,6 +209,12 @@ class Parser {
             if (token.matches(MASTER_REGEX)){
                 tokens.add(token);
             }
+            else{
+                if (!token.equals("")){
+                    System.err.println("I don't recognize token " 
+                            + token + ".  Will ignore.");
+                }
+            }
         }
         assert(tokens.get(0).matches(KEY_REGEX));
         return parseTokens(tokens);
