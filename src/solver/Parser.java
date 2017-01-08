@@ -1,6 +1,7 @@
 package solver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -156,42 +157,107 @@ class Parser {
         return new ParseResult(primitiveChords, keys, contextTags);
     }
     
+    /**
+     * Note: contextTags is contextTags before postprocessing
+     */
+    private static boolean isPerfectCadence(PrimitiveChord chord, Key key, Set<ContextTag> contextTags){
+        if (contextTags.contains(ContextTag.CADENCE)){
+            if (chord.getRoot().equals(key.getTonic()) && chord.getInversion() == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    
+    private static boolean isCadentialDominant(PrimitiveChord chord, Key key){
+        Set<ChordType> dominantChordTypes = new HashSet<>(Arrays.asList(
+                ChordType.MAJ, ChordType.DOM7));
+        if (dominantChordTypes.contains(chord.getType())){
+            if (chord.getRoot().equals(key.getScaleDegree(5)) 
+                    && chord.getInversion() == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;            
+        }
+    }
+    
+    private static boolean isCadentialI64(PrimitiveChord chord, Key key){
+        if (chord.getRoot().equals(key.getTonic()) 
+                && chord.getInversion() == 2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private static boolean isCadentialPredominant(PrimitiveChord chord, Key key, 
+            Set<ContextTag> contextTags){
+        // TODO: applied dominant, aug6, diminished??
+        if (chord.getRoot().equals(key.getScaleDegree(2))){
+            Set<ChordType> predominant2ChordTypes = new HashSet<>(
+                    Arrays.asList(ChordType.MIN, ChordType.MIN7)); 
+            if (predominant2ChordTypes.contains(chord.getType())){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else if (chord.getRoot().equals(key.getScaleDegree(4))){
+            Set<ChordType> predominant4ChordTypes = new HashSet<>(
+                    Arrays.asList(ChordType.MAJ, ChordType.MIN));
+            if (predominant4ChordTypes.contains(chord.getType())){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else if (chord.getRoot().equals(key.getScaleDegree(2).transpose(SEMITONE, false))){
+            if (contextTags.contains(ContextTag.NEAPOLITAN) 
+                    && chord.getType().equals(ChordType.MAJ) 
+                    && chord.getInversion() == 1){
+                return true;
+            }
+            return false;
+        }
+        else{
+            return false;
+        }
+    }
+    
     private static ParseResult parseTokensPostprocess(ParseResult prelim){
         List<PrimitiveChord> primitiveChords = prelim.getPrimitiveChords();
         List<Key> keys = prelim.getKeys();
         List<Set<ContextTag>> contextTags = prelim.getContextTags();
         
-        // TODO this is jank
-        // TODO 4 should be 4 or 2
         for (int i=0; i<primitiveChords.size(); i++){
-            if (contextTags.get(i).contains(ContextTag.CADENCE)){
+            if (isPerfectCadence(primitiveChords.get(i), keys.get(i), contextTags.get(i))){
                 Key key = keys.get(i);
-                if (primitiveChords.get(i).getRoot().equals(key.getTonic())
-                        && primitiveChords.get(i).getInversion() == 0){
-                    if (i>=1 && primitiveChords.get(i-1).getRoot().equals(key.getScaleDegree(5))
-                            && primitiveChords.get(i-1).getInversion() == 0 
-                            && (primitiveChords.get(i-1).getType().equals(ChordType.MAJ) 
-                                    || primitiveChords.get(i-1).getType().equals(ChordType.DOM7))
-                            && keys.get(i-1).equals(key)){
-                        contextTags.get(i-1).add(ContextTag.CADENTIAL_V);
-                        if (i>=2 && 
-                                // TODO Neapolitan will break this
-                                (primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(4))
-                                        || primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(2)) 
-                                        || contextTags.get(i-2).contains(ContextTag.NEAPOLITAN))
-                                && keys.get(i-2).equals(key)){
+                if (i>=1 && keys.get(i-1).equals(key) 
+                        && isCadentialDominant(primitiveChords.get(i-1), keys.get(i-1))){
+                    contextTags.get(i-1).add(ContextTag.CADENTIAL_V);
+                    if (i>=2 && keys.get(i-2).equals(key)){
+                        if (isCadentialPredominant(primitiveChords.get(i-2), 
+                                keys.get(i-2), contextTags.get(i-2))){
                             contextTags.get(i-2).add(ContextTag.CADENTIAL_PREDOMINANT);
                         }
-                        else if (i>=2 && primitiveChords.get(i-2).getRoot().equals(key.getTonic())
-                                && primitiveChords.get(i-2).getInversion() == 2
-                                && keys.get(i-2).equals(key)){
+                        else if (isCadentialI64(primitiveChords.get(i-2), keys.get(i-2))){
                             contextTags.get(i-2).add(ContextTag.CADENTIAL_I64);
-                            if (i>=3 && 
-                                    // TODO Neapolitan will break this
-                                    (primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(4))
-                                            || primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(2))
-                                            || contextTags.get(i-3).contains(ContextTag.NEAPOLITAN))
-                                    && keys.get(i-3).equals(key)){
+                            if (i>=3 && keys.get(i-3).equals(key) 
+                                    && isCadentialPredominant(primitiveChords.get(i-3), 
+                                            keys.get(i-3), contextTags.get(i-3))){
                                 contextTags.get(i-3).add(ContextTag.CADENTIAL_PREDOMINANT);
                             }
                         }
