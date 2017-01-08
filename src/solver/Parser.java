@@ -233,6 +233,12 @@ class ParseResult{
         this.primitiveChords = primitiveChords;
         this.keys = keys;
         this.contextTags = contextTags;
+        checkRep();
+    }
+    
+    private void checkRep(){
+        assert(primitiveChords.size() == keys.size());
+        assert(primitiveChords.size() == contextTags.size());
     }
     
     public List<PrimitiveChord> getPrimitiveChords(){
