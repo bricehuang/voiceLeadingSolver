@@ -20,7 +20,7 @@ import music.Key;
 class Parser {
     private static final String CHORD_REGEX = "[A-G][+|-]?"
             + "(((MajT|MinT)[0-2])|((DomS|DimS|MajS|MinS)[0-3]))";
-    private static final String TAG_REGEX = "App|Cad";
+    private static final String TAG_REGEX = "App|Cad|Nea";
     private static final String KEY_REGEX = "KEY:[A-G][+|-]?(Maj|Min)";
     
     private static final String CHORD_TAGS_REGEX = CHORD_REGEX 
@@ -60,6 +60,7 @@ class Parser {
         Map<String, ContextTag> tmpContextTags = new HashMap<>();
         tmpContextTags.put("App", ContextTag.APPLIED_DOMINANT);
         tmpContextTags.put("Cad", ContextTag.CADENCE);
+        tmpContextTags.put("Nea", ContextTag.NEAPOLITAN);
         CONTEXT_TAGS = Collections.unmodifiableMap(tmpContextTags);
     }
     
@@ -169,12 +170,15 @@ class Parser {
                         && primitiveChords.get(i).getInversion() == 0){
                     if (i>=1 && primitiveChords.get(i-1).getRoot().equals(key.getScaleDegree(5))
                             && primitiveChords.get(i-1).getInversion() == 0 
+                            && (primitiveChords.get(i-1).getType().equals(ChordType.MAJ) 
+                                    || primitiveChords.get(i-1).getType().equals(ChordType.DOM7))
                             && keys.get(i-1).equals(key)){
                         contextTags.get(i-1).add(ContextTag.CADENTIAL_V);
                         if (i>=2 && 
-                                // TODO Neopolitan will break this
+                                // TODO Neapolitan will break this
                                 (primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(4))
-                                        || primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(2)))
+                                        || primitiveChords.get(i-2).getRoot().equals(key.getScaleDegree(2)) 
+                                        || contextTags.get(i-2).contains(ContextTag.NEAPOLITAN))
                                 && keys.get(i-2).equals(key)){
                             contextTags.get(i-2).add(ContextTag.CADENTIAL_PREDOMINANT);
                         }
@@ -183,9 +187,10 @@ class Parser {
                                 && keys.get(i-2).equals(key)){
                             contextTags.get(i-2).add(ContextTag.CADENTIAL_I64);
                             if (i>=3 && 
-                                    // TODO Neopolitan will break this
+                                    // TODO Neapolitan will break this
                                     (primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(4))
-                                            || primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(2)))
+                                            || primitiveChords.get(i-3).getRoot().equals(key.getScaleDegree(2))
+                                            || contextTags.get(i-3).contains(ContextTag.NEAPOLITAN))
                                     && keys.get(i-3).equals(key)){
                                 contextTags.get(i-3).add(ContextTag.CADENTIAL_PREDOMINANT);
                             }
