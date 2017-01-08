@@ -104,6 +104,8 @@ public class Scorer {
                 contextTagsPrevious, contextTagsCurrent, key, score);
         II7Suspension.scoreII7Suspension(previous, current, 
                 contextTagsPrevious, contextTagsCurrent, key, score);        
+        NeapolitanResolution.scoreNeapolitanResolutions(previous, current,
+                contextTagsPrevious, contextTagsCurrent, key, score);
         return score;
     }
     

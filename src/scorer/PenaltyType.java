@@ -16,7 +16,8 @@ public enum PenaltyType {
     DOM_SEVEN_RES, DIM_SEVEN_RES,
     CADENCE_DOUBLING,
     NOT_PAC,
-    MOVE_BIG_CADENCE, CADENTIAL_II7_SUSPEND;
+    MOVE_BIG_CADENCE, CADENTIAL_II7_SUSPEND,
+    NEAPOLITAN_RES;
     
     private static final Map<PenaltyType, String> STRING_REPS;
     static{
@@ -42,6 +43,7 @@ public enum PenaltyType {
         tmpStringReps.put(NOT_PAC, "Not Perfect Authentic Cadence Penalty");
         tmpStringReps.put(MOVE_BIG_CADENCE, "Non-Step Move in Cadence Penalty");
         tmpStringReps.put(CADENTIAL_II7_SUSPEND, "Must Suspend 7th of ii7 Penalty");
+        tmpStringReps.put(NEAPOLITAN_RES, "Bad Neapolitan Resolution");
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     
@@ -69,6 +71,7 @@ public enum PenaltyType {
         tmpPenalties.put(NOT_PAC, 10); 
         tmpPenalties.put(MOVE_BIG_CADENCE, 1000);
         tmpPenalties.put(CADENTIAL_II7_SUSPEND, 1000);
+        tmpPenalties.put(NEAPOLITAN_RES, 1000);
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
     }
     
