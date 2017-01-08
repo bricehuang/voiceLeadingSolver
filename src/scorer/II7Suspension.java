@@ -9,7 +9,7 @@ import music.Key;
 import music.Note;
 import solver.ContextTag;
 
-public class II7Suspension {
+class II7Suspension {
     
     /**
      * Scores for suspension of 7th in ii7 chord by mutating an input score

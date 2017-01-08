@@ -10,7 +10,7 @@ import music.Key;
 import music.Note;
 import solver.ContextTag;
 
-public class CadenceSmallMovement {
+class CadenceSmallMovement {
     private static Set<ContextTag> CADENCE_TAGS = 
             new HashSet<>(Arrays.asList(
                     ContextTag.CADENTIAL_PREDOMINANT,

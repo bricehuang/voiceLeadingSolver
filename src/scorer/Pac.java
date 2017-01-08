@@ -6,7 +6,7 @@ import chords.Chord;
 import music.Key;
 import solver.ContextTag;
 
-public class Pac {
+class Pac {
 
     /**
      * Scores for bad doubling by mutating an input score 

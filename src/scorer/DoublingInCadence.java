@@ -13,7 +13,7 @@ import music.Key;
 import music.Note;
 import solver.ContextTag;
 
-public class DoublingInCadence {
+class DoublingInCadence {
 
     private static final Map<ContextTag, Integer> PROPER_DOUBLING;
     static{
