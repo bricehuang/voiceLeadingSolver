@@ -1,5 +1,6 @@
 package solver;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,13 +15,13 @@ public enum ContextTag {
     private static Map<ContextTag, String> STRING_REPS;
     static{
         Map <ContextTag, String> tmpStringRep = new HashMap<>(); 
-        
         tmpStringRep.put(APPLIED_DOMINANT, "Applied Dominant");
         tmpStringRep.put(NEAPOLITAN, "Neapolitan");
         tmpStringRep.put(CADENTIAL_PREDOMINANT, "Cadential Predominant");
         tmpStringRep.put(CADENTIAL_I64, "Cadential I64");
         tmpStringRep.put(CADENTIAL_V, "Cadential V");
         tmpStringRep.put(CADENCE, "Cadence");
+        STRING_REPS = Collections.unmodifiableMap(tmpStringRep);
     }
     
     /*******************
