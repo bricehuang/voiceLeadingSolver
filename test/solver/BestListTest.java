@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import chords.BasicChord;
 import chords.Chord;
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;
@@ -34,10 +34,10 @@ public class BestListTest {
             new Note(C, 5), new Note(C, 4), new Note(E, 3), 
             new Note(C, 3),  C_MAJ);
     
-    private static final ChordProgression TEST_G_DOM7= 
-            ChordProgression.empty().append(G_DOM_SEVEN_REALIZED);
-    private static final ChordProgression TEST_PERFECT_CADENCE= 
-            ChordProgression.empty().append(G_DOM_SEVEN_REALIZED).append(C_MAJ_REALIZED);
+    private static final ChordProgressionDeprecated TEST_G_DOM7= 
+            ChordProgressionDeprecated.empty().append(G_DOM_SEVEN_REALIZED);
+    private static final ChordProgressionDeprecated TEST_PERFECT_CADENCE= 
+            ChordProgressionDeprecated.empty().append(G_DOM_SEVEN_REALIZED).append(C_MAJ_REALIZED);
 
     private static final ChordProgWithScore TEST1 = new ChordProgWithScore(TEST_G_DOM7, 1);
     private static final ChordProgWithScore TEST2 = new ChordProgWithScore(TEST_G_DOM7, 2);

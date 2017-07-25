@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import chords.BasicChord;
 import chords.Chord;
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;
@@ -45,8 +45,8 @@ public class ChordProgWithScoreTest {
     
     @Test
     public void toStringTest(){
-        ChordProgression empty = ChordProgression.empty();
-        ChordProgression prog = empty.append(
+        ChordProgressionDeprecated empty = ChordProgressionDeprecated.empty();
+        ChordProgressionDeprecated prog = empty.append(
                 C_MAJ_64_REALIZED).append(G_MAJ_REALIZED).append(C_MAJ_REALIZED); 
         ChordProgWithScore progWithScore = new ChordProgWithScore(prog, 42);
         assertEquals("\n[C5|E4|G3|G2]\n[B4|D4|G3|G2]\n[C5|E4|G3|C3]\nScore: 42", 

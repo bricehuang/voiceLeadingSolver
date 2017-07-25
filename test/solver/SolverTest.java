@@ -8,7 +8,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import chord_data.ContextTag;
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;
@@ -37,7 +37,7 @@ public class SolverTest {
         assert false;
     }
     
-    private static void outputEvaluation(ChordProgression chordProgression, 
+    private static void outputEvaluation(ChordProgressionDeprecated chordProgression, 
             List<Key> keys, List<Set<ContextTag>> contextTagsList){
         if (DEBUG){
             System.err.println(Scorer.evaluateChordProgression(
@@ -58,7 +58,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
@@ -79,7 +79,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
@@ -124,7 +124,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
@@ -166,7 +166,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgression> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
 }

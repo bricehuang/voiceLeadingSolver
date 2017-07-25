@@ -8,7 +8,7 @@ import java.util.List;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import player.ProgressionPlayer;
 import scorer.Scorer;
 
@@ -29,9 +29,9 @@ public class Main {
      * @return a List of top ChordProgressions of length at most
      * SortedFiniteProgList.PROGRESSIONS_TO_TRACK
      */
-    public static List<ChordProgression> solve(String in, boolean report, int maxReport){
+    public static List<ChordProgressionDeprecated> solve(String in, boolean report, int maxReport){
         ParseResult parsedInput = Parser.parse(in);
-        List<ChordProgression> bestProgressions = Solver.solve(
+        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(
                 parsedInput.getPrimitiveChords(), 
                 parsedInput.getKeys(), 
                 parsedInput.getContextTags());
@@ -57,7 +57,7 @@ public class Main {
      */
     public static void solveAndPlay(String in) 
             throws InvalidMidiDataException, MidiUnavailableException{
-        ChordProgression best = solve(in, DEFAULT_REPORT, DEFAULT_MAXREPORT).get(0);  
+        ChordProgressionDeprecated best = solve(in, DEFAULT_REPORT, DEFAULT_MAXREPORT).get(0);  
         ProgressionPlayer.playProgression(best); 
     }
 

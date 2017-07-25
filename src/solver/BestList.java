@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import chords.Chord;
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 
 /**
  * Mutable class; represents the best chord progressions 
@@ -90,7 +90,7 @@ class BestList{
      * @param prog a ChordProgressionWithScore
      */
     public void addProgression(ChordProgWithScore progWithScore){
-        ChordProgression prog = progWithScore.getChordProg();
+        ChordProgressionDeprecated prog = progWithScore.getChordProg();
         Chord last = prog.getLast();
         
         if (!content.keySet().contains(last)){

@@ -3,7 +3,7 @@ package chords;
 /**
  * An immutable type representing an empty chord progression
  */
-public class EmptyChordProgression implements ChordProgression {
+public class EmptyChordProgressionDeprecated implements ChordProgressionDeprecated {
 
     /*
      * Abstraction Function:
@@ -16,7 +16,7 @@ public class EmptyChordProgression implements ChordProgression {
      * N/A
      */
     
-    public EmptyChordProgression(){
+    public EmptyChordProgressionDeprecated(){
     }
     
     /******************************
@@ -24,7 +24,7 @@ public class EmptyChordProgression implements ChordProgression {
      ******************************/
     
     @Override
-    public ChordProgression getStart() {
+    public ChordProgressionDeprecated getStart() {
         throw new UnsupportedOperationException();
     }
 
@@ -39,8 +39,8 @@ public class EmptyChordProgression implements ChordProgression {
     }
 
     @Override
-    public ChordProgression append(Chord chord) {
-        return new ConsChordProgression(this, chord);
+    public ChordProgressionDeprecated append(Chord chord) {
+        return new ConsChordProgressionDeprecated(this, chord);
     }
 
     
@@ -50,7 +50,7 @@ public class EmptyChordProgression implements ChordProgression {
 
     @Override
     public boolean equals (Object other){
-        if (!(other instanceof EmptyChordProgression)){return false;}
+        if (!(other instanceof EmptyChordProgressionDeprecated)){return false;}
         return true;
     }
     

@@ -3,13 +3,13 @@ package chords;
 /**
  * An interface representing an immutable sequence of chords
  */
-public interface ChordProgression {
+public interface ChordProgressionDeprecated {
     
      /**
      * @return the chordProgression of all chords in this one except
      * the last one
      */
-    public ChordProgression getStart();
+    public ChordProgressionDeprecated getStart();
 
     /**
      * @return the last chord of this ChordProgression
@@ -25,12 +25,12 @@ public interface ChordProgression {
      * @param chord a Chord
      * @return a ChordProgression representing chord appended to this
      */
-    public ChordProgression append(Chord chord);
+    public ChordProgressionDeprecated append(Chord chord);
     
     /**
      * @return a ChordProgression representing an empty progression
      */
-    public static ChordProgression empty(){
-        return new EmptyChordProgression();
+    public static ChordProgressionDeprecated empty(){
+        return new EmptyChordProgressionDeprecated();
     }
 }

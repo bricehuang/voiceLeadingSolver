@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import chords.BasicChord;
 import chords.Chord;
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;
@@ -24,8 +24,8 @@ public class SortedFiniteProgListTest {
     private static final Chord G_DOM_SEVEN_REALIZED = new Chord(
             new Note(B,4), new Note(D, 4), new Note(F, 3), 
             new Note(G, 2),  G_DOM_SEVEN);
-    private static final ChordProgression TEST_G_DOM7= 
-            ChordProgression.empty().append(G_DOM_SEVEN_REALIZED);
+    private static final ChordProgressionDeprecated TEST_G_DOM7= 
+            ChordProgressionDeprecated.empty().append(G_DOM_SEVEN_REALIZED);
 
     private static final ChordProgWithScore TEST1 = new ChordProgWithScore(TEST_G_DOM7, 1);
     private static final ChordProgWithScore TEST2 = new ChordProgWithScore(TEST_G_DOM7, 2);

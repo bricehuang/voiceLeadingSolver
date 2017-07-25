@@ -1,15 +1,15 @@
 package solver;
 
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 
 /**
  * Immmutable class representing a chord progression with a score
  */
 class ChordProgWithScore{
-    private final ChordProgression chordProg;
+    private final ChordProgressionDeprecated chordProg;
     private final Integer score; 
     
-    ChordProgWithScore(ChordProgression chordProg, Integer score){
+    ChordProgWithScore(ChordProgressionDeprecated chordProg, Integer score){
         this.chordProg = chordProg;
         this.score = score;
     }
@@ -21,7 +21,7 @@ class ChordProgWithScore{
     /**
      * @return chord progression 
      */
-    public ChordProgression getChordProg(){
+    public ChordProgressionDeprecated getChordProg(){
         return chordProg;
     }
     

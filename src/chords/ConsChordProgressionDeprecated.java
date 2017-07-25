@@ -3,8 +3,8 @@ package chords;
 /**
  * An immutable type representing a nonempty chord progression
  */
-public class ConsChordProgression implements ChordProgression {
-    private final ChordProgression start;
+public class ConsChordProgressionDeprecated implements ChordProgressionDeprecated {
+    private final ChordProgressionDeprecated start;
     private final Chord last;
     private final int length;
     
@@ -20,7 +20,7 @@ public class ConsChordProgression implements ChordProgression {
      * Only returns immutables
      */
     
-    public ConsChordProgression(ChordProgression start, Chord last){
+    public ConsChordProgressionDeprecated(ChordProgressionDeprecated start, Chord last){
         this.start = start;
         this.last = last;
         this.length = start.length() + 1;
@@ -31,7 +31,7 @@ public class ConsChordProgression implements ChordProgression {
      ******************************/
 
     @Override
-    public ChordProgression getStart() {
+    public ChordProgressionDeprecated getStart() {
         return start;
     }
 
@@ -46,8 +46,8 @@ public class ConsChordProgression implements ChordProgression {
     }
 
     @Override
-    public ChordProgression append(Chord chord) {
-        return new ConsChordProgression(this, chord);
+    public ChordProgressionDeprecated append(Chord chord) {
+        return new ConsChordProgressionDeprecated(this, chord);
     }
     
     /*******************
@@ -56,8 +56,8 @@ public class ConsChordProgression implements ChordProgression {
 
     @Override
     public boolean equals (Object other){
-        if (!(other instanceof ConsChordProgression)){return false;}
-        ConsChordProgression that = (ConsChordProgression) other;
+        if (!(other instanceof ConsChordProgressionDeprecated)){return false;}
+        ConsChordProgressionDeprecated that = (ConsChordProgressionDeprecated) other;
         return (this.start.equals(that.start) && this.last.equals(that.last));
     }
     

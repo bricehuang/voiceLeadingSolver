@@ -5,7 +5,7 @@ import java.util.Set;
 
 import chord_data.ContextTag;
 import chords.Chord;
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import music.Key;
 import scorer.Score;
 import scorer.Scorer;
@@ -25,7 +25,7 @@ class Sequencer {
     private static BestList sequenceFirst(Set<Chord> chordSet, Key key, Set<ContextTag> contextTags){
         BestList best = new BestList();
         for (Chord chord : chordSet){
-            ChordProgression prog = ChordProgression.empty().append(chord);
+            ChordProgressionDeprecated prog = ChordProgressionDeprecated.empty().append(chord);
             
             Score chordScore = Scorer.scoreChord(chord, contextTags, key);
             best.addProgression(new ChordProgWithScore(prog, chordScore.totalScore()));
@@ -56,8 +56,8 @@ class Sequencer {
                 for (ChordProgWithScore previous : previousBest.getProgressions(previousChord)){
                     int totalScore = previous.getScore() + currentChordScore.totalScore() + transitionScore.totalScore();
                     
-                    ChordProgression previousProg = previous.getChordProg();
-                    ChordProgression concatenated = previousProg.append(currentChord);
+                    ChordProgressionDeprecated previousProg = previous.getChordProg();
+                    ChordProgressionDeprecated concatenated = previousProg.append(currentChord);
                     ChordProgWithScore concatenatedWithScore = 
                             new ChordProgWithScore(concatenated, totalScore);
                     

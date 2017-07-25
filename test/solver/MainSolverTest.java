@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import player.ProgressionPlayer;
 
 public class MainSolverTest {

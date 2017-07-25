@@ -7,7 +7,7 @@ import java.util.Set;
 
 import chord_data.ContextTag;
 import chords.Chord;
-import chords.ChordProgression;
+import chords.ChordProgressionDeprecated;
 import music.Key;
 import music.Note;
 
@@ -147,11 +147,11 @@ public class Scorer {
      * @param contextTagsList
      * @return ditto
      */
-    public static String evaluateChordProgression(ChordProgression progression, 
+    public static String evaluateChordProgression(ChordProgressionDeprecated progression, 
             List<Key> keys, List<Set<ContextTag>> contextTagsList){
         assert(progression.length() == keys.size() && 
                 progression.length() == contextTagsList.size());
-        ChordProgression workingProgression = progression;
+        ChordProgressionDeprecated workingProgression = progression;
         final int length = progression.length();
         List<Chord> chordsInProgression = new ArrayList<>();
         // TODO this is a bit janky
