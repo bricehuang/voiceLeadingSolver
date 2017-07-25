@@ -1,7 +1,5 @@
 package chord_data;
 
-import chords.Chord;
-
 /**
  * An immutable type representing a nonempty chord progression
  */

@@ -1,9 +1,5 @@
 package chord_data;
 
-import chords.Chord;
-import chords.ChordProgressionDeprecated;
-import chords.ConsChordProgressionDeprecated;
-
 /**
  * An immutable type representing an empty chord progression
  */

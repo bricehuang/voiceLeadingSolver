@@ -1,6 +1,5 @@
 package chord_data;
 
-
 /**
  * An interface representing an immutable sequence of chords with contexts
  */
