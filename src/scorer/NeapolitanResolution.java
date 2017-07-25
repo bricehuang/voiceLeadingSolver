@@ -2,9 +2,9 @@ package scorer;
 
 import java.util.Set;
 
+import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
-import solver.ContextTag;
 
 class NeapolitanResolution {
     
@@ -21,6 +21,5 @@ class NeapolitanResolution {
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
             Key key, Score score){
         // TODO
-        throw new RuntimeException("Unimplemented");
     }
 }

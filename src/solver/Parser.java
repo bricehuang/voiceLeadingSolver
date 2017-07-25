@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import chord_data.ContextTag;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicInterval;

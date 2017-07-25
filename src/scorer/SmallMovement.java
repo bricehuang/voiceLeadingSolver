@@ -3,10 +3,10 @@ package scorer;
 import java.util.List;
 import java.util.Set;
 
+import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
-import solver.ContextTag;
 
 /**
  * A module that scores for small movements

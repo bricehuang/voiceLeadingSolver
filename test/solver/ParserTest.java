@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import chord_data.ContextTag;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;

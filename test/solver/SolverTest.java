@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import chord_data.ContextTag;
 import chords.ChordProgression;
 import chords.ChordType;
 import chords.PrimitiveChord;

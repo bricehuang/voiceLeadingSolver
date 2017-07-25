@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import chord_data.ContextTag;
 import chords.Chord;
 import chords.ChordProgression;
 import chords.PrimitiveChord;

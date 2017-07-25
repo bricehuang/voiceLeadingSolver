@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import chord_data.ContextTag;
 import chords.Chord;
 import chords.ChordType;
 import music.BasicInterval;
@@ -15,7 +16,6 @@ import music.BasicNote;
 import music.Interval;
 import music.Key;
 import music.Note;
-import solver.ContextTag;
 
 /**
  * A module for scoring dominant seven resolutions

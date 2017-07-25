@@ -5,13 +5,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import chord_data.ContextTag;
 import chords.Chord;
 import music.BasicInterval;
 import music.Interval;
 import music.IntervalQuality;
 import music.Key;
 import music.Note;
-import solver.ContextTag;
 
 /**
  * A module that scores for good melodic intervals

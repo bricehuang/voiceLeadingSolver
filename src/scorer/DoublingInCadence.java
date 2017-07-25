@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import chord_data.ContextTag;
 import chords.Chord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
-import solver.ContextTag;
 
 class DoublingInCadence {
 

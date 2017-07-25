@@ -1,4 +1,4 @@
-package solver;
+package chord_data;
 
 import java.util.Collections;
 import java.util.HashMap;
