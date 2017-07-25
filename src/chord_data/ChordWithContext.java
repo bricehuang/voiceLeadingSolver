@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import chords.Chord;
+import music.Key;
 
 /**
  * An immutable class representing a chord sung by four voices, with any 
@@ -11,10 +12,12 @@ import chords.Chord;
  */
 public class ChordWithContext {
 	private final Chord chord;
+	private final Key key;
 	private final Set<ContextTag> contextTags;
 	
-	public ChordWithContext(Chord chord, Set<ContextTag> contextTags) {
+	public ChordWithContext(Chord chord, Key key, Set<ContextTag> contextTags) {
 		this.chord = chord;
+		this.key = key;
 		this.contextTags = Collections.unmodifiableSet(contextTags);
 	}
 	
@@ -27,6 +30,13 @@ public class ChordWithContext {
 	 */
 	public Chord getChord() {
 		return chord;
+	}
+	
+	/**
+	 * @return the surrounding key
+	 */
+	public Key getKey() {
+		return key;
 	}
 
 	/**
@@ -49,20 +59,22 @@ public class ChordWithContext {
         if (!(object instanceof Chord)){return false;}
         ChordWithContext that = (ChordWithContext) object;
         return this.chord.equals(that.chord) 
+        		&& this.key.equals(that.key)
         		&& this.contextTags.size()==that.contextTags.size()
         		&& this.contextTags.containsAll(that.contextTags);
     }
 
     @Override public int hashCode(){
-    		return chord.hashCode();
+    		return chord.hashCode() + key.hashCode();
     }
 
     /**
-     * @return the notes of this chord in scientific pitch
-     * notation
+     * @return a string representation of the chord, keys, and context tags
      */
     @Override public String toString(){
-        return chord.toString() + " " + contextTags.toString();
+        return chord.toString() 
+        		+ "||" + key.toString() 
+        		+ "|| " + contextTags.toString();
     }
 
 }
