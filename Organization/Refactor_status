@@ -1,0 +1,18 @@
+chord_data ALL CLEAN
+chords ALL CLEAN OR MARKED DEPRECATED
+music ALL CLEAN
+player
+	- ProgressionPlayer DIRTY
+scorer ALL NEEDS REFACTOR (TODO score_data vs scorer module)
+solver
+	- BestListDeprecated DEPRECATED
+	- BestProgressionList CLEAN
+	- BestProgressionsByLast CLEAN
+	- ChordGenerator CLEAN WITH DEPRECATED METHODS MARKED
+	- ChordProgWithScoreDeprecated DEPRECATED
+	- Main DIRTY (move to own package?)
+	- Parser NEEDS REFACTORING (move to own package?) 
+	- ScoredProgression CLEAN
+	- Sequencer DIRTY
+	- Solver DIRTY
+	- SortedFiniteProgListDeprecated DEPRECATED
