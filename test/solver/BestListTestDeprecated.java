@@ -12,7 +12,7 @@ import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Note;
 
-public class BestListTest {
+public class BestListTestDeprecated {
     
     private static final BasicNote C = new BasicNote(0,0);
     private static final BasicNote D = new BasicNote(1,2);
@@ -56,7 +56,7 @@ public class BestListTest {
 
     @Test
     public void testBasic(){
-        BestList bestList = new BestList();
+        BestListDeprecated bestList = new BestListDeprecated();
         bestList.addProgression(TEST4);
         assertEquals(1,bestList.getProgressions(G_DOM_SEVEN_REALIZED).size());
         assertEquals(TEST4,bestList.getProgressions(G_DOM_SEVEN_REALIZED).get(0));
@@ -64,7 +64,7 @@ public class BestListTest {
     
     @Test
     public void testOrdering(){
-        BestList bestList = new BestList();
+        BestListDeprecated bestList = new BestListDeprecated();
         bestList.addProgression(TEST4);
         bestList.addProgression(TEST2);
         bestList.addProgression(TEST3);
@@ -76,7 +76,7 @@ public class BestListTest {
     
     @Test
     public void testOverflow(){
-        BestList bestList = new BestList();
+        BestListDeprecated bestList = new BestListDeprecated();
         bestList.addProgression(TEST4);
         bestList.addProgression(TEST2);
         bestList.addProgression(TEST3);
@@ -89,7 +89,7 @@ public class BestListTest {
 
     @Test
     public void testIndependence(){
-        BestList bestList = new BestList();
+        BestListDeprecated bestList = new BestListDeprecated();
         bestList.addProgression(TEST4);
         bestList.addProgression(TEST2);
         bestList.addProgression(TEST3);

@@ -22,8 +22,8 @@ class Sequencer {
      * @param scorer scorer in the desired key
      * @return a BestList of ways to sing the first chord, with scores
      */
-    private static BestList sequenceFirst(Set<Chord> chordSet, Key key, Set<ContextTag> contextTags){
-        BestList best = new BestList();
+    private static BestListDeprecated sequenceFirst(Set<Chord> chordSet, Key key, Set<ContextTag> contextTags){
+        BestListDeprecated best = new BestListDeprecated();
         for (Chord chord : chordSet){
             ChordProgressionDeprecated prog = ChordProgressionDeprecated.empty().append(chord);
             
@@ -42,10 +42,10 @@ class Sequencer {
      * @return a BestList of ways to sing the chords up to, and including,
      * this one, with scores
      */
-    private static BestList sequenceRest(BestList previousBest, Set<Chord> chordSet, 
+    private static BestListDeprecated sequenceRest(BestListDeprecated previousBest, Set<Chord> chordSet, 
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
             Key key){
-        BestList best = new BestList();
+        BestListDeprecated best = new BestListDeprecated();
         for (Chord currentChord : chordSet){
             Score currentChordScore = Scorer.scoreChord(currentChord, contextTagsCurrent, key);
             
@@ -73,7 +73,7 @@ class Sequencer {
      * @param bestList a BestList
      * @return a SortedFiniteProgList of the best chords from bestList
      */
-    private static SortedFiniteProgListDeprecated findBestProgs(BestList bestList){
+    private static SortedFiniteProgListDeprecated findBestProgs(BestListDeprecated bestList){
         SortedFiniteProgListDeprecated bestProgressions = new SortedFiniteProgListDeprecated();
         for (Chord lastChord : bestList.getEndingChords()){
             for (ChordProgWithScoreDeprecated progression : bestList.getProgressions(lastChord)){
@@ -98,7 +98,7 @@ class Sequencer {
         assert(waysToSingChords.size() == contextTagsList.size());
         assert(waysToSingChords.size() > 0);
         
-        BestList currentBest = sequenceFirst(waysToSingChords.get(0), keys.get(0), contextTagsList.get(0));
+        BestListDeprecated currentBest = sequenceFirst(waysToSingChords.get(0), keys.get(0), contextTagsList.get(0));
 
         for (int i=1; i<waysToSingChords.size(); i++){
             currentBest = sequenceRest(currentBest, waysToSingChords.get(i), 

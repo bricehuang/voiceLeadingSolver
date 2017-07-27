@@ -15,7 +15,7 @@ import chords.ChordProgressionDeprecated;
  * Mutable class; represents the best chord progressions 
  * ending with a particular chord
  */
-class BestList{
+class BestListDeprecated{
     
     private final Map<Chord, SortedFiniteProgListDeprecated> content;
     
@@ -39,7 +39,7 @@ class BestList{
     /**
      * Constructs a BestList
      */
-    public BestList(){
+    public BestListDeprecated(){
         content = new HashMap<>();
         checkRep();
     }
