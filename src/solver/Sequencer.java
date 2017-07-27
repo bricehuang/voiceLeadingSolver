@@ -7,7 +7,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import chords.ChordProgressionDeprecated;
 import music.Key;
-import scorer.Score;
+import score_data.Score;
 import scorer.Scorer;
 
 /**

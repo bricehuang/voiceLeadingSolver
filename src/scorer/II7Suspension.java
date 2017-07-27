@@ -8,6 +8,8 @@ import chords.Chord;
 import chords.ChordType;
 import music.Key;
 import music.Note;
+import score_data.PenaltyType;
+import score_data.Score;
 
 class II7Suspension {
     

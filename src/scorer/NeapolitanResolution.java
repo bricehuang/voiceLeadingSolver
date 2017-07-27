@@ -5,6 +5,7 @@ import java.util.Set;
 import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
+import score_data.Score;
 
 class NeapolitanResolution {
     

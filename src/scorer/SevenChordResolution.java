@@ -16,6 +16,8 @@ import music.BasicNote;
 import music.Interval;
 import music.Key;
 import music.Note;
+import score_data.PenaltyType;
+import score_data.Score;
 
 /**
  * A module for scoring dominant seven resolutions

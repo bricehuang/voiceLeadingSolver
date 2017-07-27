@@ -10,6 +10,7 @@ import chords.Chord;
 import chords.ChordProgressionDeprecated;
 import music.Key;
 import music.Note;
+import score_data.Score;
 
 /**
  * A module that scores individual chords and transitions between chords  

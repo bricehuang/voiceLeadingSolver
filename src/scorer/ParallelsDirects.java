@@ -12,6 +12,8 @@ import music.BasicInterval;
 import music.Interval;
 import music.Key;
 import music.Note;
+import score_data.PenaltyType;
+import score_data.Score;
 
 /**
  * A module that scores parallel and direct intervals

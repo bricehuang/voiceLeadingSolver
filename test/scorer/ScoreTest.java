@@ -8,6 +8,9 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import score_data.PenaltyType;
+import score_data.Score;
+
 public class ScoreTest {
 
     @Test(expected=AssertionError.class)

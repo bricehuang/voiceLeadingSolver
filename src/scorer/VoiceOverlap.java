@@ -7,6 +7,8 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
+import score_data.PenaltyType;
+import score_data.Score;
 
 /**
  * A module that scores voice overlapping

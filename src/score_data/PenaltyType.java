@@ -1,4 +1,4 @@
-package scorer;
+package score_data;
 
 import java.util.Collections;
 import java.util.HashMap;
