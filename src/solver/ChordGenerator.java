@@ -7,12 +7,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import chord_data.ChordWithContext;
+import chord_data.PrimitiveChordWithContext;
 import chords.BasicChord;
 import chords.Chord;
 import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
+
+
 
 /**
  * A module that takes a list of primitive chords and outputs 
@@ -173,12 +177,43 @@ class ChordGenerator {
     }
     
     /**
+     * @param primitiveAndContext
+     * @return an unmodifiable set of ChordWithContexts corresponding to 
+     * valid voicings of this chord, with contexts
+     */
+    private static Set<ChordWithContext> generateChordWithContextSinglePrimitive(
+    		PrimitiveChordWithContext primitiveAndContext){
+    		Set<ChordWithContext> voicingsWithContext = new HashSet<>();
+    		for (Chord voicing : primitiveToChords(primitiveAndContext.getChord())){
+    			voicingsWithContext.add(
+    				new ChordWithContext(
+					voicing, 
+					primitiveAndContext.getKey(), 
+					primitiveAndContext.getContextTags()
+    				)
+    			);
+    		}
+    		return Collections.unmodifiableSet(voicingsWithContext);
+    }
+    
+    public static List<Set<ChordWithContext>> generateChordsWithContext(
+    			List<PrimitiveChordWithContext> inputChords){
+    		List<Set<ChordWithContext>> voicingsWithContext = new ArrayList<>();
+    		for (PrimitiveChordWithContext primitiveAndContext: inputChords) {
+    			voicingsWithContext.add(
+    				generateChordWithContextSinglePrimitive(primitiveAndContext)
+    			);
+    		}
+    		return Collections.unmodifiableList(voicingsWithContext);
+    }
+    
+    /**
      * @param inputChords a list of PrimitiveChords 
      * @return an unmodifiable list of unmodifiable sets of Chords 
      * corresponding to all the ways the PrimitiveChords in the input
      * can be sung
      */
-    public static List<Set<Chord>> generateChords(
+    public static List<Set<Chord>> generateChordsDeprecated(
             List<PrimitiveChord> inputChords){
         List<Set<Chord>> sungChords = new ArrayList<>();
         for (PrimitiveChord primitive : inputChords){
