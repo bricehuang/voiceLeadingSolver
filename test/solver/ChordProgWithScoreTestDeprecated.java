@@ -12,7 +12,7 @@ import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Note;
 
-public class ChordProgWithScoreTest {
+public class ChordProgWithScoreTestDeprecated {
     
     private static final BasicNote C = new BasicNote(0,0);
     private static final BasicNote D = new BasicNote(1,2);
@@ -48,7 +48,7 @@ public class ChordProgWithScoreTest {
         ChordProgressionDeprecated empty = ChordProgressionDeprecated.empty();
         ChordProgressionDeprecated prog = empty.append(
                 C_MAJ_64_REALIZED).append(G_MAJ_REALIZED).append(C_MAJ_REALIZED); 
-        ChordProgWithScore progWithScore = new ChordProgWithScore(prog, 42);
+        ChordProgWithScoreDeprecated progWithScore = new ChordProgWithScoreDeprecated(prog, 42);
         assertEquals("\n[C5|E4|G3|G2]\n[B4|D4|G3|G2]\n[C5|E4|G3|C3]\nScore: 42", 
                 progWithScore.toString());
     }

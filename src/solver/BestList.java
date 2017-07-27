@@ -47,8 +47,8 @@ class BestList{
     private void checkRep(){
         for (Chord chord : content.keySet()){
             assert(content.get(chord).size() > 0);
-            List<ChordProgWithScore> progs = content.get(chord).getProgressions();
-            for (ChordProgWithScore prog : progs){
+            List<ChordProgWithScoreDeprecated> progs = content.get(chord).getProgressions();
+            for (ChordProgWithScoreDeprecated prog : progs){
                 assert(prog.getChordProg().getLast().equals(chord));
             }
         }
@@ -74,7 +74,7 @@ class BestList{
      * progressions ending with this chord, in increasing order of 
      * badness score 
      */
-    public List<ChordProgWithScore> getProgressions(Chord chord){
+    public List<ChordProgWithScoreDeprecated> getProgressions(Chord chord){
         if (!content.keySet().contains(chord)){
             return new ArrayList<>();
         }
@@ -89,7 +89,7 @@ class BestList{
      * ending with the same chord
      * @param prog a ChordProgressionWithScore
      */
-    public void addProgression(ChordProgWithScore progWithScore){
+    public void addProgression(ChordProgWithScoreDeprecated progWithScore){
         ChordProgressionDeprecated prog = progWithScore.getChordProg();
         Chord last = prog.getLast();
         

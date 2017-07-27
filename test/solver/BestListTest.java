@@ -39,13 +39,13 @@ public class BestListTest {
     private static final ChordProgressionDeprecated TEST_PERFECT_CADENCE= 
             ChordProgressionDeprecated.empty().append(G_DOM_SEVEN_REALIZED).append(C_MAJ_REALIZED);
 
-    private static final ChordProgWithScore TEST1 = new ChordProgWithScore(TEST_G_DOM7, 1);
-    private static final ChordProgWithScore TEST2 = new ChordProgWithScore(TEST_G_DOM7, 2);
-    private static final ChordProgWithScore TEST3 = new ChordProgWithScore(TEST_G_DOM7, 3);
-    private static final ChordProgWithScore TEST4 = new ChordProgWithScore(TEST_G_DOM7, 4);
+    private static final ChordProgWithScoreDeprecated TEST1 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 1);
+    private static final ChordProgWithScoreDeprecated TEST2 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 2);
+    private static final ChordProgWithScoreDeprecated TEST3 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 3);
+    private static final ChordProgWithScoreDeprecated TEST4 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 4);
     
-    private static final ChordProgWithScore TEST2_PC = new ChordProgWithScore(TEST_PERFECT_CADENCE, 2);
-    private static final ChordProgWithScore TEST4_PC = new ChordProgWithScore(TEST_PERFECT_CADENCE, 4);
+    private static final ChordProgWithScoreDeprecated TEST2_PC = new ChordProgWithScoreDeprecated(TEST_PERFECT_CADENCE, 2);
+    private static final ChordProgWithScoreDeprecated TEST4_PC = new ChordProgWithScoreDeprecated(TEST_PERFECT_CADENCE, 4);
     
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {

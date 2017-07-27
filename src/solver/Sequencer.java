@@ -28,7 +28,7 @@ class Sequencer {
             ChordProgressionDeprecated prog = ChordProgressionDeprecated.empty().append(chord);
             
             Score chordScore = Scorer.scoreChord(chord, contextTags, key);
-            best.addProgression(new ChordProgWithScore(prog, chordScore.totalScore()));
+            best.addProgression(new ChordProgWithScoreDeprecated(prog, chordScore.totalScore()));
         }
         return best;
     }
@@ -53,13 +53,13 @@ class Sequencer {
                 Score transitionScore = Scorer.scoreTransition(previousChord, currentChord, 
                         contextTagsPrevious, contextTagsCurrent, key);
                 
-                for (ChordProgWithScore previous : previousBest.getProgressions(previousChord)){
+                for (ChordProgWithScoreDeprecated previous : previousBest.getProgressions(previousChord)){
                     int totalScore = previous.getScore() + currentChordScore.totalScore() + transitionScore.totalScore();
                     
                     ChordProgressionDeprecated previousProg = previous.getChordProg();
                     ChordProgressionDeprecated concatenated = previousProg.append(currentChord);
-                    ChordProgWithScore concatenatedWithScore = 
-                            new ChordProgWithScore(concatenated, totalScore);
+                    ChordProgWithScoreDeprecated concatenatedWithScore = 
+                            new ChordProgWithScoreDeprecated(concatenated, totalScore);
                     
                     best.addProgression(concatenatedWithScore);
                 }
@@ -76,7 +76,7 @@ class Sequencer {
     private static SortedFiniteProgList findBestProgs(BestList bestList){
         SortedFiniteProgList bestProgressions = new SortedFiniteProgList();
         for (Chord lastChord : bestList.getEndingChords()){
-            for (ChordProgWithScore progression : bestList.getProgressions(lastChord)){
+            for (ChordProgWithScoreDeprecated progression : bestList.getProgressions(lastChord)){
                 bestProgressions.addProgression(progression);
             }
         }

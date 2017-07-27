@@ -5,11 +5,11 @@ import chords.ChordProgressionDeprecated;
 /**
  * Immmutable class representing a chord progression with a score
  */
-class ChordProgWithScore{
+class ChordProgWithScoreDeprecated{
     private final ChordProgressionDeprecated chordProg;
     private final Integer score; 
     
-    ChordProgWithScore(ChordProgressionDeprecated chordProg, Integer score){
+    ChordProgWithScoreDeprecated(ChordProgressionDeprecated chordProg, Integer score){
         this.chordProg = chordProg;
         this.score = score;
     }
@@ -35,8 +35,8 @@ class ChordProgWithScore{
     
     @Override
     public boolean equals(Object other){
-        if (!(other instanceof ChordProgWithScore)){return false;}
-        ChordProgWithScore that = (ChordProgWithScore) other;
+        if (!(other instanceof ChordProgWithScoreDeprecated)){return false;}
+        ChordProgWithScoreDeprecated that = (ChordProgWithScoreDeprecated) other;
         return (this.chordProg.equals(that.chordProg) 
                 && this.score.equals(that.score));
     }

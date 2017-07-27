@@ -27,10 +27,10 @@ public class SortedFiniteProgListTest {
     private static final ChordProgressionDeprecated TEST_G_DOM7= 
             ChordProgressionDeprecated.empty().append(G_DOM_SEVEN_REALIZED);
 
-    private static final ChordProgWithScore TEST1 = new ChordProgWithScore(TEST_G_DOM7, 1);
-    private static final ChordProgWithScore TEST2 = new ChordProgWithScore(TEST_G_DOM7, 2);
-    private static final ChordProgWithScore TEST3 = new ChordProgWithScore(TEST_G_DOM7, 3);
-    private static final ChordProgWithScore TEST4 = new ChordProgWithScore(TEST_G_DOM7, 4);
+    private static final ChordProgWithScoreDeprecated TEST1 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 1);
+    private static final ChordProgWithScoreDeprecated TEST2 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 2);
+    private static final ChordProgWithScoreDeprecated TEST3 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 3);
+    private static final ChordProgWithScoreDeprecated TEST4 = new ChordProgWithScoreDeprecated(TEST_G_DOM7, 4);
 
     
     @Test(expected=AssertionError.class)

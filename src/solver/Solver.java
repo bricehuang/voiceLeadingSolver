@@ -21,7 +21,7 @@ class Solver {
         List<Set<Chord>> waysToSingChords = ChordGenerator.generateChordsDeprecated(primitiveChords);
         SortedFiniteProgList bestProgressionsAndScores = Sequencer.findBestChordProgressions(waysToSingChords, keys, contextTagsList);
         List<ChordProgressionDeprecated> bestProgressions = new ArrayList<>();
-        for (ChordProgWithScore progressionAndScore : bestProgressionsAndScores.getProgressions()){
+        for (ChordProgWithScoreDeprecated progressionAndScore : bestProgressionsAndScores.getProgressions()){
             bestProgressions.add(progressionAndScore.getChordProg());
         }
         return Collections.unmodifiableList(bestProgressions);

@@ -10,7 +10,7 @@ import java.util.List;
 class SortedFiniteProgList {
     
     public static final int PROGRESSIONS_TO_TRACK = 3;
-    private final List<ChordProgWithScore> content;
+    private final List<ChordProgWithScoreDeprecated> content;
 
     /*
      * Abstraction Function: 
@@ -53,9 +53,9 @@ class SortedFiniteProgList {
      * Returns the contents of this list
      * @return an unmodifiable view of the contents of this list
      */
-    public List<ChordProgWithScore> getProgressions(){
-        List<ChordProgWithScore> copyContent = new ArrayList<>();
-        for (ChordProgWithScore prog : content){
+    public List<ChordProgWithScoreDeprecated> getProgressions(){
+        List<ChordProgWithScoreDeprecated> copyContent = new ArrayList<>();
+        for (ChordProgWithScoreDeprecated prog : content){
             copyContent.add(prog);
         }
         return Collections.unmodifiableList(copyContent);
@@ -67,7 +67,7 @@ class SortedFiniteProgList {
      * chord
      * @param prog a ChordProgressionWithScore
      */
-    public void addProgression(ChordProgWithScore progWithScore){
+    public void addProgression(ChordProgWithScoreDeprecated progWithScore){
         Integer score = progWithScore.getScore();
         
         int listSize = content.size();
