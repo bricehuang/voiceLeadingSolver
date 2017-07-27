@@ -17,7 +17,7 @@ import chords.ChordProgressionDeprecated;
  */
 class BestList{
     
-    private final Map<Chord, SortedFiniteProgList> content;
+    private final Map<Chord, SortedFiniteProgListDeprecated> content;
     
     /*
      * Abstraction Function:
@@ -94,7 +94,7 @@ class BestList{
         Chord last = prog.getLast();
         
         if (!content.keySet().contains(last)){
-            content.put(last, new SortedFiniteProgList());
+            content.put(last, new SortedFiniteProgListDeprecated());
         }
         content.get(last).addProgression(progWithScore);
         checkRep();

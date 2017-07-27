@@ -19,7 +19,7 @@ class Solver {
     static List<ChordProgressionDeprecated> solve(List<PrimitiveChord> primitiveChords, 
             List<Key> keys, List<Set<ContextTag>> contextTagsList){
         List<Set<Chord>> waysToSingChords = ChordGenerator.generateChordsDeprecated(primitiveChords);
-        SortedFiniteProgList bestProgressionsAndScores = Sequencer.findBestChordProgressions(waysToSingChords, keys, contextTagsList);
+        SortedFiniteProgListDeprecated bestProgressionsAndScores = Sequencer.findBestChordProgressions(waysToSingChords, keys, contextTagsList);
         List<ChordProgressionDeprecated> bestProgressions = new ArrayList<>();
         for (ChordProgWithScoreDeprecated progressionAndScore : bestProgressionsAndScores.getProgressions()){
             bestProgressions.add(progressionAndScore.getChordProg());

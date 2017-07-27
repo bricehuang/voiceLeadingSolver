@@ -56,7 +56,7 @@ public class ChordWithContext {
      * @return whether this and object are equal.   
      */
     @Override public boolean equals(Object object){
-        if (!(object instanceof Chord)){return false;}
+        if (!(object instanceof ChordWithContext)){return false;}
         ChordWithContext that = (ChordWithContext) object;
         return this.chord.equals(that.chord) 
         		&& this.key.equals(that.key)

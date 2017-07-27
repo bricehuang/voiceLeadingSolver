@@ -12,7 +12,7 @@ import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Note;
 
-public class SortedFiniteProgListTest {
+public class SortedFiniteProgListTestDeprecated {
 
     private static final BasicNote D = new BasicNote(1,2);
     private static final BasicNote F = new BasicNote(3,5);
@@ -42,7 +42,7 @@ public class SortedFiniteProgListTest {
 
     @Test
     public void testBasic(){
-        SortedFiniteProgList list = new SortedFiniteProgList();
+        SortedFiniteProgListDeprecated list = new SortedFiniteProgListDeprecated();
         list.addProgression(TEST4);
         assertEquals(1,list.size());
         assertEquals(TEST4,list.getProgressions().get(0));
@@ -50,7 +50,7 @@ public class SortedFiniteProgListTest {
     
     @Test
     public void testOrdering(){
-        SortedFiniteProgList list = new SortedFiniteProgList();
+        SortedFiniteProgListDeprecated list = new SortedFiniteProgListDeprecated();
         list.addProgression(TEST4);
         list.addProgression(TEST2);
         list.addProgression(TEST3);
@@ -62,7 +62,7 @@ public class SortedFiniteProgListTest {
     
     @Test
     public void testOverflow(){
-        SortedFiniteProgList list = new SortedFiniteProgList();
+        SortedFiniteProgListDeprecated list = new SortedFiniteProgListDeprecated();
         list.addProgression(TEST4);
         list.addProgression(TEST2);
         list.addProgression(TEST3);

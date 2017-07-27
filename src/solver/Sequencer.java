@@ -73,8 +73,8 @@ class Sequencer {
      * @param bestList a BestList
      * @return a SortedFiniteProgList of the best chords from bestList
      */
-    private static SortedFiniteProgList findBestProgs(BestList bestList){
-        SortedFiniteProgList bestProgressions = new SortedFiniteProgList();
+    private static SortedFiniteProgListDeprecated findBestProgs(BestList bestList){
+        SortedFiniteProgListDeprecated bestProgressions = new SortedFiniteProgListDeprecated();
         for (Chord lastChord : bestList.getEndingChords()){
             for (ChordProgWithScoreDeprecated progression : bestList.getProgressions(lastChord)){
                 bestProgressions.addProgression(progression);
@@ -92,7 +92,7 @@ class Sequencer {
      * pivot chords are considered in the old key.  
      * @return The best way to sing this chord progression
      */
-    public static SortedFiniteProgList findBestChordProgressions(
+    public static SortedFiniteProgListDeprecated findBestChordProgressions(
             List<Set<Chord>> waysToSingChords, List<Key> keys, List<Set<ContextTag>> contextTagsList){
         assert(waysToSingChords.size() == keys.size());
         assert(waysToSingChords.size() == contextTagsList.size());

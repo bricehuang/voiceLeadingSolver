@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Represents a list of chords, sorted by score
  **/
-class SortedFiniteProgList {
+class SortedFiniteProgListDeprecated {
     
     public static final int PROGRESSIONS_TO_TRACK = 3;
     private final List<ChordProgWithScoreDeprecated> content;
@@ -29,7 +29,7 @@ class SortedFiniteProgList {
     /**
      * Constructs a SortedFiniteProgList
      */
-    public SortedFiniteProgList(){
+    public SortedFiniteProgListDeprecated(){
         content = new ArrayList<>();
         checkRep();
     }
