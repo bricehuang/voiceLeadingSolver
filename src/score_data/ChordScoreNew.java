@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A class that represents the score of a transition
+ * A class that represents the score of a chord
  */
-public class ScoreNew {
+public class ChordScoreNew {
 
-    private final Map<PenaltyType, Integer> penaltyCount = new HashMap<>();
+    private final Map<ChordPenaltyType, Integer> penaltyCount = new HashMap<>();
     private int totalPenalty;
     
     /*
@@ -27,13 +27,13 @@ public class ScoreNew {
      * If debug flag is on, prints a summary of penalties when total penalty
      * is requested. 
      */
-    public ScoreNew(){
+    public ChordScoreNew(){
         checkRep();
     }
     
     private void checkRep(){
         int computedTotalPenalty = 0;
-        for (PenaltyType penalty : penaltyCount.keySet()){
+        for (ChordPenaltyType penalty : penaltyCount.keySet()){
             assert(penaltyCount.get(penalty) != 0);
             computedTotalPenalty += penaltyCount.get(penalty) * penalty.value();
         }
@@ -46,8 +46,8 @@ public class ScoreNew {
      * which case the penaltyCount.get(penalty)==0 check can go
      * @param penalty a penalty type
      */
-    public void updatePenalty(Map<PenaltyType, Integer> update){
-    		for (PenaltyType penalty: update.keySet()) {
+    public void updatePenalty(Map<ChordPenaltyType, Integer> update){
+    		for (ChordPenaltyType penalty: update.keySet()) {
     			if (!penaltyCount.keySet().contains(penalty)) {
     				penaltyCount.put(penalty, 0);
     			}
@@ -79,7 +79,7 @@ public class ScoreNew {
     @Override
     public String toString(){
         String stringRep = "";
-        for (PenaltyType penalty : penaltyCount.keySet()){
+        for (ChordPenaltyType penalty : penaltyCount.keySet()){
             String penaltyDescription = penalty.toString() + ": " 
                     + penaltyCount.get(penalty)
                     + ".  Score: "
