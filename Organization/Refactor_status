@@ -21,12 +21,15 @@ scorer
 	
 	- Scorer DIRTY
 scorer_chords
-	- ChordScorer CLEAN
+	- ChordScorer CLEAN (Tests TODO)
+	
 	- DoublingCadenceScorer TODO
 	- DoublingScorer TODO
 	- PacScorer CLEAN
 	- VoiceOverlapScorer TODO
 scorer_transitions
+	- TransitionScorer CLEAN (Tests TODO)
+	
 	- CadenceMovementScorer TODO
 	- Dim7ResolutionScorer TODO
 	- DirectsScorer TODO
@@ -36,7 +39,6 @@ scorer_transitions
 	- MovementScorer TODO
 	- NeaploitanResolutionScorer TODO
 	- ParallelsScorer TODO
-	- TransitionScorer CLEAN
 	- VoiceCrossingScorer TODO
 solver
 	- BestListDeprecated DEPRECATED

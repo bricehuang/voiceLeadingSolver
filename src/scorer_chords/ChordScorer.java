@@ -6,11 +6,19 @@ import java.util.Map;
 
 import chord_data.ChordWithContext;
 import score_data.ChordPenaltyType;
+import score_data.ChordScoreNew;
 
 /**
  * Interface for scorers that take score a single chord.  
  */
 public interface ChordScorer {
+    
+    public static final List<ChordScorer> ALL_CHORD_SCORERS = Arrays.asList(
+        new DoublingCadenceScorer(),
+        new DoublingScorer(),
+        new PacScorer(),
+        new VoiceOverlapScorer()
+    );
     
     /**
      * Scores a chord in context
@@ -21,15 +29,14 @@ public interface ChordScorer {
     public Map<ChordPenaltyType, Integer> scoreChord(ChordWithContext chordAndContext);
     
     /**
-     * @return a list of all chord scorers
+     * @return a ChordScore of all penalties associated with this chord
      */
-    public static List<ChordScorer> allChordScorers(){
-        return Arrays.asList(
-            new DoublingCadenceScorer(),
-            new DoublingScorer(),
-            new PacScorer(),
-            new VoiceOverlapScorer()
-        );
+    public static ChordScoreNew score(ChordWithContext chordAndContext) {
+        ChordScoreNew score = new ChordScoreNew();
+        for (ChordScorer chordScorer: ALL_CHORD_SCORERS) {
+            score.updatePenalty(chordScorer.scoreChord(chordAndContext));
+        }
+        return score;
     }
     
 }
