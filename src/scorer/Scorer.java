@@ -2,7 +2,9 @@ package scorer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import chord_data.ContextTag;
@@ -10,6 +12,7 @@ import chords.Chord;
 import chords.ChordProgressionDeprecated;
 import music.Key;
 import music.Note;
+import score_data.PenaltyType;
 import score_data.Score;
 
 /**
