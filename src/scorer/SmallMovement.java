@@ -7,7 +7,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 /**
@@ -33,21 +33,21 @@ class SmallMovement {
             int move = Math.abs(previousSpelled.get(i).getNoteID() - currentSpelled.get(i).getNoteID());
             if (i==0){
                 if (move>7){
-                    score.addPenalty(PenaltyType.MOVE_BIG_BASS);
+                    score.addPenalty(PenaltyTypeDeprecated.MOVE_BIG_BASS);
                 }
             }
             else{
                 if (move==2){
-                    score.addPenalty(PenaltyType.MOVE_THIRD);
+                    score.addPenalty(PenaltyTypeDeprecated.MOVE_THIRD);
                 }
                 else if (move==3){
-                    score.addPenalty(PenaltyType.MOVE_FOURTH);
+                    score.addPenalty(PenaltyTypeDeprecated.MOVE_FOURTH);
                 }
                 else if (move==4){
-                    score.addPenalty(PenaltyType.MOVE_FIFTH);
+                    score.addPenalty(PenaltyTypeDeprecated.MOVE_FIFTH);
                 }
                 else if (move>4){
-                    score.addPenalty(PenaltyType.MOVE_BIG);
+                    score.addPenalty(PenaltyTypeDeprecated.MOVE_BIG);
                 }
             }
         }

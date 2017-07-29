@@ -8,7 +8,7 @@ import chords.Chord;
 import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 class VoiceCrossing {
@@ -30,10 +30,10 @@ class VoiceCrossing {
         List<Note> currentSpelled = Scorer.spellChord(current);
         for (int i=0; i<3; i++){
             if (previousSpelled.get(i).getNoteID() >= currentSpelled.get(i+1).getNoteID()){
-                score.addPenalty(PenaltyType.VOICE_CROSSING);
+                score.addPenalty(PenaltyTypeDeprecated.VOICE_CROSSING);
             }
             if (currentSpelled.get(i).getNoteID() >= previousSpelled.get(i+1).getNoteID()){
-                score.addPenalty(PenaltyType.VOICE_CROSSING);
+                score.addPenalty(PenaltyTypeDeprecated.VOICE_CROSSING);
             }
         }
     }

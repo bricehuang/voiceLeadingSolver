@@ -8,7 +8,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 public class ScoreTest {
@@ -29,7 +29,7 @@ public class ScoreTest {
     @Test
     public void testAdd(){
         Score score = new Score();
-        score.addPenalty(PenaltyType.PARALLEL);
+        score.addPenalty(PenaltyTypeDeprecated.PARALLEL);
         
         assertEquals(1000000, score.totalScore());
         assertEquals("Parallel Interval Penalty: 1.  Score: 1000000\nTotal Penalty: 1000000\n", score.toString());
@@ -38,11 +38,11 @@ public class ScoreTest {
     @Test
     public void testRemove(){
         Score score = new Score();
-        score.addPenalty(PenaltyType.PARALLEL);
-        score.addPenalty(PenaltyType.DOUBLE_DOUBLING);
-        score.addPenalty(PenaltyType.BAD_TRIPLING);
-        score.addPenalty(PenaltyType.BAD_TRIPLING);
-        score.removePenalty(PenaltyType.PARALLEL);
+        score.addPenalty(PenaltyTypeDeprecated.PARALLEL);
+        score.addPenalty(PenaltyTypeDeprecated.DOUBLE_DOUBLING);
+        score.addPenalty(PenaltyTypeDeprecated.BAD_TRIPLING);
+        score.addPenalty(PenaltyTypeDeprecated.BAD_TRIPLING);
+        score.removePenalty(PenaltyTypeDeprecated.PARALLEL);
         
         assertEquals(400, score.totalScore());
         Set<String> validAnswers = new HashSet<>(

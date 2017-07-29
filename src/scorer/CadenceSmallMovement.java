@@ -9,7 +9,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 class CadenceSmallMovement {
@@ -49,7 +49,7 @@ class CadenceSmallMovement {
             for (int i=1; i<4; i++){
                 int move = Math.abs(previousSpelled.get(i).getNoteID() - currentSpelled.get(i).getNoteID());
                 if (move>1){
-                    score.addPenalty(PenaltyType.MOVE_BIG_CADENCE);
+                    score.addPenalty(PenaltyTypeDeprecated.MOVE_BIG_CADENCE);
                 }
             }
         }

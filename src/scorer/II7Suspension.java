@@ -8,7 +8,7 @@ import chords.Chord;
 import chords.ChordType;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 class II7Suspension {
@@ -43,7 +43,7 @@ class II7Suspension {
             for (int i=0; i<4; i++){
                 if (previousSpelled.get(i).getBasicNote().equals(key.getTonic()) 
                         && !currentSpelled.get(i).getBasicNote().equals(key.getTonic())){
-                    score.addPenalty(PenaltyType.CADENTIAL_II7_SUSPEND);
+                    score.addPenalty(PenaltyTypeDeprecated.CADENTIAL_II7_SUSPEND);
                 }
             }
         }

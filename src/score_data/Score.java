@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class Score {
 
-    private final Map<PenaltyType, Integer> penaltyCount = new HashMap<>();
+    private final Map<PenaltyTypeDeprecated, Integer> penaltyCount = new HashMap<>();
     private int totalPenalty;
     
     /*
@@ -33,7 +33,7 @@ public class Score {
     
     private void checkRep(){
         int computedTotalPenalty = 0;
-        for (PenaltyType penalty : penaltyCount.keySet()){
+        for (PenaltyTypeDeprecated penalty : penaltyCount.keySet()){
             assert(penaltyCount.get(penalty) != 0);
             computedTotalPenalty += penaltyCount.get(penalty) * penalty.value();
         }
@@ -44,7 +44,7 @@ public class Score {
      * Mutator.  Adds a penalty to the score
      * @param penalty a penalty type
      */
-    public void addPenalty(PenaltyType penalty){
+    public void addPenalty(PenaltyTypeDeprecated penalty){
         if (!penaltyCount.keySet().contains(penalty)){
             penaltyCount.put(penalty, 0);
         }
@@ -60,7 +60,7 @@ public class Score {
      * Mutator.  Removes a penalty from the score
      * @param penalty a penalty type
      */
-    public void removePenalty(PenaltyType penalty){
+    public void removePenalty(PenaltyTypeDeprecated penalty){
         if (!penaltyCount.keySet().contains(penalty)){
             penaltyCount.put(penalty, 0);
         }
@@ -87,7 +87,7 @@ public class Score {
     @Override
     public String toString(){
         String stringRep = "";
-        for (PenaltyType penalty : penaltyCount.keySet()){
+        for (PenaltyTypeDeprecated penalty : penaltyCount.keySet()){
             String penaltyDescription = penalty.toString() + ": " 
                     + penaltyCount.get(penalty)
                     + ".  Score: "

@@ -12,7 +12,7 @@ import chords.Chord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 class DoublingInCadence {
@@ -66,7 +66,7 @@ class DoublingInCadence {
             if (containsCadenceTag){
                 int doubledScaleDegree = key.findScaleDegree(findDoubledNote(chord));
                 if (doubledScaleDegree != PROPER_DOUBLING.get(cadenceTag)){
-                    score.addPenalty(PenaltyType.CADENCE_DOUBLING);
+                    score.addPenalty(PenaltyTypeDeprecated.CADENCE_DOUBLING);
                 }
             }            
         }

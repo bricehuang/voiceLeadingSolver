@@ -12,7 +12,7 @@ import music.BasicInterval;
 import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 /**
@@ -62,7 +62,7 @@ class ParallelsDirects {
                         previousSpelled.get(upper),
                         currentSpelled.get(lower),
                         currentSpelled.get(upper))){
-                    score.addPenalty(PenaltyType.PARALLEL);
+                    score.addPenalty(PenaltyTypeDeprecated.PARALLEL);
                 }
             }
         }
@@ -99,7 +99,7 @@ class ParallelsDirects {
                     bassMove.getScaleDegrees() : - bassMove.getScaleDegrees();  
             // soprano and bass move same direction, soprano leaps
             if (sopranoNotesMoved * bassNotesMoved > 0 && Math.abs(sopranoNotesMoved) > 1){
-                score.addPenalty(PenaltyType.DIRECT);
+                score.addPenalty(PenaltyTypeDeprecated.DIRECT);
             }
         }
     }

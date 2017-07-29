@@ -14,7 +14,7 @@ import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 public class ScorerTest {
@@ -129,7 +129,7 @@ public class ScorerTest {
                 );
         Doubling.scoreDoubling(dMinorDoubleRoot, new HashSet<>(), C_MAJOR,  score);
         
-        assertEquals(PenaltyType.BAD_DOUBLING.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.BAD_DOUBLING.value(), score.totalScore());
         printPenaltyChord(dMinorDoubleRoot, C_MAJOR, score);
     }
 
@@ -142,7 +142,7 @@ public class ScorerTest {
                 );
         Doubling.scoreDoubling(cMajorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
-        assertEquals(PenaltyType.BAD_DOUBLING.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.BAD_DOUBLING.value(), score.totalScore());
         printPenaltyChord(cMajorDoubleThird, C_MAJOR, score);
     }
 
@@ -168,7 +168,7 @@ public class ScorerTest {
                 );
         Doubling.scoreDoubling(cMajorTripleRootIncomplete, new HashSet<>(), C_MAJOR,  score);
         
-        assertEquals(PenaltyType.OMITTED_FIFTH.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.OMITTED_FIFTH.value(), score.totalScore());
         printPenaltyChord(cMajorTripleRootIncomplete, C_MAJOR, score);
     }
 
@@ -181,7 +181,7 @@ public class ScorerTest {
                 );
         Doubling.scoreDoubling(cMajorDoubleRootThirdIncomplete, new HashSet<>(), C_MAJOR,  score);
         
-        assertEquals(PenaltyType.DOUBLE_DOUBLING.value() + PenaltyType.OMITTED_FIFTH.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DOUBLE_DOUBLING.value() + PenaltyTypeDeprecated.OMITTED_FIFTH.value(), score.totalScore());
         printPenaltyChord(cMajorDoubleRootThirdIncomplete, C_MAJOR, score);
     }
     
@@ -194,7 +194,7 @@ public class ScorerTest {
                 );
         Doubling.scoreDoubling(gMajorDoubleThird, new HashSet<>(), C_MAJOR,  score);
         
-        assertEquals(PenaltyType.BAD_DOUBLING.value() + PenaltyType.DOUBLED_LEADING_TONE.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.BAD_DOUBLING.value() + PenaltyTypeDeprecated.DOUBLED_LEADING_TONE.value(), score.totalScore());
         printPenaltyChord(gMajorDoubleThird, C_MAJOR, score);
     }
     
@@ -223,7 +223,7 @@ public class ScorerTest {
                 C_MAJ_INV2
                 );
         VoiceOverlap.scoreVoiceOverlap(cMajorVoiceOverlap, new HashSet<>(), C_MAJOR,  score);
-        assertEquals(PenaltyType.VOICE_OVERLAP.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.VOICE_OVERLAP.value(), score.totalScore());
         printPenaltyChord(cMajorVoiceOverlap, C_MAJOR, score);
     }
     
@@ -255,7 +255,7 @@ public class ScorerTest {
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
         DoublingInCadence.scoreDoubling(cMajor, tags, C_MAJOR,  score);
-        assertEquals(PenaltyType.CADENCE_DOUBLING.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.CADENCE_DOUBLING.value(), score.totalScore());
         printPenaltyChord(cMajor, C_MAJOR, score);
     }
 
@@ -283,7 +283,7 @@ public class ScorerTest {
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENTIAL_V);
         DoublingInCadence.scoreDoubling(gMajor, tags, C_MAJOR,  score);
-        assertEquals(PenaltyType.CADENCE_DOUBLING.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.CADENCE_DOUBLING.value(), score.totalScore());
         printPenaltyChord(gMajor, C_MAJOR, score);
     }
     
@@ -311,7 +311,7 @@ public class ScorerTest {
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENTIAL_I64);
         DoublingInCadence.scoreDoubling(cMajor64, tags, C_MAJOR,  score);
-        assertEquals(PenaltyType.CADENCE_DOUBLING.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.CADENCE_DOUBLING.value(), score.totalScore());
         printPenaltyChord(cMajor64, C_MAJOR, score);
     }
     
@@ -343,7 +343,7 @@ public class ScorerTest {
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
         Pac.scorePAC(cMajor, tags, C_MAJOR,  score);
-        assertEquals(PenaltyType.NOT_PAC.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.NOT_PAC.value(), score.totalScore());
         printPenaltyChord(cMajor, C_MAJOR, score);
     }
     
@@ -358,7 +358,7 @@ public class ScorerTest {
                 C_MAJ_INV2
                 );
         Score score = Scorer.scoreChord(cMajorVoiceOverlapDoubleThird, new HashSet<>(), C_MAJOR);
-        assertEquals(PenaltyType.VOICE_OVERLAP.value() + PenaltyType.BAD_DOUBLING.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.VOICE_OVERLAP.value() + PenaltyTypeDeprecated.BAD_DOUBLING.value(), score.totalScore());
         printPenaltyChord(cMajorVoiceOverlapDoubleThird, C_MAJOR, score);
     }
     
@@ -379,7 +379,7 @@ public class ScorerTest {
                 );
         ParallelsDirects.scoreParallels(dMinorDoubleThird, cMajorDoubleRoot, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
-        assertEquals(PenaltyType.PARALLEL.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.PARALLEL.value(), score.totalScore());
         printPenaltyTransition(dMinorDoubleThird, cMajorDoubleRoot, C_MAJOR, score);
     }
     
@@ -413,7 +413,7 @@ public class ScorerTest {
                 );
         ParallelsDirects.scoreDirects(gMajorDoubleRoot, cMajorDoubleRoot, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
-        assertEquals(PenaltyType.DIRECT.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DIRECT.value(), score.totalScore());
         printPenaltyTransition(gMajorDoubleRoot, cMajorDoubleRoot, C_MAJOR, score);
     }
 
@@ -468,7 +468,7 @@ public class ScorerTest {
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
-        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
@@ -502,7 +502,7 @@ public class ScorerTest {
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
-        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
@@ -553,7 +553,7 @@ public class ScorerTest {
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
-        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
 
@@ -587,7 +587,7 @@ public class ScorerTest {
                 );
         SevenChordResolution.scoreDomSevenResolutions(eDomSeven, aMinor, 
                 new HashSet<>(), new HashSet<>(), A_MINOR, score);
-        assertEquals(PenaltyType.DOM_SEVEN_RES.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DOM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(eDomSeven, aMinor, A_MINOR, score);
     }
     
@@ -643,7 +643,7 @@ public class ScorerTest {
                 );
         SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
-        assertEquals(PenaltyType.DIM_SEVEN_RES.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DIM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
     }
     
@@ -660,7 +660,7 @@ public class ScorerTest {
                 );
         SevenChordResolution.scoreDimSevenResolutions(bDimSeven, cMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
-        assertEquals(PenaltyType.DIM_SEVEN_RES.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.DIM_SEVEN_RES.value(), score.totalScore());
         printPenaltyTransition(bDimSeven, cMajor, C_MAJOR, score);
     }
     
@@ -698,7 +698,7 @@ public class ScorerTest {
                 );
         MelodicIntervals.scoreMelodicIntervals(fMinor, gMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
-        assertEquals(PenaltyType.MELODIC_INTERVAL.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.MELODIC_INTERVAL.value(), score.totalScore());
         printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
     }
     
@@ -719,7 +719,7 @@ public class ScorerTest {
                 );
         VoiceCrossing.scoreVoiceCrossing(gMajor, fMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
-        assertEquals(PenaltyType.VOICE_CROSSING.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.VOICE_CROSSING.value(), score.totalScore());
         printPenaltyTransition(gMajor, fMajor, C_MINOR, score);
     }
     
@@ -757,7 +757,7 @@ public class ScorerTest {
                 );
         SmallMovement.scoreSmallMovement(gMajor, fMajor, 
                 new HashSet<>(), new HashSet<>(), C_MAJOR, score);
-        assertEquals(PenaltyType.MOVE_FOURTH.value()+PenaltyType.MOVE_FIFTH.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.MOVE_FOURTH.value()+PenaltyTypeDeprecated.MOVE_FIFTH.value(), score.totalScore());
         printPenaltyTransition(gMajor, fMajor, C_MAJOR, score);
     }
     
@@ -782,7 +782,7 @@ public class ScorerTest {
         currContext.add(ContextTag.CADENTIAL_V);
         CadenceSmallMovement.scoreSmallMovementCadence(fMinor, gMajor, 
                 prevContext, currContext, C_MINOR, score);
-        assertEquals(PenaltyType.MOVE_BIG_CADENCE.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.MOVE_BIG_CADENCE.value(), score.totalScore());
         printPenaltyTransition(fMinor, gMajor, C_MINOR, score);
     }
 
@@ -828,7 +828,7 @@ public class ScorerTest {
         currContext.add(ContextTag.CADENTIAL_I64);
         II7Suspension.scoreII7Suspension(dMin7, c64, 
                 prevContext, currContext, C_MAJOR, score);
-        assertEquals(PenaltyType.CADENTIAL_II7_SUSPEND.value(), score.totalScore());
+        assertEquals(PenaltyTypeDeprecated.CADENTIAL_II7_SUSPEND.value(), score.totalScore());
         printPenaltyTransition(dMin7, c64, C_MAJOR, score);
     }
 }

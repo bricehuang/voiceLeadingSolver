@@ -5,7 +5,7 @@ import java.util.Set;
 import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 class Pac {
@@ -22,7 +22,7 @@ class Pac {
         if (contextTags.contains(ContextTag.CADENCE)){
             if (!(chord.getSoprano().getBasicNote().equals(key.getTonic()) 
                     && chord.getBass().getBasicNote().equals(key.getTonic()))){
-                score.addPenalty(PenaltyType.NOT_PAC);
+                score.addPenalty(PenaltyTypeDeprecated.NOT_PAC);
             }
         }
     }

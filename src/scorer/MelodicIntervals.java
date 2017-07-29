@@ -12,7 +12,7 @@ import music.Interval;
 import music.IntervalQuality;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 /**
@@ -50,7 +50,7 @@ class MelodicIntervals {
                     previousSpelled.get(i), currentSpelled.get(i));
             if (!ACCEPTABLE_QUALITIES.contains(interval.getQuality()) && 
                     !SEMITONE_STEPS.contains(interval)){
-                score.addPenalty(PenaltyType.MELODIC_INTERVAL);
+                score.addPenalty(PenaltyTypeDeprecated.MELODIC_INTERVAL);
             }
         }
     }

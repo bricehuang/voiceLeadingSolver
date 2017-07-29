@@ -16,7 +16,7 @@ import music.BasicNote;
 import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.PenaltyType;
+import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
 
 /**
@@ -197,7 +197,7 @@ class SevenChordResolution {
             assert(current.getPrimitiveChord().getRoot().equals(key.getScaleDegree(1)));
         }
         if (! isValidDominantResolution(previous, current)){
-            score.addPenalty(PenaltyType.DOM_SEVEN_RES);
+            score.addPenalty(PenaltyTypeDeprecated.DOM_SEVEN_RES);
         }
     }
     
@@ -244,7 +244,7 @@ class SevenChordResolution {
             assert(current.getPrimitiveChord().getRoot().equals(key.getScaleDegree(1)));
         }        
         if (! isValidDiminishedResolution(previous, current)){
-            score.addPenalty(PenaltyType.DIM_SEVEN_RES);
+            score.addPenalty(PenaltyTypeDeprecated.DIM_SEVEN_RES);
         }
     }
 
