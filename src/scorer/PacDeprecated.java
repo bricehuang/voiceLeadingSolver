@@ -8,7 +8,7 @@ import music.Key;
 import score_data.ChordPenaltyType;
 import score_data.ScoreDeprecated;
 
-class Pac {
+class PacDeprecated {
 
     /**
      * Scores for bad doubling by mutating an input score 

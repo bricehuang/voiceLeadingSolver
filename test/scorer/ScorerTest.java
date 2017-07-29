@@ -329,7 +329,7 @@ public class ScorerTest {
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
-        Pac.scorePAC(cMajor, tags, C_MAJOR,  score);
+        PacDeprecated.scorePAC(cMajor, tags, C_MAJOR,  score);
         assertEquals(0, score.totalScore());
         printPenaltyChord(cMajor, C_MAJOR, score);
     }
@@ -343,7 +343,7 @@ public class ScorerTest {
                 );
         Set<ContextTag> tags = new HashSet<>();
         tags.add(ContextTag.CADENCE);
-        Pac.scorePAC(cMajor, tags, C_MAJOR,  score);
+        PacDeprecated.scorePAC(cMajor, tags, C_MAJOR,  score);
         assertEquals(ChordPenaltyType.NOT_PAC.value(), score.totalScore());
         printPenaltyChord(cMajor, C_MAJOR, score);
     }

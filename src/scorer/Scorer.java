@@ -73,7 +73,7 @@ public class Scorer {
         Doubling.scoreDoubling(chord, contextTags, key, score);
         VoiceOverlap.scoreVoiceOverlap(chord, contextTags, key, score);
         DoublingInCadence.scoreDoubling(chord, contextTags, key, score);
-        Pac.scorePAC(chord, contextTags, key, score);
+        PacDeprecated.scorePAC(chord, contextTags, key, score);
         return score;
     }
     
