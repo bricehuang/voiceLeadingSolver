@@ -21,12 +21,15 @@ scorer
 	
 	- Scorer DIRTY
 scorer_chords
-	- ChordScorer CLEAN
+	- ChordScorer CLEAN (Tests TODO)
+	
 	- DoublingCadenceScorer TODO
 	- DoublingScorer TODO
 	- PacScorer CLEAN
 	- VoiceOverlapScorer TODO
 scorer_transitions
+	- TransitionScorer CLEAN (Tests TODO)
+	
 	- CadenceMovementScorer TODO
 	- Dim7ResolutionScorer TODO
 	- DirectsScorer TODO
@@ -36,7 +39,6 @@ scorer_transitions
 	- MovementScorer TODO
 	- NeaploitanResolutionScorer TODO
 	- ParallelsScorer TODO
-	- TransitionScorer CLEAN
 	- VoiceCrossingScorer TODO
 solver
 	- BestListDeprecated DEPRECATED
@@ -50,16 +52,3 @@ solver
 	- Sequencer DIRTY
 	- Solver DIRTY
 	- SortedFiniteProgListDeprecated DEPRECATED
-	
-Updated scorer/score interface: scorer takes in (ChordWithContext) 
-or (ChrodWithContext, ChordWithContext) and returns Map<ChordPenaltyType, Integer> 
-or Map<TransitionPenaltyType, Integer>, which gets passed as arg to score.update().  
-Score.update() has arg Map<PenaltyType, Integer>
-
-Scorer methods will be instance, not static.  In Scorer there can be a list
-ALL_CHORD_SCORERS=Arrays.asList(new blah1(), new blah2(), ...)
-for (scorer : ALL_CHORD_SCORERS){
-	score.update(scorer.score(current_chord))
-}     
-
-A random TODO: turn on tab=4 spaces in eclipse???
