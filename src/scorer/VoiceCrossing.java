@@ -5,11 +5,10 @@ import java.util.Set;
 
 import chord_data.ContextTag;
 import chords.Chord;
-import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
+import score_data.TransitionPenaltyType;
 
 class VoiceCrossing {
     // TODO test
@@ -30,10 +29,10 @@ class VoiceCrossing {
         List<Note> currentSpelled = Scorer.spellChord(current);
         for (int i=0; i<3; i++){
             if (previousSpelled.get(i).getNoteID() >= currentSpelled.get(i+1).getNoteID()){
-                score.addPenalty(PenaltyTypeDeprecated.VOICE_CROSSING);
+                score.addPenalty(TransitionPenaltyType.VOICE_CROSSING);
             }
             if (currentSpelled.get(i).getNoteID() >= previousSpelled.get(i+1).getNoteID()){
-                score.addPenalty(PenaltyTypeDeprecated.VOICE_CROSSING);
+                score.addPenalty(TransitionPenaltyType.VOICE_CROSSING);
             }
         }
     }

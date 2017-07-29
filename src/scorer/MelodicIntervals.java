@@ -12,8 +12,8 @@ import music.Interval;
 import music.IntervalQuality;
 import music.Key;
 import music.Note;
-import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
+import score_data.TransitionPenaltyType;
 
 /**
  * A module that scores for good melodic intervals
@@ -50,7 +50,7 @@ class MelodicIntervals {
                     previousSpelled.get(i), currentSpelled.get(i));
             if (!ACCEPTABLE_QUALITIES.contains(interval.getQuality()) && 
                     !SEMITONE_STEPS.contains(interval)){
-                score.addPenalty(PenaltyTypeDeprecated.MELODIC_INTERVAL);
+                score.addPenalty(TransitionPenaltyType.MELODIC_INTERVAL);
             }
         }
     }

@@ -7,8 +7,8 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
-import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
+import score_data.TransitionPenaltyType;
 
 /**
  * A module that scores for small movements
@@ -33,21 +33,21 @@ class SmallMovement {
             int move = Math.abs(previousSpelled.get(i).getNoteID() - currentSpelled.get(i).getNoteID());
             if (i==0){
                 if (move>7){
-                    score.addPenalty(PenaltyTypeDeprecated.MOVE_BIG_BASS);
+                    score.addPenalty(TransitionPenaltyType.MOVE_BIG_BASS);
                 }
             }
             else{
                 if (move==2){
-                    score.addPenalty(PenaltyTypeDeprecated.MOVE_THIRD);
+                    score.addPenalty(TransitionPenaltyType.MOVE_THIRD);
                 }
                 else if (move==3){
-                    score.addPenalty(PenaltyTypeDeprecated.MOVE_FOURTH);
+                    score.addPenalty(TransitionPenaltyType.MOVE_FOURTH);
                 }
                 else if (move==4){
-                    score.addPenalty(PenaltyTypeDeprecated.MOVE_FIFTH);
+                    score.addPenalty(TransitionPenaltyType.MOVE_FIFTH);
                 }
                 else if (move>4){
-                    score.addPenalty(PenaltyTypeDeprecated.MOVE_BIG);
+                    score.addPenalty(TransitionPenaltyType.MOVE_BIG);
                 }
             }
         }

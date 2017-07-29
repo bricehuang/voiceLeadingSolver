@@ -13,7 +13,7 @@ import chords.Chord;
 import music.BasicNote;
 import music.Key;
 import music.Note;
-import score_data.PenaltyTypeDeprecated;
+import score_data.ChordPenaltyType;
 import score_data.Score;
 
 /**
@@ -52,25 +52,25 @@ class Doubling {
             noteCounts.put(note.getBasicNote(), noteCounts.get(note.getBasicNote())+1);
         }
         if (noteCounts.get(triad.get(2)) == 0){
-            score.addPenalty(PenaltyTypeDeprecated.OMITTED_FIFTH);
+            score.addPenalty(ChordPenaltyType.OMITTED_FIFTH);
             for (BasicNote note : triad){
                 if (noteCounts.get(note) == 3 && !GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(note))){
-                    score.addPenalty(PenaltyTypeDeprecated.BAD_TRIPLING);
+                    score.addPenalty(ChordPenaltyType.BAD_TRIPLING);
                     if (key.findScaleDegree(note) == LEADING_TONE){
-                        score.addPenalty(PenaltyTypeDeprecated.DOUBLED_LEADING_TONE);
+                        score.addPenalty(ChordPenaltyType.DOUBLED_LEADING_TONE);
                     }
                 }
             }
             if (noteCounts.get(triad.get(0)) == 2 && noteCounts.get(triad.get(1)) == 2){
-                score.addPenalty(PenaltyTypeDeprecated.DOUBLE_DOUBLING);
+                score.addPenalty(ChordPenaltyType.DOUBLE_DOUBLING);
             }
         }
         else{
             for (BasicNote note : triad){
                 if (noteCounts.get(note) == 2 && !GOOD_NOTES_TO_DOUBLE.contains(key.findScaleDegree(note))){
-                    score.addPenalty(PenaltyTypeDeprecated.BAD_DOUBLING);
+                    score.addPenalty(ChordPenaltyType.BAD_DOUBLING);
                     if (key.findScaleDegree(note) == LEADING_TONE){
-                        score.addPenalty(PenaltyTypeDeprecated.DOUBLED_LEADING_TONE);
+                        score.addPenalty(ChordPenaltyType.DOUBLED_LEADING_TONE);
                     }
                 }
             }            

@@ -3,7 +3,8 @@ chords ALL CLEAN OR MARKED DEPRECATED
 music ALL CLEAN
 player
 	- ProgressionPlayer DIRTY
-scorer ALL NEEDS REFACTOR (TODO score_data vs scorer module)
+score_data ALL CLEAN
+scorer ALL NEEDS REFACTOR
 solver
 	- BestListDeprecated DEPRECATED
 	- BestProgressionList CLEAN

@@ -7,7 +7,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
-import score_data.PenaltyTypeDeprecated;
+import score_data.ChordPenaltyType;
 import score_data.Score;
 
 /**
@@ -27,7 +27,7 @@ class VoiceOverlap {
         List<Note> chordSpelled = Scorer.spellChord(chord);
         for (int i=0; i<3; i++){
             if (chordSpelled.get(i).equals(chordSpelled.get(i+1))){
-                score.addPenalty(PenaltyTypeDeprecated.VOICE_OVERLAP);
+                score.addPenalty(ChordPenaltyType.VOICE_OVERLAP);
             }
         }
         return;

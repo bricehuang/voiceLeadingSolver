@@ -12,8 +12,8 @@ import music.BasicInterval;
 import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
+import score_data.TransitionPenaltyType;
 
 /**
  * A module that scores parallel and direct intervals
@@ -62,7 +62,7 @@ class ParallelsDirects {
                         previousSpelled.get(upper),
                         currentSpelled.get(lower),
                         currentSpelled.get(upper))){
-                    score.addPenalty(PenaltyTypeDeprecated.PARALLEL);
+                    score.addPenalty(TransitionPenaltyType.PARALLEL);
                 }
             }
         }
@@ -99,7 +99,7 @@ class ParallelsDirects {
                     bassMove.getScaleDegrees() : - bassMove.getScaleDegrees();  
             // soprano and bass move same direction, soprano leaps
             if (sopranoNotesMoved * bassNotesMoved > 0 && Math.abs(sopranoNotesMoved) > 1){
-                score.addPenalty(PenaltyTypeDeprecated.DIRECT);
+                score.addPenalty(TransitionPenaltyType.DIRECT);
             }
         }
     }

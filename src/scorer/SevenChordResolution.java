@@ -16,8 +16,8 @@ import music.BasicNote;
 import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.PenaltyTypeDeprecated;
 import score_data.Score;
+import score_data.TransitionPenaltyType;
 
 /**
  * A module for scoring dominant seven resolutions
@@ -197,7 +197,7 @@ class SevenChordResolution {
             assert(current.getPrimitiveChord().getRoot().equals(key.getScaleDegree(1)));
         }
         if (! isValidDominantResolution(previous, current)){
-            score.addPenalty(PenaltyTypeDeprecated.DOM_SEVEN_RES);
+            score.addPenalty(TransitionPenaltyType.DOM_SEVEN_RES);
         }
     }
     
@@ -244,7 +244,7 @@ class SevenChordResolution {
             assert(current.getPrimitiveChord().getRoot().equals(key.getScaleDegree(1)));
         }        
         if (! isValidDiminishedResolution(previous, current)){
-            score.addPenalty(PenaltyTypeDeprecated.DIM_SEVEN_RES);
+            score.addPenalty(TransitionPenaltyType.DIM_SEVEN_RES);
         }
     }
 
