@@ -1,5 +1,6 @@
 package scorer_transitions;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,18 @@ public interface TransitionScorer {
      * @return a list of all chord scorers
      */
     public static List<TransitionScorer> allTransitionScorers(){
-        throw new RuntimeException("Implement after transition scorers in place");
+        return Arrays.asList(
+            new CadenceMovementScorer(),
+            new Dim7ResolutionScorer(),
+            new DirectsScorer(),
+            new Dom7ResolutionScorer(),
+            new II7SuspensionScorer(),
+            new MelodicIntervalScorer(),
+            new MovementScorer(),
+            new NeapolitanResolutionScorer(),
+            new ParallelsScorer(),
+            new VoiceCrossingScorer()
+        );
     }
     
 }

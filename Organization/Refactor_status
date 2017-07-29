@@ -4,7 +4,40 @@ music ALL CLEAN
 player
 	- ProgressionPlayer DIRTY
 score_data ALL CLEAN
-scorer ALL NEEDS REFACTOR
+scorer 
+	- Doubling DIRTY
+	- PacDeprecated DEPRECATED
+	- DoublingInCadence DIRTY
+	- VoiceOverlap DIRTY
+
+	- CadenceSmallMovement DIRTY
+	- II7Suspension DIRTY
+	- MelodicIntervals DIRTY
+	- NeapolitanResolution DIRTY
+	- ParallelsDirects DIRTY
+	- SevenChordResolution DIRTY 
+	- SmallMovement DIRTY
+	- VoiceCrossing DIRTY
+	
+	- Scorer DIRTY
+scorer_chords
+	- ChordScorer CLEAN
+	- DoublingCadenceScorer TODO
+	- DoublingScorer TODO
+	- PacScorer CLEAN
+	- VoiceOverlapScorer TODO
+scorer_transitions
+	- CadenceMovementScorer TODO
+	- Dim7ResolutionScorer TODO
+	- DirectsScorer TODO
+	- Dom7ResolutionScorer TODO
+	- II7SuspensionScorer TODO
+	- MelodicIntervalScorer TODO
+	- MovementScorer TODO
+	- NeaploitanResolutionScorer TODO
+	- ParallelsScorer TODO
+	- TransitionScorer CLEAN
+	- VoiceCrossingScorer TODO
 solver
 	- BestListDeprecated DEPRECATED
 	- BestProgressionList CLEAN

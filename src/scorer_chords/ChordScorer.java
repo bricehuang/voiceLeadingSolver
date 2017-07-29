@@ -1,5 +1,6 @@
 package scorer_chords;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,12 @@ public interface ChordScorer {
      * @return a list of all chord scorers
      */
     public static List<ChordScorer> allChordScorers(){
-        throw new RuntimeException("Implement after chord scorers in place");
+        return Arrays.asList(
+            new DoublingCadenceScorer(),
+            new DoublingScorer(),
+            new PacScorer(),
+            new VoiceOverlapScorer()
+        );
     }
     
 }
