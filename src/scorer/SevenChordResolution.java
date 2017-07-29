@@ -16,7 +16,7 @@ import music.BasicNote;
 import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import score_data.TransitionPenaltyType;
 
 /**
@@ -178,7 +178,7 @@ class SevenChordResolution {
      */
     static void scoreDomSevenResolutions(Chord previous, Chord current,
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         // if previous isn't dom7, don't do anything
         if (previous.getType() != ChordType.DOM7){
             return;
@@ -226,7 +226,7 @@ class SevenChordResolution {
      */
     static void scoreDimSevenResolutions(Chord previous, Chord current,
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         // if previous isn't dim7, don't do anything
         if (previous.getType() != ChordType.DIM7){
             return;

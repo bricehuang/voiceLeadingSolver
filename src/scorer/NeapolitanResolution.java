@@ -5,7 +5,7 @@ import java.util.Set;
 import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 
 class NeapolitanResolution {
     
@@ -20,7 +20,7 @@ class NeapolitanResolution {
      */
     static void scoreNeapolitanResolutions(Chord previous, Chord current,
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         // TODO
     }
 }

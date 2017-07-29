@@ -7,7 +7,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import score_data.TransitionPenaltyType;
 
 class VoiceCrossing {
@@ -24,7 +24,7 @@ class VoiceCrossing {
      */
     static void scoreVoiceCrossing(Chord previous, Chord current, 
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         List<Note> previousSpelled = Scorer.spellChord(previous);
         List<Note> currentSpelled = Scorer.spellChord(current);
         for (int i=0; i<3; i++){

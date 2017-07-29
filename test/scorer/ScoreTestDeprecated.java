@@ -10,10 +10,10 @@ import java.util.Set;
 import org.junit.Test;
 
 import score_data.ChordPenaltyType;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import score_data.TransitionPenaltyType;
 
-public class ScoreTest {
+public class ScoreTestDeprecated {
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -23,14 +23,14 @@ public class ScoreTest {
 
     @Test
     public void testBasic(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         assertEquals(0, score.totalScore());
         assertEquals("Total Penalty: 0\n", score.toString());
     }
 
     @Test
     public void testAdd(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         score.addPenalty(TransitionPenaltyType.PARALLEL);
         
         assertEquals(1000000, score.totalScore());
@@ -39,7 +39,7 @@ public class ScoreTest {
 
     @Test
     public void testRemove(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         score.addPenalty(TransitionPenaltyType.PARALLEL);
         score.addPenalty(ChordPenaltyType.DOUBLE_DOUBLING);
         score.addPenalty(ChordPenaltyType.BAD_TRIPLING);

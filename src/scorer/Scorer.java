@@ -13,7 +13,7 @@ import chords.ChordProgressionDeprecated;
 import music.Key;
 import music.Note;
 import score_data.PenaltyType;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 
 /**
  * A module that scores individual chords and transitions between chords  
@@ -68,8 +68,8 @@ public class Scorer {
      * @param contextTags set of context tags for this chord
      * @return a score representing this chord's badness
      */
-    public static Score scoreChord(Chord chord, Set<ContextTag> contextTags, Key key){
-        Score score = new Score();
+    public static ScoreDeprecated scoreChord(Chord chord, Set<ContextTag> contextTags, Key key){
+        ScoreDeprecated score = new ScoreDeprecated();
         Doubling.scoreDoubling(chord, contextTags, key, score);
         VoiceOverlap.scoreVoiceOverlap(chord, contextTags, key, score);
         DoublingInCadence.scoreDoubling(chord, contextTags, key, score);
@@ -86,10 +86,10 @@ public class Scorer {
      * @param key key in which this transition should be analyzed
      * @return a score representing this transition's badness
      */
-    public static Score scoreTransition(Chord previous, Chord current, 
+    public static ScoreDeprecated scoreTransition(Chord previous, Chord current, 
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
             Key key){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         SmallMovement.scoreSmallMovement(previous, current, 
                 contextTagsPrevious, contextTagsCurrent, key, score);
         ParallelsDirects.scoreParallels(previous, current, 
@@ -120,7 +120,7 @@ public class Scorer {
      * @param score, must be the scoring of this chord
      * @return ditto
      */
-    private static String evaluateChord(Chord chord, Key key, Score score){
+    private static String evaluateChord(Chord chord, Key key, ScoreDeprecated score){
         String ans = "";
         ans += "Scoring chord " + chord.toString() + " in " + key.toString() + "\n";
         ans += score.toString();
@@ -135,7 +135,7 @@ public class Scorer {
      * @param score, must be the scoring of this transition
      * @return ditto
      */
-    private static String evaluateTransition(Chord previous, Chord current, Key key, Score score){
+    private static String evaluateTransition(Chord previous, Chord current, Key key, ScoreDeprecated score){
         String ans = "";
         ans += "Scoring transition " + previous.toString() + " --> " + current.toString() +
                 " in " + key.toString() + "\n";
@@ -178,12 +178,12 @@ public class Scorer {
             if (i!=0){
                 Chord previous = chordsInProgression.get(i-1);
                 Set<ContextTag> contextTagsPrevious = contextTagsList.get(i-1);
-                Score transitionScore = scoreTransition(previous, chord, 
+                ScoreDeprecated transitionScore = scoreTransition(previous, chord, 
                         contextTagsPrevious, contextTags, key);
                 totalScore += transitionScore.totalScore();
                 report += evaluateTransition(previous, chord, key, transitionScore) + "\n";
             }
-            Score chordScore = scoreChord(chord, contextTags, key);
+            ScoreDeprecated chordScore = scoreChord(chord, contextTags, key);
             totalScore += chordScore.totalScore();
             report += evaluateChord(chord, key, chordScore) + "\n";
         }

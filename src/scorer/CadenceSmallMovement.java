@@ -9,7 +9,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import music.Note;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import score_data.TransitionPenaltyType;
 
 class CadenceSmallMovement {
@@ -41,7 +41,7 @@ class CadenceSmallMovement {
      */
     static void scoreSmallMovementCadence(Chord previous, Chord current,
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         if (containsCadenceTag(contextTagsPrevious) &&
                 containsCadenceTag(contextTagsCurrent)){
             List<Note> previousSpelled = Scorer.spellChord(previous);

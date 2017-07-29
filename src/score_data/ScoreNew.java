@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * A class that represents the score of a transition
  */
-public class Score {
+public class ScoreNew {
 
     private final Map<PenaltyType, Integer> penaltyCount = new HashMap<>();
     private int totalPenalty;
@@ -27,7 +27,7 @@ public class Score {
      * If debug flag is on, prints a summary of penalties when total penalty
      * is requested. 
      */
-    public Score(){
+    public ScoreNew(){
         checkRep();
     }
     
@@ -42,36 +42,28 @@ public class Score {
     
     /**
      * Mutator.  Adds a penalty to the score
+     * TODO: decide if I should deprecate negative updates, in 
+     * which case the penaltyCount.get(penalty)==0 check can go
      * @param penalty a penalty type
      */
-    public void addPenalty(PenaltyType penalty){
-        if (!penaltyCount.keySet().contains(penalty)){
-            penaltyCount.put(penalty, 0);
-        }
-        penaltyCount.put(penalty, penaltyCount.get(penalty)+1);
-        totalPenalty += penalty.value();
-        if (penaltyCount.get(penalty)==0){
-            penaltyCount.remove(penalty);
-        }
+    public void updatePenalty(Map<PenaltyType, Integer> update){
+    		for (PenaltyType penalty: update.keySet()) {
+    			if (!penaltyCount.keySet().contains(penalty)) {
+    				penaltyCount.put(penalty, 0);
+    			}
+    			int timesPenalty = update.get(penalty);
+    			penaltyCount.put(
+    				penalty, penaltyCount.get(penalty)+timesPenalty
+    			);
+    			totalPenalty += penalty.value()*timesPenalty;
+    			if (penaltyCount.get(penalty)==0) {
+    				penaltyCount.remove(penalty);
+    			}
+    			checkRep();
+    		}
         checkRep();
     }
-    
-    /**
-     * Mutator.  Removes a penalty from the score
-     * @param penalty a penalty type
-     */
-    public void removePenalty(PenaltyType penalty){
-        if (!penaltyCount.keySet().contains(penalty)){
-            penaltyCount.put(penalty, 0);
-        }
-        penaltyCount.put(penalty, penaltyCount.get(penalty)-1);
-        totalPenalty -= penalty.value();
-        if (penaltyCount.get(penalty)==0){
-            penaltyCount.remove(penalty);
-        }
-        checkRep();
-    }
-    
+        
     /**
      * Computes the total penalty of this transition
      * @return total penalty of this transition

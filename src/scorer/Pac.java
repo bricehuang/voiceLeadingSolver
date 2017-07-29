@@ -6,7 +6,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.Key;
 import score_data.ChordPenaltyType;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 
 class Pac {
 
@@ -18,7 +18,7 @@ class Pac {
      * @param score a Score that gets mutated
      */
     static void scorePAC(Chord chord, Set<ContextTag> contextTags, 
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         if (contextTags.contains(ContextTag.CADENCE)){
             if (!(chord.getSoprano().getBasicNote().equals(key.getTonic()) 
                     && chord.getBass().getBasicNote().equals(key.getTonic()))){

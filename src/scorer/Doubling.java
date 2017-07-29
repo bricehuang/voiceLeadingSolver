@@ -14,7 +14,7 @@ import music.BasicNote;
 import music.Key;
 import music.Note;
 import score_data.ChordPenaltyType;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 
 /**
  * A module that scores note doubling
@@ -33,7 +33,7 @@ class Doubling {
      * @param score a Score that gets mutated
      */
     static void scoreDoubling(Chord chord, Set<ContextTag> contextTags, 
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
 
         if (chord.getType().numberDistinctNotes() == 4){
             return;

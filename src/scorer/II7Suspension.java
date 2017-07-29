@@ -8,7 +8,7 @@ import chords.Chord;
 import chords.ChordType;
 import music.Key;
 import music.Note;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import score_data.TransitionPenaltyType;
 
 class II7Suspension {
@@ -24,7 +24,7 @@ class II7Suspension {
      */
     static void scoreII7Suspension(Chord previous, Chord current,
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         if (previous.getPrimitiveChord().getType().equals(ChordType.MIN7) 
                 && key.findScaleDegree(previous.getPrimitiveChord().getRoot()) == 2 
                 && contextTagsPrevious.contains(ContextTag.CADENTIAL_PREDOMINANT) 

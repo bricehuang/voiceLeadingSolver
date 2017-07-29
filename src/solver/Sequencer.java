@@ -7,7 +7,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import chords.ChordProgressionDeprecated;
 import music.Key;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import scorer.Scorer;
 
 /**
@@ -27,7 +27,7 @@ class Sequencer {
         for (Chord chord : chordSet){
             ChordProgressionDeprecated prog = ChordProgressionDeprecated.empty().append(chord);
             
-            Score chordScore = Scorer.scoreChord(chord, contextTags, key);
+            ScoreDeprecated chordScore = Scorer.scoreChord(chord, contextTags, key);
             best.addProgression(new ChordProgWithScoreDeprecated(prog, chordScore.totalScore()));
         }
         return best;
@@ -47,10 +47,10 @@ class Sequencer {
             Key key){
         BestListDeprecated best = new BestListDeprecated();
         for (Chord currentChord : chordSet){
-            Score currentChordScore = Scorer.scoreChord(currentChord, contextTagsCurrent, key);
+            ScoreDeprecated currentChordScore = Scorer.scoreChord(currentChord, contextTagsCurrent, key);
             
             for (Chord previousChord : previousBest.getEndingChords()){
-                Score transitionScore = Scorer.scoreTransition(previousChord, currentChord, 
+                ScoreDeprecated transitionScore = Scorer.scoreTransition(previousChord, currentChord, 
                         contextTagsPrevious, contextTagsCurrent, key);
                 
                 for (ChordProgWithScoreDeprecated previous : previousBest.getProgressions(previousChord)){

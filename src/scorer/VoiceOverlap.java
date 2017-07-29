@@ -8,7 +8,7 @@ import chords.Chord;
 import music.Key;
 import music.Note;
 import score_data.ChordPenaltyType;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 
 /**
  * A module that scores voice overlapping
@@ -23,7 +23,7 @@ class VoiceOverlap {
      * @param score a Score that gets mutated
      */
     static void scoreVoiceOverlap(Chord chord, Set<ContextTag> contextTags, 
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         List<Note> chordSpelled = Scorer.spellChord(chord);
         for (int i=0; i<3; i++){
             if (chordSpelled.get(i).equals(chordSpelled.get(i+1))){

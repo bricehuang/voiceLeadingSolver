@@ -12,7 +12,7 @@ import music.BasicInterval;
 import music.Interval;
 import music.Key;
 import music.Note;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import score_data.TransitionPenaltyType;
 
 /**
@@ -52,7 +52,7 @@ class ParallelsDirects {
      */
     static void scoreParallels(Chord previous, Chord current,
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         List<Note> previousSpelled = Scorer.spellChord(previous);
         List<Note> currentSpelled = Scorer.spellChord(current);
         
@@ -79,7 +79,7 @@ class ParallelsDirects {
      */
     static void scoreDirects(Chord previous, Chord current,
             Set<ContextTag> contextTagsPrevious, Set<ContextTag> contextTagsCurrent,
-            Key key, Score score){
+            Key key, ScoreDeprecated score){
         Note prevSoprano = previous.getSoprano();
         Note prevBass = previous.getBass();
         Note currSoprano = current.getSoprano();

@@ -15,7 +15,7 @@ import music.BasicNote;
 import music.Key;
 import music.Note;
 import score_data.ChordPenaltyType;
-import score_data.Score;
+import score_data.ScoreDeprecated;
 import score_data.TransitionPenaltyType;
 
 public class ScorerTest {
@@ -90,13 +90,13 @@ public class ScorerTest {
         
     }
     
-    private void printPenaltyChord(Chord chord, Key key, Score score){
+    private void printPenaltyChord(Chord chord, Key key, ScoreDeprecated score){
         if(DEBUG){
             System.err.println("Scoring chord: " + chord.toString() + "\n" + score.toString());
         }
     }
     
-    private void printPenaltyTransition(Chord previous, Chord current, Key key, Score score){
+    private void printPenaltyTransition(Chord previous, Chord current, Key key, ScoreDeprecated score){
         if(DEBUG){
             System.err.println("Scoring transition: " + previous.toString() + "-->" + current.toString() 
                 + "\n" + score.toString());
@@ -110,7 +110,7 @@ public class ScorerTest {
     
     @Test
     public void testGoodDoublingSD1(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajorDoubleRoot = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 C_MAJ_ROOT
@@ -123,7 +123,7 @@ public class ScorerTest {
 
     @Test
     public void testBadDoublingSD2(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord dMinorDoubleRoot = new Chord(
                 new Note(D, 5), new Note(F, 4), new Note(A, 3), new Note(D, 3), 
                 D_MIN_ROOT
@@ -136,7 +136,7 @@ public class ScorerTest {
 
     @Test
     public void testBadDoublingSD3(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajorDoubleThird = new Chord(
                 new Note(E, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 C_MAJ_ROOT
@@ -149,7 +149,7 @@ public class ScorerTest {
 
     @Test
     public void testGoodDoublingSD4(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord dMinorDoubleThird = new Chord(
                 new Note(A, 4), new Note(F, 4), new Note(D, 4), new Note(F, 3), 
                 D_MIN_INV1
@@ -162,7 +162,7 @@ public class ScorerTest {
     
     @Test
     public void testTripledSD1(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajorTripleRootIncomplete= new Chord(
                 new Note(C, 5), new Note(C, 4), new Note(E, 3), new Note(C, 3),  
                 C_MAJ_ROOT
@@ -175,7 +175,7 @@ public class ScorerTest {
 
     @Test
     public void testBadDoubleDouble(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajorDoubleRootThirdIncomplete = new Chord(
                 new Note(E, 5), new Note(E, 4), new Note(C, 4), new Note(C, 3), 
                 C_MAJ_ROOT
@@ -188,7 +188,7 @@ public class ScorerTest {
     
     @Test
     public void testDoubleLeadingTone(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajorDoubleThird = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(B, 3), new Note(G, 3), 
                 G_MAJ_ROOT
@@ -201,7 +201,7 @@ public class ScorerTest {
     
     @Test
     public void testNotDoubleLeadingTone(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
                 G_MAJ_ROOT
@@ -218,7 +218,7 @@ public class ScorerTest {
     
     @Test
     public void testVoiceOverlap(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajorVoiceOverlap = new Chord(
                 new Note(C, 5), new Note(C, 5), new Note(E, 4), new Note(G, 3), 
                 C_MAJ_INV2
@@ -234,7 +234,7 @@ public class ScorerTest {
     
     @Test
     public void testCadenceDoublingIGood(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajor = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 C_MAJ_ROOT
@@ -248,7 +248,7 @@ public class ScorerTest {
     
     @Test
     public void testCadenceDoublingIBad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajor = new Chord(
                 new Note(G, 4), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 C_MAJ_ROOT
@@ -262,7 +262,7 @@ public class ScorerTest {
 
     @Test
     public void testCadenceDoublingVGood(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 3), 
                 G_MAJ_ROOT
@@ -276,7 +276,7 @@ public class ScorerTest {
     
     @Test
     public void testCadenceDoublingVBad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajor = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(D, 4), new Note(G, 3), 
                 G_MAJ_ROOT
@@ -290,7 +290,7 @@ public class ScorerTest {
     
     @Test
     public void testCadenceDoublingI64Good(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
                 C_MAJ_INV2
@@ -304,7 +304,7 @@ public class ScorerTest {
     
     @Test
     public void testCadenceDoublingI64Bad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(C, 4), new Note(G, 3), 
                 C_MAJ_INV2
@@ -322,7 +322,7 @@ public class ScorerTest {
     
     @Test
     public void testPacGood(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajor = new Chord(
                 new Note(C, 5), new Note(E, 4), new Note(G, 3), new Note(C, 3), 
                 C_MAJ_ROOT
@@ -336,7 +336,7 @@ public class ScorerTest {
     
     @Test
     public void testPacBad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajor = new Chord(
                 new Note(E, 5), new Note(G, 4), new Note(C, 4), new Note(C, 3), 
                 C_MAJ_ROOT
@@ -358,7 +358,7 @@ public class ScorerTest {
                 new Note(C, 5), new Note(E, 4), new Note(E, 4), new Note(G, 3), 
                 C_MAJ_INV2
                 );
-        Score score = Scorer.scoreChord(cMajorVoiceOverlapDoubleThird, new HashSet<>(), C_MAJOR);
+        ScoreDeprecated score = Scorer.scoreChord(cMajorVoiceOverlapDoubleThird, new HashSet<>(), C_MAJOR);
         assertEquals(ChordPenaltyType.VOICE_OVERLAP.value() + ChordPenaltyType.BAD_DOUBLING.value(), score.totalScore());
         printPenaltyChord(cMajorVoiceOverlapDoubleThird, C_MAJOR, score);
     }
@@ -369,7 +369,7 @@ public class ScorerTest {
 
     @Test
     public void testParallels(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord dMinorDoubleThird = new Chord(
                 new Note(F, 5), new Note(A, 4), new Note(D, 4), new Note(F, 3), 
                 D_MIN_INV1
@@ -386,7 +386,7 @@ public class ScorerTest {
     
     @Test
     public void testNotParallel(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord cMajor64 = new Chord(
                 new Note(C, 5), new Note(G, 4), new Note(E, 4), new Note(G, 3), 
                 C_MAJ_INV2
@@ -403,7 +403,7 @@ public class ScorerTest {
     
     @Test
     public void testDirect(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(G, 4), new Note(D, 4), new Note(G, 3), new Note(B, 2), 
                 G_MAJ_INV1
@@ -420,7 +420,7 @@ public class ScorerTest {
 
     @Test
     public void testNotDirect(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajorDoubleRoot = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
                 G_MAJ_ROOT
@@ -441,7 +441,7 @@ public class ScorerTest {
     
     @Test
     public void testDomSevenRootGood(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
                 E_DOM7_ROOT
@@ -458,7 +458,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenRootBad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(Gs, 4), new Note(B, 3), new Note(E, 3), 
                 E_DOM7_ROOT
@@ -475,7 +475,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenInv1Good(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
                 E_DOM7_INV1
@@ -492,7 +492,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenInv1Bad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(D, 5), new Note(B, 4), new Note(E, 4), new Note(Gs, 3), 
                 E_DOM7_INV1
@@ -509,7 +509,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenInv2Good(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
                 E_DOM7_INV2
@@ -526,7 +526,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenInv2GoodAlt(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
                 E_DOM7_INV2
@@ -543,7 +543,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenInv2Bad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(E, 5), new Note(Gs, 4), new Note(D, 4), new Note(B, 2), 
                 E_DOM7_INV2
@@ -560,7 +560,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenInv3Good(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
                 E_DOM7_INV3
@@ -577,7 +577,7 @@ public class ScorerTest {
 
     @Test
     public void testDomSevenInv3Bad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord eDomSeven = new Chord(
                 new Note(B, 4), new Note(Gs, 4), new Note(E, 4), new Note(D, 3), 
                 E_DOM7_INV3
@@ -598,7 +598,7 @@ public class ScorerTest {
 
     @Test
     public void testDimSevenGood1(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord bDimSeven = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(B, 3), new Note(D, 3), 
                 B_DIM7_INV1
@@ -615,7 +615,7 @@ public class ScorerTest {
     
     @Test
     public void testDimSevenGood2(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord bDimSeven = new Chord(
                 new Note(F, 4), new Note(D, 4), new Note(B, 3), new Note(Ab, 2), 
                 B_DIM7_INV3
@@ -633,7 +633,7 @@ public class ScorerTest {
     
     @Test
     public void testDimSevenBad1(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord bDimSeven = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(B, 3), new Note(D, 3), 
                 B_DIM7_INV1
@@ -650,7 +650,7 @@ public class ScorerTest {
     
     @Test
     public void testDimSevenBad2(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord bDimSeven = new Chord(
                 new Note(D, 5), new Note(Ab, 4), new Note(B, 3), new Note(F, 3), 
                 B_DIM7_INV2
@@ -671,7 +671,7 @@ public class ScorerTest {
     
     @Test
     public void testMelodicIntervalGood(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord fMinor = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(C, 4), new Note(F, 2), 
                 F_MIN_ROOT
@@ -688,7 +688,7 @@ public class ScorerTest {
     
     @Test
     public void testMelodicIntervalBad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord fMinor = new Chord(
                 new Note(Ab, 4), new Note(F, 4), new Note(C, 4), new Note(F, 2), 
                 F_MIN_ROOT
@@ -709,7 +709,7 @@ public class ScorerTest {
 
     @Test
     public void testVoiceCrossing(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 2), 
                 G_MAJ_ROOT
@@ -726,7 +726,7 @@ public class ScorerTest {
     
     @Test
     public void testNotVoiceCrossing(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(D, 4), new Note(G, 3), new Note(G, 2), 
                 G_MAJ_ROOT
@@ -747,7 +747,7 @@ public class ScorerTest {
     
     @Test
     public void testMovement(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord gMajor = new Chord(
                 new Note(B, 4), new Note(G, 4), new Note(D, 4), new Note(G, 2), 
                 G_MAJ_ROOT
@@ -768,7 +768,7 @@ public class ScorerTest {
     
     @Test
     public void testCadenceMovement(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord fMinor = new Chord(
                 new Note(F, 5), new Note(Ab, 4), new Note(C, 4), new Note(F, 2), 
                 F_MIN_ROOT
@@ -793,7 +793,7 @@ public class ScorerTest {
     
     @Test
     public void testII7SuspensionGood(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord dMin7 = new Chord(
                 new Note(C, 5), new Note(D, 4), new Note(A, 3), new Note(F, 2), 
                 D_MIN7_INV1
@@ -814,7 +814,7 @@ public class ScorerTest {
     
     @Test
     public void testII7SuspensionBad(){
-        Score score = new Score();
+        ScoreDeprecated score = new ScoreDeprecated();
         Chord dMin7 = new Chord(
                 new Note(D, 5), new Note(A, 4), new Note(C, 4), new Note(F, 2), 
                 D_MIN7_INV1
