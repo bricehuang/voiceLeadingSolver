@@ -14,7 +14,7 @@ import music.Key;
 /**
  * A module that solves voice leading, post-parsing
  */
-class Solver {
+class SolverDeprecated {
     
     static List<ChordProgressionDeprecated> solve(List<PrimitiveChord> primitiveChords, 
             List<Key> keys, List<Set<ContextTag>> contextTagsList){

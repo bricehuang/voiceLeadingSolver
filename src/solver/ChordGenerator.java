@@ -196,6 +196,13 @@ class ChordGenerator {
     		return Collections.unmodifiableSet(voicingsWithContext);
     }
     
+    /**
+     * Transforms each PromitiveChordWithContext into the corresponding set of 
+     * all valid voicings of it, attached with the same contexts.    
+     * @param inputChords a PrimitiveChordWithContext
+     * @return a list, where each element is a Set<ChordWithContext> containing 
+     * all valid voicings of the corresponding PrimitiveChordWithContext in the input.  
+     */
     public static List<Set<ChordWithContext>> generateChordsWithContext(
     			List<PrimitiveChordWithContext> inputChords){
     		List<Set<ChordWithContext>> voicingsWithContext = new ArrayList<>();

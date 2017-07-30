@@ -49,6 +49,8 @@ solver
 	- Main DIRTY (move to own package?)
 	- Parser NEEDS REFACTORING (move to own package?) 
 	- ScoredProgression CLEAN
-	- Sequencer DIRTY
-	- Solver DIRTY
+	- Sequencer DEPRECATED
+	- SequencerNew CLEAN (Tests TODO)
+	- Solver DEPRECATED
+	- SolverNew CLEAN (Tests TODO)
 	- SortedFiniteProgListDeprecated DEPRECATED

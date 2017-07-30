@@ -15,7 +15,7 @@ import music.BasicNote;
 import music.Key;
 import scorer.Scorer;
 
-public class SolverTest {
+public class SolverTestDeprecated {
     
     private static final boolean DEBUG = false;
     
@@ -58,7 +58,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = SolverDeprecated.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
@@ -79,7 +79,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = SolverDeprecated.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
@@ -124,7 +124,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = SolverDeprecated.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
     
@@ -166,7 +166,7 @@ public class SolverTest {
                 new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)), 
                 new HashSet<>(Arrays.asList(ContextTag.CADENCE))
                 );
-        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(primitiveChords, keys, contextTagsList);
+        List<ChordProgressionDeprecated> bestProgressions = SolverDeprecated.solve(primitiveChords, keys, contextTagsList);
         outputEvaluation(bestProgressions.get(0), keys, contextTagsList);
     }
 }

@@ -31,7 +31,7 @@ public class Main {
      */
     public static List<ChordProgressionDeprecated> solve(String in, boolean report, int maxReport){
         ParseResult parsedInput = Parser.parse(in);
-        List<ChordProgressionDeprecated> bestProgressions = Solver.solve(
+        List<ChordProgressionDeprecated> bestProgressions = SolverDeprecated.solve(
                 parsedInput.getPrimitiveChords(), 
                 parsedInput.getKeys(), 
                 parsedInput.getContextTags());
