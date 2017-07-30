@@ -1,5 +1,6 @@
 package solver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -96,7 +97,7 @@ public class SequencerNew {
      * pivot chords are considered in the old key.  
      * @return The best way to sing this chord progression
      */
-    public static List<ScoredProgression> findBestChordProgressions(
+    public static List<ChordProgressionWithContext> findBestChordProgressions(
             List<Set<ChordWithContext>> possibleChordVoicings
     ){
         assert(possibleChordVoicings.size() > 0);
@@ -105,7 +106,13 @@ public class SequencerNew {
         for (int i=1; i<possibleChordVoicings.size(); i++){
             currentBest = sequenceRest(currentBest, possibleChordVoicings.get(i));
         }
-        return getBestProgressions(currentBest);
+        
+        // TODO this is more cleanly implemented with mapreduce
+        List<ChordProgressionWithContext> progressions = new ArrayList<>();
+        for (ScoredProgression scoredProgression : getBestProgressions(currentBest)) {
+            progressions.add(scoredProgression.getChordProg());
+        }
+        return progressions;
     }
 
 }
