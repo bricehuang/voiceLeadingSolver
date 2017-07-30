@@ -14,7 +14,7 @@ import scorer.Scorer;
  * A module that finds the best way to sing a chord progression given 
  * a list of all the ways to sing each chord.  
  */
-class Sequencer {
+class SequencerDeprecated {
     
     /**
      * Sequences the first chord
