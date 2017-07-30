@@ -114,5 +114,46 @@ public class SequencerNew {
         }
         return progressions;
     }
+    
+    
+    /*********************
+     * PENALTY REPORTING *
+     *********************/
+    
+    private static final String DIVIDE = "--------------------------------------------------\n";
+    
+    private static String chordPenaltyReport(ChordWithContext chord) {
+        return DIVIDE 
+             + "Scoring Chord " + chord.toString() + ":\n"
+             + ChordScorer.score(chord).toString() + "\n" 
+             + DIVIDE;        
+    }
+
+    private static String transitionPenaltyReport(
+        ChordWithContext previous, ChordWithContext current
+    ) {
+        return "Scoring Transition " + previous.toString() + " --> " + current.toString() + ":\n"  
+                + TransitionScorer.score(previous, current) + "\n"
+                + DIVIDE;
+    }
+    
+    /**
+     * Gets a report of all penalties incurred by a progression
+     * @param progression a progression
+     * @return a String reporting all penalties this prorgression incurred
+     */
+    public static String getPenaltyReport(ChordProgressionWithContext progression) {
+        assert (progression.length() > 0);
+        
+        if (progression.length()==1) {
+            return chordPenaltyReport(progression.getLast());
+        } else {
+            ChordWithContext previous = progression.getStart().getLast();
+            ChordWithContext current = progression.getLast();
+            return getPenaltyReport(progression.getStart()) 
+                + transitionPenaltyReport(previous, current) 
+                + chordPenaltyReport(current);
+        }
+    }
 
 }
