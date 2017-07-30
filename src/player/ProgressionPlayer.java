@@ -16,9 +16,6 @@ import javax.sound.midi.Track;
 
 import chords.Chord;
 import chords.ChordProgressionDeprecated;
-import chords.ChordType;
-import chords.PrimitiveChord;
-import music.BasicNote;
 import music.Note;
 
 /**

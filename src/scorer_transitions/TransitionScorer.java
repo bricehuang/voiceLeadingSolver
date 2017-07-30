@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import chord_data.ChordWithContext;
-import score_data.ChordScoreNew;
 import score_data.TransitionPenaltyType;
 import score_data.TransitionScoreNew;
-import scorer_chords.ChordScorer;
 
 /**
  * Interface for scorers that take score a transition between two chords.  

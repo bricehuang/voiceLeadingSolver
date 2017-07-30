@@ -1,11 +1,6 @@
 package solver;
 
-import java.util.List;
-
 import org.junit.Test;
-
-import chords.ChordProgressionDeprecated;
-import player.ProgressionPlayer;
 
 public class MainSolverTest {
     

@@ -5,9 +5,6 @@ import java.util.Set;
 
 import chord_data.ChordProgressionWithContext;
 import chord_data.ChordWithContext;
-import chord_data.ContextTag;
-import chords.Chord;
-import music.Key;
 import score_data.ChordScoreNew;
 import score_data.TransitionScoreNew;
 import scorer_chords.ChordScorer;

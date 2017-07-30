@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import chords.BasicChord;
 import chords.Chord;
 import chords.ChordProgressionDeprecated;
 import chords.ChordType;
