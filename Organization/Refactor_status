@@ -50,7 +50,7 @@ solver
 	- Parser NEEDS REFACTORING (move to own package?) 
 	- ScoredProgression CLEAN
 	- Sequencer DEPRECATED
-	- SequencerNew CLEAN (Tests TODO)
+	- SequencerNew CLEAN 
 	- Solver DEPRECATED
-	- SolverNew CLEAN (Tests TODO)
+	- SolverNew CLEAN 
 	- SortedFiniteProgListDeprecated DEPRECATED
