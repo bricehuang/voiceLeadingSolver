@@ -8,6 +8,7 @@ import java.util.Set;
 import chord_data.ContextTag;
 import chords.ChordType;
 import chords.PrimitiveChord;
+import music.BasicInterval;
 import music.BasicNote;
 import music.Key;
 import music.Note;
@@ -15,18 +16,26 @@ import music.Note;
 public class MusicTestFramework {
     
     // BasicNote 
+    public static final BasicNote Cbb = new BasicNote(0,-2);
+    public static final BasicNote Cb = new BasicNote(0,-1);
     public static final BasicNote C = new BasicNote(0,0);
     public static final BasicNote Cs = new BasicNote(0,1);
+    public static final BasicNote Dbb = new BasicNote(1,0);
     public static final BasicNote Db = new BasicNote(1,1);
     public static final BasicNote D = new BasicNote(1,2);
     public static final BasicNote E = new BasicNote(2,4);
     public static final BasicNote Eb = new BasicNote(2,3);
     public static final BasicNote F = new BasicNote(3,5);
+    public static final BasicNote Fs = new BasicNote(3,6);
+    public static final BasicNote Gbb = new BasicNote(4,5);
     public static final BasicNote G = new BasicNote(4,7);
+    public static final BasicNote Gss = new BasicNote(4,9);
     public static final BasicNote Ab = new BasicNote(5,8);
     public static final BasicNote A = new BasicNote(5,9);
     public static final BasicNote Bb = new BasicNote(6,10);
     public static final BasicNote B = new BasicNote(6,11);
+    public static final BasicNote Bs = new BasicNote(6,12);
+    public static final BasicNote Bss = new BasicNote(6,13);
     
     // Note
     public static final Note C5 = new Note(C, 5); 
@@ -46,6 +55,14 @@ public class MusicTestFramework {
     public static final Key C_MAJOR = new Key(C, true);
     public static final Key C_MINOR = new Key(C, false);
     public static final Key G_MAJOR = new Key(G, true);
+    
+    // BasicInterval
+    public static final BasicInterval PFT_UNISON = new BasicInterval(0,0);
+    public static final BasicInterval MAJ_2ND = new BasicInterval(1,2);
+    public static final BasicInterval PFT_4TH = new BasicInterval(3,5);
+    public static final BasicInterval DIMDIM_5TH = new BasicInterval(4,5);
+    public static final BasicInterval PFT_5TH = new BasicInterval(4,7);
+    public static final BasicInterval DIM_6TH = new BasicInterval(5,7);
     
     // ChordType
     public static final ChordType MAJ = ChordType.MAJ;
