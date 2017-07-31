@@ -4,17 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class IntervalTest {
-    
-    private static final BasicInterval PERFECT_FOURTH = new BasicInterval(3,5);
-    private static final BasicInterval PERFECT_FIFTH = new BasicInterval(4,7);
-    private static final Interval MELODIC_UP_PERFECT_FIFTH= new Interval(PERFECT_FIFTH, 0, true);
-    private static final Interval MELODIC_DOWN_PERFECT_FOURTH_2OCT = new Interval(PERFECT_FOURTH, 2, false);
+import test_framework.MusicTestFramework;
 
-    private static final Note D4 = new Note(new BasicNote(1,2), 4);
-    private static final Note A4 = new Note(new BasicNote(5,9), 4);
-    private static final Note A1 = new Note(new BasicNote(5,9), 1);
+public class IntervalTest extends MusicTestFramework {
     
+    private static final Interval UP_PFT_5TH = new Interval(PFT_5TH, 0, true);
+    private static final Interval DOWN_PFT_4TH_2_OCT = new Interval(PFT_4TH, 2, false);
+
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -22,24 +18,22 @@ public class IntervalTest {
     
     @Test
     public void toStringTest(){
-        assertEquals("UP (4,7) + 0 OCTAVES", MELODIC_UP_PERFECT_FIFTH.toString());
-        assertEquals("DOWN (3,5) + 2 OCTAVES", MELODIC_DOWN_PERFECT_FOURTH_2OCT.toString());
+        assertEquals("UP (4,7) + 0 OCTAVES", UP_PFT_5TH.toString());
+        assertEquals("DOWN (3,5) + 2 OCTAVES", DOWN_PFT_4TH_2_OCT.toString());
     }
     
     @Test
     public void getterTest(){
-        assertEquals(4, MELODIC_UP_PERFECT_FIFTH.getScaleDegrees());
-        assertEquals(7, MELODIC_UP_PERFECT_FIFTH.getSemitones());
-        assertEquals(-17, MELODIC_DOWN_PERFECT_FOURTH_2OCT.getScaleDegrees());
-        assertEquals(-29, MELODIC_DOWN_PERFECT_FOURTH_2OCT.getSemitones());
+        assertEquals(4, UP_PFT_5TH.getScaleDegrees());
+        assertEquals(7, UP_PFT_5TH.getSemitones());
+        assertEquals(-17, DOWN_PFT_4TH_2_OCT.getScaleDegrees());
+        assertEquals(-29, DOWN_PFT_4TH_2_OCT.getSemitones());
     }
     
     @Test 
     public void melodicIntervalBetweenTest(){
-        assertEquals(MELODIC_UP_PERFECT_FIFTH,
-                Interval.melodicIntervalBetween(D4,A4));
-        assertEquals(MELODIC_DOWN_PERFECT_FOURTH_2OCT,
-                Interval.melodicIntervalBetween(D4,A1));
+        assertEquals(UP_PFT_5TH, Interval.melodicIntervalBetween(D4, A4));
+        assertEquals(DOWN_PFT_4TH_2_OCT, Interval.melodicIntervalBetween(D4, A1));
     }
 
 }

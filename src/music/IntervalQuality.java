@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 public enum IntervalQuality {
-    // TODO test
     MAJ, MIN, PFT,
     AUG, DIM,
     ERR;

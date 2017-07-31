@@ -40,6 +40,7 @@ public class MusicTestFramework {
     // Note
     public static final Note C5 = new Note(C, 5); 
     public static final Note B4 = new Note(B, 4); 
+    public static final Note A4 = new Note(A, 4); 
     public static final Note E4 = new Note(E, 4); 
     public static final Note D4 = new Note(D, 4); 
     public static final Note C4 = new Note(C, 4);  
@@ -49,6 +50,7 @@ public class MusicTestFramework {
     public static final Note Eb3 = new Note(Eb, 3);
     public static final Note C3 = new Note(C, 3);  
     public static final Note G2 = new Note(G, 2);   
+    public static final Note A1 = new Note(A, 1);
 
     
     // Key
