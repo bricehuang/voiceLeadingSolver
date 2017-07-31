@@ -136,6 +136,8 @@ public class MusicTestFramework {
         = new PrimitiveChord(G, DOM7, 2);
     public static final PrimitiveChord Ab_MAJ_ROOT 
         = new PrimitiveChord(Ab, MAJ, 0);
+    public static final PrimitiveChord Ab_DOM7_ROOT 
+        = new PrimitiveChord(Ab, DOM7, 0);
     public static final PrimitiveChord A_MIN7_ROOT  
         = new PrimitiveChord(A, MIN7, 0);
     public static final PrimitiveChord Bb_MAJ_ROOT

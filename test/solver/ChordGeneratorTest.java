@@ -8,18 +8,9 @@ import org.junit.Test;
 import chord_data.ChordWithContext;
 import chord_data.PrimitiveChordWithContext;
 import chords.Chord;
-import chords.ChordType;
-import chords.PrimitiveChord;
 import test_framework.MusicTestFramework;
 
 public class ChordGeneratorTest extends MusicTestFramework {
-
-    private static final PrimitiveChord C_MAJ_ROOT = new PrimitiveChord(
-    		C, ChordType.MAJ, 0
-    	);
-    private static final PrimitiveChord Db_DOM7_ROOT = new PrimitiveChord(
-    		Ab, ChordType.DOM7, 0
-    	);
     
     private static final boolean PRINT_TESTS = false;
     
@@ -43,7 +34,7 @@ public class ChordGeneratorTest extends MusicTestFramework {
     @Test
     public void testDbDomSevenRootDeprecated(){
         Set<Chord> dbDomSevenChords = ChordGenerator.generateChordsDeprecated(
-        		Arrays.asList(Db_DOM7_ROOT)
+        		Arrays.asList(Ab_DOM7_ROOT)
         	).get(0);  
         if(PRINT_TESTS){
             for (Chord chord : dbDomSevenChords){
@@ -70,7 +61,7 @@ public class ChordGeneratorTest extends MusicTestFramework {
     @Test
     public void testDbDomSevenRoot(){
     		PrimitiveChordWithContext primitiveAndContext = new PrimitiveChordWithContext(
-    			Db_DOM7_ROOT, Db_MAJOR, CADENTIAL_V
+	        Ab_DOM7_ROOT, Db_MAJOR, CADENTIAL_V
     		);
         Set<ChordWithContext> chordsAndContexts = ChordGenerator.generateChordsWithContext(
             Arrays.asList(primitiveAndContext)
