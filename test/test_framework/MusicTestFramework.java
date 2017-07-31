@@ -48,9 +48,11 @@ public class MusicTestFramework {
     public static final BasicNote Bss = new BasicNote(6,13);
     
     // Note
+    public static final Note E5 = new Note(E, 5); 
     public static final Note C5 = new Note(C, 5); 
     public static final Note B4 = new Note(B, 4); 
     public static final Note A4 = new Note(A, 4); 
+    public static final Note G4 = new Note(G, 4); 
     public static final Note E4 = new Note(E, 4); 
     public static final Note D4 = new Note(D, 4); 
     public static final Note C4 = new Note(C, 4);  
