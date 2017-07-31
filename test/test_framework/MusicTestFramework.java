@@ -68,6 +68,7 @@ public class MusicTestFramework {
     // Key
     public static final Key C_MAJOR = new Key(C, true);
     public static final Key C_MINOR = new Key(C, false);
+    public static final Key Db_MAJOR = new Key(Db, true);
     public static final Key D_MAJOR = new Key(D, true);
     public static final Key G_MAJOR = new Key(G, true);
     public static final Key G_MINOR = new Key(G, false);
