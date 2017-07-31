@@ -51,6 +51,7 @@ public class MusicTestFramework {
     public static final Note E5 = new Note(E, 5); 
     public static final Note C5 = new Note(C, 5); 
     public static final Note B4 = new Note(B, 4); 
+    public static final Note Bb4 = new Note(Bb, 4); 
     public static final Note A4 = new Note(A, 4); 
     public static final Note G4 = new Note(G, 4); 
     public static final Note E4 = new Note(E, 4); 
@@ -99,6 +100,8 @@ public class MusicTestFramework {
         = new PrimitiveChord(C, MIN, 0);
     public static final PrimitiveChord C_MIN_6 
         = new PrimitiveChord(C, MIN, 1);
+    public static final PrimitiveChord C_DOM7_ROOT 
+        = new PrimitiveChord(C, DOM7, 0);
     public static final PrimitiveChord C_MIN7_63 
         = new PrimitiveChord(C, MIN7, 1);
     public static final PrimitiveChord Cs_DIM7_ROOT
