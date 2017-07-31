@@ -39,28 +39,36 @@ public class MusicTestFramework {
     // Key
     public static final Key C_MINOR = new Key(C, false);
     
+    // ChordType
+    public static final ChordType MAJ = ChordType.MAJ;
+    public static final ChordType MIN = ChordType.MIN;
+    public static final ChordType DOM7 = ChordType.DOM7;
+    public static final ChordType MAJ7 = ChordType.MAJ7;
+    public static final ChordType MIN7 = ChordType.MIN7;
+    public static final ChordType DIM7 = ChordType.DIM7;
+    
     // PrimitiveChord
     public static final PrimitiveChord C_MAJ_ROOT 
-        = new PrimitiveChord(C, ChordType.MAJ, 0);
+        = new PrimitiveChord(C, MAJ, 0);
     public static final PrimitiveChord C_MAJ_64
-        = new PrimitiveChord(C, ChordType.MAJ, 2);
+        = new PrimitiveChord(C, MAJ, 2);
     public static final PrimitiveChord C_MIN_ROOT
-        = new PrimitiveChord(C, ChordType.MIN, 0);
+        = new PrimitiveChord(C, MIN, 0);
     public static final PrimitiveChord Cs_DIM7_ROOT
-        = new PrimitiveChord(Cs, ChordType.DIM7, 0);
+        = new PrimitiveChord(Cs, DIM7, 0);
     public static final PrimitiveChord Db_MAJ7_ROOT 
-        = new PrimitiveChord(Db, ChordType.MAJ7, 0);
+        = new PrimitiveChord(Db, MAJ7, 0);
     public static final PrimitiveChord Eb_DOM7_42
-        = new PrimitiveChord(Eb, ChordType.DOM7, 3);
+        = new PrimitiveChord(Eb, DOM7, 3);
     public static final PrimitiveChord E_MIN_ROOT
-        = new PrimitiveChord(E, ChordType.MIN, 0);
+        = new PrimitiveChord(E, MIN, 0);
     public static final PrimitiveChord G_MAJ_ROOT  
-        = new PrimitiveChord(G, ChordType.MAJ, 0);
+        = new PrimitiveChord(G, MAJ, 0);
     public static final PrimitiveChord G_MIN_64  
-        = new PrimitiveChord(G, ChordType.MIN, 2);
+        = new PrimitiveChord(G, MIN, 2);
     public static final PrimitiveChord G_DOM7_ROOT  
-        = new PrimitiveChord(G, ChordType.DOM7, 0);
+        = new PrimitiveChord(G, DOM7, 0);
     public static final PrimitiveChord A_MIN7_ROOT  
-        = new PrimitiveChord(A, ChordType.MIN7, 0);
+        = new PrimitiveChord(A, MIN7, 0);
 
 }
