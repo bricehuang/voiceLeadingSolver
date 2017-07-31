@@ -1,5 +1,11 @@
 package test_framework;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import chord_data.ContextTag;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;
@@ -37,7 +43,9 @@ public class MusicTestFramework {
 
     
     // Key
+    public static final Key C_MAJOR = new Key(C, true);
     public static final Key C_MINOR = new Key(C, false);
+    public static final Key G_MAJOR = new Key(G, true);
     
     // ChordType
     public static final ChordType MAJ = ChordType.MAJ;
@@ -70,5 +78,11 @@ public class MusicTestFramework {
         = new PrimitiveChord(G, DOM7, 0);
     public static final PrimitiveChord A_MIN7_ROOT  
         = new PrimitiveChord(A, MIN7, 0);
+    
+    // ContextTag sets
+    public static final Set<ContextTag> CADENCE 
+        = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENCE)));
+    public static final Set<ContextTag> NO_CONTEXTS 
+        = Collections.unmodifiableSet(new HashSet<>());
 
 }
