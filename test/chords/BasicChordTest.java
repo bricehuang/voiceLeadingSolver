@@ -7,10 +7,6 @@ import org.junit.Test;
 import test_framework.MusicTestFramework;
 
 public class BasicChordTest extends MusicTestFramework {
-    @Test(expected=AssertionError.class)
-    public void testAssertionsEnabled() {
-        assert false;
-    }
     
     private static final BasicChord G_DOM_SEVEN = new BasicChord(
         B, D, F, G, G_DOM7_ROOT
@@ -22,6 +18,11 @@ public class BasicChordTest extends MusicTestFramework {
         C, C, Eb, C, C_MIN_ROOT
     );
     
+    @Test(expected=AssertionError.class)
+    public void testAssertionsEnabled() {
+        assert false;
+    }
+
     @Test
     public void toStringTest(){
         assertEquals("[B|D|F|G]", G_DOM_SEVEN.toString());

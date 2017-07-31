@@ -4,43 +4,26 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import music.BasicNote;
-import music.Key;
-import music.Note;
+import test_framework.MusicTestFramework;
 
+public class ChordTest extends MusicTestFramework {
+        
+    private static final Chord G_DOM_SEVEN_REALIZED = new Chord(
+        B4, D4, F3, G2, G_DOM7_ROOT
+    );
+            
+    private static final Chord C_MAJ_REALIZED = new Chord(
+        C5, C4, E3, C3, C_MAJ_ROOT
+    );
 
-public class ChordTest {
+    private static final Chord C_MIN_REALIZED = new Chord(
+        C5, C4, Eb3, C3, C_MIN_ROOT
+    );
+
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
     }
-    
-    private static final BasicNote C = new BasicNote(0,0);
-    private static final BasicNote D = new BasicNote(1,2);
-    private static final BasicNote E = new BasicNote(2,4);
-    private static final BasicNote Eb = new BasicNote(2,3);
-    private static final BasicNote F = new BasicNote(3,5);
-    private static final BasicNote G = new BasicNote(4,7);
-    private static final BasicNote B = new BasicNote(6,11);
-    
-    private static final PrimitiveChord G_DOM_SEVEN = 
-            new PrimitiveChord(G,ChordType.DOM7, 0);
-    private static final Chord G_DOM_SEVEN_REALIZED = new Chord(
-            new Note(B,4), new Note(D, 4), new Note(F, 3), 
-            new Note(G, 2),  G_DOM_SEVEN);
-            
-    private static final PrimitiveChord C_MAJ = 
-            new PrimitiveChord(C, ChordType.MAJ, 0);
-    private static final Chord C_MAJ_REALIZED = new Chord(
-            new Note(C, 5), new Note(C, 4), new Note(E, 3), 
-            new Note(C, 3),  C_MAJ);
-
-    private static final PrimitiveChord C_MIN = 
-            new PrimitiveChord(C, ChordType.MIN, 0);
-    private static final Chord C_MIN_REALIZED = new Chord(
-            new Note(C, 5), new Note(C, 4), new Note(Eb, 3), 
-            new Note(C, 3),  C_MIN);
-    private static final Key C_MINOR = new Key(C, false);
 
     @Test
     public void toStringTest(){

@@ -7,10 +7,6 @@ import org.junit.Test;
 import test_framework.MusicTestFramework;
 
 public class ChordProgressionTest extends MusicTestFramework {
-    @Test(expected=AssertionError.class)
-    public void testAssertionsEnabled() {
-        assert false;
-    }
         
     private static final Chord C_MAJ_64_REALIZED = new Chord(
         C5, E4, G3, G2, C_MAJ_64
@@ -22,6 +18,11 @@ public class ChordProgressionTest extends MusicTestFramework {
         C5, E4, G3, C3, C_MAJ_ROOT
     ); 
     
+    @Test(expected=AssertionError.class)
+    public void testAssertionsEnabled() {
+        assert false;
+    }
+
     @Test
     public void emptyTest(){
         ChordProgressionDeprecated empty = ChordProgressionDeprecated.empty();
