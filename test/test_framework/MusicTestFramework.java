@@ -12,6 +12,8 @@ import music.BasicInterval;
 import music.BasicNote;
 import music.Key;
 import music.Note;
+import score_data.ChordPenaltyType;
+import score_data.TransitionPenaltyType;
 
 public class MusicTestFramework {
     
@@ -113,5 +115,21 @@ public class MusicTestFramework {
         = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENCE)));
     public static final Set<ContextTag> NO_CONTEXTS 
         = Collections.unmodifiableSet(new HashSet<>());
+    
+    // ChordPenalty
+    public static final ChordPenaltyType DOUBLED_LEADING_TONE 
+        = ChordPenaltyType.DOUBLED_LEADING_TONE;
+    public static final ChordPenaltyType DOUBLE_DOUBLING 
+        = ChordPenaltyType.DOUBLE_DOUBLING;
+    public static final ChordPenaltyType BAD_TRIPLING 
+        = ChordPenaltyType.BAD_TRIPLING;
+    
+    // TransitionPenalty
+    public static final TransitionPenaltyType PARALLEL
+        = TransitionPenaltyType.PARALLEL;
+    public static final TransitionPenaltyType DIM_SEVEN_RES
+        = TransitionPenaltyType.DIM_SEVEN_RES;
+    public static final TransitionPenaltyType DOM_SEVEN_RES
+    = TransitionPenaltyType.DOM_SEVEN_RES;
 
 }

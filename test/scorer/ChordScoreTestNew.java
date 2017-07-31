@@ -13,8 +13,9 @@ import org.junit.Test;
 
 import score_data.ChordPenaltyType;
 import score_data.ChordScoreNew;
+import test_framework.MusicTestFramework;
 
-public class ChordScoreTestNew {
+public class ChordScoreTestNew extends MusicTestFramework {
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -33,10 +34,10 @@ public class ChordScoreTestNew {
     public void testUpdate(){
         ChordScoreNew score = new ChordScoreNew();
         Map<ChordPenaltyType, Integer> update = new HashMap<>();
-        update.put(ChordPenaltyType.DOUBLED_LEADING_TONE, 1);
+        update.put(DOUBLED_LEADING_TONE, 1);
         score.updatePenalty(update);
         
-        assertEquals(ChordPenaltyType.DOUBLED_LEADING_TONE.value(), score.totalScore());
+        assertEquals(DOUBLED_LEADING_TONE.value(), score.totalScore());
         assertEquals(
         		"Doubled Leading Tone Penalty: 1.  Score: 100000\n" + 
         		"Total Penalty: 100000\n", 
@@ -49,19 +50,18 @@ public class ChordScoreTestNew {
     		ChordScoreNew score = new ChordScoreNew();
     		
         Map<ChordPenaltyType, Integer> update1 = new HashMap<>();
-        update1.put(ChordPenaltyType.DOUBLED_LEADING_TONE, 1);
-        update1.put(ChordPenaltyType.DOUBLE_DOUBLING, 1);
-        update1.put(ChordPenaltyType.BAD_TRIPLING, 1);
+        update1.put(DOUBLED_LEADING_TONE, 1);
+        update1.put(DOUBLE_DOUBLING, 1);
+        update1.put(BAD_TRIPLING, 1);
         score.updatePenalty(update1);
         
         Map<ChordPenaltyType, Integer> update2 = new HashMap<>();        
-        update2.put(ChordPenaltyType.BAD_TRIPLING, 1);
-        update2.put(ChordPenaltyType.DOUBLED_LEADING_TONE, -1);
+        update2.put(BAD_TRIPLING, 1);
+        update2.put(DOUBLED_LEADING_TONE, -1);
         score.updatePenalty(update2);        
         
         assertEquals(
-            ChordPenaltyType.DOUBLE_DOUBLING.value()
-                +ChordPenaltyType.BAD_TRIPLING.value()*2, 
+            DOUBLE_DOUBLING.value()+BAD_TRIPLING.value()*2, 
             score.totalScore()
         );
         String penalty1 = "Bad Tripling Penalty: 2.  Score: 200\n";

@@ -13,8 +13,9 @@ import org.junit.Test;
 
 import score_data.TransitionPenaltyType;
 import score_data.TransitionScoreNew;
+import test_framework.MusicTestFramework;
 
-public class TransitionScoreTestNew {
+public class TransitionScoreTestNew extends MusicTestFramework {
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -33,15 +34,15 @@ public class TransitionScoreTestNew {
     public void testUpdate(){
         TransitionScoreNew score = new TransitionScoreNew();
         Map<TransitionPenaltyType, Integer> update = new HashMap<>();
-        update.put(TransitionPenaltyType.PARALLEL, 1);
+        update.put(PARALLEL, 1);
         score.updatePenalty(update);
         
-        assertEquals(TransitionPenaltyType.PARALLEL.value(), score.totalScore());
+        assertEquals(PARALLEL.value(), score.totalScore());
         assertEquals(
-                "Parallel Interval Penalty: 1.  Score: 1000000\n"
-                + "Total Penalty: 1000000\n", 
-                score.toString()
-            );
+            "Parallel Interval Penalty: 1.  Score: 1000000\n"
+            + "Total Penalty: 1000000\n", 
+            score.toString()
+        );
     }
 
     @Test
@@ -49,19 +50,18 @@ public class TransitionScoreTestNew {
         TransitionScoreNew score = new TransitionScoreNew();
             
         Map<TransitionPenaltyType, Integer> update1 = new HashMap<>();
-        update1.put(TransitionPenaltyType.PARALLEL, 1);
-        update1.put(TransitionPenaltyType.DIM_SEVEN_RES, 1);
-        update1.put(TransitionPenaltyType.DOM_SEVEN_RES, 1);
+        update1.put(PARALLEL, 1);
+        update1.put(DIM_SEVEN_RES, 1);
+        update1.put(DOM_SEVEN_RES, 1);
         score.updatePenalty(update1);
         
         Map<TransitionPenaltyType, Integer> update2 = new HashMap<>();        
-        update2.put(TransitionPenaltyType.DOM_SEVEN_RES, 1);
-        update2.put(TransitionPenaltyType.PARALLEL, -1);
+        update2.put(DOM_SEVEN_RES, 1);
+        update2.put(PARALLEL, -1);
         score.updatePenalty(update2);        
         
         assertEquals(
-            TransitionPenaltyType.DIM_SEVEN_RES.value()
-                +TransitionPenaltyType.DOM_SEVEN_RES.value()*2, 
+            DIM_SEVEN_RES.value()+DOM_SEVEN_RES.value()*2, 
             score.totalScore()
         );
         String penalty1 = "Bad Dominant Seven Resolution Penalty: 2.  Score: 2000\n";
