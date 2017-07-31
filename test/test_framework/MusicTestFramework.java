@@ -115,6 +115,8 @@ public class MusicTestFramework {
     // ContextTag sets
     public static final Set<ContextTag> CADENCE 
         = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENCE)));
+    public static final Set<ContextTag> CADENTIAL_V 
+    = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)));
     public static final Set<ContextTag> NO_CONTEXTS 
         = Collections.unmodifiableSet(new HashSet<>());
     

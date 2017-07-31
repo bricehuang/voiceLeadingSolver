@@ -2,44 +2,20 @@ package solver;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
 import org.junit.Test;
 
 import chord_data.ChordProgressionWithContext;
 import chord_data.ChordWithContext;
-import chord_data.ContextTag;
 import chords.Chord;
-import chords.ChordType;
-import chords.PrimitiveChord;
-import music.BasicNote;
-import music.Key;
-import music.Note;
+import test_framework.MusicTestFramework;
 
-public class BestProgressionListTest {
+public class BestProgressionListTest extends MusicTestFramework {
 
-	private static final BasicNote C = new BasicNote(0,0);
-    private static final BasicNote D = new BasicNote(1,2);
-    private static final BasicNote F = new BasicNote(3,5);
-    private static final BasicNote G = new BasicNote(4,7);
-    private static final BasicNote B = new BasicNote(6,11);
-    
-    private static final Key C_MAJOR = new Key(C, true);
-
-    private static final PrimitiveChord G_DOM7 = 
-        new PrimitiveChord(G,ChordType.DOM7, 0);
     private static final Chord G_DOM7_REALIZED = new Chord(
-        new Note(B, 4), 
-        new Note(D, 4), 
-        new Note(F, 3), 
-        new Note(G, 2),  
-        G_DOM7
+        B4, D4, F3, G2, G_DOM7_ROOT
     );
     private static final ChordWithContext G_DOM7_CONTEXT = new ChordWithContext(
-    		G_DOM7_REALIZED,
-    		C_MAJOR,
-    		new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V))
+    		G_DOM7_REALIZED, C_MAJOR, CADENTIAL_V
     	);
     private static final ChordProgressionWithContext TEST_PROGRESSION = 
     		ChordProgressionWithContext.empty().append(G_DOM7_CONTEXT); 
