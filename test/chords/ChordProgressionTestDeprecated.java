@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import test_framework.MusicTestFramework;
 
-public class ChordProgressionTest extends MusicTestFramework {
+public class ChordProgressionTestDeprecated extends MusicTestFramework {
         
     private static final Chord C_MAJ_64_REALIZED = new Chord(
         C5, E4, G3, G2, C_MAJ_64
