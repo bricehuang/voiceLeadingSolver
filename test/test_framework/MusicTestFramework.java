@@ -20,18 +20,26 @@ public class MusicTestFramework {
     public static final BasicNote Cb = new BasicNote(0,-1);
     public static final BasicNote C = new BasicNote(0,0);
     public static final BasicNote Cs = new BasicNote(0,1);
+    public static final BasicNote Css = new BasicNote(0,2);
     public static final BasicNote Dbb = new BasicNote(1,0);
     public static final BasicNote Db = new BasicNote(1,1);
     public static final BasicNote D = new BasicNote(1,2);
-    public static final BasicNote E = new BasicNote(2,4);
+    public static final BasicNote Ebb = new BasicNote(2,2);
     public static final BasicNote Eb = new BasicNote(2,3);
+    public static final BasicNote E = new BasicNote(2,4);
+    public static final BasicNote Es = new BasicNote(2,5);
+    public static final BasicNote Fb = new BasicNote(3,4);
     public static final BasicNote F = new BasicNote(3,5);
     public static final BasicNote Fs = new BasicNote(3,6);
+    public static final BasicNote Fss = new BasicNote(3,7);
     public static final BasicNote Gbb = new BasicNote(4,5);
+    public static final BasicNote Gb = new BasicNote(4,6);
     public static final BasicNote G = new BasicNote(4,7);
+    public static final BasicNote Gs = new BasicNote(4,8);
     public static final BasicNote Gss = new BasicNote(4,9);
     public static final BasicNote Ab = new BasicNote(5,8);
     public static final BasicNote A = new BasicNote(5,9);
+    public static final BasicNote Bbb = new BasicNote(6,9);
     public static final BasicNote Bb = new BasicNote(6,10);
     public static final BasicNote B = new BasicNote(6,11);
     public static final BasicNote Bs = new BasicNote(6,12);
@@ -56,7 +64,9 @@ public class MusicTestFramework {
     // Key
     public static final Key C_MAJOR = new Key(C, true);
     public static final Key C_MINOR = new Key(C, false);
+    public static final Key D_MAJOR = new Key(D, true);
     public static final Key G_MAJOR = new Key(G, true);
+    public static final Key G_MINOR = new Key(G, false);
     
     // BasicInterval
     public static final BasicInterval PFT_UNISON = new BasicInterval(0,0);

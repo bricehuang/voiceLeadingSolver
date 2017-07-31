@@ -1,100 +1,94 @@
 package music;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class KeyTest {
+import test_framework.MusicTestFramework;
+
+public class KeyTest extends MusicTestFramework {
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
     }
-    
-    private static final BasicNote C = new BasicNote(0,0);
-    private static final BasicNote D = new BasicNote(1,2);
-    private static final BasicNote G = new BasicNote(4,7);
-    
-    private static final Key C_MAJOR = new Key(C,true);
-    private static final Key D_MAJOR = new Key(D,true);
-    private static final Key G_MINOR = new Key(G,false);
-    
+        
     @Test
     public void getScaleDegreeTest(){
-        assertEquals(new BasicNote(0,0), C_MAJOR.getScaleDegree(1));
-        assertEquals(new BasicNote(4,7), C_MAJOR.getScaleDegree(5));
-        assertEquals(new BasicNote(6,11), C_MAJOR.getScaleDegree(7));
+        assertEquals(C, C_MAJOR.getScaleDegree(1));
+        assertEquals(G, C_MAJOR.getScaleDegree(5));
+        assertEquals(B, C_MAJOR.getScaleDegree(7));
         
-        assertEquals(new BasicNote(1,2), D_MAJOR.getScaleDegree(1));
-        assertEquals(new BasicNote(0,1), D_MAJOR.getScaleDegree(7));
+        assertEquals(D, D_MAJOR.getScaleDegree(1));
+        assertEquals(Cs, D_MAJOR.getScaleDegree(7));
 
-        assertEquals(new BasicNote(4,7), G_MINOR.getScaleDegree(1));
-        assertEquals(new BasicNote(6,10), G_MINOR.getScaleDegree(3));        
+        assertEquals(G, G_MINOR.getScaleDegree(1));
+        assertEquals(Bb, G_MINOR.getScaleDegree(3));        
     }
     
     @Test
     public void findScaleDegreeTest(){
-        assertEquals(1, C_MAJOR.findScaleDegree(new BasicNote(0,0)));
-        assertEquals(5, C_MAJOR.findScaleDegree(new BasicNote(4,7)));
-        assertEquals(7, C_MAJOR.findScaleDegree(new BasicNote(6,11)));
+        assertEquals(1, C_MAJOR.findScaleDegree(C));
+        assertEquals(5, C_MAJOR.findScaleDegree(G));
+        assertEquals(7, C_MAJOR.findScaleDegree(B));
         
-        assertEquals(1, D_MAJOR.findScaleDegree(new BasicNote(1,2)));
-        assertEquals(7, D_MAJOR.findScaleDegree(new BasicNote(0,1)));
+        assertEquals(1, D_MAJOR.findScaleDegree(D));
+        assertEquals(7, D_MAJOR.findScaleDegree(Cs));
 
-        assertEquals(1, G_MINOR.findScaleDegree(new BasicNote(4,7)));
-        assertEquals(3, G_MINOR.findScaleDegree(new BasicNote(6,10)));        
+        assertEquals(1, G_MINOR.findScaleDegree(G));
+        assertEquals(3, G_MINOR.findScaleDegree(Bb));        
     }
 
     @Test
     public void renderInKeyTest(){
         // no accidental, originally natural
-        assertEquals("C", C_MAJOR.renderBasicNote(new BasicNote(0,0)));
-        assertEquals("G", D_MAJOR.renderBasicNote(new BasicNote(4,7)));
-        assertEquals("G", G_MINOR.renderBasicNote(new BasicNote(4,7)));
+        assertEquals("C", C_MAJOR.renderBasicNote(C));
+        assertEquals("G", D_MAJOR.renderBasicNote(G));
+        assertEquals("G", G_MINOR.renderBasicNote(G));
         // no accidental, originally sharp
-        assertEquals("F", D_MAJOR.renderBasicNote(new BasicNote(3,6)));
-        assertEquals("C", D_MAJOR.renderBasicNote(new BasicNote(0,1)));
+        assertEquals("F", D_MAJOR.renderBasicNote(Fs));
+        assertEquals("C", D_MAJOR.renderBasicNote(Cs));
         // no accidental, originally flat
-        assertEquals("B", G_MINOR.renderBasicNote(new BasicNote(6,10)));
-        assertEquals("E", G_MINOR.renderBasicNote(new BasicNote(2,3)));
+        assertEquals("B", G_MINOR.renderBasicNote(Bb));
+        assertEquals("E", G_MINOR.renderBasicNote(Eb));
 
         // +1 accidental, originally natural
-        assertEquals("C+", C_MAJOR.renderBasicNote(new BasicNote(0,1)));
-        assertEquals("G+", D_MAJOR.renderBasicNote(new BasicNote(4,8)));
-        assertEquals("G+", G_MINOR.renderBasicNote(new BasicNote(4,8)));
+        assertEquals("C+", C_MAJOR.renderBasicNote(Cs));
+        assertEquals("G+", D_MAJOR.renderBasicNote(Gs));
+        assertEquals("G+", G_MINOR.renderBasicNote(Gs));
         // +1 accidental, originally sharp
-        assertEquals("F++", D_MAJOR.renderBasicNote(new BasicNote(3,7)));
-        assertEquals("C++", D_MAJOR.renderBasicNote(new BasicNote(0,2)));
+        assertEquals("F++", D_MAJOR.renderBasicNote(Fss));
+        assertEquals("C++", D_MAJOR.renderBasicNote(Css));
         // +1 accidental, originally flat
-        assertEquals("B=", G_MINOR.renderBasicNote(new BasicNote(6,11)));
-        assertEquals("E=", G_MINOR.renderBasicNote(new BasicNote(2,4)));
+        assertEquals("B=", G_MINOR.renderBasicNote(B));
+        assertEquals("E=", G_MINOR.renderBasicNote(E));
 
         // -1 accidental, originally natural
-        assertEquals("C-", C_MAJOR.renderBasicNote(new BasicNote(0,-1)));
-        assertEquals("G-", D_MAJOR.renderBasicNote(new BasicNote(4,6)));
-        assertEquals("G-", G_MINOR.renderBasicNote(new BasicNote(4,6)));
+        assertEquals("C-", C_MAJOR.renderBasicNote(Cb));
+        assertEquals("G-", D_MAJOR.renderBasicNote(Gb));
+        assertEquals("G-", G_MINOR.renderBasicNote(Gb));
         // -1 accidental, originally sharp
-        assertEquals("F=", D_MAJOR.renderBasicNote(new BasicNote(3,5)));
-        assertEquals("C=", D_MAJOR.renderBasicNote(new BasicNote(0,0)));
+        assertEquals("F=", D_MAJOR.renderBasicNote(F));
+        assertEquals("C=", D_MAJOR.renderBasicNote(C));
         // -1 accidental, originally flat
-        assertEquals("B--", G_MINOR.renderBasicNote(new BasicNote(6,9)));
-        assertEquals("E--", G_MINOR.renderBasicNote(new BasicNote(2,2)));      
+        assertEquals("B--", G_MINOR.renderBasicNote(Bbb));
+        assertEquals("E--", G_MINOR.renderBasicNote(Ebb));      
         
         // +2 accidental, originally natural
-        assertEquals("C++", C_MAJOR.renderBasicNote(new BasicNote(0,2)));
-        assertEquals("G++", D_MAJOR.renderBasicNote(new BasicNote(4,9)));
-        assertEquals("G++", G_MINOR.renderBasicNote(new BasicNote(4,9)));
+        assertEquals("C++", C_MAJOR.renderBasicNote(Css));
+        assertEquals("G++", D_MAJOR.renderBasicNote(Gss));
+        assertEquals("G++", G_MINOR.renderBasicNote(Gss));
         // +2 accidental, originally flat
-        assertEquals("B=+", G_MINOR.renderBasicNote(new BasicNote(6,12)));
-        assertEquals("E=+", G_MINOR.renderBasicNote(new BasicNote(2,5)));
+        assertEquals("B=+", G_MINOR.renderBasicNote(Bs));
+        assertEquals("E=+", G_MINOR.renderBasicNote(Es));
         
         // -2 accidental, originally natural
-        assertEquals("C--", C_MAJOR.renderBasicNote(new BasicNote(0,-2)));
-        assertEquals("G--", D_MAJOR.renderBasicNote(new BasicNote(4,5)));
-        assertEquals("G--", G_MINOR.renderBasicNote(new BasicNote(4,5)));
+        assertEquals("C--", C_MAJOR.renderBasicNote(Cbb));
+        assertEquals("G--", D_MAJOR.renderBasicNote(Gbb));
+        assertEquals("G--", G_MINOR.renderBasicNote(Gbb));
         // -2 accidental, originally sharp
-        assertEquals("F=-", D_MAJOR.renderBasicNote(new BasicNote(3,4)));
-        assertEquals("C=-", D_MAJOR.renderBasicNote(new BasicNote(0,-1)));
+        assertEquals("F=-", D_MAJOR.renderBasicNote(Fb));
+        assertEquals("C=-", D_MAJOR.renderBasicNote(Cb));
     }
     
     @Test
