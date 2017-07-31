@@ -72,6 +72,7 @@ public class MusicTestFramework {
     public static final Key D_MAJOR = new Key(D, true);
     public static final Key G_MAJOR = new Key(G, true);
     public static final Key G_MINOR = new Key(G, false);
+    public static final Key Bb_MAJOR = new Key(Bb, true);
     
     // BasicInterval
     public static final BasicInterval PFT_UNISON = new BasicInterval(0,0);
@@ -96,30 +97,70 @@ public class MusicTestFramework {
         = new PrimitiveChord(C, MAJ, 2);
     public static final PrimitiveChord C_MIN_ROOT
         = new PrimitiveChord(C, MIN, 0);
+    public static final PrimitiveChord C_MIN_6 
+        = new PrimitiveChord(C, MIN, 1);
+    public static final PrimitiveChord C_MIN7_63 
+        = new PrimitiveChord(C, MIN7, 1);
     public static final PrimitiveChord Cs_DIM7_ROOT
         = new PrimitiveChord(Cs, DIM7, 0);
     public static final PrimitiveChord Db_MAJ7_ROOT 
         = new PrimitiveChord(Db, MAJ7, 0);
+    public static final PrimitiveChord D_MAJ_ROOT 
+        = new PrimitiveChord(D, MAJ, 0);
+    public static final PrimitiveChord D_MAJ_6  
+        = new PrimitiveChord(D, MAJ, 1);
+    public static final PrimitiveChord D_DOM7_ROOT 
+        = new PrimitiveChord(D, DOM7, 0);
     public static final PrimitiveChord Eb_DOM7_42
         = new PrimitiveChord(Eb, DOM7, 3);
     public static final PrimitiveChord E_MIN_ROOT
         = new PrimitiveChord(E, MIN, 0);
+    public static final PrimitiveChord F_MAJ_ROOT 
+        = new PrimitiveChord(F, MAJ, 0);
+    public static final PrimitiveChord F_MIN_ROOT 
+        = new PrimitiveChord(F, MIN, 0);
     public static final PrimitiveChord G_MAJ_ROOT  
         = new PrimitiveChord(G, MAJ, 0);
+    public static final PrimitiveChord G_MAJ_64  
+        = new PrimitiveChord(G, MAJ, 2);
     public static final PrimitiveChord G_MIN_64  
         = new PrimitiveChord(G, MIN, 2);
     public static final PrimitiveChord G_DOM7_ROOT  
         = new PrimitiveChord(G, DOM7, 0);
+    public static final PrimitiveChord G_DOM7_63 
+        = new PrimitiveChord(G, DOM7, 1);
+    public static final PrimitiveChord G_DOM7_43 
+        = new PrimitiveChord(G, DOM7, 2);
+    public static final PrimitiveChord Ab_MAJ_ROOT 
+        = new PrimitiveChord(Ab, MAJ, 0);
     public static final PrimitiveChord A_MIN7_ROOT  
         = new PrimitiveChord(A, MIN7, 0);
+    public static final PrimitiveChord Bb_MAJ_ROOT
+        = new PrimitiveChord(Bb, MAJ, 0);
+    public static final PrimitiveChord Bb_MAJ_6
+    = new PrimitiveChord(Bb, MAJ, 1);
     
     // ContextTag sets
+    public static final Set<ContextTag> APPLIED_DOMINANT 
+        = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(ContextTag.APPLIED_DOMINANT))
+        );
     public static final Set<ContextTag> CADENCE 
-        = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENCE)));
+        = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(ContextTag.CADENCE))
+        );
     public static final Set<ContextTag> CADENTIAL_I64
-    = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_I64)));
+        = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_I64))
+        );
     public static final Set<ContextTag> CADENTIAL_V 
-    = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)));
+        = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V))
+        );
+    public static final Set<ContextTag> CADENTIAL_PREDOMINANT
+        = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_PREDOMINANT))
+        );
     public static final Set<ContextTag> NO_CONTEXTS 
         = Collections.unmodifiableSet(new HashSet<>());
     
