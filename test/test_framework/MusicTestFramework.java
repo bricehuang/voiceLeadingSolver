@@ -168,19 +168,23 @@ public class MusicTestFramework {
         = Collections.unmodifiableSet(new HashSet<>());
     
     // ChordPenalty
+    public static final ChordPenaltyType BAD_TRIPLING 
+        = ChordPenaltyType.BAD_TRIPLING;
+    public static final ChordPenaltyType CADENCE_DOUBLING 
+        = ChordPenaltyType.CADENCE_DOUBLING;
     public static final ChordPenaltyType DOUBLED_LEADING_TONE 
         = ChordPenaltyType.DOUBLED_LEADING_TONE;
     public static final ChordPenaltyType DOUBLE_DOUBLING 
         = ChordPenaltyType.DOUBLE_DOUBLING;
-    public static final ChordPenaltyType BAD_TRIPLING 
-        = ChordPenaltyType.BAD_TRIPLING;
     
     // TransitionPenalty
-    public static final TransitionPenaltyType PARALLEL
-        = TransitionPenaltyType.PARALLEL;
     public static final TransitionPenaltyType DIM_SEVEN_RES
         = TransitionPenaltyType.DIM_SEVEN_RES;
+    public static final TransitionPenaltyType DIRECT
+        = TransitionPenaltyType.DIRECT;
     public static final TransitionPenaltyType DOM_SEVEN_RES
-    = TransitionPenaltyType.DOM_SEVEN_RES;
+        = TransitionPenaltyType.DOM_SEVEN_RES;
+    public static final TransitionPenaltyType PARALLEL
+        = TransitionPenaltyType.PARALLEL;
 
 }

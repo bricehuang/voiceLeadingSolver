@@ -1,14 +1,12 @@
 package scorer_transitions;
 
-import java.util.Map;
-
 import chord_data.ChordWithContext;
-import score_data.TransitionPenaltyType;
+import score_data.TransitionScoreNew;
 
 public class MelodicIntervalScorer implements TransitionScorer {
 
     @Override
-    public Map<TransitionPenaltyType, Integer> scoreTransition(ChordWithContext previous, ChordWithContext current) {
+    public TransitionScoreNew scoreTransition(ChordWithContext previous, ChordWithContext current) {
         throw new RuntimeException("Unimplemented");
     }
 

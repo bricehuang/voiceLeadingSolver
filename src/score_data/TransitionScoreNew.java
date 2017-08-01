@@ -1,5 +1,6 @@
 package score_data;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class TransitionScoreNew {
      * penaltyCount counts the number of each penalty
      * 
      * Rep invariant:
-     * counts are nonzero.  
+     * counts are positive.  
      * 
      * Rep exposure:
      * returns only immutables, primitives
@@ -34,43 +35,60 @@ public class TransitionScoreNew {
     private void checkRep(){
         int computedTotalPenalty = 0;
         for (TransitionPenaltyType penalty : penaltyCount.keySet()){
-            assert(penaltyCount.get(penalty) != 0);
+            assert(penaltyCount.get(penalty) > 0);
             computedTotalPenalty += penaltyCount.get(penalty) * penalty.value();
         }
         assert(computedTotalPenalty == totalPenalty);
     }
     
     /**
-     * Mutator.  Adds a penalty to the score
-     * TODO: decide if I should deprecate negative updates, in 
-     * which case the penaltyCount.get(penalty)==0 check can go
+     * Adds a single penalty to the score.  
+     * @param penalty
+     */
+    public void addPenalty(TransitionPenaltyType penalty){
+        if (!penaltyCount.keySet().contains(penalty)) {
+            penaltyCount.put(penalty, 0);
+        }
+        penaltyCount.put(penalty, penaltyCount.get(penalty)+1);
+        totalPenalty += penalty.value();
+        checkRep();
+    }
+    
+    /**
+     * Mutator.  Adds the contents of a TransitionScoreNew to the score
      * @param penalty a penalty type
      */
-    public void updatePenalty(Map<TransitionPenaltyType, Integer> update){
-            for (TransitionPenaltyType penalty: update.keySet()) {
-                if (!penaltyCount.keySet().contains(penalty)) {
-                    penaltyCount.put(penalty, 0);
-                }
-                int timesPenalty = update.get(penalty);
-                penaltyCount.put(
-                    penalty, penaltyCount.get(penalty)+timesPenalty
-                );
-                totalPenalty += penalty.value()*timesPenalty;
-                if (penaltyCount.get(penalty)==0) {
-                    penaltyCount.remove(penalty);
-                }
-                checkRep();
-            }
+    public void updatePenalty(TransitionScoreNew updateScore){
+        Map<TransitionPenaltyType, Integer> update = updateScore.getPenaltyCount(); 
+		for (TransitionPenaltyType penalty: update.keySet()) {
+			if (!penaltyCount.keySet().contains(penalty)) {
+				penaltyCount.put(penalty, 0);
+			}
+			int timesPenalty = update.get(penalty);
+			penaltyCount.put(
+				penalty, penaltyCount.get(penalty)+timesPenalty
+			);
+		}
+		totalPenalty += updateScore.totalPenalty;
         checkRep();
     }
         
     /**
-     * Computes the total penalty of this transition
+     * Gets the total penalty of this transition
      * @return total penalty of this transition
      */
     public int totalScore(){
         return totalPenalty;
     }
+
+    /**
+     * Gets the penalty counts of this transition
+     * @return penalty counts of this transition
+     */
+    public Map<TransitionPenaltyType, Integer> getPenaltyCount(){
+        return Collections.unmodifiableMap(penaltyCount);
+    }
+    
     
     /*******************
      * Object Contract *

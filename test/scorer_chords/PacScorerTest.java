@@ -24,10 +24,10 @@ public class PacScorerTest extends MusicTestFramework {
             cMajorVoicing, C_MAJOR, CADENCE
         );
                 
-        Map<ChordPenaltyType, Integer> score = new PacScorer().scoreChord(
-            cMajorVoicingCadence
-        );
-        assert(score.keySet().size() == 0);
+        Map<ChordPenaltyType, Integer> penaltyCount = 
+            new PacScorer().scoreChord(cMajorVoicingCadence)
+            .getPenaltyCount();
+        assert(penaltyCount.keySet().size() == 0);
     }
     
     @Test
@@ -38,20 +38,20 @@ public class PacScorerTest extends MusicTestFramework {
         ChordWithContext cMajorVoicingCadence = new ChordWithContext(
             cMajorVoicing, C_MAJOR, CADENCE
         );
-        Map<ChordPenaltyType, Integer> scoreCadence = new PacScorer().scoreChord(
-            cMajorVoicingCadence
-        );
-        assert(scoreCadence.keySet().size() == 1);
-        assert(scoreCadence.get(ChordPenaltyType.NOT_PAC) == 1);
+        Map<ChordPenaltyType, Integer> penaltyCountCadence 
+            = new PacScorer().scoreChord(cMajorVoicingCadence)
+            .getPenaltyCount();
+        assert(penaltyCountCadence.keySet().size() == 1);
+        assert(penaltyCountCadence.get(ChordPenaltyType.NOT_PAC) == 1);
 
         // penalty does not trigger when cadence tag absent
         ChordWithContext cMajorVoicingNotCadence = new ChordWithContext(
             cMajorVoicing, C_MAJOR, NO_CONTEXTS
         );
-        Map<ChordPenaltyType, Integer> scoreNotCadence = new PacScorer().scoreChord(
-            cMajorVoicingNotCadence
-        );
-        assert(scoreNotCadence.keySet().size() == 0);
+        Map<ChordPenaltyType, Integer> penaltyCountNotCadence = 
+            new PacScorer().scoreChord(cMajorVoicingNotCadence)
+            .getPenaltyCount();
+        assert(penaltyCountNotCadence.keySet().size() == 0);
 
     }
 

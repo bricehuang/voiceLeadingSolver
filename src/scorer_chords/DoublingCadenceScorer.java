@@ -11,6 +11,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.BasicNote;
 import score_data.ChordPenaltyType;
+import score_data.ChordScoreNew;
 import solver.SolverUtils;
 
 public class DoublingCadenceScorer implements ChordScorer {
@@ -44,7 +45,7 @@ public class DoublingCadenceScorer implements ChordScorer {
     }
     
     @Override
-    public Map<ChordPenaltyType, Integer> scoreChord(ChordWithContext chordAndContext) {
+    public ChordScoreNew scoreChord(ChordWithContext chordAndContext) {
         Chord chord = chordAndContext.getChord();
         Set<ContextTag> relevantContexts = SolverUtils.intersect(
             chordAndContext.getContextTags(), PROPER_DOUBLING.keySet()
@@ -58,18 +59,18 @@ public class DoublingCadenceScorer implements ChordScorer {
             BasicNote expectedDoubledNote = chordAndContext.getKey().getScaleDegree(
                 PROPER_DOUBLING.get(contextTag)
             );
-
-            Map<ChordPenaltyType, Integer> penalties = new HashMap<>();
+            
             Set<BasicNote> doubledOrMoreNotes = findDoubledOrMoreNotes(chord);
             
+            ChordScoreNew score = new ChordScoreNew();
             for (BasicNote doubledNote : doubledOrMoreNotes){
                 if (doubledNote.equals(expectedDoubledNote)){
-                    penalties.put(ChordPenaltyType.CADENCE_DOUBLING, 1);
+                    score.addPenalty(ChordPenaltyType.CADENCE_DOUBLING);
                 }
             }
-            return Collections.unmodifiableMap(penalties);
+            return score;
         } else {
-            return Collections.unmodifiableMap(new HashMap<>());
+            return new ChordScoreNew();
         }
     }
 
