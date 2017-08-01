@@ -64,7 +64,7 @@ public class DoublingCadenceScorer implements ChordScorer {
             
             ChordScoreNew score = new ChordScoreNew();
             for (BasicNote doubledNote : doubledOrMoreNotes){
-                if (doubledNote.equals(expectedDoubledNote)){
+                if (! doubledNote.equals(expectedDoubledNote)){
                     score.addPenalty(ChordPenaltyType.CADENCE_DOUBLING);
                 }
             }
