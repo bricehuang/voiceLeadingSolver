@@ -2,10 +2,8 @@ package scorer_transitions;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import chord_data.ChordWithContext;
-import score_data.TransitionPenaltyType;
 import score_data.TransitionScoreNew;
 
 /**
@@ -33,7 +31,7 @@ public interface TransitionScorer {
      * @return a Map<ChordPenaltyType, Integer> mapping a each ChordPenalty to the 
      * number of violations that occurred.  
      */
-    public Map<TransitionPenaltyType, Integer> scoreTransition(
+    public TransitionScoreNew scoreTransition(
         ChordWithContext previous, ChordWithContext current
     );
     

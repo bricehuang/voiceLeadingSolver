@@ -3,11 +3,7 @@ package scorer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -28,51 +24,51 @@ public class ChordScoreTestNew extends MusicTestFramework {
         ChordScoreNew score = new ChordScoreNew();
         assertEquals(0, score.totalScore());
         assertEquals("Total Penalty: 0\n", score.toString());
+        assertEquals(0, score.getPenaltyCount().size());
+    }
+    
+    @Test
+    public void testAddPenalty(){
+        ChordScoreNew score = new ChordScoreNew();
+        score.addPenalty(DOUBLED_LEADING_TONE);
+        
+        assertEquals(
+            DOUBLED_LEADING_TONE.value(), score.totalScore()
+        );
+        Map<ChordPenaltyType, Integer> penaltyCount 
+            = score.getPenaltyCount();
+        assertEquals(1, penaltyCount.size());
+        assertTrue(penaltyCount.get(DOUBLED_LEADING_TONE) == 1);        
     }
 
     @Test
     public void testUpdate(){
-        ChordScoreNew score = new ChordScoreNew();
-        Map<ChordPenaltyType, Integer> update = new HashMap<>();
-        update.put(DOUBLED_LEADING_TONE, 1);
-        score.updatePenalty(update);
-        
-        assertEquals(DOUBLED_LEADING_TONE.value(), score.totalScore());
-        assertEquals(
-        		"Doubled Leading Tone Penalty: 1.  Score: 100000\n" + 
-        		"Total Penalty: 100000\n", 
-        		score.toString()
-        	);
-    }
-
-    @Test
-    public void testUpdateWithRemove(){
-    		ChordScoreNew score = new ChordScoreNew();
+		ChordScoreNew score = new ChordScoreNew();
     		
-        Map<ChordPenaltyType, Integer> update1 = new HashMap<>();
-        update1.put(DOUBLED_LEADING_TONE, 1);
-        update1.put(DOUBLE_DOUBLING, 1);
-        update1.put(BAD_TRIPLING, 1);
+        ChordScoreNew update1 = new ChordScoreNew();
+        update1.addPenalty(DOUBLED_LEADING_TONE);
+        update1.addPenalty(DOUBLE_DOUBLING);
+        update1.addPenalty(BAD_TRIPLING);
         score.updatePenalty(update1);
         
-        Map<ChordPenaltyType, Integer> update2 = new HashMap<>();        
-        update2.put(BAD_TRIPLING, 1);
-        update2.put(DOUBLED_LEADING_TONE, -1);
-        score.updatePenalty(update2);        
+        ChordScoreNew update2 = new ChordScoreNew();
+        update2.addPenalty(BAD_TRIPLING);
+        update2.addPenalty(CADENCE_DOUBLING);
+        score.updatePenalty(update2);
         
         assertEquals(
-            DOUBLE_DOUBLING.value()+BAD_TRIPLING.value()*2, 
+            DOUBLED_LEADING_TONE.value() 
+                + DOUBLE_DOUBLING.value() 
+                + BAD_TRIPLING.value()*2 
+                + CADENCE_DOUBLING.value(),
             score.totalScore()
         );
-        String penalty1 = "Bad Tripling Penalty: 2.  Score: 200\n";
-        String penalty2 = "Double Doubling Penalty: 1.  Score: 200\n";
-        String penaltyTotal = "Total Penalty: 400\n";
-        Set<String> validAnswers = new HashSet<>(
-            Arrays.asList(
-                penalty1+penalty2+penaltyTotal,
-                penalty2+penalty1+penaltyTotal
-            )
-        );
-        assertTrue(validAnswers.contains(score.toString()));
+        Map<ChordPenaltyType, Integer> penaltyCount 
+            = score.getPenaltyCount();
+        assertEquals(4, penaltyCount.size());
+        assertTrue(penaltyCount.get(DOUBLED_LEADING_TONE) == 1);
+        assertTrue(penaltyCount.get(DOUBLE_DOUBLING) == 1);
+        assertTrue(penaltyCount.get(BAD_TRIPLING) == 2);
+        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
     }
 }

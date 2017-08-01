@@ -24,7 +24,7 @@ scorer_chords
 	- ChordScorer CLEAN (Tests TODO)
 	
 	- DoublingCadenceScorer TODO
-	- DoublingScorer TODO
+	- DoublingScorer CLEAN BUT JANK ALSO NEED TEST
 	- PacScorer CLEAN
 	- VoiceOverlapScorer TODO
 scorer_transitions
@@ -57,3 +57,5 @@ solver
 	- SortedFiniteProgListDeprecated DEPRECATED
 	
 TODO NoteTest was never done ZZZ
+TODO The Map<PenaltyType, Integer> interface is kind of terrible
+TODO make intersect generic.  Also why doesn't this exist...

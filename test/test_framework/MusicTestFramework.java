@@ -49,11 +49,13 @@ public class MusicTestFramework {
     
     // Note
     public static final Note E5 = new Note(E, 5); 
+    public static final Note D5 = new Note(D, 5); 
     public static final Note C5 = new Note(C, 5); 
     public static final Note B4 = new Note(B, 4); 
     public static final Note Bb4 = new Note(Bb, 4); 
     public static final Note A4 = new Note(A, 4); 
     public static final Note G4 = new Note(G, 4); 
+    public static final Note F4 = new Note(F, 4); 
     public static final Note E4 = new Note(E, 4); 
     public static final Note D4 = new Note(D, 4); 
     public static final Note C4 = new Note(C, 4);  
@@ -112,6 +114,8 @@ public class MusicTestFramework {
         = new PrimitiveChord(D, MAJ, 0);
     public static final PrimitiveChord D_MAJ_6  
         = new PrimitiveChord(D, MAJ, 1);
+    public static final PrimitiveChord D_MIN_6  
+        = new PrimitiveChord(D, MIN, 1);
     public static final PrimitiveChord D_DOM7_ROOT 
         = new PrimitiveChord(D, DOM7, 0);
     public static final PrimitiveChord Eb_DOM7_42
@@ -170,19 +174,23 @@ public class MusicTestFramework {
         = Collections.unmodifiableSet(new HashSet<>());
     
     // ChordPenalty
+    public static final ChordPenaltyType BAD_TRIPLING 
+        = ChordPenaltyType.BAD_TRIPLING;
+    public static final ChordPenaltyType CADENCE_DOUBLING 
+        = ChordPenaltyType.CADENCE_DOUBLING;
     public static final ChordPenaltyType DOUBLED_LEADING_TONE 
         = ChordPenaltyType.DOUBLED_LEADING_TONE;
     public static final ChordPenaltyType DOUBLE_DOUBLING 
         = ChordPenaltyType.DOUBLE_DOUBLING;
-    public static final ChordPenaltyType BAD_TRIPLING 
-        = ChordPenaltyType.BAD_TRIPLING;
     
     // TransitionPenalty
-    public static final TransitionPenaltyType PARALLEL
-        = TransitionPenaltyType.PARALLEL;
     public static final TransitionPenaltyType DIM_SEVEN_RES
         = TransitionPenaltyType.DIM_SEVEN_RES;
+    public static final TransitionPenaltyType DIRECT
+        = TransitionPenaltyType.DIRECT;
     public static final TransitionPenaltyType DOM_SEVEN_RES
-    = TransitionPenaltyType.DOM_SEVEN_RES;
+        = TransitionPenaltyType.DOM_SEVEN_RES;
+    public static final TransitionPenaltyType PARALLEL
+        = TransitionPenaltyType.PARALLEL;
 
 }
