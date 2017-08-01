@@ -20,8 +20,6 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
             .getPenaltyCount();
         
-        System.err.println(penaltyCount);
-        
         assert(penaltyCount.keySet().size() == 0);
     }
     
