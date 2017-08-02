@@ -1,5 +1,8 @@
 package scorer_chords;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Map;
 
 import org.junit.Test;
@@ -26,7 +29,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
             .getPenaltyCount();
         
-        assert(penaltyCount.keySet().size() == 0);
+        assertEquals(0, penaltyCount.keySet().size());
     }
     
     @Test
@@ -38,8 +41,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(badDoublingCadence)
             .getPenaltyCount();
 
-        assert(penaltyCount.keySet().size() == 1);
-        assert(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals(1, penaltyCount.keySet().size());
+        assertTrue(penaltyCount.get(CADENCE_DOUBLING)==1);
     }
 
     @Test
@@ -51,7 +54,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
             .getPenaltyCount();
             
-        assert(penaltyCount.keySet().size() == 0);
+        assertEquals(0, penaltyCount.keySet().size());
     }
     
     @Test
@@ -63,8 +66,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(badDoublingCadence)
             .getPenaltyCount();
 
-        assert(penaltyCount.keySet().size() == 1);
-        assert(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals(1, penaltyCount.keySet().size());
+        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
     }
     
     @Test
@@ -76,7 +79,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
             .getPenaltyCount();
             
-        assert(penaltyCount.keySet().size() == 0);
+        assertEquals(0, penaltyCount.keySet().size());
     }
     
     @Test
@@ -88,8 +91,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(badDoublingCadence)
             .getPenaltyCount();
 
-        assert(penaltyCount.keySet().size() == 1);
-        assert(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals(1, penaltyCount.keySet().size());
+        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
     }
 
     @Test
@@ -101,7 +104,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
             .getPenaltyCount();
             
-        assert(penaltyCount.keySet().size() == 0);
+        assertEquals(0, penaltyCount.keySet().size());
     }
     
     @Test
@@ -113,8 +116,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(badDoublingCadence)
             .getPenaltyCount();
 
-        assert(penaltyCount.keySet().size() == 1);
-        assert(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals(1, penaltyCount.keySet().size());
+        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
     }
 
     @Test
@@ -126,7 +129,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             new DoublingCadenceScorer().scoreChord(badDoublingCadence)
             .getPenaltyCount();
 
-        assert(penaltyCount.keySet().size() == 0);
+        assertEquals(0, penaltyCount.keySet().size());
     }
 
 }
