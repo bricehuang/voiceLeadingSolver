@@ -23,10 +23,10 @@ scorer
 scorer_chords
 	- ChordScorer CLEAN (Tests TODO)
 	
-	- DoublingCadenceScorer TODO
-	- DoublingScorer CLEAN BUT JANK ALSO NEED TEST
+	- DoublingCadenceScorer CLEAN
+	- DoublingScorer TODO
 	- PacScorer CLEAN
-	- VoiceOverlapScorer TODO
+	- VoiceOverlapScorer CLEAN
 scorer_transitions
 	- TransitionScorer CLEAN (Tests TODO)
 	
