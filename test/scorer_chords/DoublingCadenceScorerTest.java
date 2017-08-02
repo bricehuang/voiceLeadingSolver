@@ -11,6 +11,12 @@ import test_framework.MusicTestFramework;
 
 public class DoublingCadenceScorerTest extends MusicTestFramework {
     
+    @Test(expected=AssertionError.class)
+    public void testAssertionsEnabled() {
+        assert false;
+        
+    }
+
     @Test
     public void testCadenceDoublingIGood(){
         Chord goodDoubling = new Chord(C5, E4, G3, C3, C_MAJ_ROOT);

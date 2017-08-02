@@ -178,10 +178,12 @@ public class MusicTestFramework {
         = ChordPenaltyType.BAD_TRIPLING;
     public static final ChordPenaltyType CADENCE_DOUBLING 
         = ChordPenaltyType.CADENCE_DOUBLING;
-    public static final ChordPenaltyType DOUBLED_LEADING_TONE 
-        = ChordPenaltyType.DOUBLED_LEADING_TONE;
     public static final ChordPenaltyType DOUBLE_DOUBLING 
         = ChordPenaltyType.DOUBLE_DOUBLING;
+    public static final ChordPenaltyType DOUBLED_LEADING_TONE 
+        = ChordPenaltyType.DOUBLED_LEADING_TONE;
+    public static final ChordPenaltyType VOICE_OVERLAP 
+        = ChordPenaltyType.VOICE_OVERLAP;
     
     // TransitionPenalty
     public static final TransitionPenaltyType DIM_SEVEN_RES
