@@ -57,5 +57,4 @@ solver
 	- SortedFiniteProgListDeprecated DEPRECATED
 	
 TODO NoteTest was never done ZZZ
-TODO The Map<PenaltyType, Integer> interface is kind of terrible
 TODO make intersect generic.  Also why doesn't this exist...
