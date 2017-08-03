@@ -24,7 +24,7 @@ scorer_chords
 	- ChordScorer CLEAN (Tests TODO)
 	
 	- DoublingCadenceScorer CLEAN
-	- DoublingScorer TODO
+	- DoublingScorer CLEAN
 	- PacScorer CLEAN
 	- VoiceOverlapScorer CLEAN
 scorer_transitions

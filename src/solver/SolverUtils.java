@@ -50,6 +50,26 @@ public class SolverUtils {
         }
         return Collections.unmodifiableMap(noteCounts);
     }
+    
+    /**
+     * Finds the doubled or tripled note in a chord
+     * @param chord.  Must be a triad.    
+     * @return the doubled or tripled BasicNote in this chord
+     */
+    public static Set<BasicNote> findDoubledOrMoreNotes(Chord chord){
+        assert (chord.getPrimitiveChord().numberDistinctNotes() == 3);
+        Set<BasicNote> doubledOrMoreNotes = new HashSet<>();
+        
+        Map<BasicNote, Integer> noteCounts = SolverUtils.countBasicNotes(chord);
+        for (BasicNote basicNote : noteCounts.keySet()){
+            if (noteCounts.get(basicNote) > 1){
+                doubledOrMoreNotes.add(basicNote);
+            }
+        }
+        return Collections.unmodifiableSet(doubledOrMoreNotes);
+    }
+    
+
 
     // TODO make this generic?
     public static Set<ContextTag> intersect(Set<ContextTag> set1, Set<ContextTag>set2){

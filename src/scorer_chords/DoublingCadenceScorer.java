@@ -2,7 +2,6 @@ package scorer_chords;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,24 +25,6 @@ public class DoublingCadenceScorer implements ChordScorer {
         PROPER_DOUBLING = Collections.unmodifiableMap(properDoublingTmp);
     }
         
-    /**
-     * Finds the doubled or tripled note in a chord
-     * @param chord.  Must be a triad.    
-     * @return the doubled or tripled BasicNote in this chord
-     */
-    private static Set<BasicNote> findDoubledOrMoreNotes(Chord chord){
-        assert (chord.getPrimitiveChord().numberDistinctNotes() == 3);
-        Set<BasicNote> doubledOrMoreNotes = new HashSet<>();
-        
-        Map<BasicNote, Integer> noteCounts = SolverUtils.countBasicNotes(chord);
-        for (BasicNote basicNote : noteCounts.keySet()){
-            if (noteCounts.get(basicNote) > 1){
-                doubledOrMoreNotes.add(basicNote);
-            }
-        }
-        return Collections.unmodifiableSet(doubledOrMoreNotes);
-    }
-    
     @Override
     public ChordScoreNew scoreChord(ChordWithContext chordAndContext) {
         Chord chord = chordAndContext.getChord();
@@ -60,7 +41,8 @@ public class DoublingCadenceScorer implements ChordScorer {
                 PROPER_DOUBLING.get(contextTag)
             );
             
-            Set<BasicNote> doubledOrMoreNotes = findDoubledOrMoreNotes(chord);
+            Set<BasicNote> doubledOrMoreNotes = 
+                SolverUtils.findDoubledOrMoreNotes(chord);
             
             ChordScoreNew score = new ChordScoreNew();
             for (BasicNote doubledNote : doubledOrMoreNotes){
