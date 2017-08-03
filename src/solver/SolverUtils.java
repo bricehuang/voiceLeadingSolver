@@ -1,5 +1,6 @@
 package solver;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import chord_data.ContextTag;
 import chords.BasicChord;
 import chords.Chord;
 import music.BasicNote;
+import music.Interval;
 import music.Note;
 
 public class SolverUtils {
@@ -69,7 +71,24 @@ public class SolverUtils {
         return Collections.unmodifiableSet(doubledOrMoreNotes);
     }
     
-
+    /**
+     * @param previous previous chord
+     * @param current current chord
+     * @return a list of the intervals made by each voice in this transition
+     */
+    public static List<Interval> getVoiceMovements(Chord previous, Chord current) {
+        List<Note> previousNotes = spellNotes(previous);
+        List<Note> currentNotes = spellNotes(current);
+        
+        List<Interval> movements = new ArrayList<>();
+        for (int i=0; i<4; i++) {
+            movements.add(Interval.melodicIntervalBetween(
+                previousNotes.get(i), 
+                currentNotes.get(i)
+            ));
+        }
+        return Collections.unmodifiableList(movements);
+    }
 
     // TODO make this generic?
     public static Set<ContextTag> intersect(Set<ContextTag> set1, Set<ContextTag>set2){

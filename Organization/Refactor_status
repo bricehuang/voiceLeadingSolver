@@ -35,7 +35,7 @@ scorer_transitions
 	- DirectsScorer TODO
 	- Dom7ResolutionScorer TODO
 	- II7SuspensionScorer TODO
-	- MelodicIntervalScorer TODO
+	- MelodicIntervalScorer CLEAN
 	- MovementScorer TODO
 	- NeaploitanResolutionScorer TODO
 	- ParallelsScorer TODO
