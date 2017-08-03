@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import chord_data.ChordWithContext;
 import chord_data.ContextTag;
+import chords.Chord;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicInterval;
@@ -203,5 +205,19 @@ public class MusicTestFramework {
         = TransitionPenaltyType.MELODIC_INTERVAL;
     public static final TransitionPenaltyType PARALLEL
         = TransitionPenaltyType.PARALLEL;
+    
+    // Util methods
+    public static ChordWithContext makeChordWithContext(
+        Note soprano, 
+        Note alto, 
+        Note tenor, 
+        Note bass, 
+        PrimitiveChord primitiveChord,
+        Key key,
+        Set<ContextTag> contexts
+    ){
+        Chord chord = new Chord(soprano, alto, tenor, bass, primitiveChord);
+        return new ChordWithContext(chord, key, contexts);
+    }
 
 }
