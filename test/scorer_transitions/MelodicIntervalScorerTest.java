@@ -13,6 +13,14 @@ import test_framework.MusicTestFramework;
 
 public class MelodicIntervalScorerTest extends MusicTestFramework {
 
+    private Map<TransitionPenaltyType, Integer> computePenalties(
+        ChordWithContext previous, ChordWithContext current
+    ) {
+        return MusicTestFramework.computeTransitionPenalties(
+            new MelodicIntervalScorer(), previous, current
+        );
+    }
+    
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -28,9 +36,8 @@ public class MelodicIntervalScorerTest extends MusicTestFramework {
             G4, D4, B3, G2, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCounts = 
-            new MelodicIntervalScorer()
-            .scoreTransition(previous, current)
-            .getPenaltyCount();
+            computePenalties(previous, current);
+        
         assertEquals(0, penaltyCounts.keySet().size());
     }    
     
@@ -43,9 +50,8 @@ public class MelodicIntervalScorerTest extends MusicTestFramework {
             B4, D4, G3, G2, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCounts = 
-            new MelodicIntervalScorer()
-            .scoreTransition(previous, current)
-            .getPenaltyCount();
+            computePenalties(previous, current);
+        
         assertEquals(1, penaltyCounts.keySet().size());
         assertTrue(penaltyCounts.get(MELODIC_INTERVAL) == 1);
     }

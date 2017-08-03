@@ -13,6 +13,12 @@ import test_framework.MusicTestFramework;
 
 public class VoiceOverlapScorerTest extends MusicTestFramework {
 
+    private Map<ChordPenaltyType, Integer> computePenalties(ChordWithContext chord) {
+        return MusicTestFramework.computeChordPenalties(
+            new VoiceOverlapScorer(), chord
+        );
+    }
+
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -25,8 +31,8 @@ public class VoiceOverlapScorerTest extends MusicTestFramework {
             C5, C5, E4, G3, C_MAJ_64, C_MAJOR, NO_CONTEXTS
         ); 
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new VoiceOverlapScorer().scoreChord(overlap)
-            .getPenaltyCount();
+            computePenalties(overlap);
+        
         assertEquals(1, penaltyCount.keySet().size());
         assertTrue(penaltyCount.get(VOICE_OVERLAP)==1);
     }
@@ -37,8 +43,8 @@ public class VoiceOverlapScorerTest extends MusicTestFramework {
             C5, G4, E4, G3, C_MAJ_64, C_MAJOR, NO_CONTEXTS
         ); 
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new VoiceOverlapScorer().scoreChord(noOverlap)
-            .getPenaltyCount();
+            computePenalties(noOverlap);
+            
         assertEquals(0, penaltyCount.keySet().size());
     }
 }

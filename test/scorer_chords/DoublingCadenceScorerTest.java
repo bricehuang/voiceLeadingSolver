@@ -13,20 +13,25 @@ import test_framework.MusicTestFramework;
 
 public class DoublingCadenceScorerTest extends MusicTestFramework {
     
+    private Map<ChordPenaltyType, Integer> computePenalties(ChordWithContext chord) {
+        return MusicTestFramework.computeChordPenalties(
+            new DoublingCadenceScorer(), chord
+        );
+    }
+
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
         
     }
-
+    
     @Test
     public void testCadenceDoublingIGood(){
         ChordWithContext goodDoublingCadence = MusicTestFramework.makeChordWithContext(
             C5, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
-            .getPenaltyCount();
+            computePenalties(goodDoublingCadence);
         
         assertEquals(0, penaltyCount.keySet().size());
     }
@@ -37,9 +42,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             G4, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(badDoublingCadence)
-            .getPenaltyCount();
-
+            computePenalties(badDoublingCadence);
+        
         assertEquals(1, penaltyCount.keySet().size());
         assertTrue(penaltyCount.get(CADENCE_DOUBLING)==1);
     }
@@ -50,9 +54,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             B4, G4, D4, G3, G_MAJ_ROOT, C_MAJOR, CADENTIAL_V
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
-            .getPenaltyCount();
-            
+            computePenalties(goodDoublingCadence);   
+        
         assertEquals(0, penaltyCount.keySet().size());
     }
     
@@ -62,9 +65,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             D5, B4, D4, G3, G_MAJ_ROOT, C_MAJOR, CADENTIAL_V
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(badDoublingCadence)
-            .getPenaltyCount();
-
+            computePenalties(badDoublingCadence);
+        
         assertEquals(1, penaltyCount.keySet().size());
         assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
     }
@@ -75,9 +77,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             C5, G4, E4, G3, C_MAJ_64, C_MAJOR, CADENTIAL_I64
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
-            .getPenaltyCount();
-            
+            computePenalties(goodDoublingCadence);
+        
         assertEquals(0, penaltyCount.keySet().size());
     }
     
@@ -87,9 +88,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             C5, E4, C4, G3, C_MAJ_64, C_MAJOR, CADENTIAL_I64
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(badDoublingCadence)
-            .getPenaltyCount();
-
+            computePenalties(badDoublingCadence);
+        
         assertEquals(1, penaltyCount.keySet().size());
         assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
     }
@@ -100,9 +100,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
                 D5, A4, F4, F3, D_MIN_6, C_MAJOR, CADENTIAL_PREDOMINANT
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(goodDoublingCadence)
-            .getPenaltyCount();
-            
+            computePenalties(goodDoublingCadence);
+        
         assertEquals(0, penaltyCount.keySet().size());
     }
     
@@ -112,9 +111,8 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             D5, A4, D4, F3, D_MIN_6, C_MAJOR, CADENTIAL_PREDOMINANT
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(badDoublingCadence)
-            .getPenaltyCount();
-
+            computePenalties(badDoublingCadence);
+        
         assertEquals(1, penaltyCount.keySet().size());
         assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
     }
@@ -125,8 +123,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             G4, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
-            new DoublingCadenceScorer().scoreChord(badDoublingCadence)
-            .getPenaltyCount();
+                computePenalties(badDoublingCadence);
 
         assertEquals(0, penaltyCount.keySet().size());
     }

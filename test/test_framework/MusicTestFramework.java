@@ -3,6 +3,7 @@ package test_framework;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import chord_data.ChordWithContext;
@@ -16,6 +17,8 @@ import music.Key;
 import music.Note;
 import score_data.ChordPenaltyType;
 import score_data.TransitionPenaltyType;
+import scorer_chords.ChordScorer;
+import scorer_transitions.TransitionScorer;
 
 public class MusicTestFramework {
     
@@ -218,6 +221,21 @@ public class MusicTestFramework {
     ){
         Chord chord = new Chord(soprano, alto, tenor, bass, primitiveChord);
         return new ChordWithContext(chord, key, contexts);
+    }
+    
+    public static Map<ChordPenaltyType, Integer> computeChordPenalties (
+        ChordScorer scorer,
+        ChordWithContext chord
+    ){
+        return scorer.scoreChord(chord).getPenaltyCount();
+    }
+
+    public static Map<TransitionPenaltyType, Integer> computeTransitionPenalties (
+        TransitionScorer scorer,
+        ChordWithContext previous,
+        ChordWithContext current
+    ){
+        return scorer.scoreTransition(previous, current).getPenaltyCount();
     }
 
 }
