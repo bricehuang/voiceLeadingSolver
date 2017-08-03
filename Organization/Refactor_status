@@ -21,7 +21,7 @@ scorer
 	
 	- Scorer DIRTY
 scorer_chords
-	- ChordScorer CLEAN (Tests TODO)
+	- ChordScorer CLEAN
 	
 	- DoublingCadenceScorer CLEAN
 	- DoublingScorer CLEAN
