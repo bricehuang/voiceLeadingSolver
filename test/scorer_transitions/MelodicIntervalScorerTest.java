@@ -8,7 +8,6 @@ import java.util.Map;
 import org.junit.Test;
 
 import chord_data.ChordWithContext;
-import chords.Chord;
 import score_data.TransitionPenaltyType;
 import test_framework.MusicTestFramework;
 
