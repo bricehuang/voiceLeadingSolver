@@ -27,7 +27,6 @@ public class MovementScorer implements TransitionScorer {
         }
         for (int i=0; i<3; i++){ // non-bass voices
             int moveScaleDegrees = Math.abs(movements.get(i).getScaleDegrees());
-            System.err.println(moveScaleDegrees);
             if (moveScaleDegrees == THIRD) {
                 score.addPenalty(TransitionPenaltyType.MOVE_THIRD);
             } else if (moveScaleDegrees == FOURTH) {

@@ -21,6 +21,12 @@ public class MovementScorerTest extends MusicTestFramework {
         );
     }
 
+    @Test(expected=AssertionError.class)
+    public void testAssertionsEnabled() {
+        assert false;
+        
+    }
+
     @Test
     public void testMovement1(){
         ChordWithContext previous = MusicTestFramework.makeChordWithContext(
@@ -34,8 +40,8 @@ public class MovementScorerTest extends MusicTestFramework {
         );
         
         assertEquals(2, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(TransitionPenaltyType.MOVE_FOURTH) == 1);
-        assertTrue(penaltyCount.get(TransitionPenaltyType.MOVE_FIFTH) == 1);
+        assertTrue(penaltyCount.get(MOVE_FOURTH) == 1);
+        assertTrue(penaltyCount.get(MOVE_FIFTH) == 1);
     }
 
     @Test
@@ -51,7 +57,7 @@ public class MovementScorerTest extends MusicTestFramework {
         );
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(TransitionPenaltyType.MOVE_BIG_BASS) == 1);
+        assertTrue(penaltyCount.get(MOVE_BIG_BASS) == 1);
     }
     
     @Test
@@ -67,8 +73,8 @@ public class MovementScorerTest extends MusicTestFramework {
         );
         
         assertEquals(2, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(TransitionPenaltyType.MOVE_FOURTH) == 1);
-        assertTrue(penaltyCount.get(TransitionPenaltyType.MOVE_BIG) == 1);
+        assertTrue(penaltyCount.get(MOVE_FOURTH) == 1);
+        assertTrue(penaltyCount.get(MOVE_BIG) == 1);
     }
     
 }

@@ -54,6 +54,7 @@ public class MusicTestFramework {
     
     // Note
     public static final Note G5 = new Note(G, 5); 
+    public static final Note F5 = new Note(F, 5);
     public static final Note E5 = new Note(E, 5); 
     public static final Note D5 = new Note(D, 5); 
     public static final Note C5 = new Note(C, 5); 
@@ -64,6 +65,7 @@ public class MusicTestFramework {
     public static final Note G4 = new Note(G, 4); 
     public static final Note F4 = new Note(F, 4); 
     public static final Note E4 = new Note(E, 4); 
+    public static final Note Eb4 = new Note(Eb, 4);
     public static final Note D4 = new Note(D, 4); 
     public static final Note C4 = new Note(C, 4);  
     public static final Note B3 = new Note(B, 3);
@@ -211,6 +213,16 @@ public class MusicTestFramework {
         = TransitionPenaltyType.DOM_SEVEN_RES;
     public static final TransitionPenaltyType MELODIC_INTERVAL
         = TransitionPenaltyType.MELODIC_INTERVAL;
+    public static final TransitionPenaltyType MOVE_FOURTH
+        = TransitionPenaltyType.MOVE_FOURTH;
+    public static final TransitionPenaltyType MOVE_FIFTH
+        = TransitionPenaltyType.MOVE_FIFTH;
+    public static final TransitionPenaltyType MOVE_BIG
+        = TransitionPenaltyType.MOVE_BIG;
+    public static final TransitionPenaltyType MOVE_BIG_BASS
+        = TransitionPenaltyType.MOVE_BIG_BASS;
+    public static final TransitionPenaltyType MOVE_BIG_CADENCE
+        = TransitionPenaltyType.MOVE_BIG_CADENCE;
     public static final TransitionPenaltyType PARALLEL
         = TransitionPenaltyType.PARALLEL;
     
