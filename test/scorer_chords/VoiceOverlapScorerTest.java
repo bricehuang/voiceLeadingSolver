@@ -14,9 +14,7 @@ import test_framework.MusicTestFramework;
 public class VoiceOverlapScorerTest extends MusicTestFramework {
 
     private Map<ChordPenaltyType, Integer> computePenalties(ChordWithContext chord) {
-        return MusicTestFramework.computeChordPenalties(
-            new VoiceOverlapScorer(), chord
-        );
+        return computeChordPenalties(new VoiceOverlapScorer(), chord);
     }
 
     @Test(expected=AssertionError.class)
@@ -27,7 +25,7 @@ public class VoiceOverlapScorerTest extends MusicTestFramework {
 
     @Test
     public void testVoiceOverlap(){
-        ChordWithContext overlap = MusicTestFramework.makeChordWithContext(
+        ChordWithContext overlap = makeChordWithContext(
             C5, C5, E4, G3, C_MAJ_64, C_MAJOR, NO_CONTEXTS
         ); 
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -39,7 +37,7 @@ public class VoiceOverlapScorerTest extends MusicTestFramework {
     
     @Test
     public void testNoVoiceOverlap(){
-        ChordWithContext noOverlap = MusicTestFramework.makeChordWithContext(
+        ChordWithContext noOverlap = makeChordWithContext(
             C5, G4, E4, G3, C_MAJ_64, C_MAJOR, NO_CONTEXTS
         ); 
         Map<ChordPenaltyType, Integer> penaltyCount = 

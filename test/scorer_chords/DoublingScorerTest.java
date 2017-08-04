@@ -14,9 +14,7 @@ import test_framework.MusicTestFramework;
 public class DoublingScorerTest extends MusicTestFramework {
 
     private Map<ChordPenaltyType, Integer> computePenalties(ChordWithContext chord) {
-        return MusicTestFramework.computeChordPenalties(
-            new DoublingScorer(), chord
-        );
+        return computeChordPenalties(new DoublingScorer(), chord);
     }
 
     @Test(expected=AssertionError.class)
@@ -27,7 +25,7 @@ public class DoublingScorerTest extends MusicTestFramework {
 
     @Test
     public void testGoodDoublingSD1(){
-        ChordWithContext doubleSD1 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext doubleSD1 = makeChordWithContext(
             C5, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -38,7 +36,7 @@ public class DoublingScorerTest extends MusicTestFramework {
 
     @Test
     public void testBadDoublingSD2(){
-        ChordWithContext doubleSD2 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext doubleSD2 = makeChordWithContext(
             D5, F4, A3, D3, D_MIN_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -50,7 +48,7 @@ public class DoublingScorerTest extends MusicTestFramework {
 
     @Test
     public void testBadDoublingSD3(){
-        ChordWithContext doubleSD3 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext doubleSD3 = makeChordWithContext(
             E5, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -62,7 +60,7 @@ public class DoublingScorerTest extends MusicTestFramework {
 
     @Test
     public void testGoodDoublingSD4(){
-        ChordWithContext doubleSD4 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext doubleSD4 = makeChordWithContext(
             A4, F4, D4, F3, D_MIN_6, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -73,7 +71,7 @@ public class DoublingScorerTest extends MusicTestFramework {
     
     @Test
     public void testGoodDoublingSD5(){
-        ChordWithContext doubleSD5 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext doubleSD5 = makeChordWithContext(
             B4, D4, G3, G2, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -84,7 +82,7 @@ public class DoublingScorerTest extends MusicTestFramework {
     
     @Test
     public void testTripledSD1(){
-        ChordWithContext tripleSD1 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext tripleSD1 = makeChordWithContext(
             C5, C4, E3, C3, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -96,7 +94,7 @@ public class DoublingScorerTest extends MusicTestFramework {
 
     @Test
     public void testBadDoubleDouble(){
-        ChordWithContext doubleSD1SD3 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext doubleSD1SD3 = makeChordWithContext(
             E5, E4, C4, C3, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );    
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -109,7 +107,7 @@ public class DoublingScorerTest extends MusicTestFramework {
     
     @Test
     public void testDoubleLeadingTone(){
-        ChordWithContext doubleSD7 = MusicTestFramework.makeChordWithContext(
+        ChordWithContext doubleSD7 = makeChordWithContext(
             B4, D4, B3, G3, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );                
         Map<ChordPenaltyType, Integer> penaltyCount = 

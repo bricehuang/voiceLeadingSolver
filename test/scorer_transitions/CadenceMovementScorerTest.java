@@ -16,7 +16,7 @@ public class CadenceMovementScorerTest extends MusicTestFramework {
     private Map<TransitionPenaltyType, Integer> computePenalties(
         ChordWithContext previous, ChordWithContext current
     ) {
-        return MusicTestFramework.computeTransitionPenalties(
+        return computeTransitionPenalties(
             new CadenceMovementScorer(), previous, current
         );
     }

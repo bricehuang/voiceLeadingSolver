@@ -14,9 +14,7 @@ import test_framework.MusicTestFramework;
 public class DoublingCadenceScorerTest extends MusicTestFramework {
     
     private Map<ChordPenaltyType, Integer> computePenalties(ChordWithContext chord) {
-        return MusicTestFramework.computeChordPenalties(
-            new DoublingCadenceScorer(), chord
-        );
+        return computeChordPenalties(new DoublingCadenceScorer(), chord);
     }
 
     @Test(expected=AssertionError.class)
@@ -27,7 +25,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
     
     @Test
     public void testCadenceDoublingIGood(){
-        ChordWithContext goodDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext goodDoublingCadence = makeChordWithContext(
             C5, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -38,7 +36,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
     
     @Test
     public void testCadenceDoublingIBad(){
-        ChordWithContext badDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext badDoublingCadence = makeChordWithContext(
             G4, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -50,7 +48,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
 
     @Test
     public void testCadenceDoublingVGood(){
-        ChordWithContext goodDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext goodDoublingCadence = makeChordWithContext(
             B4, G4, D4, G3, G_MAJ_ROOT, C_MAJOR, CADENTIAL_V
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -61,7 +59,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
     
     @Test
     public void testCadenceDoublingVBad(){
-        ChordWithContext badDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext badDoublingCadence = makeChordWithContext(
             D5, B4, D4, G3, G_MAJ_ROOT, C_MAJOR, CADENTIAL_V
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -73,7 +71,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
     
     @Test
     public void testCadenceDoublingI64Good(){
-        ChordWithContext goodDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext goodDoublingCadence = makeChordWithContext(
             C5, G4, E4, G3, C_MAJ_64, C_MAJOR, CADENTIAL_I64
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -84,7 +82,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
     
     @Test
     public void testCadenceDoublingI64Bad(){
-        ChordWithContext badDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext badDoublingCadence = makeChordWithContext(
             C5, E4, C4, G3, C_MAJ_64, C_MAJOR, CADENTIAL_I64
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -96,7 +94,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
 
     @Test
     public void testCadenceDoublingCadentialPredominantGood(){
-        ChordWithContext goodDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext goodDoublingCadence = makeChordWithContext(
                 D5, A4, F4, F3, D_MIN_6, C_MAJOR, CADENTIAL_PREDOMINANT
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -107,7 +105,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
     
     @Test
     public void testCadenceDoublingCadentialPredominantBad(){
-        ChordWithContext badDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext badDoublingCadence = makeChordWithContext(
             D5, A4, D4, F3, D_MIN_6, C_MAJOR, CADENTIAL_PREDOMINANT
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -119,7 +117,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
 
     @Test
     public void testCadenceDoublingNotCadenceDoubling(){
-        ChordWithContext badDoublingCadence = MusicTestFramework.makeChordWithContext(
+        ChordWithContext badDoublingCadence = makeChordWithContext(
             G4, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 

@@ -26,7 +26,7 @@ public class ChordScorerIntegrationTest extends MusicTestFramework {
     @Test
     public void compositeTest1(){
         // badnesses: voice overlap, bad doubling, bad cadence doubling
-        ChordWithContext chord = MusicTestFramework.makeChordWithContext(
+        ChordWithContext chord = makeChordWithContext(
             C5, E4, E4, G3, C_MAJ_64, C_MAJOR, CADENTIAL_I64
         );
         Map<ChordPenaltyType, Integer> penaltyCounts = 
@@ -41,7 +41,7 @@ public class ChordScorerIntegrationTest extends MusicTestFramework {
     @Test
     public void compositeTest2(){
         // badnesses: not PAC, wrong cadence doubling   
-        ChordWithContext chord = MusicTestFramework.makeChordWithContext(
+        ChordWithContext chord = makeChordWithContext(
             G4, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );
         Map<ChordPenaltyType, Integer> penaltyCounts = 
@@ -55,7 +55,7 @@ public class ChordScorerIntegrationTest extends MusicTestFramework {
     @Test
     public void compositeTest3(){
         // badnesses: omitted 5th   
-        ChordWithContext chord = MusicTestFramework.makeChordWithContext(
+        ChordWithContext chord = makeChordWithContext(
             C5, E4, C4, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );
         Map<ChordPenaltyType, Integer> penaltyCounts =

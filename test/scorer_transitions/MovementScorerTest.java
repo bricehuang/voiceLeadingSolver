@@ -16,7 +16,7 @@ public class MovementScorerTest extends MusicTestFramework {
     private Map<TransitionPenaltyType, Integer> computePenalties(
         ChordWithContext previous, ChordWithContext current
     ) {
-        return MusicTestFramework.computeTransitionPenalties(
+        return computeTransitionPenalties(
             new MovementScorer(), previous, current
         );
     }
@@ -29,10 +29,10 @@ public class MovementScorerTest extends MusicTestFramework {
 
     @Test
     public void testMovement1(){
-        ChordWithContext previous = MusicTestFramework.makeChordWithContext(
+        ChordWithContext previous = makeChordWithContext(
             B4, G4, D4, G2, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
-        ChordWithContext current = MusicTestFramework.makeChordWithContext(
+        ChordWithContext current = makeChordWithContext(
             F4, C4, C4, A2, F_MAJ_6, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCount = computePenalties(
@@ -46,10 +46,10 @@ public class MovementScorerTest extends MusicTestFramework {
 
     @Test
     public void testMovement2(){
-        ChordWithContext previous = MusicTestFramework.makeChordWithContext(
+        ChordWithContext previous = makeChordWithContext(
             B4, G4, D4, G2, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
-        ChordWithContext current = MusicTestFramework.makeChordWithContext(
+        ChordWithContext current = makeChordWithContext(
             C5, G4, E4, C4, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCount = computePenalties(
@@ -62,10 +62,10 @@ public class MovementScorerTest extends MusicTestFramework {
     
     @Test
     public void testMovement3(){
-        ChordWithContext previous = MusicTestFramework.makeChordWithContext(
+        ChordWithContext previous = makeChordWithContext(
             B4, G4, D4, G3, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
-        ChordWithContext current = MusicTestFramework.makeChordWithContext(
+        ChordWithContext current = makeChordWithContext(
             G5, C5, E4, C4, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCount = computePenalties(

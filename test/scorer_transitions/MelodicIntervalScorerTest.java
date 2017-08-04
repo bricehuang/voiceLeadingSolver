@@ -16,7 +16,7 @@ public class MelodicIntervalScorerTest extends MusicTestFramework {
     private Map<TransitionPenaltyType, Integer> computePenalties(
         ChordWithContext previous, ChordWithContext current
     ) {
-        return MusicTestFramework.computeTransitionPenalties(
+        return computeTransitionPenalties(
             new MelodicIntervalScorer(), previous, current
         );
     }
@@ -29,10 +29,10 @@ public class MelodicIntervalScorerTest extends MusicTestFramework {
 
     @Test
     public void testMelodicIntervalGood(){
-        ChordWithContext previous = MusicTestFramework.makeChordWithContext(
+        ChordWithContext previous = makeChordWithContext(
             Ab4, F4, C4, F2, F_MIN_ROOT, C_MAJOR, NO_CONTEXTS
         );
-        ChordWithContext current = MusicTestFramework.makeChordWithContext(
+        ChordWithContext current = makeChordWithContext(
             G4, D4, B3, G2, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCounts = 
@@ -43,10 +43,10 @@ public class MelodicIntervalScorerTest extends MusicTestFramework {
     
     @Test
     public void testMelodicIntervalBad(){
-        ChordWithContext previous = MusicTestFramework.makeChordWithContext(
+        ChordWithContext previous = makeChordWithContext(
             Ab4, F4, C4, F2, F_MIN_ROOT, C_MAJOR, NO_CONTEXTS
         );
-        ChordWithContext current = MusicTestFramework.makeChordWithContext(
+        ChordWithContext current = makeChordWithContext(
             B4, D4, G3, G2, G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCounts = 

@@ -14,9 +14,7 @@ import test_framework.MusicTestFramework;
 public class PacScorerTest extends MusicTestFramework {
 
     private Map<ChordPenaltyType, Integer> computePenalties(ChordWithContext chord) {
-        return MusicTestFramework.computeChordPenalties(
-            new PacScorer(), chord
-        );
+        return computeChordPenalties(new PacScorer(), chord);
     }
 
     @Test(expected=AssertionError.class)
@@ -27,7 +25,7 @@ public class PacScorerTest extends MusicTestFramework {
     
     @Test
     public void testPacGood(){
-        ChordWithContext goodPAC = MusicTestFramework.makeChordWithContext(
+        ChordWithContext goodPAC = makeChordWithContext(
             C5, E4, G3, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );                
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -38,7 +36,7 @@ public class PacScorerTest extends MusicTestFramework {
     
     @Test
     public void testPacBad(){
-        ChordWithContext badPAC = MusicTestFramework.makeChordWithContext(
+        ChordWithContext badPAC = makeChordWithContext(
             E5, G4, C4, C3, C_MAJ_ROOT, C_MAJOR, CADENCE
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
@@ -50,7 +48,7 @@ public class PacScorerTest extends MusicTestFramework {
     
     @Test
     public void testPacNotePac(){
-        ChordWithContext badPAC = MusicTestFramework.makeChordWithContext(
+        ChordWithContext badPAC = makeChordWithContext(
             E5, G4, C4, C3, C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS
         );
         Map<ChordPenaltyType, Integer> penaltyCount = 
