@@ -30,13 +30,13 @@ scorer_chords
 scorer_transitions
 	- TransitionScorer CLEAN (Tests TODO)
 	
-	- CadenceMovementScorer TODO
+	- CadenceMovementScorer CLEAN
 	- Dim7ResolutionScorer TODO
 	- DirectsScorer TODO
 	- Dom7ResolutionScorer TODO
 	- II7SuspensionScorer TODO
 	- MelodicIntervalScorer CLEAN
-	- MovementScorer TODO
+	- MovementScorer CLEAN
 	- NeaploitanResolutionScorer TODO
 	- ParallelsScorer TODO
 	- VoiceCrossingScorer TODO
