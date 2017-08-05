@@ -225,6 +225,8 @@ public class MusicTestFramework {
         = TransitionPenaltyType.MOVE_BIG_CADENCE;
     public static final TransitionPenaltyType PARALLEL
         = TransitionPenaltyType.PARALLEL;
+    public static final TransitionPenaltyType VOICE_CROSSING
+        = TransitionPenaltyType.VOICE_CROSSING;
     
     // Util methods
     public static ChordWithContext makeChordWithContext(

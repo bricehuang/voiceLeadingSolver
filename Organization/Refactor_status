@@ -39,7 +39,7 @@ scorer_transitions
 	- MovementScorer CLEAN
 	- NeaploitanResolutionScorer TODO
 	- ParallelsScorer TODO
-	- VoiceCrossingScorer TODO
+	- VoiceCrossingScorer CLEAN
 solver
 	- BestListDeprecated DEPRECATED
 	- BestProgressionList CLEAN
