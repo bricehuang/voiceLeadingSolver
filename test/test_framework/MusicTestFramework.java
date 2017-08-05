@@ -85,6 +85,7 @@ public class MusicTestFramework {
     public static final Note B2 = new Note(B, 2);
     public static final Note C2 = new Note(C, 2);
     public static final Note A2 = new Note(A, 2);   
+    public static final Note Ab2 = new Note(Ab, 2);   
     public static final Note G2 = new Note(G, 2);   
     public static final Note F2 = new Note(F, 2);   
     public static final Note A1 = new Note(A, 1);
@@ -126,6 +127,8 @@ public class MusicTestFramework {
     // PrimitiveChord
     public static final PrimitiveChord C_MAJ_ROOT 
         = new PrimitiveChord(C, MAJ, 0);
+    public static final PrimitiveChord C_MAJ_6
+        = new PrimitiveChord(C, MAJ, 1);
     public static final PrimitiveChord C_MAJ_64
         = new PrimitiveChord(C, MAJ, 2);
     public static final PrimitiveChord C_MIN_ROOT
@@ -199,7 +202,15 @@ public class MusicTestFramework {
     public static final PrimitiveChord Bb_MAJ_ROOT
         = new PrimitiveChord(Bb, MAJ, 0);
     public static final PrimitiveChord Bb_MAJ_6
-    = new PrimitiveChord(Bb, MAJ, 1);
+        = new PrimitiveChord(Bb, MAJ, 1);
+    public static final PrimitiveChord B_DIM7_ROOT
+        = new PrimitiveChord(B, DIM7, 0);
+    public static final PrimitiveChord B_DIM7_65
+        = new PrimitiveChord(B, DIM7, 1);
+    public static final PrimitiveChord B_DIM7_43
+        = new PrimitiveChord(B, DIM7, 2);
+    public static final PrimitiveChord B_DIM7_42
+        = new PrimitiveChord(B, DIM7, 3);
     
     // ContextTag sets
     public static final Set<ContextTag> APPLIED_DOMINANT 

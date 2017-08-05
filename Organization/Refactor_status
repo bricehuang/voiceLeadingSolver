@@ -31,7 +31,7 @@ scorer_transitions
 	- TransitionScorer CLEAN (Tests TODO)
 	
 	- CadenceMovementScorer CLEAN
-	- Dim7ResolutionScorer TODO
+	- Dim7ResolutionScorer CLEAN
 	- DirectsScorer TODO
 	- Dom7ResolutionScorer CLEAN
 	- II7SuspensionScorer TODO

@@ -21,6 +21,7 @@ public class Dom7ResolutionScorer implements TransitionScorer {
     
     private static final ChordType MAJOR = ChordType.MAJ;
     private static final ChordType MINOR = ChordType.MIN;
+    private static final ChordType DOM_SEVEN = ChordType.DOM7;
 
     private static final BasicInterval P1 = new BasicInterval(0, 0);
     private static final BasicInterval m2 = new BasicInterval(1, 1);
@@ -101,7 +102,7 @@ public class Dom7ResolutionScorer implements TransitionScorer {
     @Override
     public TransitionScoreNew scoreTransition(ChordWithContext previous, ChordWithContext current) {
         TransitionScoreNew score = new TransitionScoreNew();
-        if (previous.getChord().getPrimitiveChord().getType() != ChordType.DOM7){
+        if (previous.getChord().getType() != DOM_SEVEN){
             return score;
         }
         Chord previousChord = previous.getChord();
