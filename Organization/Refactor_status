@@ -58,3 +58,4 @@ solver
 	
 TODO NoteTest was never done ZZZ
 TODO make intersect generic.  Also why doesn't this exist...
+TODO SolverUtils tests

@@ -89,6 +89,32 @@ public class SolverUtils {
         }
         return Collections.unmodifiableList(movements);
     }
+    
+    /**
+     * @param previous previous chord.  Must be a chord with 4 distinct 
+     * notes.  
+     * @param current current chord
+     * @return List of these intervals in order: interval made by chord root, 
+     * by chord 3rd, by chord 5th, by chord 7th  
+     */
+    public static List<Interval> computeVoiceMovementsByPosition(
+        Chord previous, Chord current
+    ) {
+        assert (previous.getPrimitiveChord().numberDistinctNotes() == 4);
+        List<BasicNote> previousBasicNotes = spellBasicNotes(previous);
+        List<Interval> movements = getVoiceMovements(previous, current);
+        Map<BasicNote, Interval> movementsByBasicNote = new HashMap<>();
+        for (int i=0; i<4; i++){
+            movementsByBasicNote.put(
+                previousBasicNotes.get(i), movements.get(i)
+            );
+        }
+        List<Interval> orderedMovements = new ArrayList<>();
+        for (BasicNote basicNote : previous.getPrimitiveChord().noteList()){
+            orderedMovements.add(movementsByBasicNote.get(basicNote));
+        }
+        return Collections.unmodifiableList(orderedMovements);        
+    }
 
     // TODO make this generic?
     public static Set<ContextTag> intersect(Set<ContextTag> set1, Set<ContextTag>set2){

@@ -3,10 +3,12 @@ package solver;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
 import chords.Chord;
+import music.Interval;
 import test_framework.MusicTestFramework;
 
 public class SolverUtilsTest extends MusicTestFramework {
@@ -45,6 +47,21 @@ public class SolverUtilsTest extends MusicTestFramework {
             Arrays.asList(Bb, E, G, C), 
             SolverUtils.spellBasicNotes(C_DOM7_ROOT_REALIZED)
         );
+    }
+    
+    @Test
+    public void testComputeVoiceMovementsByPosition() {
+        Chord previous = new Chord(B4, F4, D4, G3, G_DOM7_ROOT);
+        Chord current = new Chord(C5, E4, C4, C3, C_MAJ_ROOT);
+        List<Interval> orderedMovements = 
+            SolverUtils.computeVoiceMovementsByPosition(
+                previous, current
+            );
+        List<Interval> expectedOrderedMovements = 
+            Arrays.asList(
+                DN_PFT_5TH, UP_MIN_2ND, DN_MAJ_2ND, DN_MIN_2ND  
+            );
+        assertEquals(expectedOrderedMovements, orderedMovements);
     }
     
 

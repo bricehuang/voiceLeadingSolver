@@ -13,6 +13,7 @@ import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicInterval;
 import music.BasicNote;
+import music.Interval;
 import music.Key;
 import music.Note;
 import score_data.ChordPenaltyType;
@@ -81,7 +82,6 @@ public class MusicTestFramework {
     public static final Note G2 = new Note(G, 2);   
     public static final Note F2 = new Note(F, 2);   
     public static final Note A1 = new Note(A, 1);
-
     
     // Key
     public static final Key C_MAJOR = new Key(C, true);
@@ -94,11 +94,18 @@ public class MusicTestFramework {
     
     // BasicInterval
     public static final BasicInterval PFT_UNISON = new BasicInterval(0,0);
+    public static final BasicInterval MIN_2ND = new BasicInterval(1,1);
     public static final BasicInterval MAJ_2ND = new BasicInterval(1,2);
     public static final BasicInterval PFT_4TH = new BasicInterval(3,5);
     public static final BasicInterval DIMDIM_5TH = new BasicInterval(4,5);
     public static final BasicInterval PFT_5TH = new BasicInterval(4,7);
     public static final BasicInterval DIM_6TH = new BasicInterval(5,7);
+    
+    // Interval
+    public static final Interval UP_MIN_2ND = new Interval(MIN_2ND, 0, true);
+    public static final Interval DN_MIN_2ND = new Interval(MIN_2ND, 0, false);
+    public static final Interval DN_MAJ_2ND = new Interval(MAJ_2ND, 0, false);
+    public static final Interval DN_PFT_5TH = new Interval(PFT_5TH, 0, false);
     
     // ChordType
     public static final ChordType MAJ = ChordType.MAJ;
