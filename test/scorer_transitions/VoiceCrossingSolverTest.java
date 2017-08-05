@@ -37,7 +37,7 @@ public class VoiceCrossingSolverTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);
         
-        assertEquals(1, penaltyCount.keySet());
+        assertEquals(1, penaltyCount.keySet().size());
         assertTrue(penaltyCount.get(VOICE_CROSSING) == 1);
     }
     
@@ -52,7 +52,7 @@ public class VoiceCrossingSolverTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);
         
-        assertEquals(0, penaltyCount.keySet());
+        assertEquals(0, penaltyCount.keySet().size());
     }    
     
 }

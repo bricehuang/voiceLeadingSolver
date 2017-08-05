@@ -33,7 +33,7 @@ scorer_transitions
 	- CadenceMovementScorer CLEAN
 	- Dim7ResolutionScorer TODO
 	- DirectsScorer TODO
-	- Dom7ResolutionScorer TODO
+	- Dom7ResolutionScorer CLEAN
 	- II7SuspensionScorer TODO
 	- MelodicIntervalScorer CLEAN
 	- MovementScorer CLEAN
@@ -59,3 +59,5 @@ solver
 TODO NoteTest was never done ZZZ
 TODO make intersect generic.  Also why doesn't this exist...
 TODO SolverUtils tests
+TODO Chord, Transition penalty type something abstract class
+TODO compute_penalties should have less copy pasta

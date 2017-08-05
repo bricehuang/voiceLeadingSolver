@@ -26,10 +26,10 @@ public class VoiceCrossingScorer implements TransitionScorer {
         List<Note> previousNotes = SolverUtils.spellNotes(previous.getChord());
         List<Note> currentNotes = SolverUtils.spellNotes(current.getChord());
         for (int i=0; i<3; i++){
-            if (isHigherOrEqualTo(previousNotes.get(i), currentNotes.get(i+1))){
+            if (isHigherOrEqualTo(previousNotes.get(i+1), currentNotes.get(i))){
                 score.addPenalty(TransitionPenaltyType.VOICE_CROSSING);
             }
-            if (isHigherOrEqualTo(currentNotes.get(i), previousNotes.get(i+1))){
+            if (isHigherOrEqualTo(currentNotes.get(i+1), previousNotes.get(i))){
                 score.addPenalty(TransitionPenaltyType.VOICE_CROSSING);
             }            
         }

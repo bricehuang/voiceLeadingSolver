@@ -58,25 +58,31 @@ public class MusicTestFramework {
     public static final Note F5 = new Note(F, 5);
     public static final Note E5 = new Note(E, 5); 
     public static final Note D5 = new Note(D, 5); 
+    public static final Note Cs5 = new Note(Cs, 5); 
     public static final Note C5 = new Note(C, 5); 
     public static final Note B4 = new Note(B, 4); 
     public static final Note Bb4 = new Note(Bb, 4); 
     public static final Note A4 = new Note(A, 4); 
     public static final Note Ab4 = new Note(Ab, 4); 
+    public static final Note Gs4 = new Note(Gs, 4); 
     public static final Note G4 = new Note(G, 4); 
     public static final Note F4 = new Note(F, 4); 
     public static final Note E4 = new Note(E, 4); 
     public static final Note Eb4 = new Note(Eb, 4);
     public static final Note D4 = new Note(D, 4); 
+    public static final Note Cs4 = new Note(Cs, 4);
     public static final Note C4 = new Note(C, 4);  
     public static final Note B3 = new Note(B, 3);
     public static final Note A3 = new Note(A, 3);
+    public static final Note Gs3 = new Note(Gs, 3);
     public static final Note G3 = new Note(G, 3); 
     public static final Note F3 = new Note(F, 3);
     public static final Note E3 = new Note(E, 3);
     public static final Note Eb3 = new Note(Eb, 3);
     public static final Note D3 = new Note(D, 3);
+    public static final Note Cs3 = new Note(Cs, 3);
     public static final Note C3 = new Note(C, 3);
+    public static final Note B2 = new Note(B, 2);
     public static final Note C2 = new Note(C, 2);
     public static final Note A2 = new Note(A, 2);   
     public static final Note G2 = new Note(G, 2);   
@@ -90,6 +96,8 @@ public class MusicTestFramework {
     public static final Key D_MAJOR = new Key(D, true);
     public static final Key G_MAJOR = new Key(G, true);
     public static final Key G_MINOR = new Key(G, false);
+    public static final Key A_MAJOR = new Key(A, true);
+    public static final Key A_MINOR = new Key(A, false);
     public static final Key Bb_MAJOR = new Key(Bb, true);
     
     // BasicInterval
@@ -144,8 +152,18 @@ public class MusicTestFramework {
         = new PrimitiveChord(D, DOM7, 0);
     public static final PrimitiveChord Eb_DOM7_42
         = new PrimitiveChord(Eb, DOM7, 3);
+    public static final PrimitiveChord E_MAJ_ROOT
+        = new PrimitiveChord(E, MAJ, 0);
     public static final PrimitiveChord E_MIN_ROOT
         = new PrimitiveChord(E, MIN, 0);
+    public static final PrimitiveChord E_DOM7_ROOT 
+        = new PrimitiveChord(E, DOM7, 0);
+    public static final PrimitiveChord E_DOM7_65
+        = new PrimitiveChord(E, DOM7, 1);
+    public static final PrimitiveChord E_DOM7_43
+        = new PrimitiveChord(E, DOM7, 2);
+    public static final PrimitiveChord E_DOM7_42 
+        = new PrimitiveChord(E, DOM7, 3);
     public static final PrimitiveChord F_MAJ_ROOT 
         = new PrimitiveChord(F, MAJ, 0);
     public static final PrimitiveChord F_MAJ_6 
@@ -168,6 +186,14 @@ public class MusicTestFramework {
         = new PrimitiveChord(Ab, MAJ, 0);
     public static final PrimitiveChord Ab_DOM7_ROOT 
         = new PrimitiveChord(Ab, DOM7, 0);
+    public static final PrimitiveChord A_MAJ_ROOT  
+        = new PrimitiveChord(A, MAJ, 0);
+    public static final PrimitiveChord A_MAJ_6  
+        = new PrimitiveChord(A, MAJ, 1);
+    public static final PrimitiveChord A_MIN_ROOT  
+        = new PrimitiveChord(A, MIN, 0);
+    public static final PrimitiveChord A_MIN_6  
+        = new PrimitiveChord(A, MIN, 1);
     public static final PrimitiveChord A_MIN7_ROOT  
         = new PrimitiveChord(A, MIN7, 0);
     public static final PrimitiveChord Bb_MAJ_ROOT
