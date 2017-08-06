@@ -5,7 +5,7 @@ import java.util.List;
 import chord_data.ChordWithContext;
 import music.Interval;
 import score_data.TransitionPenaltyType;
-import score_data.TransitionScoreNew;
+import score_data.TransitionScore;
 import solver.SolverUtils;
 
 public class MovementScorer implements TransitionScorer {
@@ -16,8 +16,8 @@ public class MovementScorer implements TransitionScorer {
     private static final int OCTAVE = 7; 
 
     @Override
-    public TransitionScoreNew scoreTransition(ChordWithContext previous, ChordWithContext current) {
-        TransitionScoreNew score = new TransitionScoreNew();
+    public TransitionScore scoreTransition(ChordWithContext previous, ChordWithContext current) {
+        TransitionScore score = new TransitionScore();
         List<Interval> movements = SolverUtils.getVoiceMovements(
             previous.getChord(), current.getChord()
         );

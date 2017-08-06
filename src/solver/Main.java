@@ -40,7 +40,7 @@ public class Main {
                 System.out.println(
                     "Progression " + (i+1) + ":\n" 
                     + progression.toString() + "\n\n"
-                    + SequencerNew.getPenaltyReport(progression)
+                    + Sequencer.getPenaltyReport(progression)
                 );
             }
         }

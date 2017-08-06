@@ -8,10 +8,10 @@ import java.util.Map;
 import org.junit.Test;
 
 import score_data.TransitionPenaltyType;
-import score_data.TransitionScoreNew;
+import score_data.TransitionScore;
 import test_framework.MusicTestFramework;
 
-public class TransitionScoreTestNew extends MusicTestFramework {
+public class TransitionScoreTest extends MusicTestFramework {
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -21,7 +21,7 @@ public class TransitionScoreTestNew extends MusicTestFramework {
 
     @Test
     public void testBasic(){
-        TransitionScoreNew score = new TransitionScoreNew();
+        TransitionScore score = new TransitionScore();
         assertEquals(0, score.totalScore());
         assertEquals("Total Penalty: 0\n", score.toString());
         assertEquals(0, score.getPenaltyCount().size());
@@ -29,7 +29,7 @@ public class TransitionScoreTestNew extends MusicTestFramework {
     
     @Test
     public void testAddPenalty(){
-        TransitionScoreNew score = new TransitionScoreNew();
+        TransitionScore score = new TransitionScore();
         score.addPenalty(PARALLEL);
         
         assertEquals(
@@ -43,15 +43,15 @@ public class TransitionScoreTestNew extends MusicTestFramework {
 
     @Test
     public void testUpdate(){
-        TransitionScoreNew score = new TransitionScoreNew();
+        TransitionScore score = new TransitionScore();
     		
-        TransitionScoreNew update1 = new TransitionScoreNew();
+        TransitionScore update1 = new TransitionScore();
         update1.addPenalty(PARALLEL);
         update1.addPenalty(DIRECT);
         update1.addPenalty(DOM_SEVEN_RES);
         score.updatePenalty(update1);
         
-        TransitionScoreNew update2 = new TransitionScoreNew();
+        TransitionScore update2 = new TransitionScore();
         update2.addPenalty(DOM_SEVEN_RES);
         update2.addPenalty(DIM_SEVEN_RES);
         score.updatePenalty(update2);

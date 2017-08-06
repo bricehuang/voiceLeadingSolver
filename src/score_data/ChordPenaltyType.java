@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * A class representing all possible penalties on a chord
  */
-public enum ChordPenaltyType implements PenaltyType {
+public enum ChordPenaltyType {
     BAD_DOUBLING, DOUBLE_DOUBLING, BAD_TRIPLING, OMITTED_FIFTH, DOUBLED_LEADING_TONE, 
     VOICE_OVERLAP, 
     CADENCE_DOUBLING, 
@@ -41,7 +41,6 @@ public enum ChordPenaltyType implements PenaltyType {
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
     }
     
-    @Override
     public int value(){
         return PENALTIES.get(this);
     }

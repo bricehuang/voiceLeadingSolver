@@ -8,6 +8,9 @@ Features:
 
 Random tech debt:     
 	- test Note
+	- test ChordWithContext
+	- text PrimitiveChordWithContext
+	- test ChordProgressionWithContext
 	- test TransitionScorer
 	- test SolverUtils
 	- refactor Parser / move to own package

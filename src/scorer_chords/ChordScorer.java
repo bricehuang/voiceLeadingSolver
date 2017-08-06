@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import chord_data.ChordWithContext;
-import score_data.ChordScoreNew;
+import score_data.ChordScore;
 
 /**
  * Interface for scorers that take score a single chord.  
@@ -24,13 +24,13 @@ public interface ChordScorer {
      * @return a Map<ChordPenaltyType, Integer> mapping a each ChordPenalty to the 
      * number of violations that occurred.  
      */
-    public ChordScoreNew scoreChord(ChordWithContext chordAndContext);
+    public ChordScore scoreChord(ChordWithContext chordAndContext);
     
     /**
      * @return a ChordScore of all penalties associated with this chord
      */
-    public static ChordScoreNew score(ChordWithContext chordAndContext) {
-        ChordScoreNew score = new ChordScoreNew();
+    public static ChordScore score(ChordWithContext chordAndContext) {
+        ChordScore score = new ChordScore();
         for (ChordScorer chordScorer: ALL_CHORD_SCORERS) {
             score.updatePenalty(chordScorer.scoreChord(chordAndContext));
         }

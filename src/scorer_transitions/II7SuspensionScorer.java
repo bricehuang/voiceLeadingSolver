@@ -9,7 +9,7 @@ import music.BasicInterval;
 import music.Interval;
 import music.Key;
 import score_data.TransitionPenaltyType;
-import score_data.TransitionScoreNew;
+import score_data.TransitionScore;
 import solver.SolverUtils;
 
 public class II7SuspensionScorer implements TransitionScorer {
@@ -23,8 +23,8 @@ public class II7SuspensionScorer implements TransitionScorer {
     private static final Interval UNIS = new Interval(P1, 0, true);
 
     @Override
-    public TransitionScoreNew scoreTransition(ChordWithContext previous, ChordWithContext current) {
-        TransitionScoreNew score = new TransitionScoreNew();
+    public TransitionScore scoreTransition(ChordWithContext previous, ChordWithContext current) {
+        TransitionScore score = new TransitionScore();
         
         // Return early if this doesn't apply
         if (! previous.getContextTags().contains(ContextTag.CADENTIAL_PREDOMINANT) || 

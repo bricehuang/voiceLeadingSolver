@@ -14,7 +14,7 @@ import chords.ChordType;
 import music.BasicInterval;
 import music.Interval;
 import score_data.TransitionPenaltyType;
-import score_data.TransitionScoreNew;
+import score_data.TransitionScore;
 import solver.SolverUtils;
 
 public class Dom7ResolutionScorer implements TransitionScorer {
@@ -100,8 +100,8 @@ public class Dom7ResolutionScorer implements TransitionScorer {
     }
     
     @Override
-    public TransitionScoreNew scoreTransition(ChordWithContext previous, ChordWithContext current) {
-        TransitionScoreNew score = new TransitionScoreNew();
+    public TransitionScore scoreTransition(ChordWithContext previous, ChordWithContext current) {
+        TransitionScore score = new TransitionScore();
         if (previous.getChord().getType() != DOM_SEVEN){
             return score;
         }

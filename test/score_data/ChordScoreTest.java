@@ -8,10 +8,10 @@ import java.util.Map;
 import org.junit.Test;
 
 import score_data.ChordPenaltyType;
-import score_data.ChordScoreNew;
+import score_data.ChordScore;
 import test_framework.MusicTestFramework;
 
-public class ChordScoreTestNew extends MusicTestFramework {
+public class ChordScoreTest extends MusicTestFramework {
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -21,7 +21,7 @@ public class ChordScoreTestNew extends MusicTestFramework {
 
     @Test
     public void testBasic(){
-        ChordScoreNew score = new ChordScoreNew();
+        ChordScore score = new ChordScore();
         assertEquals(0, score.totalScore());
         assertEquals("Total Penalty: 0\n", score.toString());
         assertEquals(0, score.getPenaltyCount().size());
@@ -29,7 +29,7 @@ public class ChordScoreTestNew extends MusicTestFramework {
     
     @Test
     public void testAddPenalty(){
-        ChordScoreNew score = new ChordScoreNew();
+        ChordScore score = new ChordScore();
         score.addPenalty(DOUBLED_LEADING_TONE);
         
         assertEquals(
@@ -43,15 +43,15 @@ public class ChordScoreTestNew extends MusicTestFramework {
 
     @Test
     public void testUpdate(){
-		ChordScoreNew score = new ChordScoreNew();
+		ChordScore score = new ChordScore();
     		
-        ChordScoreNew update1 = new ChordScoreNew();
+        ChordScore update1 = new ChordScore();
         update1.addPenalty(DOUBLED_LEADING_TONE);
         update1.addPenalty(DOUBLE_DOUBLING);
         update1.addPenalty(BAD_TRIPLING);
         score.updatePenalty(update1);
         
-        ChordScoreNew update2 = new ChordScoreNew();
+        ChordScore update2 = new ChordScore();
         update2.addPenalty(BAD_TRIPLING);
         update2.addPenalty(CADENCE_DOUBLING);
         score.updatePenalty(update2);

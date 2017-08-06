@@ -12,7 +12,7 @@ import chords.Chord;
 import music.BasicNote;
 import music.Key;
 import score_data.ChordPenaltyType;
-import score_data.ChordScoreNew;
+import score_data.ChordScore;
 import solver.SolverUtils;
 
 public class DoublingScorer implements ChordScorer {
@@ -24,11 +24,11 @@ public class DoublingScorer implements ChordScorer {
     private static final Integer LEADING_TONE = 7;
 
     @Override
-    public ChordScoreNew scoreChord(ChordWithContext chordAndContext) {
+    public ChordScore scoreChord(ChordWithContext chordAndContext) {
         Chord chord = chordAndContext.getChord();
         Key key = chordAndContext.getKey();
         if (chord.getType().numberDistinctNotes() == 4) {
-            return new ChordScoreNew();
+            return new ChordScore();
         }
          
         Map<BasicNote, Integer> noteCounts  = SolverUtils.countBasicNotes(chord);
@@ -38,7 +38,7 @@ public class DoublingScorer implements ChordScorer {
         BasicNote third = basicNotes.get(1);
         BasicNote fifth = basicNotes.get(2); 
         if (! noteCounts.keySet().contains(fifth)) {
-            ChordScoreNew score = new ChordScoreNew(); 
+            ChordScore score = new ChordScore(); 
             score.addPenalty(ChordPenaltyType.OMITTED_FIFTH);
             if (noteCounts.get(root) == 2 && noteCounts.get(third) == 2) {
                 score.addPenalty(ChordPenaltyType.DOUBLE_DOUBLING);
@@ -53,7 +53,7 @@ public class DoublingScorer implements ChordScorer {
             }
             return score;
         } else {
-            ChordScoreNew score = new ChordScoreNew(); 
+            ChordScore score = new ChordScore(); 
             Set<BasicNote> doubledNotes = SolverUtils.findDoubledOrMoreNotes(chord);
             assert (doubledNotes.size() == 1);
             

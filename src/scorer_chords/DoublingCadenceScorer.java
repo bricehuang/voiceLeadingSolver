@@ -10,7 +10,7 @@ import chord_data.ContextTag;
 import chords.Chord;
 import music.BasicNote;
 import score_data.ChordPenaltyType;
-import score_data.ChordScoreNew;
+import score_data.ChordScore;
 import solver.SolverUtils;
 
 public class DoublingCadenceScorer implements ChordScorer {
@@ -26,7 +26,7 @@ public class DoublingCadenceScorer implements ChordScorer {
     }
         
     @Override
-    public ChordScoreNew scoreChord(ChordWithContext chordAndContext) {
+    public ChordScore scoreChord(ChordWithContext chordAndContext) {
         Chord chord = chordAndContext.getChord();
         Set<ContextTag> relevantContexts = SolverUtils.intersect(
             chordAndContext.getContextTags(), PROPER_DOUBLING.keySet()
@@ -44,7 +44,7 @@ public class DoublingCadenceScorer implements ChordScorer {
             Set<BasicNote> doubledOrMoreNotes = 
                 SolverUtils.findDoubledOrMoreNotes(chord);
             
-            ChordScoreNew score = new ChordScoreNew();
+            ChordScore score = new ChordScore();
             for (BasicNote doubledNote : doubledOrMoreNotes){
                 if (! doubledNote.equals(expectedDoubledNote)){
                     score.addPenalty(ChordPenaltyType.CADENCE_DOUBLING);
@@ -52,7 +52,7 @@ public class DoublingCadenceScorer implements ChordScorer {
             }
             return score;
         } else {
-            return new ChordScoreNew();
+            return new ChordScore();
         }
     }
 

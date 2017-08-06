@@ -9,7 +9,7 @@ import chord_data.ChordProgressionWithContext;
 import chord_data.PrimitiveChordWithContext;
 import test_framework.MusicTestFramework;
 
-public class SolverTestNew extends MusicTestFramework {
+public class SolverTest extends MusicTestFramework {
     
     private static final boolean DEBUG = true;
         
@@ -21,7 +21,7 @@ public class SolverTestNew extends MusicTestFramework {
     private static void outputEvaluation(ChordProgressionWithContext progression){
         if (DEBUG){
             System.err.println("Evaluating:\n"+progression.toString()+"\n");
-            System.err.println(SequencerNew.getPenaltyReport(progression));
+            System.err.println(Sequencer.getPenaltyReport(progression));
         }
     }
     

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import chord_data.ChordWithContext;
-import score_data.TransitionScoreNew;
+import score_data.TransitionScore;
 
 /**
  * Interface for scorers that take score a transition between two chords.  
@@ -31,15 +31,15 @@ public interface TransitionScorer {
      * @return a Map<ChordPenaltyType, Integer> mapping a each ChordPenalty to the 
      * number of violations that occurred.  
      */
-    public TransitionScoreNew scoreTransition(
+    public TransitionScore scoreTransition(
         ChordWithContext previous, ChordWithContext current
     );
     
     /**
      * @return a list of all chord scorers
      */
-    public static TransitionScoreNew score(ChordWithContext previous, ChordWithContext current){
-        TransitionScoreNew score = new TransitionScoreNew();
+    public static TransitionScore score(ChordWithContext previous, ChordWithContext current){
+        TransitionScore score = new TransitionScore();
         for (TransitionScorer transitionScorer: ALL_TRANSITION_SCORERS) {
             score.updatePenalty(transitionScorer.scoreTransition(previous, current));
         }

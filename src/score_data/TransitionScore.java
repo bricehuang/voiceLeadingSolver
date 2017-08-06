@@ -7,9 +7,9 @@ import java.util.Map;
 /**
  * A class that represents the score of a chord
  */
-public class ChordScoreNew {
+public class TransitionScore {
 
-    private final Map<ChordPenaltyType, Integer> penaltyCount = new HashMap<>();
+    private final Map<TransitionPenaltyType, Integer> penaltyCount = new HashMap<>();
     private int totalPenalty;
     
     /*
@@ -28,13 +28,13 @@ public class ChordScoreNew {
      * If debug flag is on, prints a summary of penalties when total penalty
      * is requested. 
      */
-    public ChordScoreNew(){
+    public TransitionScore(){
         checkRep();
     }
     
     private void checkRep(){
         int computedTotalPenalty = 0;
-        for (ChordPenaltyType penalty : penaltyCount.keySet()){
+        for (TransitionPenaltyType penalty : penaltyCount.keySet()){
             assert(penaltyCount.get(penalty) > 0);
             computedTotalPenalty += penaltyCount.get(penalty) * penalty.value();
         }
@@ -45,7 +45,7 @@ public class ChordScoreNew {
      * Adds a single penalty to the score.  
      * @param penalty
      */
-    public void addPenalty(ChordPenaltyType penalty){
+    public void addPenalty(TransitionPenaltyType penalty){
         if (!penaltyCount.keySet().contains(penalty)) {
             penaltyCount.put(penalty, 0);
         }
@@ -55,12 +55,12 @@ public class ChordScoreNew {
     }
     
     /**
-     * Mutator.  Adds the contents of a ChordScoreNew to the score
+     * Mutator.  Adds the contents of a TransitionScoreNew to the score
      * @param penalty a penalty type
      */
-    public void updatePenalty(ChordScoreNew updateScore){
-        Map<ChordPenaltyType, Integer> update = updateScore.getPenaltyCount(); 
-		for (ChordPenaltyType penalty: update.keySet()) {
+    public void updatePenalty(TransitionScore updateScore){
+        Map<TransitionPenaltyType, Integer> update = updateScore.getPenaltyCount(); 
+		for (TransitionPenaltyType penalty: update.keySet()) {
 			if (!penaltyCount.keySet().contains(penalty)) {
 				penaltyCount.put(penalty, 0);
 			}
@@ -85,7 +85,7 @@ public class ChordScoreNew {
      * Gets the penalty counts of this transition
      * @return penalty counts of this transition
      */
-    public Map<ChordPenaltyType, Integer> getPenaltyCount(){
+    public Map<TransitionPenaltyType, Integer> getPenaltyCount(){
         return Collections.unmodifiableMap(penaltyCount);
     }
     
@@ -97,7 +97,7 @@ public class ChordScoreNew {
     @Override
     public String toString(){
         String stringRep = "";
-        for (ChordPenaltyType penalty : penaltyCount.keySet()){
+        for (TransitionPenaltyType penalty : penaltyCount.keySet()){
             String penaltyDescription = penalty.toString() + ": " 
                     + penaltyCount.get(penalty)
                     + ".  Score: "

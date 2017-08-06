@@ -6,12 +6,12 @@ import java.util.Set;
 
 import chord_data.ChordProgressionWithContext;
 import chord_data.ChordWithContext;
-import score_data.ChordScoreNew;
-import score_data.TransitionScoreNew;
+import score_data.ChordScore;
+import score_data.TransitionScore;
 import scorer_chords.ChordScorer;
 import scorer_transitions.TransitionScorer;
 
-public class SequencerNew {
+public class Sequencer {
     
     /**
      * Sequences the first chord
@@ -26,7 +26,7 @@ public class SequencerNew {
         for (ChordWithContext chordAndContext : chordsAndContexts){
             ChordProgressionWithContext progression = 
                 ChordProgressionWithContext.empty().append(chordAndContext);
-            ChordScoreNew chordScore = ChordScorer.score(chordAndContext);
+            ChordScore chordScore = ChordScorer.score(chordAndContext);
             best.addProgression(
                 new ScoredProgression(progression, chordScore.totalScore())
             );
@@ -48,10 +48,10 @@ public class SequencerNew {
     ){
         BestProgressionsByLast best = new BestProgressionsByLast();
         for (ChordWithContext currentChord : chordsAndContexts){
-            ChordScoreNew chordScore = ChordScorer.score(currentChord);
+            ChordScore chordScore = ChordScorer.score(currentChord);
             
             for (ChordWithContext previousChord : previousBest.getEndingChords()){
-                TransitionScoreNew transitionScore = TransitionScorer.score(
+                TransitionScore transitionScore = TransitionScorer.score(
                     previousChord, currentChord
                 );
                 

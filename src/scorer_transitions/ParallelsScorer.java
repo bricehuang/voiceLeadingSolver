@@ -10,7 +10,7 @@ import chord_data.ChordWithContext;
 import music.BasicInterval; 
 import music.BasicNote;
 import score_data.TransitionPenaltyType;
-import score_data.TransitionScoreNew;
+import score_data.TransitionScore;
 import solver.SolverUtils;
 
 public class ParallelsScorer implements TransitionScorer {
@@ -40,10 +40,10 @@ public class ParallelsScorer implements TransitionScorer {
     }
 
     @Override
-    public TransitionScoreNew scoreTransition(
+    public TransitionScore scoreTransition(
         ChordWithContext previous, ChordWithContext current
     ) {
-        TransitionScoreNew score = new TransitionScoreNew();
+        TransitionScore score = new TransitionScore();
         List<BasicNote> previousNotes = SolverUtils.spellBasicNotes(
             previous.getChord()
         );

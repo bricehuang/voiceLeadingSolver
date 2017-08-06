@@ -5,7 +5,7 @@ import java.util.List;
 import chord_data.ChordWithContext;
 import music.Note;
 import score_data.TransitionPenaltyType;
-import score_data.TransitionScoreNew;
+import score_data.TransitionScore;
 import solver.SolverUtils;
 
 public class VoiceCrossingScorer implements TransitionScorer {
@@ -21,8 +21,8 @@ public class VoiceCrossingScorer implements TransitionScorer {
     }
 
     @Override
-    public TransitionScoreNew scoreTransition(ChordWithContext previous, ChordWithContext current) {
-        TransitionScoreNew score = new TransitionScoreNew();
+    public TransitionScore scoreTransition(ChordWithContext previous, ChordWithContext current) {
+        TransitionScore score = new TransitionScore();
         List<Note> previousNotes = SolverUtils.spellNotes(previous.getChord());
         List<Note> currentNotes = SolverUtils.spellNotes(current.getChord());
         for (int i=0; i<3; i++){

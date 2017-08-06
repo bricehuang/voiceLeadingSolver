@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * A class representing all possible penalties on transitions
  */
-public enum TransitionPenaltyType implements PenaltyType {
+public enum TransitionPenaltyType {
     MOVE_THIRD, MOVE_FOURTH, MOVE_FIFTH, MOVE_BIG, MOVE_BIG_BASS, 
     PARALLEL, DIRECT,  
     MELODIC_INTERVAL, VOICE_CROSSING, 
@@ -55,7 +55,6 @@ public enum TransitionPenaltyType implements PenaltyType {
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
     }
     
-    @Override
     public int value(){
         return PENALTIES.get(this);
     }

@@ -16,7 +16,7 @@ public class Solver {
     public static List<ChordProgressionWithContext> solve(
         List<PrimitiveChordWithContext> primitiveChordsAndContexts
     ){
-        return SequencerNew.findBestChordProgressions(
+        return Sequencer.findBestChordProgressions(
             ChordGenerator.generateChordsWithContext(
                 primitiveChordsAndContexts
             )
