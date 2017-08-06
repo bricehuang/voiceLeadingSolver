@@ -32,7 +32,7 @@ public class Main {
     public static List<ChordProgressionWithContext> solve(String in, boolean report, int maxReport){
         List<PrimitiveChordWithContext> parsedInput = Parser.parse(in);
         List<ChordProgressionWithContext> bestProgressions = 
-            SolverNew.solve(parsedInput);
+            Solver.solve(parsedInput);
         if (report){
             System.out.println("Results report on input: \n" + in + "\n");
             for (int i=0; i<Math.min(maxReport, bestProgressions.size()); i++){

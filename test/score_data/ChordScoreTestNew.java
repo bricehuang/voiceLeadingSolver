@@ -1,4 +1,4 @@
-package scorer;
+package score_data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

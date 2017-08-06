@@ -213,19 +213,5 @@ class ChordGenerator {
     		}
     		return Collections.unmodifiableList(voicingsWithContext);
     }
-    
-    /**
-     * @param inputChords a list of PrimitiveChords 
-     * @return an unmodifiable list of unmodifiable sets of Chords 
-     * corresponding to all the ways the PrimitiveChords in the input
-     * can be sung
-     */
-    public static List<Set<Chord>> generateChordsDeprecated(
-            List<PrimitiveChord> inputChords){
-        List<Set<Chord>> sungChords = new ArrayList<>();
-        for (PrimitiveChord primitive : inputChords){
-            sungChords.add(primitiveToChords(primitive));
-        }
-        return Collections.unmodifiableList(sungChords);
-    }
+
 }

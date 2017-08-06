@@ -1,25 +1,9 @@
 chord_data ALL CLEAN
-chords ALL CLEAN OR MARKED DEPRECATED
+chords ALL CLEAN
 music ALL CLEAN
 player
 	- ProgressionPlayer DIRTY
 score_data ALL CLEAN
-scorer 
-	- Doubling DIRTY
-	- PacDeprecated DEPRECATED
-	- DoublingInCadence DIRTY
-	- VoiceOverlap DIRTY
-
-	- CadenceSmallMovement DIRTY
-	- II7Suspension DIRTY
-	- MelodicIntervals DIRTY
-	- NeapolitanResolution DIRTY
-	- ParallelsDirects DIRTY
-	- SevenChordResolution DIRTY 
-	- SmallMovement DIRTY
-	- VoiceCrossing DIRTY
-	
-	- Scorer DIRTY
 scorer_chords
 	- ChordScorer CLEAN
 	
@@ -41,20 +25,15 @@ scorer_transitions
 	- ParallelsScorer CLEAN
 	- VoiceCrossingScorer CLEAN
 solver
-	- BestListDeprecated DEPRECATED
 	- BestProgressionList CLEAN
 	- BestProgressionsByLast CLEAN
-	- ChordGenerator CLEAN WITH DEPRECATED METHODS MARKED
-	- ChordProgWithScoreDeprecated DEPRECATED
+	- ChordGenerator CLEAN (possibly refactor internally more?)
 	- Main DIRTY (move to own package?)
 	- Parser NEEDS REFACTORING (move to own package?) 
 	- ScoredProgression CLEAN
-	- Sequencer DEPRECATED
 	- SequencerNew CLEAN 
-	- Solver DEPRECATED
-	- SolverNew CLEAN 
+	- Solver CLEAN 
 	- SolverUtils CLEAN
-	- SortedFiniteProgListDeprecated DEPRECATED
 	
 TODO NoteTest was never done ZZZ
 TODO make intersect generic.  Also why doesn't this exist...

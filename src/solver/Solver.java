@@ -5,7 +5,7 @@ import java.util.List;
 import chord_data.ChordProgressionWithContext;
 import chord_data.PrimitiveChordWithContext;
 
-public class SolverNew {
+public class Solver {
     
     /**
      * Finds the best chord progressions, post parsing

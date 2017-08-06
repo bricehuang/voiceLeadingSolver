@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import chord_data.ChordWithContext;
 import chord_data.PrimitiveChordWithContext;
-import chords.Chord;
 import test_framework.MusicTestFramework;
 
 public class ChordGeneratorTest extends MusicTestFramework {
@@ -17,30 +16,6 @@ public class ChordGeneratorTest extends MusicTestFramework {
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
-    }
-        
-    @Test
-    public void testCMajorRootTriadDeprecated(){
-        Set<Chord> cMajorRootChords = ChordGenerator.generateChordsDeprecated(
-            Arrays.asList(C_MAJ_ROOT)
-        ).get(0);  
-        if(PRINT_TESTS){
-            for (Chord chord : cMajorRootChords){
-                System.err.println(chord.toString());
-            }            
-        }
-    }
-    
-    @Test
-    public void testDbDomSevenRootDeprecated(){
-        Set<Chord> dbDomSevenChords = ChordGenerator.generateChordsDeprecated(
-        		Arrays.asList(Ab_DOM7_ROOT)
-        	).get(0);  
-        if(PRINT_TESTS){
-            for (Chord chord : dbDomSevenChords){
-                System.err.println(chord.toString());
-            }            
-        }
     }
 
     @Test

@@ -31,7 +31,7 @@ public class SolverTestNew extends MusicTestFramework {
             new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, CADENTIAL_V),
             new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, CADENCE)
         );
-        List<ChordProgressionWithContext> bestProgressions = SolverNew.solve(primitiveChordsAndContexts);
+        List<ChordProgressionWithContext> bestProgressions = Solver.solve(primitiveChordsAndContexts);
         outputEvaluation(bestProgressions.get(0));
     }
     
@@ -43,7 +43,7 @@ public class SolverTestNew extends MusicTestFramework {
             new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, CADENTIAL_V),
             new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, CADENCE)
         );
-        List<ChordProgressionWithContext> bestProgressions = SolverNew.solve(primitiveChordsAndContexts);
+        List<ChordProgressionWithContext> bestProgressions = Solver.solve(primitiveChordsAndContexts);
         outputEvaluation(bestProgressions.get(0));
     }
     
@@ -62,7 +62,7 @@ public class SolverTestNew extends MusicTestFramework {
             new PrimitiveChordWithContext(D_MAJ_ROOT, G_MAJOR, CADENTIAL_V),
             new PrimitiveChordWithContext(G_MAJ_ROOT, G_MAJOR, CADENCE)
         );
-        List<ChordProgressionWithContext> bestProgressions = SolverNew.solve(primitiveChordsAndContexts);
+        List<ChordProgressionWithContext> bestProgressions = Solver.solve(primitiveChordsAndContexts);
         outputEvaluation(bestProgressions.get(0));
     }
     
@@ -80,7 +80,7 @@ public class SolverTestNew extends MusicTestFramework {
             new PrimitiveChordWithContext(F_MAJ_ROOT, Bb_MAJOR, CADENTIAL_V),
             new PrimitiveChordWithContext(Bb_MAJ_ROOT, Bb_MAJOR, CADENCE)
         );
-        List<ChordProgressionWithContext> bestProgressions = SolverNew.solve(primitiveChordsAndContexts);
+        List<ChordProgressionWithContext> bestProgressions = Solver.solve(primitiveChordsAndContexts);
         outputEvaluation(bestProgressions.get(0));
     }
 }
