@@ -12,7 +12,7 @@ import score_data.TransitionPenaltyType;
 import test_framework.MusicTestFramework;
 
 public class ParallelsScorerTest extends MusicTestFramework {
-    
+
     private Map<TransitionPenaltyType, Integer> computePenalties(
         ChordWithContext previous, ChordWithContext current
     ) {
@@ -25,7 +25,7 @@ public class ParallelsScorerTest extends MusicTestFramework {
     public void testAssertionsEnabled() {
         assert false;   
     }
-    
+
     @Test
     public void testParallelsGood(){
         ChordWithContext previous = makeChordWithContext(
@@ -52,7 +52,7 @@ public class ParallelsScorerTest extends MusicTestFramework {
         assertEquals(1, penaltyCount.keySet().size());
         assertTrue(penaltyCount.get(PARALLEL) == 1);
     }
-    
+
     @Test
     public void testParallelsExtraBad(){
         ChordWithContext previous = makeChordWithContext(

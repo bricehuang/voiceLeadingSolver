@@ -32,12 +32,12 @@ scorer_transitions
 	
 	- CadenceMovementScorer CLEAN
 	- Dim7ResolutionScorer CLEAN
-	- DirectsScorer TODO
+	- DirectsScorer CLEAN
 	- Dom7ResolutionScorer CLEAN
 	- II7SuspensionScorer CLEAN
 	- MelodicIntervalScorer CLEAN
 	- MovementScorer CLEAN
-	- NeaploitanResolutionScorer TODO
+	- NeaploitanResolutionScorer TODO (will punt)
 	- ParallelsScorer CLEAN
 	- VoiceCrossingScorer CLEAN
 solver

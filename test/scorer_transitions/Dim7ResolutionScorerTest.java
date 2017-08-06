@@ -33,7 +33,7 @@ public class Dim7ResolutionScorerTest extends MusicTestFramework {
             Ab4, F4, B3, D3, B_DIM7_65, C_MAJOR, NO_CONTEXTS
         );
         ChordWithContext current = makeChordWithContext(
-            G4, E4, C4, E4, C_MAJ_6, C_MAJOR, NO_CONTEXTS
+            G4, E4, C4, E3, C_MAJ_6, C_MAJOR, NO_CONTEXTS
         );
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);

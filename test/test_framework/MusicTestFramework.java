@@ -152,6 +152,7 @@ public class MusicTestFramework {
     public static final PrimitiveChord F_MAJ_6 = new PrimitiveChord(F, MAJ, 1);
     public static final PrimitiveChord F_MIN_ROOT = new PrimitiveChord(F, MIN, 0);
     public static final PrimitiveChord G_MAJ_ROOT = new PrimitiveChord(G, MAJ, 0);
+    public static final PrimitiveChord G_MAJ_6 = new PrimitiveChord(G, MAJ, 1);
     public static final PrimitiveChord G_MAJ_64 = new PrimitiveChord(G, MAJ, 2);
     public static final PrimitiveChord G_MIN_64 = new PrimitiveChord(G, MIN, 2);
     public static final PrimitiveChord G_DOM7_ROOT = new PrimitiveChord(G, DOM7, 0);
@@ -185,42 +186,25 @@ public class MusicTestFramework {
     public static final Set<ContextTag> NO_CONTEXTS = Collections.unmodifiableSet(new HashSet<>());
 
     // ChordPenalty
-    public static final ChordPenaltyType BAD_TRIPLING 
-        = ChordPenaltyType.BAD_TRIPLING;
-    public static final ChordPenaltyType CADENCE_DOUBLING 
-        = ChordPenaltyType.CADENCE_DOUBLING;
-    public static final ChordPenaltyType DOUBLE_DOUBLING 
-        = ChordPenaltyType.DOUBLE_DOUBLING;
-    public static final ChordPenaltyType DOUBLED_LEADING_TONE 
-        = ChordPenaltyType.DOUBLED_LEADING_TONE;
-    public static final ChordPenaltyType VOICE_OVERLAP 
-        = ChordPenaltyType.VOICE_OVERLAP;
+    public static final ChordPenaltyType BAD_TRIPLING = ChordPenaltyType.BAD_TRIPLING;
+    public static final ChordPenaltyType CADENCE_DOUBLING = ChordPenaltyType.CADENCE_DOUBLING;
+    public static final ChordPenaltyType DOUBLE_DOUBLING = ChordPenaltyType.DOUBLE_DOUBLING;
+    public static final ChordPenaltyType DOUBLED_LEADING_TONE = ChordPenaltyType.DOUBLED_LEADING_TONE;
+    public static final ChordPenaltyType VOICE_OVERLAP = ChordPenaltyType.VOICE_OVERLAP;
 
     // TransitionPenalty
-    public static final TransitionPenaltyType CADENTIAL_II7_SUSPEND 
-        = TransitionPenaltyType.CADENTIAL_II7_SUSPEND;
-    public static final TransitionPenaltyType DIM_SEVEN_RES 
-        = TransitionPenaltyType.DIM_SEVEN_RES;
-    public static final TransitionPenaltyType DIRECT 
-        = TransitionPenaltyType.DIRECT;
-    public static final TransitionPenaltyType DOM_SEVEN_RES 
-        = TransitionPenaltyType.DOM_SEVEN_RES;
-    public static final TransitionPenaltyType MELODIC_INTERVAL 
-        = TransitionPenaltyType.MELODIC_INTERVAL;
-    public static final TransitionPenaltyType MOVE_FOURTH 
-        = TransitionPenaltyType.MOVE_FOURTH;
-    public static final TransitionPenaltyType MOVE_FIFTH 
-        = TransitionPenaltyType.MOVE_FIFTH;
-    public static final TransitionPenaltyType MOVE_BIG 
-        = TransitionPenaltyType.MOVE_BIG;
-    public static final TransitionPenaltyType MOVE_BIG_BASS 
-        = TransitionPenaltyType.MOVE_BIG_BASS;
-    public static final TransitionPenaltyType MOVE_BIG_CADENCE 
-        = TransitionPenaltyType.MOVE_BIG_CADENCE;
-    public static final TransitionPenaltyType PARALLEL 
-        = TransitionPenaltyType.PARALLEL;
-    public static final TransitionPenaltyType VOICE_CROSSING 
-        = TransitionPenaltyType.VOICE_CROSSING;
+    public static final TransitionPenaltyType CADENTIAL_II7_SUSPEND = TransitionPenaltyType.CADENTIAL_II7_SUSPEND;
+    public static final TransitionPenaltyType DIM_SEVEN_RES = TransitionPenaltyType.DIM_SEVEN_RES;
+    public static final TransitionPenaltyType DIRECT = TransitionPenaltyType.DIRECT;
+    public static final TransitionPenaltyType DOM_SEVEN_RES = TransitionPenaltyType.DOM_SEVEN_RES;
+    public static final TransitionPenaltyType MELODIC_INTERVAL = TransitionPenaltyType.MELODIC_INTERVAL;
+    public static final TransitionPenaltyType MOVE_FOURTH = TransitionPenaltyType.MOVE_FOURTH;
+    public static final TransitionPenaltyType MOVE_FIFTH = TransitionPenaltyType.MOVE_FIFTH;
+    public static final TransitionPenaltyType MOVE_BIG = TransitionPenaltyType.MOVE_BIG;
+    public static final TransitionPenaltyType MOVE_BIG_BASS = TransitionPenaltyType.MOVE_BIG_BASS;
+    public static final TransitionPenaltyType MOVE_BIG_CADENCE = TransitionPenaltyType.MOVE_BIG_CADENCE;
+    public static final TransitionPenaltyType PARALLEL = TransitionPenaltyType.PARALLEL;
+    public static final TransitionPenaltyType VOICE_CROSSING = TransitionPenaltyType.VOICE_CROSSING;
 
     // Util methods
     public static ChordWithContext makeChordWithContext(Note soprano, Note alto, Note tenor, Note bass,

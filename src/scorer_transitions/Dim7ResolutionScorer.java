@@ -56,7 +56,7 @@ public class Dim7ResolutionScorer implements TransitionScorer {
             previousChord, currentChord
         );
         List<Interval> validResolution = getValidResolution(currentChord.getType());
-        if (resolution.equals(validResolution)) {
+        if (! resolution.equals(validResolution)) {
             score.addPenalty(TransitionPenaltyType.DIM_SEVEN_RES);
         }
         return score;
