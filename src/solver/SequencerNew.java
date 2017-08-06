@@ -123,10 +123,9 @@ public class SequencerNew {
     private static final String DIVIDE = "--------------------------------------------------\n";
     
     private static String chordPenaltyReport(ChordWithContext chord) {
-        return DIVIDE 
-             + "Scoring Chord " + chord.toString() + ":\n"
-             + ChordScorer.score(chord).toString() + "\n" 
-             + DIVIDE;        
+        return "Scoring Chord " + chord.toString() + ":\n"
+               + ChordScorer.score(chord).toString() + "\n" 
+               + DIVIDE;        
     }
 
     private static String transitionPenaltyReport(
