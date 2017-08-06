@@ -38,7 +38,7 @@ scorer_transitions
 	- MelodicIntervalScorer CLEAN
 	- MovementScorer CLEAN
 	- NeaploitanResolutionScorer TODO
-	- ParallelsScorer TODO
+	- ParallelsScorer CLEAN
 	- VoiceCrossingScorer CLEAN
 solver
 	- BestListDeprecated DEPRECATED
