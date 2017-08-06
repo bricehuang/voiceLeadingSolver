@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import chord_data.ContextTag;
+import chord_data.PrimitiveChordWithContext;
 import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicInterval;
@@ -128,7 +129,7 @@ class Parser {
         }
     }
     
-    private static ParseResult parseTokensPrelim(List<String> tokens){
+    private static ParseResultDeprecated parseTokensPrelim(List<String> tokens){
         List<PrimitiveChord> primitiveChords = new ArrayList<>();
         List<Key> keys = new ArrayList<>();
         List<Set<ContextTag>> contextTags = new ArrayList<>();
@@ -155,7 +156,7 @@ class Parser {
                 contextTags.add(tags);
             }
         }
-        return new ParseResult(primitiveChords, keys, contextTags);
+        return new ParseResultDeprecated(primitiveChords, keys, contextTags);
     }
     
     /**
@@ -238,7 +239,7 @@ class Parser {
         }
     }
     
-    private static ParseResult parseTokensPostprocess(ParseResult prelim){
+    private static ParseResultDeprecated parseTokensPostprocess(ParseResultDeprecated prelim){
         List<PrimitiveChord> primitiveChords = prelim.getPrimitiveChords();
         List<Key> keys = prelim.getKeys();
         List<Set<ContextTag>> contextTags = prelim.getContextTags();
@@ -266,15 +267,50 @@ class Parser {
                 }
             }
         }
-        return new ParseResult(primitiveChords, keys, contextTags);
+        return new ParseResultDeprecated(primitiveChords, keys, contextTags);
     }
     
-    private static ParseResult parseTokens(List<String> tokens){
-        ParseResult prelim = parseTokensPrelim(tokens);
+    private static ParseResultDeprecated parseTokens(List<String> tokens){
+        ParseResultDeprecated prelim = parseTokensPrelim(tokens);
         return parseTokensPostprocess(prelim);
     }
     
-    public static ParseResult parse(String input){
+    public static List<PrimitiveChordWithContext> parse(String input){
+        String[] inputTokenized = input.split("[ |\n|\r|\t]");
+        List<String> tokens = new ArrayList<>();
+        for (String token : inputTokenized){
+            if (token.matches(MASTER_REGEX)){
+                tokens.add(token);
+            }
+            else{
+                if (!token.equals("")){
+                    System.err.println("I don't recognize token " 
+                            + token + ".  Will ignore.");
+                }
+            }
+        }
+        assert(tokens.get(0).matches(KEY_REGEX));
+
+        // TODO this is temporary patch for refactoring
+        // return parseTokens(tokens);
+        ParseResultDeprecated parseResult = parseTokens(tokens);
+        List<PrimitiveChord> primitiveChords = parseResult.getPrimitiveChords();
+        List<Key> keys = parseResult.getKeys();
+        List<Set<ContextTag>> contextTags = parseResult.getContextTags();
+        List<PrimitiveChordWithContext> result = new ArrayList<>();
+        for (int i=0; i<primitiveChords.size(); i++){
+            result.add(
+                new PrimitiveChordWithContext(
+                    primitiveChords.get(i),
+                    keys.get(i),
+                    contextTags.get(i)
+                )
+            );
+        }
+        return Collections.unmodifiableList(result);
+    }
+    
+    public static ParseResultDeprecated parseDeprecated(String input){
         String[] inputTokenized = input.split("[ |\n|\r|\t]");
         List<String> tokens = new ArrayList<>();
         for (String token : inputTokenized){
@@ -290,16 +326,16 @@ class Parser {
         }
         assert(tokens.get(0).matches(KEY_REGEX));
         return parseTokens(tokens);
-    }
+    }    
 
 }
 
-class ParseResult{
+class ParseResultDeprecated{
     private final List<PrimitiveChord> primitiveChords;
     private final List<Key> keys;
     private final List<Set<ContextTag>> contextTags;
     
-    public ParseResult(List<PrimitiveChord> primitiveChords, 
+    public ParseResultDeprecated(List<PrimitiveChord> primitiveChords, 
             List<Key> keys,
             List<Set<ContextTag>> contextTags){
         this.primitiveChords = primitiveChords;

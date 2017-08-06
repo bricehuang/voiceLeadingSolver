@@ -14,8 +14,8 @@ import javax.sound.midi.Sequencer;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Track;
 
+import chord_data.ChordProgressionWithContext;
 import chords.Chord;
-import chords.ChordProgressionDeprecated;
 import music.Note;
 
 /**
@@ -67,13 +67,16 @@ public class ProgressionPlayer {
         }
     }
     
-    private static void addProgression(Track track, ChordProgressionDeprecated progression) 
+    private static void addProgression(Track track, ChordProgressionWithContext progression) 
             throws InvalidMidiDataException {
         if (progression.length() == 0){
             return;
         }
         addProgression(track, progression.getStart());
-        addChord(track, progression.getLast(), progression.getStart().length()*NOTE_LENGTH);
+        addChord(
+            track, progression.getLast().getChord(), 
+            progression.getStart().length()*NOTE_LENGTH
+        );
     }
     
     /**
@@ -82,7 +85,7 @@ public class ProgressionPlayer {
      * @throws MidiUnavailableException 
      * @throws InvalidMidiDataException 
      */
-    public static void playProgression(ChordProgressionDeprecated progression) 
+    public static void playProgression(ChordProgressionWithContext progression) 
             throws InvalidMidiDataException, MidiUnavailableException {
         Sequence sequence;
         sequence = new Sequence(Sequence.PPQ, TICKS_PER_BEAT);

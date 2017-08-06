@@ -33,7 +33,7 @@ public class ParserTest {
     
     @Test
     public void cadenceTest(){
-        ParseResult parse = Parser.parse("KEY:CMaj CMajT0Cad");
+        ParseResultDeprecated parse = Parser.parseDeprecated("KEY:CMaj CMajT0Cad");
         List<PrimitiveChord> primitiveChords = parse.getPrimitiveChords();
         List<Key> keys = parse.getKeys();
         List<Set<ContextTag>> contextTags = parse.getContextTags();
@@ -48,7 +48,7 @@ public class ParserTest {
 
     @Test
     public void I64Test(){
-        ParseResult parse = Parser.parse("KEY:CMaj FMajT0 CMajT2 GMajT0 CMajT0Cad");
+        ParseResultDeprecated parse = Parser.parseDeprecated("KEY:CMaj FMajT0 CMajT2 GMajT0 CMajT0Cad");
         List<PrimitiveChord> primitiveChords = parse.getPrimitiveChords();
         List<Key> keys = parse.getKeys();
         List<Set<ContextTag>> contextTags = parse.getContextTags();
@@ -75,7 +75,7 @@ public class ParserTest {
     
     @Test
     public void II65I64Test(){
-        ParseResult parse = Parser.parse("KEY:CMaj DMinS1 CMajT2 GMajT0 CMajT0Cad");
+        ParseResultDeprecated parse = Parser.parseDeprecated("KEY:CMaj DMinS1 CMajT2 GMajT0 CMajT0Cad");
         List<PrimitiveChord> primitiveChords = parse.getPrimitiveChords();
         List<Key> keys = parse.getKeys();
         List<Set<ContextTag>> contextTags = parse.getContextTags();
@@ -102,7 +102,7 @@ public class ParserTest {
     
     @Test
     public void TestNeapolitan(){
-        ParseResult parse = Parser.parse("KEY:AMaj B-MajT1Nea EMajT0 AMajT0Cad");
+        ParseResultDeprecated parse = Parser.parseDeprecated("KEY:AMaj B-MajT1Nea EMajT0 AMajT0Cad");
         List<PrimitiveChord> primitiveChords = parse.getPrimitiveChords();
         List<Key> keys = parse.getKeys();
         List<Set<ContextTag>> contextTags = parse.getContextTags();

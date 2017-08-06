@@ -8,9 +8,9 @@ import java.util.List;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 
-import chords.ChordProgressionDeprecated;
+import chord_data.ChordProgressionWithContext;
+import chord_data.PrimitiveChordWithContext;
 import player.ProgressionPlayer;
-import scorer.Scorer;
 
 /**
  * Main module, which parses an input and finds the best chord progressions
@@ -29,21 +29,19 @@ public class Main {
      * @return a List of top ChordProgressions of length at most
      * SortedFiniteProgList.PROGRESSIONS_TO_TRACK
      */
-    public static List<ChordProgressionDeprecated> solve(String in, boolean report, int maxReport){
-        ParseResult parsedInput = Parser.parse(in);
-        List<ChordProgressionDeprecated> bestProgressions = SolverDeprecated.solve(
-                parsedInput.getPrimitiveChords(), 
-                parsedInput.getKeys(), 
-                parsedInput.getContextTags());
+    public static List<ChordProgressionWithContext> solve(String in, boolean report, int maxReport){
+        List<PrimitiveChordWithContext> parsedInput = Parser.parse(in);
+        List<ChordProgressionWithContext> bestProgressions = 
+            SolverNew.solve(parsedInput);
         if (report){
             System.out.println("Results report on input: \n" + in + "\n");
             for (int i=0; i<Math.min(maxReport, bestProgressions.size()); i++){
-                System.out.println("Progression " + (i+1) + ":\n" 
-                        + bestProgressions.get(i).toString() + "\n\n"
-                        + Scorer.evaluateChordProgression(
-                                bestProgressions.get(i), 
-                                parsedInput.getKeys(), 
-                                parsedInput.getContextTags()));
+                ChordProgressionWithContext progression = bestProgressions.get(i);
+                System.out.println(
+                    "Progression " + (i+1) + ":\n" 
+                    + progression.toString() + "\n\n"
+                    + SequencerNew.getPenaltyReport(progression)
+                );
             }
         }
         return bestProgressions;
@@ -57,7 +55,7 @@ public class Main {
      */
     public static void solveAndPlay(String in) 
             throws InvalidMidiDataException, MidiUnavailableException{
-        ChordProgressionDeprecated best = solve(in, DEFAULT_REPORT, DEFAULT_MAXREPORT).get(0);  
+        ChordProgressionWithContext best = solve(in, DEFAULT_REPORT, DEFAULT_MAXREPORT).get(0);  
         ProgressionPlayer.playProgression(best); 
     }
 
