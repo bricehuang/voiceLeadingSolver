@@ -1,8 +1,19 @@
-scorer: 
-* Specify, test, and implement more functionality:
-    - Neopolitan
-    - aug6 
-* Make separate classes for Chord Score and Transition Score, Chord Type and Penalty Type
+Features:
+    - dim triad
+    - Neapolitan (chordType exists; write scorer)
+    - aug6 (3 variants)
+    - make results reporting less ratchet
+    - compile to lilypond 
+    - GUI?? 
 
-player:
-* DO EVERYTHING
+Random tech debt:     
+	- test Note
+	- test TransitionScorer
+	- test SolverUtils
+	- refactor Parser / move to own package
+	- refactor Main / move to own package
+	- refactor ProgressionPlayer
+	- internal-cleanup ChordGenerator
+	- make SolverUtils.intersect generic
+	- less copypasta Chord, Transition penalty type and score
+	- less copypasta compute_penalties 
