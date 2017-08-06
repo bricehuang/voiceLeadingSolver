@@ -76,7 +76,7 @@ public class SolverTestNew extends MusicTestFramework {
             new PrimitiveChordWithContext(C_MIN_6, Bb_MAJOR, NO_CONTEXTS),
             new PrimitiveChordWithContext(F_MAJ_ROOT, Bb_MAJOR, NO_CONTEXTS),
             new PrimitiveChordWithContext(Bb_MAJ_6, Bb_MAJOR, NO_CONTEXTS),
-            new PrimitiveChordWithContext(C_MIN7_63, Bb_MAJOR, CADENTIAL_PREDOMINANT),
+            new PrimitiveChordWithContext(C_MIN7_65, Bb_MAJOR, CADENTIAL_PREDOMINANT),
             new PrimitiveChordWithContext(F_MAJ_ROOT, Bb_MAJOR, CADENTIAL_V),
             new PrimitiveChordWithContext(Bb_MAJ_ROOT, Bb_MAJOR, CADENCE)
         );
