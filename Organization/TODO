@@ -7,7 +7,6 @@ Features:
     - GUI?? 
 
 Random tech debt:     
-	- test Note
 	- test ChordWithContext
 	- text PrimitiveChordWithContext
 	- test ChordProgressionWithContext
