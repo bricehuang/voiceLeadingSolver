@@ -15,6 +15,7 @@ Random tech debt:
 	- refactor Parser / move to own package
 	- refactor Main / move to own package
 	- refactor ProgressionPlayer
+	- refactor Key; major/minor stored as a bool is silly
 	- internal-cleanup ChordGenerator
 	- make SolverUtils.intersect generic
 	- less copypasta Chord, Transition penalty type and score
