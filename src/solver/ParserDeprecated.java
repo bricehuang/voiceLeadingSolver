@@ -20,7 +20,7 @@ import music.Key;
 /**
  * A module that takes a string input and returns a list of primitive chords
  */
-class Parser {
+class ParserDeprecated {
     private static final String CHORD_REGEX = "[A-G][+|-]?"
             + "(((MajT|MinT)[0-2])|((DomS|DimS|MajS|MinS)[0-3]))";
     private static final String TAG_REGEX = "App|Cad|Nea";
