@@ -6,7 +6,9 @@ import java.util.Map;
 
 import chord_data.ContextTag;
 import chords.ChordType;
+import music.BasicInterval;
 import music.BasicNote;
+import music.Interval;
 
 public class ParserNew {
     /*
@@ -80,6 +82,14 @@ public class ParserNew {
         notesTmp.put("B", new BasicNote(6,11));
         NOTES = Collections.unmodifiableMap(notesTmp);
     }
+    private static final Map<String, Interval> ACCIDENTALS;
+    static{
+        Map<String, Interval> accidentalsTmp = new HashMap<>();
+        BasicInterval halfStep = new BasicInterval(0,1);
+        accidentalsTmp.put("#", new Interval(halfStep, 0, true));
+        accidentalsTmp.put("b", new Interval(halfStep, 0, false));
+        ACCIDENTALS = Collections.unmodifiableMap(accidentalsTmp);
+    }    
     
     private static final Map<String, ChordType> CHORD_TYPES;
     static{
@@ -109,5 +119,19 @@ public class ParserNew {
         KEY_IS_MAJOR = Collections.unmodifiableMap(keyIsMajorTmp);
     }
     
+    public static BasicNote parseNote(String in) {
+        assert (in.matches(NOTE_REGEX));
+        BasicNote baseNote = NOTES.get(in.substring(0,1));
+        if (in.length() == 1) {
+            return baseNote;
+        } else if (in.length() == 2) {
+            Interval intervalToTranspose = ACCIDENTALS.get(
+                in.substring(1,2)
+            );
+            return baseNote.transpose(intervalToTranspose);
+        } else {
+            throw new RuntimeException("Should not get here");
+        }
+    }
     
 }

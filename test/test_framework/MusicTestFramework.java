@@ -122,7 +122,9 @@ public class MusicTestFramework {
     // Interval
     public static final Interval UP_MIN_2ND = new Interval(MIN_2ND, 0, true);
     public static final Interval DN_MIN_2ND = new Interval(MIN_2ND, 0, false);
+    public static final Interval UP_MAJ_2ND = new Interval(MAJ_2ND, 0, true);
     public static final Interval DN_MAJ_2ND = new Interval(MAJ_2ND, 0, false);
+    public static final Interval UP_PFT_5TH = new Interval(PFT_5TH, 0, true);
     public static final Interval DN_PFT_5TH = new Interval(PFT_5TH, 0, false);
 
     // ChordType

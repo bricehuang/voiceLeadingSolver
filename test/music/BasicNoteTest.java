@@ -38,10 +38,17 @@ public class BasicNoteTest extends MusicTestFramework {
     }
     
     @Test 
-    public void transposeTest(){
+    public void transposeBasicIntervalTest(){
         assertEquals(G, F.transpose(MAJ_2ND, true));
         assertEquals(C, F.transpose(PFT_5TH, true));
         assertEquals(F, C.transpose(PFT_5TH, false));
+    }
+    
+    @Test 
+    public void transposeIntervalTest(){
+        assertEquals(G, F.transpose(UP_MAJ_2ND));
+        assertEquals(C, F.transpose(UP_PFT_5TH));
+        assertEquals(F, C.transpose(DN_PFT_5TH));
     }
     
     // renderInKey tested in KeyTest
