@@ -134,4 +134,14 @@ public class ParserNew {
         }
     }
     
+    public static ChordType parseChordType(String in) { 
+        assert (in.matches(CHORDTYPE_REGEX));
+        return CHORD_TYPES.get(in);
+    }
+    
+    public static Integer parseInversion(String in) {
+        assert (in.matches(INVERSION_REGEX));
+        return Integer.valueOf(in);
+    }
+
 }
