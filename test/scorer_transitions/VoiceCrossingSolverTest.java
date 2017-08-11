@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -38,7 +37,7 @@ public class VoiceCrossingSolverTest extends MusicTestFramework {
             computePenalties(previous, current);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(VOICE_CROSSING) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(VOICE_CROSSING));
     }
     
     @Test

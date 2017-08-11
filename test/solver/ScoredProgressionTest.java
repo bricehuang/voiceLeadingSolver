@@ -32,18 +32,18 @@ public class ScoredProgressionTest extends MusicTestFramework {
     public void toStringTest(){
         ChordProgressionWithContext empty = ChordProgressionWithContext.empty();
         ChordProgressionWithContext prog = empty.append(
-        		new ChordWithContext(C_MAJ_64_REALIZED, C_MAJOR, CADENTIAL_I64)
-        	).append(
-        		new ChordWithContext(G_MAJ_REALIZED, C_MAJOR, CADENTIAL_V)
-        	).append(
-        		new ChordWithContext(C_MAJ_REALIZED, C_MAJOR, CADENCE)
-        	); 
+    		new ChordWithContext(C_MAJ_64_REALIZED, C_MAJOR, CADENTIAL_I64)
+    	).append(
+    		new ChordWithContext(G_MAJ_REALIZED, C_MAJOR, CADENTIAL_V)
+    	).append(
+    		new ChordWithContext(C_MAJ_REALIZED, C_MAJOR, CADENCE)
+    	); 
         ScoredProgression progression = new ScoredProgression(prog, 42);
         assertEquals(
-        		"\n[C5|E4|G3|G2]||C Major|| [Cadential I64]" + 
-        		"\n[B4|D4|G3|G2]||C Major|| [Cadential V]" + 
-        		"\n[C5|E4|G3|C3]||C Major|| [Cadence]" + 
-        		"\nScore: 42", 
+    		"\n[C5|E4|G3|G2]||C Major|| [Cadential I64]" + 
+    		"\n[B4|D4|G3|G2]||C Major|| [Cadential V]" + 
+    		"\n[C5|E4|G3|C3]||C Major|| [Cadence]" + 
+    		"\nScore: 42", 
             progression.toString()
         );
     }

@@ -124,16 +124,16 @@ public class Sequencer {
     
     private static String chordPenaltyReport(ChordWithContext chord) {
         return "Scoring Chord " + chord.toString() + ":\n"
-               + ChordScorer.score(chord).toString() + "\n" 
-               + DIVIDE;        
+           + ChordScorer.score(chord).toString() + "\n" 
+           + DIVIDE;        
     }
 
     private static String transitionPenaltyReport(
         ChordWithContext previous, ChordWithContext current
     ) {
         return "Scoring Transition " + previous.toString() + " --> " + current.toString() + ":\n"  
-                + TransitionScorer.score(previous, current) + "\n"
-                + DIVIDE;
+            + TransitionScorer.score(previous, current) + "\n"
+            + DIVIDE;
     }
     
     /**

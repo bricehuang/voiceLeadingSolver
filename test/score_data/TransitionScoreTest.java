@@ -1,14 +1,11 @@
 package score_data;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
 import org.junit.Test;
 
-import score_data.TransitionPenaltyType;
-import score_data.TransitionScore;
 import test_framework.MusicTestFramework;
 
 public class TransitionScoreTest extends MusicTestFramework {
@@ -38,7 +35,7 @@ public class TransitionScoreTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount 
             = score.getPenaltyCount();
         assertEquals(1, penaltyCount.size());
-        assertTrue(penaltyCount.get(PARALLEL) == 1);        
+        assertEquals((Integer) 1, penaltyCount.get(PARALLEL));        
     }
 
     @Test
@@ -66,9 +63,9 @@ public class TransitionScoreTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount 
             = score.getPenaltyCount();
         assertEquals(4, penaltyCount.size());
-        assertTrue(penaltyCount.get(PARALLEL) == 1);
-        assertTrue(penaltyCount.get(DIRECT) == 1);
-        assertTrue(penaltyCount.get(DOM_SEVEN_RES) == 2);
-        assertTrue(penaltyCount.get(DIM_SEVEN_RES) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(PARALLEL));
+        assertEquals((Integer) 1, penaltyCount.get(DIRECT));
+        assertEquals((Integer) 2, penaltyCount.get(DOM_SEVEN_RES));
+        assertEquals((Integer) 1, penaltyCount.get(DIM_SEVEN_RES));
     }
 }

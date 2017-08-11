@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -65,7 +64,7 @@ public class II7SuspensionScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);        
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(CADENTIAL_II7_SUSPEND) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(CADENTIAL_II7_SUSPEND));
     }    
     
     @Test

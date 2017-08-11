@@ -59,11 +59,12 @@ public class Chord {
         this.tenor = tenor; 
         this.bass = bass;
         this.basicChord = new BasicChord(
-                soprano.getBasicNote(), 
-                alto.getBasicNote(), 
-                tenor.getBasicNote(),
-                bass.getBasicNote(),
-                primitiveChord);
+            soprano.getBasicNote(), 
+            alto.getBasicNote(), 
+            tenor.getBasicNote(),
+            bass.getBasicNote(),
+            primitiveChord
+        );
         checkRep();
     }
     

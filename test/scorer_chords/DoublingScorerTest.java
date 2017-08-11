@@ -1,7 +1,6 @@
 package scorer_chords;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -43,7 +42,7 @@ public class DoublingScorerTest extends MusicTestFramework {
                 computePenalties(doubleSD2);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(ChordPenaltyType.BAD_DOUBLING) == 1); 
+        assertEquals((Integer) 1, penaltyCount.get(ChordPenaltyType.BAD_DOUBLING)); 
     }
 
     @Test
@@ -55,7 +54,7 @@ public class DoublingScorerTest extends MusicTestFramework {
             computePenalties(doubleSD3);
 
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(ChordPenaltyType.BAD_DOUBLING) == 1); 
+        assertEquals((Integer) 1, penaltyCount.get(ChordPenaltyType.BAD_DOUBLING)); 
     }
 
     @Test
@@ -89,7 +88,7 @@ public class DoublingScorerTest extends MusicTestFramework {
             computePenalties(tripleSD1);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(ChordPenaltyType.OMITTED_FIFTH) == 1); 
+        assertEquals((Integer) 1, penaltyCount.get(ChordPenaltyType.OMITTED_FIFTH)); 
     }
 
     @Test
@@ -101,8 +100,8 @@ public class DoublingScorerTest extends MusicTestFramework {
             computePenalties(doubleSD1SD3);
         
         assertEquals(2, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(ChordPenaltyType.OMITTED_FIFTH) == 1);
-        assertTrue(penaltyCount.get(ChordPenaltyType.DOUBLE_DOUBLING) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(ChordPenaltyType.OMITTED_FIFTH));
+        assertEquals((Integer) 1, penaltyCount.get(ChordPenaltyType.DOUBLE_DOUBLING));
     }
     
     @Test
@@ -114,8 +113,8 @@ public class DoublingScorerTest extends MusicTestFramework {
             computePenalties(doubleSD7);
         
         assertEquals(2, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(ChordPenaltyType.BAD_DOUBLING) == 1);
-        assertTrue(penaltyCount.get(ChordPenaltyType.DOUBLED_LEADING_TONE) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(ChordPenaltyType.BAD_DOUBLING));
+        assertEquals((Integer) 1, penaltyCount.get(ChordPenaltyType.DOUBLED_LEADING_TONE));
     }
     
 }

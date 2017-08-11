@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -40,8 +39,8 @@ public class MovementScorerTest extends MusicTestFramework {
         );
         
         assertEquals(2, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(MOVE_FOURTH) == 1);
-        assertTrue(penaltyCount.get(MOVE_FIFTH) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(MOVE_FOURTH));
+        assertEquals((Integer) 1, penaltyCount.get(MOVE_FIFTH));
     }
 
     @Test
@@ -57,7 +56,7 @@ public class MovementScorerTest extends MusicTestFramework {
         );
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(MOVE_BIG_BASS) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(MOVE_BIG_BASS));
     }
     
     @Test
@@ -73,8 +72,8 @@ public class MovementScorerTest extends MusicTestFramework {
         );
         
         assertEquals(2, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(MOVE_FOURTH) == 1);
-        assertTrue(penaltyCount.get(MOVE_BIG) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(MOVE_FOURTH));
+        assertEquals((Integer) 1, penaltyCount.get(MOVE_BIG));
     }
     
 }

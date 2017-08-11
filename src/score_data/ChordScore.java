@@ -99,10 +99,10 @@ public class ChordScore {
         String stringRep = "";
         for (ChordPenaltyType penalty : penaltyCount.keySet()){
             String penaltyDescription = penalty.toString() + ": " 
-                    + penaltyCount.get(penalty)
-                    + ".  Score: "
-                    + penaltyCount.get(penalty) * penalty.value()
-                    + "\n";
+                + penaltyCount.get(penalty)
+                + ".  Score: "
+                + penaltyCount.get(penalty) * penalty.value()
+                + "\n";
             stringRep += penaltyDescription;
         }
         stringRep += "Total Penalty: "+ totalPenalty + "\n";

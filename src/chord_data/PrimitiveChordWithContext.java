@@ -55,13 +55,13 @@ public class PrimitiveChordWithContext {
         if (!(object instanceof PrimitiveChord)){return false;}
         PrimitiveChordWithContext that = (PrimitiveChordWithContext) object;
         return this.primitiveChord.equals(that.primitiveChord) 
-        		&& this.key.equals(that.key)
-        		&& this.contextTags.size()==that.contextTags.size()
-        		&& this.contextTags.containsAll(that.contextTags);
+    		&& this.key.equals(that.key)
+    		&& this.contextTags.size()==that.contextTags.size()
+    		&& this.contextTags.containsAll(that.contextTags);
     }
 
     @Override public int hashCode(){
-    		return primitiveChord.hashCode() + key.hashCode();
+		return primitiveChord.hashCode() + key.hashCode();
     }
 
     /**
@@ -69,8 +69,8 @@ public class PrimitiveChordWithContext {
      */
     @Override public String toString(){
         return primitiveChord.toString() 
-        		+ "||" + key.toString() 
-        		+ "|| " + contextTags.toString();
+    		+ "||" + key.toString() 
+    		+ "|| " + contextTags.toString();
     }
 
 }

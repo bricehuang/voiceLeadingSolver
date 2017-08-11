@@ -59,13 +59,13 @@ public class ChordWithContext {
         if (!(object instanceof ChordWithContext)){return false;}
         ChordWithContext that = (ChordWithContext) object;
         return this.chord.equals(that.chord) 
-        		&& this.key.equals(that.key)
-        		&& this.contextTags.size()==that.contextTags.size()
-        		&& this.contextTags.containsAll(that.contextTags);
+    		&& this.key.equals(that.key)
+    		&& this.contextTags.size()==that.contextTags.size()
+    		&& this.contextTags.containsAll(that.contextTags);
     }
 
     @Override public int hashCode(){
-    		return chord.hashCode() + key.hashCode();
+		return chord.hashCode() + key.hashCode();
     }
 
     /**
@@ -73,8 +73,8 @@ public class ChordWithContext {
      */
     @Override public String toString(){
         return chord.toString() 
-        		+ "||" + key.toString() 
-        		+ "|| " + contextTags.toString();
+    		+ "||" + key.toString() 
+    		+ "|| " + contextTags.toString();
     }
 
 }

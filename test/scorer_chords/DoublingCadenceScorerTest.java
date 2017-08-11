@@ -1,7 +1,6 @@
 package scorer_chords;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -43,7 +42,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             computePenalties(badDoublingCadence);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(CADENCE_DOUBLING)==1);
+        assertEquals((Integer) 1, penaltyCount.get(CADENCE_DOUBLING));
     }
 
     @Test
@@ -66,7 +65,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             computePenalties(badDoublingCadence);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(CADENCE_DOUBLING));
     }
     
     @Test
@@ -89,7 +88,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             computePenalties(badDoublingCadence);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(CADENCE_DOUBLING));
     }
 
     @Test
@@ -112,7 +111,7 @@ public class DoublingCadenceScorerTest extends MusicTestFramework {
             computePenalties(badDoublingCadence);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(CADENCE_DOUBLING));
     }
 
     @Test

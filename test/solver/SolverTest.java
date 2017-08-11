@@ -11,7 +11,7 @@ import test_framework.MusicTestFramework;
 
 public class SolverTest extends MusicTestFramework {
     
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
         
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {

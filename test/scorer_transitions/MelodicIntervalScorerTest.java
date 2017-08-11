@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -53,7 +52,7 @@ public class MelodicIntervalScorerTest extends MusicTestFramework {
             computePenalties(previous, current);
         
         assertEquals(1, penaltyCounts.keySet().size());
-        assertTrue(penaltyCounts.get(MELODIC_INTERVAL) == 1);
+        assertEquals((Integer) 1, penaltyCounts.get(MELODIC_INTERVAL));
     }
 
 }

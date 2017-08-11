@@ -97,8 +97,8 @@ public class PrimitiveChord {
         if (!(object instanceof PrimitiveChord)){ return false; }
         PrimitiveChord that = (PrimitiveChord) object;
         return (this.root.equals(that.root) 
-                && this.type.equals(that.type)
-                && this.inversion == that.inversion);
+            && this.type.equals(that.type)
+            && this.inversion == that.inversion);
     }
 
     @Override public int hashCode(){

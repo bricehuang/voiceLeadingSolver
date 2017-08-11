@@ -27,12 +27,15 @@ public class Key {
     public static final Integer PITCHES_IN_SCALE = 7;
     
     static final List<Integer> MAJOR_SCALE = Collections.unmodifiableList(
-            Arrays.asList(0, 2, 4, 5, 7, 9, 11));
+        Arrays.asList(0, 2, 4, 5, 7, 9, 11)
+    );
     static final List<Integer> MINOR_SCALE = Collections.unmodifiableList(
-            Arrays.asList(0, 2, 3, 5, 7, 8, 10));
+        Arrays.asList(0, 2, 3, 5, 7, 8, 10)
+    );
     
     static final List<Character> PITCH_NAMES = Arrays.asList(
-            'C','D','E','F','G','A','B');
+        'C','D','E','F','G','A','B'
+    );
     
     /**
      * Constructs a key with given key signature and tonality

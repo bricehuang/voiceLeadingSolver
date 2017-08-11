@@ -183,17 +183,17 @@ class ChordGenerator {
      */
     private static Set<ChordWithContext> generateChordWithContextSinglePrimitive(
     		PrimitiveChordWithContext primitiveAndContext){
-    		Set<ChordWithContext> voicingsWithContext = new HashSet<>();
-    		for (Chord voicing : primitiveToChords(primitiveAndContext.getChord())){
-    			voicingsWithContext.add(
-    				new ChordWithContext(
-					voicing, 
-					primitiveAndContext.getKey(), 
-					primitiveAndContext.getContextTags()
-    				)
-    			);
-    		}
-    		return Collections.unmodifiableSet(voicingsWithContext);
+		Set<ChordWithContext> voicingsWithContext = new HashSet<>();
+		for (Chord voicing : primitiveToChords(primitiveAndContext.getChord())){
+		    voicingsWithContext.add(
+				new ChordWithContext(
+			        voicing, 
+			        primitiveAndContext.getKey(), 
+			        primitiveAndContext.getContextTags()
+				)
+			);
+		}
+		return Collections.unmodifiableSet(voicingsWithContext);
     }
     
     /**
@@ -204,14 +204,14 @@ class ChordGenerator {
      * all valid voicings of the corresponding PrimitiveChordWithContext in the input.  
      */
     public static List<Set<ChordWithContext>> generateChordsWithContext(
-    			List<PrimitiveChordWithContext> inputChords){
-    		List<Set<ChordWithContext>> voicingsWithContext = new ArrayList<>();
-    		for (PrimitiveChordWithContext primitiveAndContext: inputChords) {
-    			voicingsWithContext.add(
-    				generateChordWithContextSinglePrimitive(primitiveAndContext)
-    			);
-    		}
-    		return Collections.unmodifiableList(voicingsWithContext);
+            List<PrimitiveChordWithContext> inputChords){
+		List<Set<ChordWithContext>> voicingsWithContext = new ArrayList<>();
+		for (PrimitiveChordWithContext primitiveAndContext: inputChords) {
+			voicingsWithContext.add(
+				generateChordWithContextSinglePrimitive(primitiveAndContext)
+			);
+		}
+		return Collections.unmodifiableList(voicingsWithContext);
     }
 
 }

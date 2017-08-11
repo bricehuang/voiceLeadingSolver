@@ -41,8 +41,8 @@ class ScoredProgression{
         if (!(other instanceof ScoredProgression)){return false;}
         ScoredProgression that = (ScoredProgression) other;
         return (
-        		this.progression.equals(that.progression) 
-        		&& this.score.equals(that.score)
+    		this.progression.equals(that.progression) 
+    		&& this.score.equals(that.score)
         );
     }
     

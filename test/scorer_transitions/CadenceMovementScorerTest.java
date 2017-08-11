@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -57,7 +56,7 @@ public class CadenceMovementScorerTest extends MusicTestFramework {
         );
                 
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(MOVE_BIG_CADENCE) == 2);
+        assertEquals((Integer) 2, penaltyCount.get(MOVE_BIG_CADENCE));
     }
 
 }

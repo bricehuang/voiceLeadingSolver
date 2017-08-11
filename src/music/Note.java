@@ -26,12 +26,14 @@ public class Note {
      */
     
     private void checkRep(){
-        assert((pitchID - basicNote.getReducedPitch())%
-                Key.SEMITONES_IN_OCTAVE == 0);
-        assert((noteID - basicNote.getReducedNote())%
-                Key.PITCHES_IN_SCALE == 0);
-        assert((pitchID - basicNote.getReducedPitch())/Key.SEMITONES_IN_OCTAVE == octave);
-        assert((noteID - basicNote.getReducedNote())/Key.PITCHES_IN_SCALE == octave);
+        assert((pitchID - basicNote.getReducedPitch()) %
+            Key.SEMITONES_IN_OCTAVE == 0);
+        assert((noteID - basicNote.getReducedNote()) %
+            Key.PITCHES_IN_SCALE == 0);
+        assert((pitchID - basicNote.getReducedPitch()) / 
+            Key.SEMITONES_IN_OCTAVE == octave);
+        assert((noteID - basicNote.getReducedNote()) / 
+            Key.PITCHES_IN_SCALE == octave);
     }
     
     /**

@@ -17,20 +17,20 @@ public class BestProgressionsByLastTest extends MusicTestFramework {
         B4, D4, F3, G2, G_DOM7_ROOT
     );
     private static final ChordWithContext G_DOM7_CONTEXT = new ChordWithContext(
-    		G_DOM7_REALIZED, C_MAJOR, CADENTIAL_V
-    	);
+		G_DOM7_REALIZED, C_MAJOR, CADENTIAL_V
+	);
     
     private static final Chord C_MAJ_REALIZED = new Chord(
         C5, C4, E3, C3, C_MAJ_ROOT
     );
     private static final ChordWithContext C_MAJ_CONTEXT = new ChordWithContext(
-    		C_MAJ_REALIZED, C_MAJOR, CADENCE
-    	);
+		C_MAJ_REALIZED, C_MAJOR, CADENCE
+	);
     
     private static final ChordProgressionWithContext TEST_G_DOM7= 
-    		ChordProgressionWithContext.empty().append(G_DOM7_CONTEXT);
+		ChordProgressionWithContext.empty().append(G_DOM7_CONTEXT);
     private static final ChordProgressionWithContext TEST_PERFECT_CADENCE= 
-    		ChordProgressionWithContext.empty().append(G_DOM7_CONTEXT).append(C_MAJ_CONTEXT);
+		ChordProgressionWithContext.empty().append(G_DOM7_CONTEXT).append(C_MAJ_CONTEXT);
 
     private static final ScoredProgression TEST1 = new ScoredProgression(TEST_G_DOM7, 1);
     private static final ScoredProgression TEST2 = new ScoredProgression(TEST_G_DOM7, 2);
@@ -59,12 +59,12 @@ public class BestProgressionsByLastTest extends MusicTestFramework {
     
     @Test
     public void testOrdering(){
-	    	BestProgressionsByLast bestProgressionsByLast = new BestProgressionsByLast();
-	    	bestProgressionsByLast.addProgression(TEST4);
-	    	bestProgressionsByLast.addProgression(TEST2);
-	    	bestProgressionsByLast.addProgression(TEST3);
-	    	List<ScoredProgression> progressions = bestProgressionsByLast.getProgressions(G_DOM7_CONTEXT);
-	    	
+    	BestProgressionsByLast bestProgressionsByLast = new BestProgressionsByLast();
+    	bestProgressionsByLast.addProgression(TEST4);
+    	bestProgressionsByLast.addProgression(TEST2);
+    	bestProgressionsByLast.addProgression(TEST3);
+    	List<ScoredProgression> progressions = bestProgressionsByLast.getProgressions(G_DOM7_CONTEXT);
+    	
         assertEquals(3, progressions.size());
         assertEquals(TEST2, progressions.get(0));
         assertEquals(TEST3, progressions.get(1));
@@ -73,12 +73,12 @@ public class BestProgressionsByLastTest extends MusicTestFramework {
     
     @Test
     public void testOverflow(){
-    		BestProgressionsByLast bestProgressionsByLast = new BestProgressionsByLast();
-    		bestProgressionsByLast.addProgression(TEST4);
-    		bestProgressionsByLast.addProgression(TEST2);
+		BestProgressionsByLast bestProgressionsByLast = new BestProgressionsByLast();
+    	bestProgressionsByLast.addProgression(TEST4);
+		bestProgressionsByLast.addProgression(TEST2);
         bestProgressionsByLast.addProgression(TEST3);
         bestProgressionsByLast.addProgression(TEST1);
-    		List<ScoredProgression> progressions = bestProgressionsByLast.getProgressions(G_DOM7_CONTEXT);
+		List<ScoredProgression> progressions = bestProgressionsByLast.getProgressions(G_DOM7_CONTEXT);
 
         assertEquals(3, progressions.size());
         assertEquals(TEST1, progressions.get(0));
@@ -88,15 +88,15 @@ public class BestProgressionsByLastTest extends MusicTestFramework {
 
     @Test
     public void testIndependence(){
-    		BestProgressionsByLast bestProgressionsByLast = new BestProgressionsByLast();
-    		bestProgressionsByLast.addProgression(TEST4);
-    		bestProgressionsByLast.addProgression(TEST2);
-    		bestProgressionsByLast.addProgression(TEST3);
-    		bestProgressionsByLast.addProgression(TEST1);
-    		bestProgressionsByLast.addProgression(TEST2_PC);
-    		bestProgressionsByLast.addProgression(TEST4_PC);
-    		List<ScoredProgression> progressionsGDom7 = bestProgressionsByLast.getProgressions(G_DOM7_CONTEXT);
-    		List<ScoredProgression> progressionsCMaj = bestProgressionsByLast.getProgressions(C_MAJ_CONTEXT);
+		BestProgressionsByLast bestProgressionsByLast = new BestProgressionsByLast();
+		bestProgressionsByLast.addProgression(TEST4);
+		bestProgressionsByLast.addProgression(TEST2);
+		bestProgressionsByLast.addProgression(TEST3);
+		bestProgressionsByLast.addProgression(TEST1);
+		bestProgressionsByLast.addProgression(TEST2_PC);
+		bestProgressionsByLast.addProgression(TEST4_PC);
+		List<ScoredProgression> progressionsGDom7 = bestProgressionsByLast.getProgressions(G_DOM7_CONTEXT);
+		List<ScoredProgression> progressionsCMaj = bestProgressionsByLast.getProgressions(C_MAJ_CONTEXT);
     		
         assertEquals(3, progressionsGDom7.size());
         assertEquals(TEST1, progressionsGDom7.get(0));

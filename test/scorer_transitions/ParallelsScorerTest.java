@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -50,7 +49,7 @@ public class ParallelsScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);        
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(PARALLEL) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(PARALLEL));
     }
 
     @Test
@@ -64,7 +63,7 @@ public class ParallelsScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);        
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(PARALLEL) == 3);
+        assertEquals((Integer) 3, penaltyCount.get(PARALLEL));
     }
 
 }

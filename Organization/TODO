@@ -20,3 +20,4 @@ Random tech debt:
 	- make SolverUtils.intersect generic
 	- less copypasta Chord, Transition penalty type and score
 	- less copypasta compute_penalties 
+	- Clean up old code which hardcodes numbered BasicNotes

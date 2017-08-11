@@ -19,39 +19,39 @@ public enum ChordType {
     static{
         Map<ChordType, List<BasicInterval>> tmpChordOffsets = new HashMap<>();
         tmpChordOffsets.put(MAJ, Arrays.asList(
-                new BasicInterval(0,0), 
-                new BasicInterval(2,4), 
-                new BasicInterval(4,7)
-                ));
+            new BasicInterval(0,0), 
+            new BasicInterval(2,4), 
+            new BasicInterval(4,7)
+        ));
         tmpChordOffsets.put(MIN, Arrays.asList(
-                new BasicInterval(0,0), 
-                new BasicInterval(2,3), 
-                new BasicInterval(4,7)
-                ));
+            new BasicInterval(0,0), 
+            new BasicInterval(2,3), 
+            new BasicInterval(4,7)
+        ));
         tmpChordOffsets.put(DOM7, Arrays.asList(
-                new BasicInterval(0,0), 
-                new BasicInterval(2,4), 
-                new BasicInterval(4,7),
-                new BasicInterval(6,10)
-                ));
+            new BasicInterval(0,0), 
+            new BasicInterval(2,4), 
+            new BasicInterval(4,7),
+            new BasicInterval(6,10)
+        ));
         tmpChordOffsets.put(MAJ7, Arrays.asList(
-                new BasicInterval(0,0), 
-                new BasicInterval(2,4), 
-                new BasicInterval(4,7),
-                new BasicInterval(6,11)
-                ));
+            new BasicInterval(0,0), 
+            new BasicInterval(2,4), 
+            new BasicInterval(4,7),
+            new BasicInterval(6,11)
+        ));
         tmpChordOffsets.put(MIN7, Arrays.asList(
-                new BasicInterval(0,0), 
-                new BasicInterval(2,3), 
-                new BasicInterval(4,7),
-                new BasicInterval(6,10)
-                ));
+            new BasicInterval(0,0), 
+            new BasicInterval(2,3), 
+            new BasicInterval(4,7),
+            new BasicInterval(6,10)
+        ));
         tmpChordOffsets.put(DIM7, Arrays.asList(
-                new BasicInterval(0,0), 
-                new BasicInterval(2,3), 
-                new BasicInterval(4,6),
-                new BasicInterval(6,9)
-                ));
+            new BasicInterval(0,0), 
+            new BasicInterval(2,3), 
+            new BasicInterval(4,6),
+            new BasicInterval(6,9)
+        ));
         CHORD_OFFSETS = Collections.unmodifiableMap(tmpChordOffsets);
     }
     

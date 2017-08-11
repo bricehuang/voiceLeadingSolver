@@ -15,10 +15,10 @@ public class BestProgressionListTest extends MusicTestFramework {
         B4, D4, F3, G2, G_DOM7_ROOT
     );
     private static final ChordWithContext G_DOM7_CONTEXT = new ChordWithContext(
-    		G_DOM7_REALIZED, C_MAJOR, CADENTIAL_V
-    	);
+		G_DOM7_REALIZED, C_MAJOR, CADENTIAL_V
+	);
     private static final ChordProgressionWithContext TEST_PROGRESSION = 
-    		ChordProgressionWithContext.empty().append(G_DOM7_CONTEXT); 
+		ChordProgressionWithContext.empty().append(G_DOM7_CONTEXT); 
 
     private static final ScoredProgression TEST1 = new ScoredProgression(TEST_PROGRESSION, 1);
     private static final ScoredProgression TEST2 = new ScoredProgression(TEST_PROGRESSION, 2);
@@ -45,7 +45,7 @@ public class BestProgressionListTest extends MusicTestFramework {
     
     @Test
     public void testOrdering(){
-    		BestProgressionList list = new BestProgressionList();
+		BestProgressionList list = new BestProgressionList();
         list.addProgression(TEST4);
         list.addProgression(TEST2);
         list.addProgression(TEST3);
@@ -57,7 +57,7 @@ public class BestProgressionListTest extends MusicTestFramework {
     
     @Test
     public void testOverflow(){
-    		BestProgressionList list = new BestProgressionList();
+		BestProgressionList list = new BestProgressionList();
         list.addProgression(TEST4);
         list.addProgression(TEST2);
         list.addProgression(TEST3);

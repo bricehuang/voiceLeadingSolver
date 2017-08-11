@@ -54,15 +54,15 @@ public class BasicInterval {
     public static BasicInterval intervalBetween(BasicNote first, BasicNote second){
         if (second.getReducedNote() >= first.getReducedNote()){
             return new BasicInterval(
-                    second.getReducedNote() - first.getReducedNote(),
-                    second.getReducedPitch() - first.getReducedPitch()
-                    );
+                second.getReducedNote() - first.getReducedNote(),
+                second.getReducedPitch() - first.getReducedPitch()
+            );
         }
         else{
             return new BasicInterval(
-                    second.getReducedNote() - first.getReducedNote() + Key.PITCHES_IN_SCALE,
-                    second.getReducedPitch() - first.getReducedPitch() + Key.SEMITONES_IN_OCTAVE
-                    );
+                second.getReducedNote() - first.getReducedNote() + Key.PITCHES_IN_SCALE,
+                second.getReducedPitch() - first.getReducedPitch() + Key.SEMITONES_IN_OCTAVE
+            );
         }
     }
     

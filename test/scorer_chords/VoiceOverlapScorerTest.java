@@ -1,7 +1,6 @@
 package scorer_chords;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class VoiceOverlapScorerTest extends MusicTestFramework {
             computePenalties(overlap);
         
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(VOICE_OVERLAP)==1);
+        assertEquals((Integer) 1, penaltyCount.get(VOICE_OVERLAP));
     }
     
     @Test

@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -37,7 +36,7 @@ public class DirectsScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(DIRECT) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DIRECT));
     }
 
     @Test

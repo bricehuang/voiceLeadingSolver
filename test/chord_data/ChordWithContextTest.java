@@ -15,13 +15,13 @@ public class ChordWithContextTest extends MusicTestFramework {
     );
     
     private static final ChordWithContext C_MAJ_CADENCE = new ChordWithContext(
-    		C_MAJ_REALIZED, C_MAJOR, CADENCE
-    	);
+		C_MAJ_REALIZED, C_MAJOR, CADENCE
+	);
     private static final ChordWithContext C_MAJ_NONCADENCE = new ChordWithContext(
-    		C_MAJ_REALIZED, C_MAJOR, NO_CONTEXTS
+	C_MAJ_REALIZED, C_MAJOR, NO_CONTEXTS
     	);
     private static final ChordWithContext C_MAJ_IN_G = new ChordWithContext(
-    		C_MAJ_REALIZED, G_MAJOR, NO_CONTEXTS
+	C_MAJ_REALIZED, G_MAJOR, NO_CONTEXTS
     	);
 
     @Test(expected=AssertionError.class)
@@ -31,8 +31,8 @@ public class ChordWithContextTest extends MusicTestFramework {
     
     @Test
     public void testEquals() {
-    		assertTrue(C_MAJ_CADENCE.equals(C_MAJ_CADENCE));
-    		assertFalse(C_MAJ_CADENCE.equals(C_MAJ_NONCADENCE));
-    		assertFalse(C_MAJ_NONCADENCE.equals(C_MAJ_IN_G));
+        assertTrue(C_MAJ_CADENCE.equals(C_MAJ_CADENCE));
+		assertFalse(C_MAJ_CADENCE.equals(C_MAJ_NONCADENCE));
+		assertFalse(C_MAJ_NONCADENCE.equals(C_MAJ_IN_G));
     }
 }

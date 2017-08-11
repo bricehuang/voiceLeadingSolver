@@ -1,7 +1,6 @@
 package scorer_chords;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -33,9 +32,9 @@ public class ChordScorerIntegrationTest extends MusicTestFramework {
             computePenalties(chord);
         
         assertEquals(3, penaltyCounts.keySet().size());
-        assertTrue(penaltyCounts.get(ChordPenaltyType.VOICE_OVERLAP) == 1);
-        assertTrue(penaltyCounts.get(ChordPenaltyType.BAD_DOUBLING) == 1);
-        assertTrue(penaltyCounts.get(ChordPenaltyType.CADENCE_DOUBLING) == 1);
+        assertEquals((Integer) 1, penaltyCounts.get(ChordPenaltyType.VOICE_OVERLAP));
+        assertEquals((Integer) 1, penaltyCounts.get(ChordPenaltyType.BAD_DOUBLING));
+        assertEquals((Integer) 1, penaltyCounts.get(ChordPenaltyType.CADENCE_DOUBLING));
     }
 
     @Test
@@ -48,8 +47,8 @@ public class ChordScorerIntegrationTest extends MusicTestFramework {
             computePenalties(chord);
         
         assertEquals(2, penaltyCounts.keySet().size());
-        assertTrue(penaltyCounts.get(ChordPenaltyType.NOT_PAC) == 1);
-        assertTrue(penaltyCounts.get(ChordPenaltyType.CADENCE_DOUBLING) == 1);
+        assertEquals((Integer) 1, penaltyCounts.get(ChordPenaltyType.NOT_PAC));
+        assertEquals((Integer) 1, penaltyCounts.get(ChordPenaltyType.CADENCE_DOUBLING));
     }
 
     @Test
@@ -62,6 +61,6 @@ public class ChordScorerIntegrationTest extends MusicTestFramework {
             computePenalties(chord);
         
         assertEquals(1, penaltyCounts.keySet().size());
-        assertTrue(penaltyCounts.get(ChordPenaltyType.OMITTED_FIFTH) == 1);
+        assertEquals((Integer) 1, penaltyCounts.get(ChordPenaltyType.OMITTED_FIFTH));
     }
 }

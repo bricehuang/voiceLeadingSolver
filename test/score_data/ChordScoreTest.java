@@ -1,14 +1,11 @@
 package score_data;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
 import org.junit.Test;
 
-import score_data.ChordPenaltyType;
-import score_data.ChordScore;
 import test_framework.MusicTestFramework;
 
 public class ChordScoreTest extends MusicTestFramework {
@@ -38,7 +35,7 @@ public class ChordScoreTest extends MusicTestFramework {
         Map<ChordPenaltyType, Integer> penaltyCount 
             = score.getPenaltyCount();
         assertEquals(1, penaltyCount.size());
-        assertTrue(penaltyCount.get(DOUBLED_LEADING_TONE) == 1);        
+        assertEquals((Integer) 1, penaltyCount.get(DOUBLED_LEADING_TONE));        
     }
 
     @Test
@@ -66,9 +63,9 @@ public class ChordScoreTest extends MusicTestFramework {
         Map<ChordPenaltyType, Integer> penaltyCount 
             = score.getPenaltyCount();
         assertEquals(4, penaltyCount.size());
-        assertTrue(penaltyCount.get(DOUBLED_LEADING_TONE) == 1);
-        assertTrue(penaltyCount.get(DOUBLE_DOUBLING) == 1);
-        assertTrue(penaltyCount.get(BAD_TRIPLING) == 2);
-        assertTrue(penaltyCount.get(CADENCE_DOUBLING) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DOUBLED_LEADING_TONE));
+        assertEquals((Integer) 1, penaltyCount.get(DOUBLE_DOUBLING));
+        assertEquals((Integer) 2, penaltyCount.get(BAD_TRIPLING));
+        assertEquals((Integer) 1, penaltyCount.get(CADENCE_DOUBLING));
     }
 }

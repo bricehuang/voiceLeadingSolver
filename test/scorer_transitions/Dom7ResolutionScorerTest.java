@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -51,7 +50,7 @@ public class Dom7ResolutionScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(eDom7, aMaj);
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(DOM_SEVEN_RES) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DOM_SEVEN_RES));
     }
 
     @Test
@@ -78,7 +77,7 @@ public class Dom7ResolutionScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(eDom7, aMin);
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(DOM_SEVEN_RES) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DOM_SEVEN_RES));
     }
 
     @Test
@@ -118,7 +117,7 @@ public class Dom7ResolutionScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(eDom7, aMaj);
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(DOM_SEVEN_RES) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DOM_SEVEN_RES));
     }
 
     @Test
@@ -145,7 +144,7 @@ public class Dom7ResolutionScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(eDom7, aMin);
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(DOM_SEVEN_RES) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DOM_SEVEN_RES));
     }    
 
     @Test

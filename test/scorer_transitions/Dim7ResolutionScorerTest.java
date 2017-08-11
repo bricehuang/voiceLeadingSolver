@@ -1,7 +1,6 @@
 package scorer_transitions;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -65,7 +64,7 @@ public class Dim7ResolutionScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(DIM_SEVEN_RES) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DIM_SEVEN_RES));
     }
     
     @Test
@@ -79,7 +78,7 @@ public class Dim7ResolutionScorerTest extends MusicTestFramework {
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);
         assertEquals(1, penaltyCount.keySet().size());
-        assertTrue(penaltyCount.get(DIM_SEVEN_RES) == 1);
+        assertEquals((Integer) 1, penaltyCount.get(DIM_SEVEN_RES));
     }    
     
     @Test
