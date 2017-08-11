@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import chord_data.ContextTag;
+import chord_data.PrimitiveChordWithContext;
 import test_framework.MusicTestFramework;
 
 public class ParserNewTest extends MusicTestFramework {
@@ -38,6 +40,34 @@ public class ParserNewTest extends MusicTestFramework {
         assertEquals((Integer) 1, ParserNew.parseInversion("1"));
         assertEquals((Integer) 2, ParserNew.parseInversion("2"));
         assertEquals((Integer) 3, ParserNew.parseInversion("3"));
+    }
+
+    @Test
+    public void parseContextTagTest(){
+        assertEquals(ContextTag.APPLIED_DOMINANT, 
+            ParserNew.parseContext("applieddom"));
+        assertEquals(ContextTag.CADENCE, 
+            ParserNew.parseContext("cadence"));
+    }
+    
+    @Test
+    public void parseChordTest(){
+        assertEquals(
+            new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS),
+            ParserNew.parseChord("C_maj_0", C_MAJOR)
+        );
+        assertEquals(
+            new PrimitiveChordWithContext(E_DOM7_65, A_MINOR, NO_CONTEXTS),
+            ParserNew.parseChord("E_dom7_1", A_MINOR)
+        );
+        assertEquals(
+            new PrimitiveChordWithContext(D_DOM7_ROOT, D_MAJOR, APPLIED_DOMINANT),
+            ParserNew.parseChord("D_dom7_0_applieddom", D_MAJOR)
+        );
+        assertEquals(
+            new PrimitiveChordWithContext(E_MAJ_ROOT, E_MAJOR, CADENCE),
+            ParserNew.parseChord("E_maj_0_cadence", E_MAJOR)
+        );
     }
 
 }

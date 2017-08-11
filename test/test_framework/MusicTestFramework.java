@@ -104,6 +104,7 @@ public class MusicTestFramework {
     public static final Key Db_MAJOR = new Key(Db, true);
     public static final Key D_MAJOR = new Key(D, true);
     public static final Key D_MINOR = new Key(D, false);
+    public static final Key E_MAJOR = new Key(E, true);
     public static final Key G_MAJOR = new Key(G, true);
     public static final Key G_MINOR = new Key(G, false);
     public static final Key A_MAJOR = new Key(A, true);

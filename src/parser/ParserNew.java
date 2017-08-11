@@ -2,13 +2,18 @@ package parser;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import chord_data.ContextTag;
+import chord_data.PrimitiveChordWithContext;
 import chords.ChordType;
+import chords.PrimitiveChord;
 import music.BasicInterval;
 import music.BasicNote;
 import music.Interval;
+import music.Key;
 
 public class ParserNew {
     /*
@@ -30,7 +35,7 @@ public class ParserNew {
      *  - maj7 (Major 7th) 
      *  - min7 (Major 7th)
      * tags specify any additional contexts.  Currently supported tags:
-     *  - appdominant (Applied dominant)
+     *  - applieddom (Applied dominant)
      *  - cadence (Cadence)
      * 
      * 
@@ -57,7 +62,7 @@ public class ParserNew {
         "(maj|min|dom7|dim7|maj7|min7)";
     private static final String INVERSION_REGEX = "[0-3]";
     private static final String TAG_REGEX = 
-        "(appdominant|cadence)";
+        "(applieddom|cadence)";
     private static final String QUALITY_REGEX = "(MAJ|MIN)";
     
     private static final String REPEATING_TAG_REGEX = 
@@ -142,6 +147,25 @@ public class ParserNew {
     public static Integer parseInversion(String in) {
         assert (in.matches(INVERSION_REGEX));
         return Integer.valueOf(in);
+    }
+    
+    public static ContextTag parseContext(String in) { 
+        assert (in.matches(TAG_REGEX));
+        return CONTEXT_TAGS.get(in);
+    }
+    
+    public static PrimitiveChordWithContext parseChord(String in, Key key) {
+        assert (in.matches(CHORD_REGEX));
+        String[] tokens = in.split("_");
+        BasicNote rootNote = parseNote(tokens[0]);
+        ChordType chordType = parseChordType(tokens[1]);
+        Integer inversion = parseInversion(tokens[2]);
+        PrimitiveChord chord = new PrimitiveChord(rootNote, chordType, inversion);
+        Set<ContextTag> contexts = new HashSet<>();
+        for (int i=3; i<tokens.length; i++) {
+            contexts.add(parseContext(tokens[i]));
+        }
+        return new PrimitiveChordWithContext(chord, key, contexts);
     }
 
 }
