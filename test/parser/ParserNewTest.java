@@ -2,6 +2,9 @@ package parser;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 import chord_data.ContextTag;
@@ -69,7 +72,7 @@ public class ParserNewTest extends MusicTestFramework {
             ParserNew.parseChord("E_maj_0_cadence", E_MAJOR)
         );
     }
-    
+
     @Test
     public void parseQualityIsMajorTest() {
         assertEquals(true, ParserNew.parseQualityIsMajor("MAJ"));
@@ -84,4 +87,17 @@ public class ParserNewTest extends MusicTestFramework {
         assertEquals(Bb_MAJOR, ParserNew.parseKey("KEY_Bb_MAJ"));
     }
 
+    @Test
+    public void parseBeforePostProcessingTest() {
+        List<PrimitiveChordWithContext> parseResult = ParserNew.parseBeforePostProcessing(
+            "KEY_C_MAJ D_min7_1\nC_maj_2\tG_maj_0\rC_maj_0_cadence"
+        );
+        List<PrimitiveChordWithContext> expectedParseResult = Arrays.asList(
+            new PrimitiveChordWithContext(D_MIN7_65, C_MAJOR, NO_CONTEXTS), 
+            new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, NO_CONTEXTS), 
+            new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS),
+            new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, CADENCE)
+        );
+        assertEquals(expectedParseResult, parseResult);
+    }
 }

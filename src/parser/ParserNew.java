@@ -1,8 +1,10 @@
 package parser;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -74,6 +76,11 @@ public class ParserNew {
     private static final String KEY_REGEX = 
         "KEY_"+NOTE_REGEX+"_"+QUALITY_REGEX;
 
+    private static final String MASTER_REGEX = 
+        "("+CHORD_REGEX+")|("+KEY_REGEX+")";
+    
+    private static final String WHITESPACE_REGEX = "[ |\n|\r|\t]";
+    
     // Translation maps
     private static final Map<String, BasicNote> NOTES;
     static{
@@ -182,5 +189,25 @@ public class ParserNew {
         boolean isMajor = parseQualityIsMajor(tokens[2]);
         return new Key(tonic, isMajor);
     }
-    
+
+    public static List<PrimitiveChordWithContext> parseBeforePostProcessing(String in) {
+        String[] tokens = in.split(WHITESPACE_REGEX);
+
+        assert tokens[0].matches(KEY_REGEX);
+        Key currentKey = null; // this should be overwritten before first use
+        List<PrimitiveChordWithContext> parseResult = new ArrayList<>();
+
+        for (String token: tokens) {
+            assert token.matches(MASTER_REGEX); // TODO: allow comments
+            if (token.matches(CHORD_REGEX)) {
+                parseResult.add(parseChord(token, currentKey));
+            } else if (token.matches(KEY_REGEX)) {
+                currentKey = parseKey(token);
+            } else {
+                throw new RuntimeException("Should not get here");
+            }
+        }
+        return Collections.unmodifiableList(parseResult);
+    }
+
 }
