@@ -19,6 +19,8 @@ public class ParsePostProcessorTest extends MusicTestFramework {
 
     private static final PrimitiveChordWithContext I64_NO_TAG = 
         new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, NO_CONTEXTS); 
+    private static final PrimitiveChordWithContext I6_NOT_CADENTIAL_NO_TAG = 
+        new PrimitiveChordWithContext(C_MAJ_6, C_MAJOR, NO_CONTEXTS); 
     private static final PrimitiveChordWithContext I64_WITH_TAG = 
         new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, CADENTIAL_I64); 
     
@@ -52,7 +54,8 @@ public class ParsePostProcessorTest extends MusicTestFramework {
         );
         assertEquals(expectedPostProcess, preprocess);
     }
-    
+
+
     @Test
     public void testCadenceConsistencyCheckerGood() {
         List<PrimitiveChordWithContext> preprocess = Arrays.asList(
@@ -68,6 +71,7 @@ public class ParsePostProcessorTest extends MusicTestFramework {
         );
         new CadenceConsistencyChecker().postProcess(preprocess);
     }
+
 
     @Test
     public void testCadentialVBackfillerGood() {
@@ -92,7 +96,7 @@ public class ParsePostProcessorTest extends MusicTestFramework {
         );
         assertEquals(expectedPostProcess, preprocess);
     }
-    
+
     @Test
     public void testCadentialVBackfillerNotCadentialV() {
         List<PrimitiveChordWithContext> preprocess = Arrays.asList(
@@ -105,5 +109,41 @@ public class ParsePostProcessorTest extends MusicTestFramework {
         assertEquals(expectedPostProcess, preprocess);
     }
 
-    
+
+    @Test
+    public void testCadentialI64BackfillerGood() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            I64_NO_TAG, V_WITH_TAG
+        );
+        new CadentialI64Backfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            I64_WITH_TAG, V_WITH_TAG
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }
+
+    @Test
+    public void testCadentialI64BackfillerNotI64() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            PRE_V_NO_TAG, V_WITH_TAG
+        );
+        new CadentialI64Backfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            PRE_V_NO_TAG, V_WITH_TAG
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }
+
+    @Test
+    public void testCadentiaI64VBackfillerNotCadentialI64() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            I6_NOT_CADENTIAL_NO_TAG, V_WITH_TAG
+        );
+        new CadentialI64Backfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            I6_NOT_CADENTIAL_NO_TAG, V_WITH_TAG
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }    
+
 }
