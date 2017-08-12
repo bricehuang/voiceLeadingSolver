@@ -52,7 +52,7 @@ public class PrimitiveChordWithContext {
      * @return whether this and object are equal.   
      */
     @Override public boolean equals(Object object){
-        if (!(object instanceof PrimitiveChord)){return false;}
+        if (!(object instanceof PrimitiveChordWithContext)){return false;}
         PrimitiveChordWithContext that = (PrimitiveChordWithContext) object;
         return this.primitiveChord.equals(that.primitiveChord) 
     		&& this.key.equals(that.key)

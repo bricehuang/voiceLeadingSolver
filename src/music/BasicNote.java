@@ -88,6 +88,12 @@ public class BasicNote{
         return new BasicNote(reducedNote, reducedPitch);
     }
     
+    public BasicNote transpose(Interval interval){
+        BasicInterval basicInterval = interval.getBasicInterval();
+        boolean up = interval.getIncreasing();
+        return this.transpose(basicInterval, up);
+    }
+    
     /**
      * Gets the string representation of a note as it is written in a given key 
      * @param key a key

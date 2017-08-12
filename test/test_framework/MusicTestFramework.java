@@ -104,6 +104,8 @@ public class MusicTestFramework {
     public static final Key Db_MAJOR = new Key(Db, true);
     public static final Key D_MAJOR = new Key(D, true);
     public static final Key D_MINOR = new Key(D, false);
+    public static final Key E_MAJOR = new Key(E, true);
+    public static final Key Fs_MINOR = new Key(Fs, false);
     public static final Key G_MAJOR = new Key(G, true);
     public static final Key G_MINOR = new Key(G, false);
     public static final Key A_MAJOR = new Key(A, true);
@@ -122,7 +124,9 @@ public class MusicTestFramework {
     // Interval
     public static final Interval UP_MIN_2ND = new Interval(MIN_2ND, 0, true);
     public static final Interval DN_MIN_2ND = new Interval(MIN_2ND, 0, false);
+    public static final Interval UP_MAJ_2ND = new Interval(MAJ_2ND, 0, true);
     public static final Interval DN_MAJ_2ND = new Interval(MAJ_2ND, 0, false);
+    public static final Interval UP_PFT_5TH = new Interval(PFT_5TH, 0, true);
     public static final Interval DN_PFT_5TH = new Interval(PFT_5TH, 0, false);
 
     // ChordType
@@ -192,6 +196,10 @@ public class MusicTestFramework {
             .unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)));
     public static final Set<ContextTag> CADENTIAL_PREDOMINANT = Collections
             .unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_PREDOMINANT)));
+    public static final Set<ContextTag> NEAPOLITAN_PREDOMINANT = Collections
+            .unmodifiableSet(new HashSet<>(Arrays.asList(
+                    ContextTag.CADENTIAL_PREDOMINANT, ContextTag.NEAPOLITAN
+            )));
     public static final Set<ContextTag> NO_CONTEXTS = Collections.unmodifiableSet(new HashSet<>());
 
     // ChordPenalty
