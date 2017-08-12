@@ -64,7 +64,7 @@ public class ParserNew {
     private static final String TAG_REGEX = 
         "(applieddom|cadence)";
     private static final String QUALITY_REGEX = "(MAJ|MIN)";
-    
+
     private static final String REPEATING_TAG_REGEX = 
         "[_"+TAG_REGEX+"]*";
     private static final String CHORD_REGEX = 
@@ -73,7 +73,7 @@ public class ParserNew {
 
     private static final String KEY_REGEX = 
         "KEY_"+NOTE_REGEX+"_"+QUALITY_REGEX;
-    
+
     // Translation maps
     private static final Map<String, BasicNote> NOTES;
     static{
@@ -95,7 +95,7 @@ public class ParserNew {
         accidentalsTmp.put("b", new Interval(halfStep, 0, false));
         ACCIDENTALS = Collections.unmodifiableMap(accidentalsTmp);
     }    
-    
+
     private static final Map<String, ChordType> CHORD_TYPES;
     static{
         Map<String, ChordType> chordTypesTmp = new HashMap<>();
@@ -107,7 +107,7 @@ public class ParserNew {
         chordTypesTmp.put("min7", ChordType.MIN7);
         CHORD_TYPES = Collections.unmodifiableMap(chordTypesTmp);
     }
-    
+
     private static final Map<String, ContextTag> CONTEXT_TAGS;
     static{
         Map<String, ContextTag> contextTagsTmp = new HashMap<>();
@@ -123,7 +123,7 @@ public class ParserNew {
         keyIsMajorTmp.put("MIN", false);
         KEY_IS_MAJOR = Collections.unmodifiableMap(keyIsMajorTmp);
     }
-    
+
     public static BasicNote parseNote(String in) {
         assert (in.matches(NOTE_REGEX));
         BasicNote baseNote = NOTES.get(in.substring(0,1));
@@ -138,22 +138,22 @@ public class ParserNew {
             throw new RuntimeException("Should not get here");
         }
     }
-    
+
     public static ChordType parseChordType(String in) { 
         assert (in.matches(CHORDTYPE_REGEX));
         return CHORD_TYPES.get(in);
     }
-    
+
     public static Integer parseInversion(String in) {
         assert (in.matches(INVERSION_REGEX));
         return Integer.valueOf(in);
     }
-    
+
     public static ContextTag parseContext(String in) { 
         assert (in.matches(TAG_REGEX));
         return CONTEXT_TAGS.get(in);
     }
-    
+
     public static PrimitiveChordWithContext parseChord(String in, Key key) {
         assert (in.matches(CHORD_REGEX));
         String[] tokens = in.split("_");
@@ -168,4 +168,19 @@ public class ParserNew {
         return new PrimitiveChordWithContext(chord, key, contexts);
     }
 
+    public static boolean parseQualityIsMajor(String in) {
+        assert (in.matches(QUALITY_REGEX));
+        return KEY_IS_MAJOR.get(in);
+    }
+    
+    public static Key parseKey(String in) {
+        assert (in.matches(KEY_REGEX));
+        String[] tokens = in.split("_");
+        assert tokens.length == 3;
+        assert tokens[0].equals("KEY");
+        BasicNote tonic = parseNote(tokens[1]);
+        boolean isMajor = parseQualityIsMajor(tokens[2]);
+        return new Key(tonic, isMajor);
+    }
+    
 }

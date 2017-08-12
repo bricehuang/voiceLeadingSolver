@@ -69,5 +69,19 @@ public class ParserNewTest extends MusicTestFramework {
             ParserNew.parseChord("E_maj_0_cadence", E_MAJOR)
         );
     }
+    
+    @Test
+    public void parseQualityIsMajorTest() {
+        assertEquals(true, ParserNew.parseQualityIsMajor("MAJ"));
+        assertEquals(false, ParserNew.parseQualityIsMajor("MIN"));
+    }
+
+    @Test
+    public void parseKeyTest() {
+        assertEquals(C_MAJOR, ParserNew.parseKey("KEY_C_MAJ"));
+        assertEquals(G_MINOR, ParserNew.parseKey("KEY_G_MIN"));
+        assertEquals(Fs_MINOR, ParserNew.parseKey("KEY_F#_MIN"));
+        assertEquals(Bb_MAJOR, ParserNew.parseKey("KEY_Bb_MAJ"));
+    }
 
 }
