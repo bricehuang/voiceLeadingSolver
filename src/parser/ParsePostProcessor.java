@@ -17,7 +17,8 @@ public interface ParsePostProcessor {
      * Corollary: post-processors should not have cyclic run-order dependencies.  
      */
     public static final List<ParsePostProcessor> ALL_POST_PROCESSORS = Arrays.asList(
-        new CadenceConsistencyChecker()
+        new CadenceConsistencyChecker(),
+        new CadentialVBackfiller()
     );
 
     /**

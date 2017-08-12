@@ -24,6 +24,8 @@ public class ParsePostProcessorTest extends MusicTestFramework {
     
     private static final PrimitiveChordWithContext V_NO_TAG = 
         new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS);            
+    private static final PrimitiveChordWithContext V_NOT_CADENTIAL_NO_TAG = 
+        new PrimitiveChordWithContext(G_MAJ_6, C_MAJOR, NO_CONTEXTS);            
     private static final PrimitiveChordWithContext V_WITH_TAG = 
         new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, CADENTIAL_V);            
 
@@ -66,5 +68,42 @@ public class ParsePostProcessorTest extends MusicTestFramework {
         );
         new CadenceConsistencyChecker().postProcess(preprocess);
     }
+
+    @Test
+    public void testCadentialVBackfillerGood() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            V_NO_TAG, I_WITH_TAG
+        );
+        new CadentialVBackfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            V_WITH_TAG, I_WITH_TAG
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }
+
+    @Test
+    public void testCadentialVBackfillerNotV() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            PRE_V_NO_TAG, I_WITH_TAG
+        );
+        new CadentialVBackfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            PRE_V_NO_TAG, I_WITH_TAG
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }
+    
+    @Test
+    public void testCadentialVBackfillerNotCadentialV() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            V_NOT_CADENTIAL_NO_TAG, I_WITH_TAG
+        );
+        new CadentialVBackfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            V_NOT_CADENTIAL_NO_TAG, I_WITH_TAG
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }
+
     
 }
