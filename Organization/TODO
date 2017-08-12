@@ -1,12 +1,13 @@
 Features:
-    - dim triad
+    - dim triad, half dim 7th
     - Neapolitan (chordType exists; write scorer)
     - aug6 (3 variants)
     - make results reporting less ratchet
     - compile to lilypond 
     - GUI?? 
 
-Random tech debt:     
+Random tech debt:
+	- Implement parser for minor predominants (after dim triadl, half dim 7th)
 	- test ChordWithContext
 	- text PrimitiveChordWithContext
 	- test ChordProgressionWithContext

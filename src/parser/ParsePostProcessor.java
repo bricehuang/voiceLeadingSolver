@@ -18,7 +18,9 @@ public interface ParsePostProcessor {
      */
     public static final List<ParsePostProcessor> ALL_POST_PROCESSORS = Arrays.asList(
         new CadenceConsistencyChecker(),
-        new CadentialVBackfiller()
+        new CadentialVBackfiller(),
+        new CadentialI64Backfiller(),
+        new CadentialPreVBackfiller()
     );
 
     /**
