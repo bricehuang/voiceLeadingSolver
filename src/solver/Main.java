@@ -10,6 +10,7 @@ import javax.sound.midi.MidiUnavailableException;
 
 import chord_data.ChordProgressionWithContext;
 import chord_data.PrimitiveChordWithContext;
+import parser.Parser;
 import player.ProgressionPlayer;
 
 /**
@@ -30,7 +31,7 @@ public class Main {
      * SortedFiniteProgList.PROGRESSIONS_TO_TRACK
      */
     public static List<ChordProgressionWithContext> solve(String in, boolean report, int maxReport){
-        List<PrimitiveChordWithContext> parsedInput = ParserDeprecated.parse(in);
+        List<PrimitiveChordWithContext> parsedInput = Parser.parse(in);
         List<ChordProgressionWithContext> bestProgressions = 
             Solver.solve(parsedInput);
         if (report){

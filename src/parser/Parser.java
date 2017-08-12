@@ -17,7 +17,7 @@ import music.BasicNote;
 import music.Interval;
 import music.Key;
 
-public class ParserNew {
+public class Parser {
     /*
      * Spec for test input: 
      * 

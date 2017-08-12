@@ -11,7 +11,7 @@ import chord_data.ContextTag;
 import chord_data.PrimitiveChordWithContext;
 import test_framework.MusicTestFramework;
 
-public class ParserNewTest extends MusicTestFramework {
+public class ParserTest extends MusicTestFramework {
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
@@ -20,76 +20,76 @@ public class ParserNewTest extends MusicTestFramework {
 
     @Test
     public void parseNoteTest(){
-        assertEquals(C, ParserNew.parseNote("C"));
-        assertEquals(Fs, ParserNew.parseNote("F#"));
-        assertEquals(Bb, ParserNew.parseNote("Bb"));
-        assertEquals(Cb, ParserNew.parseNote("Cb"));
-        assertEquals(Bs, ParserNew.parseNote("B#"));
+        assertEquals(C, Parser.parseNote("C"));
+        assertEquals(Fs, Parser.parseNote("F#"));
+        assertEquals(Bb, Parser.parseNote("Bb"));
+        assertEquals(Cb, Parser.parseNote("Cb"));
+        assertEquals(Bs, Parser.parseNote("B#"));
     }
     
     @Test
     public void parseChordTypeTest(){
-        assertEquals(MAJ, ParserNew.parseChordType("maj"));
-        assertEquals(MIN, ParserNew.parseChordType("min"));
-        assertEquals(DOM7, ParserNew.parseChordType("dom7"));
-        assertEquals(DIM7, ParserNew.parseChordType("dim7"));
-        assertEquals(MAJ7, ParserNew.parseChordType("maj7"));
-        assertEquals(MIN7, ParserNew.parseChordType("min7"));        
+        assertEquals(MAJ, Parser.parseChordType("maj"));
+        assertEquals(MIN, Parser.parseChordType("min"));
+        assertEquals(DOM7, Parser.parseChordType("dom7"));
+        assertEquals(DIM7, Parser.parseChordType("dim7"));
+        assertEquals(MAJ7, Parser.parseChordType("maj7"));
+        assertEquals(MIN7, Parser.parseChordType("min7"));        
     }
     
     @Test
     public void parseInversionTest(){
-        assertEquals((Integer) 0, ParserNew.parseInversion("0"));
-        assertEquals((Integer) 1, ParserNew.parseInversion("1"));
-        assertEquals((Integer) 2, ParserNew.parseInversion("2"));
-        assertEquals((Integer) 3, ParserNew.parseInversion("3"));
+        assertEquals((Integer) 0, Parser.parseInversion("0"));
+        assertEquals((Integer) 1, Parser.parseInversion("1"));
+        assertEquals((Integer) 2, Parser.parseInversion("2"));
+        assertEquals((Integer) 3, Parser.parseInversion("3"));
     }
 
     @Test
     public void parseContextTagTest(){
         assertEquals(ContextTag.APPLIED_DOMINANT, 
-            ParserNew.parseContext("applieddom"));
+            Parser.parseContext("applieddom"));
         assertEquals(ContextTag.CADENCE, 
-            ParserNew.parseContext("cadence"));
+            Parser.parseContext("cadence"));
     }
     
     @Test
     public void parseChordTest(){
         assertEquals(
             new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS),
-            ParserNew.parseChord("C_maj_0", C_MAJOR)
+            Parser.parseChord("C_maj_0", C_MAJOR)
         );
         assertEquals(
             new PrimitiveChordWithContext(E_DOM7_65, A_MINOR, NO_CONTEXTS),
-            ParserNew.parseChord("E_dom7_1", A_MINOR)
+            Parser.parseChord("E_dom7_1", A_MINOR)
         );
         assertEquals(
             new PrimitiveChordWithContext(D_DOM7_ROOT, D_MAJOR, APPLIED_DOMINANT),
-            ParserNew.parseChord("D_dom7_0_applieddom", D_MAJOR)
+            Parser.parseChord("D_dom7_0_applieddom", D_MAJOR)
         );
         assertEquals(
             new PrimitiveChordWithContext(E_MAJ_ROOT, E_MAJOR, CADENCE),
-            ParserNew.parseChord("E_maj_0_cadence", E_MAJOR)
+            Parser.parseChord("E_maj_0_cadence", E_MAJOR)
         );
     }
 
     @Test
     public void parseQualityIsMajorTest() {
-        assertEquals(true, ParserNew.parseQualityIsMajor("MAJ"));
-        assertEquals(false, ParserNew.parseQualityIsMajor("MIN"));
+        assertEquals(true, Parser.parseQualityIsMajor("MAJ"));
+        assertEquals(false, Parser.parseQualityIsMajor("MIN"));
     }
 
     @Test
     public void parseKeyTest() {
-        assertEquals(C_MAJOR, ParserNew.parseKey("KEY_C_MAJ"));
-        assertEquals(G_MINOR, ParserNew.parseKey("KEY_G_MIN"));
-        assertEquals(Fs_MINOR, ParserNew.parseKey("KEY_F#_MIN"));
-        assertEquals(Bb_MAJOR, ParserNew.parseKey("KEY_Bb_MAJ"));
+        assertEquals(C_MAJOR, Parser.parseKey("KEY_C_MAJ"));
+        assertEquals(G_MINOR, Parser.parseKey("KEY_G_MIN"));
+        assertEquals(Fs_MINOR, Parser.parseKey("KEY_F#_MIN"));
+        assertEquals(Bb_MAJOR, Parser.parseKey("KEY_Bb_MAJ"));
     }
 
     @Test
     public void parseBeforePostProcessingTest() {
-        List<PrimitiveChordWithContext> parseResult = ParserNew.parseBeforePostProcessing(
+        List<PrimitiveChordWithContext> parseResult = Parser.parseBeforePostProcessing(
             "KEY_C_MAJ D_min7_1\nC_maj_2\tG_maj_0\rC_maj_0_cadence"
         );
         List<PrimitiveChordWithContext> expectedParseResult = Arrays.asList(
@@ -103,7 +103,7 @@ public class ParserNewTest extends MusicTestFramework {
 
     @Test
     public void parseTest() {
-        List<PrimitiveChordWithContext> parseResult = ParserNew.parse(
+        List<PrimitiveChordWithContext> parseResult = Parser.parse(
             "KEY_C_MAJ D_min7_1\nC_maj_2\tG_maj_0\rC_maj_0_cadence"
         );
         List<PrimitiveChordWithContext> expectedParseResult = Arrays.asList(
@@ -115,4 +115,17 @@ public class ParserNewTest extends MusicTestFramework {
         assertEquals(expectedParseResult, parseResult);
     }
 
+    @Test
+    public void parseTest2() {
+        // This one won't pass yet, Neapolitan not implemented.  
+        List<PrimitiveChordWithContext> parseResult = Parser.parse(
+            "KEY_A_MAJ Bb_maj_1_neapolitan E_maj_0 A_maj_0_cadence"
+        );
+        List<PrimitiveChordWithContext> expectedParseResult = Arrays.asList(
+            new PrimitiveChordWithContext(Bb_MAJ_6, A_MAJOR, NEAPOLITAN_PREDOMINANT),  
+            new PrimitiveChordWithContext(E_MAJ_ROOT, A_MAJOR, CADENTIAL_V),
+            new PrimitiveChordWithContext(A_MAJ_ROOT, A_MAJOR, CADENCE)
+        );
+        assertEquals(expectedParseResult, parseResult);
+    }    
 }

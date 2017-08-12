@@ -196,6 +196,10 @@ public class MusicTestFramework {
             .unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_V)));
     public static final Set<ContextTag> CADENTIAL_PREDOMINANT = Collections
             .unmodifiableSet(new HashSet<>(Arrays.asList(ContextTag.CADENTIAL_PREDOMINANT)));
+    public static final Set<ContextTag> NEAPOLITAN_PREDOMINANT = Collections
+            .unmodifiableSet(new HashSet<>(Arrays.asList(
+                    ContextTag.CADENTIAL_PREDOMINANT, ContextTag.NEAPOLITAN
+            )));
     public static final Set<ContextTag> NO_CONTEXTS = Collections.unmodifiableSet(new HashSet<>());
 
     // ChordPenalty
