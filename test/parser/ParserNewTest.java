@@ -100,4 +100,19 @@ public class ParserNewTest extends MusicTestFramework {
         );
         assertEquals(expectedParseResult, parseResult);
     }
+
+    @Test
+    public void parseTest() {
+        List<PrimitiveChordWithContext> parseResult = ParserNew.parse(
+            "KEY_C_MAJ D_min7_1\nC_maj_2\tG_maj_0\rC_maj_0_cadence"
+        );
+        List<PrimitiveChordWithContext> expectedParseResult = Arrays.asList(
+            new PrimitiveChordWithContext(D_MIN7_65, C_MAJOR, CADENTIAL_PREDOMINANT), 
+            new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, CADENTIAL_I64), 
+            new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, CADENTIAL_V),
+            new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, CADENCE)
+        );
+        assertEquals(expectedParseResult, parseResult);
+    }
+
 }

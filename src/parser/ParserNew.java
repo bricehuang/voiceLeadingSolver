@@ -207,7 +207,12 @@ public class ParserNew {
                 throw new RuntimeException("Should not get here");
             }
         }
-        return Collections.unmodifiableList(parseResult);
+        return parseResult;
     }
-
+    
+    public static List<PrimitiveChordWithContext> parse(String in) {
+        List<PrimitiveChordWithContext> parseResult = parseBeforePostProcessing(in);
+        ParsePostProcessor.applyPostProcessors(parseResult);
+        return parseResult;
+    }
 }
