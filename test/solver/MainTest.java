@@ -27,7 +27,7 @@ public class MainTest {
 	        }
 		}
     }
-    
+
     @Test
     public void neapolitanCadenceTest(){
         if (PLAY_REALIZATIONS){
@@ -79,5 +79,18 @@ public class MainTest {
 	        }
 		}
     }
+
+    @Test
+    public void realization4Test(){
+        if (PLAY_REALIZATIONS) {                
+            playSampleSATB("realization4.satb");
+            try{
+                Thread.sleep(12000);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }    
 
 }
