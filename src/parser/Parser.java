@@ -64,7 +64,7 @@ public class Parser {
         "(maj|min|dom7|dim7|maj7|min7)";
     private static final String INVERSION_REGEX = "[0-3]";
     private static final String TAG_REGEX = 
-        "(applieddom|cadence)";
+        "(applieddom|cadence|neapolitan)";
     private static final String QUALITY_REGEX = "(MAJ|MIN)";
 
     private static final String REPEATING_TAG_REGEX = 
@@ -120,6 +120,7 @@ public class Parser {
         Map<String, ContextTag> contextTagsTmp = new HashMap<>();
         contextTagsTmp.put("applieddom", ContextTag.APPLIED_DOMINANT);
         contextTagsTmp.put("cadence", ContextTag.CADENCE);
+        contextTagsTmp.put("neapolitan", ContextTag.NEAPOLITAN);
         CONTEXT_TAGS = Collections.unmodifiableMap(contextTagsTmp);
     }
 

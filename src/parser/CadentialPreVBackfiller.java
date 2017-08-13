@@ -9,14 +9,18 @@ import chord_data.ContextTag;
 import chord_data.PrimitiveChordWithContext;
 import chords.ChordType;
 import chords.PrimitiveChord;
+import music.BasicInterval;
 import music.BasicNote;
 import music.Key;
 
 public class CadentialPreVBackfiller implements ParsePostProcessor {
+    
+    private static final BasicInterval SEMITONE = new BasicInterval(0,1);
 
     private static boolean isCadentialPreVChord(PrimitiveChordWithContext chord) {
         Key key = chord.getKey();
         BasicNote second = key.getScaleDegree(2);
+        BasicNote flatSecond = second.transpose(SEMITONE, false);
         BasicNote fourth = key.getScaleDegree(4);
         
         PrimitiveChord primitiveChord = chord.getChord();
@@ -34,8 +38,12 @@ public class CadentialPreVBackfiller implements ParsePostProcessor {
         } else if (root.equals(fourth)) {
             ChordType expectedChordType = key.getIsMajor() ? ChordType.MAJ : ChordType.MIN;
             return primitiveChord.getType().equals(expectedChordType);
+        } else if (root.equals(flatSecond)) {
+            PrimitiveChord expectedNeapolitanChord = new PrimitiveChord(
+                root, ChordType.MAJ, 1
+            );
+            return primitiveChord.equals(expectedNeapolitanChord);
         } else {
-            // TODO: Neapolitan is lowered 2nd
             return false;
         }
     }

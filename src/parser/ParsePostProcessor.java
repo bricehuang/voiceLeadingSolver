@@ -20,7 +20,8 @@ public interface ParsePostProcessor {
         new CadenceConsistencyChecker(),
         new CadentialVBackfiller(),
         new CadentialI64Backfiller(),
-        new CadentialPreVBackfiller()
+        new CadentialPreVBackfiller(),
+        new NeapolitanConsistencyChecker()
     );
 
     /**

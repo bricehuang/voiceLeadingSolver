@@ -51,6 +51,8 @@ public class ParserTest extends MusicTestFramework {
             Parser.parseContext("applieddom"));
         assertEquals(ContextTag.CADENCE, 
             Parser.parseContext("cadence"));
+        assertEquals(ContextTag.NEAPOLITAN, 
+            Parser.parseContext("neapolitan"));
     }
     
     @Test
