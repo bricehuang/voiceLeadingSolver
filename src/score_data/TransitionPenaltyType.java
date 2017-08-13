@@ -13,7 +13,7 @@ public enum TransitionPenaltyType {
     MELODIC_INTERVAL, VOICE_CROSSING, 
     DOM_SEVEN_RES, DIM_SEVEN_RES, 
     MOVE_BIG_CADENCE, CADENTIAL_II7_SUSPEND, 
-    NEAPOLITAN_RES; 
+    BAD_NEAPOLITAN_RES, NEAPOLITAN_AUG_2ND_OK; 
     
     private static final Map<TransitionPenaltyType, String> STRING_REPS;
     static{
@@ -31,7 +31,8 @@ public enum TransitionPenaltyType {
         tmpStringReps.put(DIM_SEVEN_RES, "Bad Diminished Seven Resolution Penalty"); 
         tmpStringReps.put(MOVE_BIG_CADENCE, "Non-Step Move in Cadence Penalty");
         tmpStringReps.put(CADENTIAL_II7_SUSPEND, "Must Suspend 7th of ii7 Penalty");
-        tmpStringReps.put(NEAPOLITAN_RES, "Bad Neapolitan Resolution");
+        tmpStringReps.put(BAD_NEAPOLITAN_RES, "Bad Neapolitan Resolution");
+        tmpStringReps.put(NEAPOLITAN_AUG_2ND_OK, "Good Neapolitan Resolution - aug 2nd OK");
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     
@@ -51,7 +52,8 @@ public enum TransitionPenaltyType {
         tmpPenalties.put(DIM_SEVEN_RES, 1000); 
         tmpPenalties.put(MOVE_BIG_CADENCE, 1000);
         tmpPenalties.put(CADENTIAL_II7_SUSPEND, 1000);
-        tmpPenalties.put(NEAPOLITAN_RES, 1000);
+        tmpPenalties.put(BAD_NEAPOLITAN_RES, 1000);
+        tmpPenalties.put(NEAPOLITAN_AUG_2ND_OK, -tmpPenalties.get(MELODIC_INTERVAL));
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
     }
     
