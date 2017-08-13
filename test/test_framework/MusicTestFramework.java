@@ -57,7 +57,9 @@ public class MusicTestFramework {
     public static final Note G5 = new Note(G, 5);
     public static final Note F5 = new Note(F, 5);
     public static final Note E5 = new Note(E, 5);
+    public static final Note Eb5 = new Note(Eb, 5);
     public static final Note D5 = new Note(D, 5);
+    public static final Note Db5 = new Note(Db, 5);
     public static final Note Cs5 = new Note(Cs, 5);
     public static final Note C5 = new Note(C, 5);
     public static final Note B4 = new Note(B, 4);
@@ -67,6 +69,7 @@ public class MusicTestFramework {
     public static final Note Ab4 = new Note(Ab, 4);
     public static final Note Gs4 = new Note(Gs, 4);
     public static final Note G4 = new Note(G, 4);
+    public static final Note Fs4 = new Note(Fs, 4);
     public static final Note F4 = new Note(F, 4);
     public static final Note Fb4 = new Note(Fb, 4);
     public static final Note E4 = new Note(E, 4);
@@ -80,6 +83,7 @@ public class MusicTestFramework {
     public static final Note Bs3 = new Note(Bs, 3);
     public static final Note B3 = new Note(B, 3);
     public static final Note A3 = new Note(A, 3);
+    public static final Note Ab3 = new Note(Ab, 3);
     public static final Note Gs3 = new Note(Gs, 3);
     public static final Note G3 = new Note(G, 3);
     public static final Note Fss3 = new Note(Fss, 3);
@@ -147,6 +151,7 @@ public class MusicTestFramework {
     public static final PrimitiveChord C_DOM7_ROOT = new PrimitiveChord(C, DOM7, 0);
     public static final PrimitiveChord C_MIN7_65 = new PrimitiveChord(C, MIN7, 0);
     public static final PrimitiveChord Cs_DIM7_ROOT = new PrimitiveChord(Cs, DIM7, 0);
+    public static final PrimitiveChord Db_MAJ_6 = new PrimitiveChord(Db, MAJ, 1);
     public static final PrimitiveChord Db_MAJ7_ROOT = new PrimitiveChord(Db, MAJ7, 0);
     public static final PrimitiveChord D_MAJ_ROOT = new PrimitiveChord(D, MAJ, 0);
     public static final PrimitiveChord D_MAJ_6 = new PrimitiveChord(D, MAJ, 1);
@@ -172,6 +177,7 @@ public class MusicTestFramework {
     public static final PrimitiveChord G_DOM7_63 = new PrimitiveChord(G, DOM7, 1);
     public static final PrimitiveChord G_DOM7_43 = new PrimitiveChord(G, DOM7, 2);
     public static final PrimitiveChord Ab_MAJ_ROOT = new PrimitiveChord(Ab, MAJ, 0);
+    public static final PrimitiveChord Ab_MAJ_6 = new PrimitiveChord(Ab, MAJ, 1);
     public static final PrimitiveChord Ab_DOM7_ROOT = new PrimitiveChord(Ab, DOM7, 0);
     public static final PrimitiveChord A_MAJ_ROOT = new PrimitiveChord(A, MAJ, 0);
     public static final PrimitiveChord A_MAJ_6 = new PrimitiveChord(A, MAJ, 1);
@@ -210,6 +216,7 @@ public class MusicTestFramework {
     public static final ChordPenaltyType VOICE_OVERLAP = ChordPenaltyType.VOICE_OVERLAP;
 
     // TransitionPenalty
+    public static final TransitionPenaltyType BAD_NEAPOLITAN_RES = TransitionPenaltyType.BAD_NEAPOLITAN_RES;
     public static final TransitionPenaltyType CADENTIAL_II7_SUSPEND = TransitionPenaltyType.CADENTIAL_II7_SUSPEND;
     public static final TransitionPenaltyType DIM_SEVEN_RES = TransitionPenaltyType.DIM_SEVEN_RES;
     public static final TransitionPenaltyType DIRECT = TransitionPenaltyType.DIRECT;
@@ -220,9 +227,10 @@ public class MusicTestFramework {
     public static final TransitionPenaltyType MOVE_BIG = TransitionPenaltyType.MOVE_BIG;
     public static final TransitionPenaltyType MOVE_BIG_BASS = TransitionPenaltyType.MOVE_BIG_BASS;
     public static final TransitionPenaltyType MOVE_BIG_CADENCE = TransitionPenaltyType.MOVE_BIG_CADENCE;
+    public static final TransitionPenaltyType NEAPOLITAN_AUG_2ND_OK = TransitionPenaltyType.NEAPOLITAN_AUG_2ND_OK;
     public static final TransitionPenaltyType PARALLEL = TransitionPenaltyType.PARALLEL;
     public static final TransitionPenaltyType VOICE_CROSSING = TransitionPenaltyType.VOICE_CROSSING;
-
+    
     // Util methods
     public static ChordWithContext makeChordWithContext(Note soprano, Note alto, Note tenor, Note bass,
             PrimitiveChord primitiveChord, Key key, Set<ContextTag> contexts) {

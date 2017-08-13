@@ -19,7 +19,7 @@ public interface TransitionScorer {
         new II7SuspensionScorer(),
         new MelodicIntervalScorer(),
         new MovementScorer(),
-//        new NeapolitanResolutionScorer(),
+        new NeapolitanResolutionScorer(),
         new ParallelsScorer(),
         new VoiceCrossingScorer()
     );
