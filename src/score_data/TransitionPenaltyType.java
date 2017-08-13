@@ -33,7 +33,7 @@ public enum TransitionPenaltyType {
         tmpStringReps.put(CADENTIAL_II7_SUSPEND, "Must Suspend 7th of ii7 Penalty");
         tmpStringReps.put(BAD_NEAPOLITAN_RES, "Bad Neapolitan Resolution");
         tmpStringReps.put(NEAPOLITAN_DIM_3RD_OK, "Good Neapolitan Resolution - dim 3rd OK");
-        tmpStringReps.put(NEAPOLITAN_BIG_MOVE_OK, "Good Neapolitan Resolution - dim 3rd OK");
+        tmpStringReps.put(NEAPOLITAN_BIG_MOVE_OK, "Good Neapolitan Resolution - non-step move OK");
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     
