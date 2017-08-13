@@ -129,7 +129,13 @@ public class NeapolitanResolutionScorer implements TransitionScorer {
                 allMovesValid &= (move.equals(expectedMove));
             }
             if (allMovesValid) {
-                score.addPenalty(TransitionPenaltyType.NEAPOLITAN_AUG_2ND_OK);
+                // TODO this may change when N6 -> V7 is implemented
+                // the dim 3rd move, and two non-step cadential moves, are excused
+                if (currContexts.contains(ContextTag.CADENTIAL_V)){
+                    score.addPenalty(TransitionPenaltyType.NEAPOLITAN_DIM_3RD_OK);
+                    score.addPenalty(TransitionPenaltyType.NEAPOLITAN_BIG_MOVE_OK);
+                    score.addPenalty(TransitionPenaltyType.NEAPOLITAN_BIG_MOVE_OK);
+                }
             } else {
                 score.addPenalty(TransitionPenaltyType.BAD_NEAPOLITAN_RES);
             }

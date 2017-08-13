@@ -1,8 +1,8 @@
 Features:
     - dim triad, half dim 7th
-    - Neapolitan (chordType exists; write scorer)
     - aug6 (3 variants)
     - 7th chords can be missing 5th
+    - Neapolitan N6 -> V7 (blocked by 7th chords can be missing 5th)
     - make results reporting less ratchet
     - compile to lilypond 
     - GUI?? 
@@ -14,6 +14,7 @@ Random tech debt:
 	- test ChordProgressionWithContext
 	- test TransitionScorer
 	- test SolverUtils
+	- make tests print less garbage
 	- refactor Parser / move to own package
 	- refactor Main / move to own package
 	- refactor ProgressionPlayer

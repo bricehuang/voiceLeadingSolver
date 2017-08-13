@@ -227,7 +227,8 @@ public class MusicTestFramework {
     public static final TransitionPenaltyType MOVE_BIG = TransitionPenaltyType.MOVE_BIG;
     public static final TransitionPenaltyType MOVE_BIG_BASS = TransitionPenaltyType.MOVE_BIG_BASS;
     public static final TransitionPenaltyType MOVE_BIG_CADENCE = TransitionPenaltyType.MOVE_BIG_CADENCE;
-    public static final TransitionPenaltyType NEAPOLITAN_AUG_2ND_OK = TransitionPenaltyType.NEAPOLITAN_AUG_2ND_OK;
+    public static final TransitionPenaltyType NEAPOLITAN_BIG_MOVE_OK = TransitionPenaltyType.NEAPOLITAN_BIG_MOVE_OK;
+    public static final TransitionPenaltyType NEAPOLITAN_DIM_3RD_OK = TransitionPenaltyType.NEAPOLITAN_DIM_3RD_OK;
     public static final TransitionPenaltyType PARALLEL = TransitionPenaltyType.PARALLEL;
     public static final TransitionPenaltyType VOICE_CROSSING = TransitionPenaltyType.VOICE_CROSSING;
     

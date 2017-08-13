@@ -49,8 +49,9 @@ public class NeapolitanResolutionScorerTest extends MusicTestFramework {
         );
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);
-        assertEquals(1, penaltyCount.keySet().size());
-        assertEquals((Integer) 1, penaltyCount.get(NEAPOLITAN_AUG_2ND_OK));
+        assertEquals(2, penaltyCount.keySet().size());
+        assertEquals((Integer) 1, penaltyCount.get(NEAPOLITAN_DIM_3RD_OK));
+        assertEquals((Integer) 2, penaltyCount.get(NEAPOLITAN_BIG_MOVE_OK));
     }
 
     @Test
@@ -78,8 +79,7 @@ public class NeapolitanResolutionScorerTest extends MusicTestFramework {
         );
         Map<TransitionPenaltyType, Integer> penaltyCount = 
             computePenalties(previous, current);
-        assertEquals(1, penaltyCount.keySet().size());
-        assertEquals((Integer) 1, penaltyCount.get(NEAPOLITAN_AUG_2ND_OK));
+        assertEquals(0, penaltyCount.keySet().size());
     }
 
     @Test
@@ -106,8 +106,7 @@ public class NeapolitanResolutionScorerTest extends MusicTestFramework {
        );
        Map<TransitionPenaltyType, Integer> penaltyCount = 
            computePenalties(previous, current);
-       assertEquals(1, penaltyCount.keySet().size());
-       assertEquals((Integer) 1, penaltyCount.get(NEAPOLITAN_AUG_2ND_OK));
+       assertEquals(0, penaltyCount.keySet().size());
    }
 
    @Test

@@ -27,6 +27,19 @@ public class MainTest {
 	        }
 		}
     }
+    
+    @Test
+    public void neapolitanCadenceTest(){
+        if (PLAY_REALIZATIONS){
+            playSampleSATB("neapolitan-cadence.satb");
+            try{
+                Thread.sleep(8000);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }    
 
     @Test
     public void realization1Test(){
