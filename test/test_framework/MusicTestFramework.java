@@ -217,6 +217,7 @@ public class MusicTestFramework {
 
     // TransitionPenalty
     public static final TransitionPenaltyType BAD_NEAPOLITAN_RES = TransitionPenaltyType.BAD_NEAPOLITAN_RES;
+    public static final TransitionPenaltyType BAD_TRITONE_RESOLUTION = TransitionPenaltyType.BAD_TRITONE_RESOLUTION;
     public static final TransitionPenaltyType CADENTIAL_II7_SUSPEND = TransitionPenaltyType.CADENTIAL_II7_SUSPEND;
     public static final TransitionPenaltyType DIM_SEVEN_RES = TransitionPenaltyType.DIM_SEVEN_RES;
     public static final TransitionPenaltyType DIRECT = TransitionPenaltyType.DIRECT;

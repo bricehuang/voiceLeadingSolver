@@ -13,7 +13,8 @@ public enum TransitionPenaltyType {
     MELODIC_INTERVAL, VOICE_CROSSING, 
     DOM_SEVEN_RES, DIM_SEVEN_RES, 
     MOVE_BIG_CADENCE, CADENTIAL_II7_SUSPEND, 
-    BAD_NEAPOLITAN_RES, NEAPOLITAN_DIM_3RD_OK, NEAPOLITAN_BIG_MOVE_OK; 
+    BAD_NEAPOLITAN_RES, NEAPOLITAN_DIM_3RD_OK, NEAPOLITAN_BIG_MOVE_OK,
+    BAD_TRITONE_RESOLUTION; 
     
     private static final Map<TransitionPenaltyType, String> STRING_REPS;
     static{
@@ -34,6 +35,7 @@ public enum TransitionPenaltyType {
         tmpStringReps.put(BAD_NEAPOLITAN_RES, "Bad Neapolitan Resolution");
         tmpStringReps.put(NEAPOLITAN_DIM_3RD_OK, "Good Neapolitan Resolution - dim 3rd OK");
         tmpStringReps.put(NEAPOLITAN_BIG_MOVE_OK, "Good Neapolitan Resolution - non-step move OK");
+        tmpStringReps.put(BAD_TRITONE_RESOLUTION , "Bad Tritone Resolution");
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     
@@ -56,6 +58,7 @@ public enum TransitionPenaltyType {
         tmpPenalties.put(BAD_NEAPOLITAN_RES, 1000);
         tmpPenalties.put(NEAPOLITAN_DIM_3RD_OK, -tmpPenalties.get(MELODIC_INTERVAL));
         tmpPenalties.put(NEAPOLITAN_BIG_MOVE_OK, -tmpPenalties.get(MOVE_BIG_CADENCE));
+        tmpPenalties.put(BAD_TRITONE_RESOLUTION, 1000);
         PENALTIES = Collections.unmodifiableMap(tmpPenalties);
     }
     

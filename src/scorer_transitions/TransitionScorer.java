@@ -21,6 +21,7 @@ public interface TransitionScorer {
         new MovementScorer(),
         new NeapolitanResolutionScorer(),
         new ParallelsScorer(),
+        new TritoneResolutionScorer(),
         new VoiceCrossingScorer()
     );
 

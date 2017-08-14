@@ -72,7 +72,7 @@ public class MainTest {
 		if (PLAY_REALIZATIONS) {    			
 	        playSampleSATB("realization3.satb");
 	        try{
-	            Thread.sleep(20000);
+	            Thread.sleep(17000);
 	        }
 	        catch(InterruptedException e){
 	            e.printStackTrace();
