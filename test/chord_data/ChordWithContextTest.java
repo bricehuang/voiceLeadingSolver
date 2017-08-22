@@ -18,11 +18,11 @@ public class ChordWithContextTest extends MusicTestFramework {
 		C_MAJ_REALIZED, C_MAJOR, CADENCE
 	);
     private static final ChordWithContext C_MAJ_NONCADENCE = new ChordWithContext(
-	C_MAJ_REALIZED, C_MAJOR, NO_CONTEXTS
-    	);
+        C_MAJ_REALIZED, C_MAJOR, NO_CONTEXTS
+	);
     private static final ChordWithContext C_MAJ_IN_G = new ChordWithContext(
-	C_MAJ_REALIZED, G_MAJOR, NO_CONTEXTS
-    	);
+        C_MAJ_REALIZED, G_MAJOR, NO_CONTEXTS
+	);
 
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {

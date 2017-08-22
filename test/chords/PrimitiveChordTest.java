@@ -25,6 +25,9 @@ public class PrimitiveChordTest extends MusicTestFramework {
         List<BasicNote> eMinorTriad = Arrays.asList(E, G, B);
         assertEquals(eMinorTriad, E_MIN_ROOT.noteList());
 
+        List<BasicNote> bDimTriad = Arrays.asList(B, D, F);
+        assertEquals(bDimTriad, B_DIM_ROOT.noteList());        
+        
         List<BasicNote> gDomSeven = Arrays.asList(G, B, D, F);
         assertEquals(gDomSeven, G_DOM7_ROOT.noteList());
 
@@ -41,6 +44,7 @@ public class PrimitiveChordTest extends MusicTestFramework {
     @Test
     public void toStringTest(){
         assertEquals("C MAJOR INVERSION 0", C_MAJ_ROOT.toString());
+        assertEquals("B DIMINISHED INVERSION 0", B_DIM_ROOT.toString());
         assertEquals("G MINOR INVERSION 2", G_MIN_64.toString());
         assertEquals("E- DOMINANT 7TH INVERSION 3", Eb_DOM7_42.toString()); 
     }

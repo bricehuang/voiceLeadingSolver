@@ -59,7 +59,11 @@ public class BasicChord {
                 soprano, alto, tenor, bass));
         
         // MAGIC NUMBER: 3 note chords vs 4 note chords
-        if (primitiveChord.numberDistinctNotes() == 4){
+        // 4 note chords and diminished triads require all notes
+        if (
+                primitiveChord.numberDistinctNotes() == 4 || 
+                primitiveChord.getType().equals(ChordType.DIM)
+            ){
             // all notes required
             assert(noteList.containsAll(notesInChord));
             assert(notesInChord.containsAll(noteList));

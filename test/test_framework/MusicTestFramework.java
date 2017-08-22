@@ -109,6 +109,7 @@ public class MusicTestFramework {
     public static final Key D_MAJOR = new Key(D, true);
     public static final Key D_MINOR = new Key(D, false);
     public static final Key E_MAJOR = new Key(E, true);
+    public static final Key E_MINOR = new Key(E, false);
     public static final Key Fs_MINOR = new Key(Fs, false);
     public static final Key G_MAJOR = new Key(G, true);
     public static final Key G_MINOR = new Key(G, false);
@@ -136,6 +137,7 @@ public class MusicTestFramework {
     // ChordType
     public static final ChordType MAJ = ChordType.MAJ;
     public static final ChordType MIN = ChordType.MIN;
+    public static final ChordType DIM = ChordType.DIM;
     public static final ChordType DOM7 = ChordType.DOM7;
     public static final ChordType MAJ7 = ChordType.MAJ7;
     public static final ChordType MIN7 = ChordType.MIN7;
@@ -148,6 +150,8 @@ public class MusicTestFramework {
     public static final PrimitiveChord C_MIN_ROOT = new PrimitiveChord(C, MIN, 0);
     public static final PrimitiveChord C_MIN_6 = new PrimitiveChord(C, MIN, 1);
     public static final PrimitiveChord C_MIN_64 = new PrimitiveChord(C, MIN, 2);
+    public static final PrimitiveChord C_MAJ7_ROOT = new PrimitiveChord(C, MAJ7, 0);
+    public static final PrimitiveChord C_MIN7_ROOT = new PrimitiveChord(C, MIN7, 0);
     public static final PrimitiveChord C_DOM7_ROOT = new PrimitiveChord(C, DOM7, 0);
     public static final PrimitiveChord C_MIN7_65 = new PrimitiveChord(C, MIN7, 0);
     public static final PrimitiveChord Cs_DIM7_ROOT = new PrimitiveChord(Cs, DIM7, 0);
@@ -168,6 +172,8 @@ public class MusicTestFramework {
     public static final PrimitiveChord E_DOM7_42 = new PrimitiveChord(E, DOM7, 3);
     public static final PrimitiveChord F_MAJ_ROOT = new PrimitiveChord(F, MAJ, 0);
     public static final PrimitiveChord F_MAJ_6 = new PrimitiveChord(F, MAJ, 1);
+    public static final PrimitiveChord Fs_DIM_ROOT = new PrimitiveChord(Fs, DIM, 0);
+    public static final PrimitiveChord Fs_DIM7_65 = new PrimitiveChord(Fs, DIM7, 1);
     public static final PrimitiveChord F_MIN_ROOT = new PrimitiveChord(F, MIN, 0);
     public static final PrimitiveChord G_MAJ_ROOT = new PrimitiveChord(G, MAJ, 0);
     public static final PrimitiveChord G_MAJ_6 = new PrimitiveChord(G, MAJ, 1);
@@ -186,6 +192,7 @@ public class MusicTestFramework {
     public static final PrimitiveChord A_MIN7_ROOT = new PrimitiveChord(A, MIN7, 0);
     public static final PrimitiveChord Bb_MAJ_ROOT = new PrimitiveChord(Bb, MAJ, 0);
     public static final PrimitiveChord Bb_MAJ_6 = new PrimitiveChord(Bb, MAJ, 1);
+    public static final PrimitiveChord B_DIM_ROOT = new PrimitiveChord(B, DIM, 0);
     public static final PrimitiveChord B_DIM7_ROOT = new PrimitiveChord(B, DIM7, 0);
     public static final PrimitiveChord B_DIM7_65 = new PrimitiveChord(B, DIM7, 1);
     public static final PrimitiveChord B_DIM7_43 = new PrimitiveChord(B, DIM7, 2);

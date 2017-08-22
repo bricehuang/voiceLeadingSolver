@@ -71,7 +71,4 @@ public class ConsChordProgressionWithContext implements ChordProgressionWithCont
         return start.toString() + "\n" + last.toString();
     }
 
-
-    
-
 }
