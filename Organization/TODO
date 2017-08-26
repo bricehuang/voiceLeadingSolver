@@ -1,5 +1,5 @@
 Features:
-    - dim triad, half dim 7th
+    - half dim 7th
     - aug6 (3 variants)
     - 7th chords can be missing 5th
     - Neapolitan N6 -> V7 (blocked by 7th chords can be missing 5th)
@@ -8,7 +8,7 @@ Features:
     - GUI?? 
 
 Random tech debt:
-	- Implement parser for minor predominants (after dim triad, half dim 7th)
+	- Implement parser for minor predominants (partially done; blockers: half dim 7th)
 	- test ChordWithContext
 	- text PrimitiveChordWithContext
 	- test ChordProgressionWithContext

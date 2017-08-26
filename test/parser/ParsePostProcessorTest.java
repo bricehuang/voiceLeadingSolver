@@ -11,35 +11,42 @@ import chord_data.PrimitiveChordWithContext;
 import test_framework.MusicTestFramework;
 
 public class ParsePostProcessorTest extends MusicTestFramework {
-    
-    private static final PrimitiveChordWithContext PRE_V_NO_TAG = 
-        new PrimitiveChordWithContext(D_MIN7_65, C_MAJOR, NO_CONTEXTS); 
-    private static final PrimitiveChordWithContext PRE_V_WITH_TAG = 
-        new PrimitiveChordWithContext(D_MIN7_65, C_MAJOR, CADENTIAL_PREDOMINANT); 
 
-    private static final PrimitiveChordWithContext I64_NO_TAG = 
-        new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, NO_CONTEXTS); 
-    private static final PrimitiveChordWithContext I6_NOT_CADENTIAL_NO_TAG = 
-        new PrimitiveChordWithContext(C_MAJ_6, C_MAJOR, NO_CONTEXTS); 
-    private static final PrimitiveChordWithContext I64_WITH_TAG = 
-        new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, CADENTIAL_I64); 
-    
-    private static final PrimitiveChordWithContext V_NO_TAG = 
-        new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS);            
-    private static final PrimitiveChordWithContext V_NOT_CADENTIAL_NO_TAG = 
-        new PrimitiveChordWithContext(G_MAJ_6, C_MAJOR, NO_CONTEXTS);            
-    private static final PrimitiveChordWithContext V_WITH_TAG = 
-        new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, CADENTIAL_V);            
+    private static final PrimitiveChordWithContext PRE_V_NO_TAG =
+        new PrimitiveChordWithContext(D_MIN7_65, C_MAJOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext PRE_V_WITH_TAG =
+        new PrimitiveChordWithContext(D_MIN7_65, C_MAJOR, CADENTIAL_PREDOMINANT);
 
-    private static final PrimitiveChordWithContext I_NO_TAG = 
-        new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS);            
-    private static final PrimitiveChordWithContext I_WITH_TAG = 
-        new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, CADENCE);            
+    private static final PrimitiveChordWithContext I64_NO_TAG =
+        new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext I6_NOT_CADENTIAL_NO_TAG =
+        new PrimitiveChordWithContext(C_MAJ_6, C_MAJOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext I64_WITH_TAG =
+        new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, CADENTIAL_I64);
 
-    private static final PrimitiveChordWithContext I_BAD_TAG = 
-        new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, CADENCE);            
-    
-    
+    private static final PrimitiveChordWithContext V_NO_TAG =
+        new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext V_NOT_CADENTIAL_NO_TAG =
+        new PrimitiveChordWithContext(G_MAJ_6, C_MAJOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext V_WITH_TAG =
+        new PrimitiveChordWithContext(G_MAJ_ROOT, C_MAJOR, CADENTIAL_V);
+
+    private static final PrimitiveChordWithContext I_NO_TAG =
+        new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext I_WITH_TAG =
+        new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, CADENCE);
+
+    private static final PrimitiveChordWithContext I_BAD_TAG =
+        new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, CADENCE);
+
+    private static final PrimitiveChordWithContext PRE_V_NO_TAG_2 =
+        new PrimitiveChordWithContext(Fs_DIM_6, E_MINOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext PRE_V_WITH_TAG_2 =
+        new PrimitiveChordWithContext(Fs_DIM_6, E_MINOR, CADENTIAL_PREDOMINANT);
+
+    private static final PrimitiveChordWithContext V_WITH_TAG_2 =
+        new PrimitiveChordWithContext(B_MAJ_ROOT, E_MINOR, CADENTIAL_V);
+
     @Test(expected=AssertionError.class)
     public void testAssertionsEnabled() {
         assert false;
@@ -170,7 +177,19 @@ public class ParsePostProcessorTest extends MusicTestFramework {
             PRE_V_WITH_TAG, V_WITH_TAG
         );
         assertEquals(expectedPostProcess, preprocess);
-    }    
+    }
+
+    @Test
+    public void testCadentialPreVBackfillerGood2() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            PRE_V_NO_TAG_2, V_WITH_TAG_2
+        );
+        new CadentialPreVBackfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            PRE_V_WITH_TAG_2, V_WITH_TAG_2
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }
 
     @Test
     public void testCadentialPreVBackfillerNotPreV() {

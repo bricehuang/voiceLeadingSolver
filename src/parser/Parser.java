@@ -32,6 +32,7 @@ public class Parser {
      * chordtype is one of the following: 
      *  - maj (Major)
      *  - min (Minor)
+     *  - dim (Diminished)
      *  - dom7 (Dominant 7th)
      *  - dim7 (Diminished 7th)
      *  - maj7 (Major 7th) 
@@ -61,7 +62,7 @@ public class Parser {
     // Regexes
     private static final String NOTE_REGEX = "[A-G][#|b]?";
     private static final String CHORDTYPE_REGEX = 
-        "(maj|min|dom7|dim7|maj7|min7)";
+        "(maj|min|dim|dom7|dim7|maj7|min7)";
     private static final String INVERSION_REGEX = "[0-3]";
     private static final String TAG_REGEX = 
         "(applieddom|cadence|neapolitan)";
@@ -108,6 +109,7 @@ public class Parser {
         Map<String, ChordType> chordTypesTmp = new HashMap<>();
         chordTypesTmp.put("maj", ChordType.MAJ);
         chordTypesTmp.put("min", ChordType.MIN);
+        chordTypesTmp.put("dim", ChordType.DIM);
         chordTypesTmp.put("dom7", ChordType.DOM7);
         chordTypesTmp.put("dim7", ChordType.DIM7);
         chordTypesTmp.put("maj7", ChordType.MAJ7);

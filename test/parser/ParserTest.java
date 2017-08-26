@@ -31,6 +31,7 @@ public class ParserTest extends MusicTestFramework {
     public void parseChordTypeTest(){
         assertEquals(MAJ, Parser.parseChordType("maj"));
         assertEquals(MIN, Parser.parseChordType("min"));
+        assertEquals(DIM, Parser.parseChordType("dim"));
         assertEquals(DOM7, Parser.parseChordType("dom7"));
         assertEquals(DIM7, Parser.parseChordType("dim7"));
         assertEquals(MAJ7, Parser.parseChordType("maj7"));
@@ -60,6 +61,10 @@ public class ParserTest extends MusicTestFramework {
         assertEquals(
             new PrimitiveChordWithContext(C_MAJ_ROOT, C_MAJOR, NO_CONTEXTS),
             Parser.parseChord("C_maj_0", C_MAJOR)
+        );
+        assertEquals(
+            new PrimitiveChordWithContext(Fs_DIM_6, G_MAJOR, NO_CONTEXTS),
+            Parser.parseChord("F#_dim_1", G_MAJOR)
         );
         assertEquals(
             new PrimitiveChordWithContext(E_DOM7_65, A_MINOR, NO_CONTEXTS),
