@@ -82,6 +82,7 @@ public class MusicTestFramework {
     public static final Note Bss3 = new Note(Bss, 3);
     public static final Note Bs3 = new Note(Bs, 3);
     public static final Note B3 = new Note(B, 3);
+    public static final Note Bb3 = new Note(Bb, 3);
     public static final Note A3 = new Note(A, 3);
     public static final Note Ab3 = new Note(Ab, 3);
     public static final Note Gs3 = new Note(Gs, 3);
@@ -110,6 +111,7 @@ public class MusicTestFramework {
     public static final Key D_MINOR = new Key(D, false);
     public static final Key E_MAJOR = new Key(E, true);
     public static final Key E_MINOR = new Key(E, false);
+    public static final Key F_MAJOR = new Key(F, true);
     public static final Key Fs_MINOR = new Key(Fs, false);
     public static final Key G_MAJOR = new Key(G, true);
     public static final Key G_MINOR = new Key(G, false);
@@ -161,11 +163,13 @@ public class MusicTestFramework {
     public static final PrimitiveChord D_MAJ_6 = new PrimitiveChord(D, MAJ, 1);
     public static final PrimitiveChord D_MIN_ROOT = new PrimitiveChord(D, MIN, 0);
     public static final PrimitiveChord D_MIN_6 = new PrimitiveChord(D, MIN, 1);
+    public static final PrimitiveChord D_DIM_6 = new PrimitiveChord(D, DIM, 1);
     public static final PrimitiveChord D_DOM7_ROOT = new PrimitiveChord(D, DOM7, 0);
     public static final PrimitiveChord D_MIN7_65 = new PrimitiveChord(D, MIN7, 1);
     public static final PrimitiveChord Eb_DOM7_42 = new PrimitiveChord(Eb, DOM7, 3);
     public static final PrimitiveChord E_MAJ_ROOT = new PrimitiveChord(E, MAJ, 0);
     public static final PrimitiveChord E_MIN_ROOT = new PrimitiveChord(E, MIN, 0);
+    public static final PrimitiveChord E_DIM_ROOT = new PrimitiveChord(E, DIM, 0);
     public static final PrimitiveChord E_DOM7_ROOT = new PrimitiveChord(E, DOM7, 0);
     public static final PrimitiveChord E_DOM7_65 = new PrimitiveChord(E, DOM7, 1);
     public static final PrimitiveChord E_DOM7_43 = new PrimitiveChord(E, DOM7, 2);
@@ -173,6 +177,7 @@ public class MusicTestFramework {
     public static final PrimitiveChord F_MAJ_ROOT = new PrimitiveChord(F, MAJ, 0);
     public static final PrimitiveChord F_MAJ_6 = new PrimitiveChord(F, MAJ, 1);
     public static final PrimitiveChord Fs_DIM_ROOT = new PrimitiveChord(Fs, DIM, 0);
+    public static final PrimitiveChord Fs_DIM_6 = new PrimitiveChord(Fs, DIM, 1);
     public static final PrimitiveChord Fs_DIM7_65 = new PrimitiveChord(Fs, DIM7, 1);
     public static final PrimitiveChord F_MIN_ROOT = new PrimitiveChord(F, MIN, 0);
     public static final PrimitiveChord G_MAJ_ROOT = new PrimitiveChord(G, MAJ, 0);
@@ -182,6 +187,7 @@ public class MusicTestFramework {
     public static final PrimitiveChord G_DOM7_ROOT = new PrimitiveChord(G, DOM7, 0);
     public static final PrimitiveChord G_DOM7_63 = new PrimitiveChord(G, DOM7, 1);
     public static final PrimitiveChord G_DOM7_43 = new PrimitiveChord(G, DOM7, 2);
+    public static final PrimitiveChord Gs_DIM_6 = new PrimitiveChord(Gs, DIM, 1);
     public static final PrimitiveChord Ab_MAJ_ROOT = new PrimitiveChord(Ab, MAJ, 0);
     public static final PrimitiveChord Ab_MAJ_6 = new PrimitiveChord(Ab, MAJ, 1);
     public static final PrimitiveChord Ab_DOM7_ROOT = new PrimitiveChord(Ab, DOM7, 0);
@@ -220,6 +226,8 @@ public class MusicTestFramework {
     public static final ChordPenaltyType CADENCE_DOUBLING = ChordPenaltyType.CADENCE_DOUBLING;
     public static final ChordPenaltyType DOUBLE_DOUBLING = ChordPenaltyType.DOUBLE_DOUBLING;
     public static final ChordPenaltyType DOUBLED_LEADING_TONE = ChordPenaltyType.DOUBLED_LEADING_TONE;
+    public static final ChordPenaltyType BAD_DIM_DOUBLING = ChordPenaltyType.BAD_DIM_DOUBLING;
+    public static final ChordPenaltyType BAD_DOUBLING_OK_BECAUSE_DIM = ChordPenaltyType.BAD_DOUBLING_OK_BECAUSE_DIM;
     public static final ChordPenaltyType VOICE_OVERLAP = ChordPenaltyType.VOICE_OVERLAP;
 
     // TransitionPenalty

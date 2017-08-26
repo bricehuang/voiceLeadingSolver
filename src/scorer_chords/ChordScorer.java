@@ -12,6 +12,7 @@ import score_data.ChordScore;
 public interface ChordScorer {
     
     public static final List<ChordScorer> ALL_CHORD_SCORERS = Arrays.asList(
+        new DimTriadDoublingScorer(),
         new DoublingCadenceScorer(),
         new DoublingScorer(),
         new PacScorer(),

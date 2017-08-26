@@ -62,7 +62,7 @@ public class SolverUtils {
         assert (chord.getPrimitiveChord().numberDistinctNotes() == 3);
         Set<BasicNote> doubledOrMoreNotes = new HashSet<>();
         
-        Map<BasicNote, Integer> noteCounts = SolverUtils.countBasicNotes(chord);
+        Map<BasicNote, Integer> noteCounts = countBasicNotes(chord);
         for (BasicNote basicNote : noteCounts.keySet()){
             if (noteCounts.get(basicNote) > 1){
                 doubledOrMoreNotes.add(basicNote);

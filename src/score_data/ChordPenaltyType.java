@@ -8,7 +8,8 @@ import java.util.Map;
  * A class representing all possible penalties on a chord
  */
 public enum ChordPenaltyType {
-    BAD_DOUBLING, DOUBLE_DOUBLING, BAD_TRIPLING, OMITTED_FIFTH, DOUBLED_LEADING_TONE, 
+    BAD_DOUBLING, DOUBLE_DOUBLING, BAD_TRIPLING, OMITTED_FIFTH, DOUBLED_LEADING_TONE,
+    BAD_DIM_DOUBLING, BAD_DOUBLING_OK_BECAUSE_DIM,
     VOICE_OVERLAP, 
     CADENCE_DOUBLING, 
     NOT_PAC; 
@@ -21,9 +22,12 @@ public enum ChordPenaltyType {
         tmpStringReps.put(BAD_TRIPLING, "Bad Tripling Penalty");
         tmpStringReps.put(OMITTED_FIFTH, "Omitted Fifth Penalty");
         tmpStringReps.put(DOUBLED_LEADING_TONE, "Doubled Leading Tone Penalty");
+        tmpStringReps.put(BAD_DIM_DOUBLING, "Bad Diminished Triad Doubling");
+        tmpStringReps.put(BAD_DOUBLING_OK_BECAUSE_DIM, "Good Diminished Triad Doubling -- Wrong Scale Degree OK");
         tmpStringReps.put(VOICE_OVERLAP, "Voice Overlap Penalty");
         tmpStringReps.put(CADENCE_DOUBLING, "Bad Doubling in Cadence Penalty"); 
         tmpStringReps.put(NOT_PAC, "Not Perfect Authentic Cadence Penalty");
+        
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     
@@ -35,6 +39,8 @@ public enum ChordPenaltyType {
         tmpPenalties.put(BAD_TRIPLING, 100);
         tmpPenalties.put(OMITTED_FIFTH, 100);
         tmpPenalties.put(DOUBLED_LEADING_TONE, 100000);
+        tmpPenalties.put(BAD_DIM_DOUBLING, 1000);
+        tmpPenalties.put(BAD_DOUBLING_OK_BECAUSE_DIM, -tmpPenalties.get(BAD_DOUBLING));
         tmpPenalties.put(VOICE_OVERLAP, 50);
         tmpPenalties.put(CADENCE_DOUBLING, 1000); 
         tmpPenalties.put(NOT_PAC, 10); 
