@@ -50,7 +50,7 @@ public class MainTest {
 	        }
 	        catch(InterruptedException e){
 	            e.printStackTrace();
-	        }    			
+	        }
 		}
     }
 
@@ -63,14 +63,14 @@ public class MainTest {
 	        }
 	        catch(InterruptedException e){
 	            e.printStackTrace();
-	        }    			
+	        }
 		}
     }
 
     @Test
     public void realization3Test(){
-		if (PLAY_REALIZATIONS) {    			
-	        playSampleSATB("realization3.satb");
+    	if (PLAY_REALIZATIONS) {
+            playSampleSATB("realization3.satb");
 	        try{
 	            Thread.sleep(17000);
 	        }
@@ -82,7 +82,7 @@ public class MainTest {
 
     @Test
     public void realization4Test(){
-        if (PLAY_REALIZATIONS) {                
+        if (PLAY_REALIZATIONS) {
             playSampleSATB("realization4.satb");
             try{
                 Thread.sleep(12000);
@@ -91,6 +91,18 @@ public class MainTest {
                 e.printStackTrace();
             }
         }
-    }    
+    }
 
+    @Test
+    public void realization5Test(){
+        if (PLAY_REALIZATIONS) {
+            playSampleSATB("realization5.satb");
+            try{
+                Thread.sleep(28000);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }

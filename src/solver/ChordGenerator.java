@@ -11,6 +11,7 @@ import chord_data.ChordWithContext;
 import chord_data.PrimitiveChordWithContext;
 import chords.BasicChord;
 import chords.Chord;
+import chords.ChordType;
 import chords.PrimitiveChord;
 import music.BasicNote;
 import music.Key;
@@ -38,12 +39,16 @@ class ChordGenerator {
      * must be present, but the fifth may be absent.    
      */
     private static boolean isValidBasicChord(BasicNote soprano, BasicNote alto, 
-            BasicNote tenor, BasicNote bass, List<BasicNote> noteList){
+            BasicNote tenor, BasicNote bass, PrimitiveChord primitive){
+        List<BasicNote> noteList = primitive.noteList();
         Set<BasicNote> notesInChord = new HashSet<>(Arrays.asList(
                 soprano, alto, tenor, bass));
         
         // MAGIC NUMBER: 3 note chords vs 4 note chords
-        if (noteList.size() == 4){
+        if (
+            primitive.numberDistinctNotes() == 4 || 
+            primitive.getType() == ChordType.DIM
+        ){
             // all notes required
             if (
                 (noteList.containsAll(notesInChord)) &&
@@ -83,7 +88,7 @@ class ChordGenerator {
         for (BasicNote soprano : primitive.noteList()){
             for (BasicNote alto : primitive.noteList()){
                 for (BasicNote tenor : primitive.noteList()){
-                    if (isValidBasicChord(soprano, alto, tenor, bass, primitive.noteList())){
+                    if (isValidBasicChord(soprano, alto, tenor, bass, primitive)){
                         validNoteAssignments.add(new BasicChord(
                                 soprano, alto, tenor, bass, primitive));
                     }
