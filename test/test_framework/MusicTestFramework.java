@@ -179,10 +179,11 @@ public class MusicTestFramework {
     public static final PrimitiveChord E_DOM7_42 = new PrimitiveChord(E, DOM7, 3);
     public static final PrimitiveChord F_MAJ_ROOT = new PrimitiveChord(F, MAJ, 0);
     public static final PrimitiveChord F_MAJ_6 = new PrimitiveChord(F, MAJ, 1);
+    public static final PrimitiveChord F_MIN_ROOT = new PrimitiveChord(F, MIN, 0);
     public static final PrimitiveChord Fs_DIM_ROOT = new PrimitiveChord(Fs, DIM, 0);
     public static final PrimitiveChord Fs_DIM_6 = new PrimitiveChord(Fs, DIM, 1);
     public static final PrimitiveChord Fs_DIM7_65 = new PrimitiveChord(Fs, DIM7, 1);
-    public static final PrimitiveChord F_MIN_ROOT = new PrimitiveChord(F, MIN, 0);
+    public static final PrimitiveChord Fs_HDIM7_65 = new PrimitiveChord(Fs, HDIM7, 1);
     public static final PrimitiveChord G_MAJ_ROOT = new PrimitiveChord(G, MAJ, 0);
     public static final PrimitiveChord G_MAJ_6 = new PrimitiveChord(G, MAJ, 1);
     public static final PrimitiveChord G_MAJ_64 = new PrimitiveChord(G, MAJ, 2);

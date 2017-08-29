@@ -76,7 +76,7 @@ public enum ChordType {
         tmpStringReps.put(MAJ7, "MAJOR 7TH");
         tmpStringReps.put(MIN7, "MINOR 7TH");
         tmpStringReps.put(DIM7, "DIMINISHED 7TH");
-        tmpStringReps.put(HDIM7, "HALF_DIMINISHED 7TH");
+        tmpStringReps.put(HDIM7, "HALF DIMINISHED 7TH");
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     

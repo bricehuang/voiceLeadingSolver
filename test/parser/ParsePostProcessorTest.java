@@ -39,10 +39,17 @@ public class ParsePostProcessorTest extends MusicTestFramework {
     private static final PrimitiveChordWithContext I_BAD_TAG =
         new PrimitiveChordWithContext(C_MAJ_64, C_MAJOR, CADENCE);
 
-    private static final PrimitiveChordWithContext PRE_V_NO_TAG_2 =
+    // test dim chord as predominant
+    private static final PrimitiveChordWithContext PRE_V_NO_TAG_2a =
         new PrimitiveChordWithContext(Fs_DIM_6, E_MINOR, NO_CONTEXTS);
-    private static final PrimitiveChordWithContext PRE_V_WITH_TAG_2 =
+    private static final PrimitiveChordWithContext PRE_V_WITH_TAG_2a =
         new PrimitiveChordWithContext(Fs_DIM_6, E_MINOR, CADENTIAL_PREDOMINANT);
+
+    // test half dim chord as predominant
+    private static final PrimitiveChordWithContext PRE_V_NO_TAG_2b =
+        new PrimitiveChordWithContext(Fs_HDIM7_65, E_MINOR, NO_CONTEXTS);
+    private static final PrimitiveChordWithContext PRE_V_WITH_TAG_2b =
+        new PrimitiveChordWithContext(Fs_HDIM7_65, E_MINOR, CADENTIAL_PREDOMINANT);
 
     private static final PrimitiveChordWithContext V_WITH_TAG_2 =
         new PrimitiveChordWithContext(B_MAJ_ROOT, E_MINOR, CADENTIAL_V);
@@ -182,15 +189,27 @@ public class ParsePostProcessorTest extends MusicTestFramework {
     @Test
     public void testCadentialPreVBackfillerGood2() {
         List<PrimitiveChordWithContext> preprocess = Arrays.asList(
-            PRE_V_NO_TAG_2, V_WITH_TAG_2
+            PRE_V_NO_TAG_2a, V_WITH_TAG_2
         );
         new CadentialPreVBackfiller().postProcess(preprocess);
         List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
-            PRE_V_WITH_TAG_2, V_WITH_TAG_2
+            PRE_V_WITH_TAG_2a, V_WITH_TAG_2
         );
         assertEquals(expectedPostProcess, preprocess);
     }
-
+    
+    @Test
+    public void testCadentialPreVBackfillerGood3() {
+        List<PrimitiveChordWithContext> preprocess = Arrays.asList(
+            PRE_V_NO_TAG_2b, V_WITH_TAG_2
+        );
+        new CadentialPreVBackfiller().postProcess(preprocess);
+        List<PrimitiveChordWithContext> expectedPostProcess = Arrays.asList(
+            PRE_V_WITH_TAG_2b, V_WITH_TAG_2
+        );
+        assertEquals(expectedPostProcess, preprocess);
+    }
+    
     @Test
     public void testCadentialPreVBackfillerNotPreV() {
         List<PrimitiveChordWithContext> preprocess = Arrays.asList(

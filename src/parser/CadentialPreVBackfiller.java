@@ -26,17 +26,10 @@ public class CadentialPreVBackfiller implements ParsePostProcessor {
         PrimitiveChord primitiveChord = chord.getChord();
         BasicNote root = primitiveChord.getRoot();
         if (root.equals(second)) {
-            if (key.getIsMajor()) {
-                Set<ChordType> allowedChordTypes = new HashSet<>(Arrays.asList(
-                    ChordType.MIN, ChordType.MIN7
-                ));
-                return allowedChordTypes.contains(primitiveChord.getType());
-            } else {
-                Set<ChordType> allowedChordTypes = new HashSet<>(Arrays.asList(
-                    ChordType.DIM // pending halfdim7
-                ));
-                return allowedChordTypes.contains(primitiveChord.getType());
-            }
+            Set<ChordType> allowedChordTypes = new HashSet<>(Arrays.asList(
+                ChordType.MIN, ChordType.MIN7, ChordType.DIM, ChordType.HDIM7
+            ));
+            return allowedChordTypes.contains(primitiveChord.getType());
         } else if (root.equals(fourth)) {
             ChordType expectedChordType = key.getIsMajor() ? ChordType.MAJ : ChordType.MIN;
             return primitiveChord.getType().equals(expectedChordType);

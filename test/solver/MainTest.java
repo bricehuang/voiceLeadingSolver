@@ -105,4 +105,30 @@ public class MainTest {
             }
         }
     }
+
+    @Test
+    public void realization6Test(){
+        if (PLAY_REALIZATIONS) {
+            playSampleSATB("realization6.satb");
+            try{
+                Thread.sleep(34000);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Test
+    public void realization7Test(){
+        if (PLAY_REALIZATIONS) {
+            playSampleSATB("realization7.satb");
+            try{
+                Thread.sleep(24000);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
