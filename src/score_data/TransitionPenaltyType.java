@@ -53,7 +53,7 @@ public enum TransitionPenaltyType {
         tmpPenalties.put(VOICE_CROSSING, 10000);
         tmpPenalties.put(DOM_SEVEN_RES, 1000); 
         tmpPenalties.put(DIM_SEVEN_RES, 1000); 
-        tmpPenalties.put(MOVE_BIG_CADENCE, 1000);
+        tmpPenalties.put(MOVE_BIG_CADENCE, 10000);
         tmpPenalties.put(CADENTIAL_II7_SUSPEND, 1000);
         tmpPenalties.put(BAD_NEAPOLITAN_RES, 1000);
         tmpPenalties.put(NEAPOLITAN_DIM_3RD_OK, -tmpPenalties.get(MELODIC_INTERVAL));

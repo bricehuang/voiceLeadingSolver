@@ -131,4 +131,17 @@ public class MainTest {
             }
         }
     }
+
+    @Test
+    public void realization8Test(){
+        if (PLAY_REALIZATIONS) {
+            playSampleSATB("realization8.satb");
+            try{
+                Thread.sleep(14000);
+            }
+            catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
