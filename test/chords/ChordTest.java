@@ -30,6 +30,9 @@ public class ChordTest extends MusicTestFramework {
     private static final Chord C_MIN7_REALIZED = new Chord(
         Bb4, Eb4, G3, C3, C_MIN7_ROOT
     );
+    private static final Chord D_HDIM7_REALIZED = new Chord(
+        C5, Ab4, D4, F3, D_HDIM7_65
+    );
             
 
     @Test(expected=AssertionError.class)
@@ -46,6 +49,7 @@ public class ChordTest extends MusicTestFramework {
         assertEquals("[E-5|C5|F+4|A3]", Fs_DIM7_REALIZED.toString());
         assertEquals("[B4|E4|G3|C3]", C_MAJ7_REALIZED.toString());
         assertEquals("[B-4|E-4|G3|C3]", C_MIN7_REALIZED.toString());
+        assertEquals("[C5|A-4|D4|F3]", D_HDIM7_REALIZED.toString());
     }
 
     @Test
@@ -57,6 +61,7 @@ public class ChordTest extends MusicTestFramework {
         assertEquals("[E-5|C5|F4|A3]", Fs_DIM7_REALIZED.renderInKey(G_MAJOR));
         assertEquals("[B4|E4|G3|C3]", C_MAJ7_REALIZED.renderInKey(C_MAJOR));
         assertEquals("[B4|E4|G3|C3]", C_MIN7_REALIZED.renderInKey(C_MINOR));
+        assertEquals("[C5|A4|D4|F3]", D_HDIM7_REALIZED.renderInKey(C_MINOR));
     }
 
 

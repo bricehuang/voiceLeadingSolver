@@ -93,4 +93,30 @@ public class TritoneResolutionScorerTest extends MusicTestFramework {
         assertEquals((Integer) 1, penaltyCount.get(BAD_TRITONE_RESOLUTION));
     }
 
+    @Test
+    public void testTritoneInHalfdim7Good(){
+        ChordWithContext previous = makeChordWithContext(
+            C5, Ab4, D4, F3, D_HDIM7_65, C_MINOR, NO_CONTEXTS
+        );
+        ChordWithContext current = makeChordWithContext(
+            C5, G4, E4, G3, C_MAJ_64, C_MINOR, NO_CONTEXTS
+        );
+        Map<TransitionPenaltyType, Integer> penaltyCount = 
+            computePenalties(previous, current);
+        assertEquals(0, penaltyCount.keySet().size());
+    }
+
+    @Test
+    public void testTritoneInHalfdim7Bad(){
+        ChordWithContext previous = makeChordWithContext(
+            C5, Ab4, D4, F3, D_HDIM7_65, C_MINOR, NO_CONTEXTS
+        );
+        ChordWithContext current = makeChordWithContext(
+            C5, G4, C4, E3, C_MAJ_6, A_MAJOR, NO_CONTEXTS
+        );
+        Map<TransitionPenaltyType, Integer> penaltyCount = 
+            computePenalties(previous, current);
+        assertEquals(1, penaltyCount.keySet().size());
+        assertEquals((Integer) 1, penaltyCount.get(BAD_TRITONE_RESOLUTION));
+    }
 }

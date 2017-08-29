@@ -39,6 +39,9 @@ public class PrimitiveChordTest extends MusicTestFramework {
 
         List<BasicNote> cshDimSeven = Arrays.asList(Cs, E, G, Bb);
         assertEquals(cshDimSeven, Cs_DIM7_ROOT.noteList());
+
+        List<BasicNote> dHalfDim = Arrays.asList(D, F, Ab, C);
+        assertEquals(dHalfDim, D_HDIM7_ROOT.noteList());
     }
     
     @Test

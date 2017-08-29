@@ -13,7 +13,7 @@ import music.BasicInterval;
  */
 public enum ChordType {
     MAJ, MIN, DIM,
-    DOM7, MAJ7, MIN7, DIM7;
+    DOM7, MAJ7, MIN7, DIM7, HDIM7;
         
     private static final Map<ChordType, List<BasicInterval>> CHORD_OFFSETS;
     static{
@@ -57,6 +57,12 @@ public enum ChordType {
             new BasicInterval(4,6),
             new BasicInterval(6,9)
         ));
+        tmpChordOffsets.put(HDIM7, Arrays.asList(
+            new BasicInterval(0,0), 
+            new BasicInterval(2,3), 
+            new BasicInterval(4,6),
+            new BasicInterval(6,10)
+        ));
         CHORD_OFFSETS = Collections.unmodifiableMap(tmpChordOffsets);
     }
     
@@ -70,6 +76,7 @@ public enum ChordType {
         tmpStringReps.put(MAJ7, "MAJOR 7TH");
         tmpStringReps.put(MIN7, "MINOR 7TH");
         tmpStringReps.put(DIM7, "DIMINISHED 7TH");
+        tmpStringReps.put(HDIM7, "HALF_DIMINISHED 7TH");
         STRING_REPS = Collections.unmodifiableMap(tmpStringReps);
     }
     

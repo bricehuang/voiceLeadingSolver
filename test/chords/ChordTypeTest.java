@@ -21,6 +21,7 @@ public class ChordTypeTest extends MusicTestFramework{
         assertEquals(4, MAJ7.numberDistinctNotes());
         assertEquals(4, MIN7.numberDistinctNotes());
         assertEquals(4, DIM7.numberDistinctNotes());
+        assertEquals(4, HDIM7.numberDistinctNotes());
     }
 
     @Test
@@ -32,5 +33,6 @@ public class ChordTypeTest extends MusicTestFramework{
         assertEquals("MAJOR 7TH", MAJ7.toString());
         assertEquals("MINOR 7TH", MIN7.toString());
         assertEquals("DIMINISHED 7TH", DIM7.toString());
+        assertEquals("HALF DIMINISHED 7TH", HDIM7.toString());
     }
 }

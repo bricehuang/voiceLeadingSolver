@@ -30,6 +30,9 @@ public class BasicChordTest extends MusicTestFramework {
     private static final BasicChord C_MIN7 = new BasicChord(
         Bb, G, Eb, C, C_MIN7_ROOT
     );
+    private static final BasicChord D_HDIM7 = new BasicChord(
+        C, Ab, D, F, D_HDIM7_65
+    );
             
     
     @Test(expected=AssertionError.class)
@@ -46,6 +49,7 @@ public class BasicChordTest extends MusicTestFramework {
         assertEquals("[E-|C|F+|A]", Fs_DIM7.toString());
         assertEquals("[B|G|E|C]", C_MAJ7.toString());
         assertEquals("[B-|G|E-|C]", C_MIN7.toString());
+        assertEquals("[C|A-|D|F]", D_HDIM7.toString());
     }
 
     @Test
@@ -57,6 +61,7 @@ public class BasicChordTest extends MusicTestFramework {
         assertEquals("[E-|C|F|A]", Fs_DIM7.renderInKey(G_MAJOR));
         assertEquals("[B|G|E|C]", C_MAJ7.renderInKey(C_MAJOR));
         assertEquals("[B|G|E|C]", C_MIN7.renderInKey(C_MINOR));
+        assertEquals("[C|A|D|F]", D_HDIM7.renderInKey(C_MINOR));
     }
 
 }
